@@ -77,6 +77,7 @@ const FeedbackHome = ({ fields, dataForm }) => {
               objFields={fields}
               orderFields={fields.order}
               onSubmitProps={onSubmitIn}
+
             />
           </div>
         </div>

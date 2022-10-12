@@ -1,7 +1,7 @@
 import logo from 'front-end/images/logo.svg';
-import vk from 'front-end/images/social/vk.svg';
-import inst from 'front-end/images/social/instagram.svg';
-import tw from 'front-end/images/social/twitter.svg';
+// import vk from 'front-end/images/social/vk.svg';
+// import inst from 'front-end/images/social/instagram.svg';
+// import tw from 'front-end/images/social/twitter.svg';
 
 import { Link } from 'react-router-dom';
 
@@ -10,12 +10,12 @@ const MenuPopup = ({ showNavMenu, closePopup }) => {
 
   return (
     <>
-      <div className={`popup element-show nav-popup ${showNavMenu && 'show'}`} >
+      <div className={`popup element-show menu-hamburger ${showNavMenu && 'show'}`} >
         <div className="popup-overlay"></div>
         <div className="popup-container">
-          <div className="close-btn close-js" onClick={closePopup}></div>
-          <nav className="popup__nav">
-            <ul>
+          <div className="close-btn close-btn_popup" onClick={closePopup}></div>
+          <nav className="popup-nav">
+            <ul className='ln'>
               <li> <Link to="/">Главная</Link></li>
               <li> <Link to="/catalog">Вакансии / Резюме</Link></li>
               <li> <Link to="#">О нас</Link></li>
@@ -23,12 +23,12 @@ const MenuPopup = ({ showNavMenu, closePopup }) => {
               <li> <Link to="/chatlist">Чат</Link></li>
             </ul>
           </nav>
-          <div className="popup__feedback">
+          <div className="popup-feedback">
             <div className="container">
-              <div className="feedback__phone"><a href="tel:+88005559810">+7 (921) 789 - 65 - 31</a></div>
-              <div className="feedback__social">
+              <div className="feedback-phone"><a href="tel:+88005559810">+7 (921) 789 - 65 - 31</a></div>
+              <div className="feedback-social">
                 <div className="social">
-                  <a href="#">
+                  {/* <a href="#">
                     <img src={vk} alt="" />
                   </a>
                   <a href="#">
@@ -36,12 +36,12 @@ const MenuPopup = ({ showNavMenu, closePopup }) => {
                   </a>
                   <a href="#">
                     <img src={tw} alt="" />
-                  </a>
+                  </a> */}
                 </div>
               </div>
             </div>
           </div>
-          <div className="popup__bottom">
+          <div className="popup-bottom">
             <div className="logo-container">
               <a className="logo" href="/">
                 <img src={logo} alt="" />

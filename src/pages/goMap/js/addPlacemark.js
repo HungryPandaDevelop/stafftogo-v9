@@ -1,4 +1,4 @@
-import userMarker from 'front-end/images/icons/marker.svg'
+import userMarker from 'front-end/images/icons/marker-black.svg'
 
 const addPlacemark = (myMap, myMapRef, coords, setOptions, itemId) => {
   //  console.log(itemId);

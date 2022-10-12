@@ -1,8 +1,8 @@
 
 const City = () => {
   return (
-    <div className="city-container vertical-align col-2">
-      <div className="city-body"><em>Ваш Город: </em><a href="#"> Москва</a></div>
+    <div className="vertical-align col-2 hidden-lg hidden-md hidden-sm hidden-xs">
+      <div className="city-header"><em></em><span> Кременчуг-Константиновское</span></div>
     </div>
   )
 }

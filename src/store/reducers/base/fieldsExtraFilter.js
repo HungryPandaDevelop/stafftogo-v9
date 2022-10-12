@@ -2,12 +2,8 @@ export default function(){
   return {
     order: [
       "gender",
-      "titleOne",
-      "age_from",
-      "age_to",
-      "titleTwo",
-      "exp_from",
-      "exp_to",
+      "age",
+      "exp",
       "additional",
     ],
     gender: {
@@ -18,38 +14,48 @@ export default function(){
         {label:'Не имеет значения', value: "no" },
         {label:'Женщина', value: "women" },
         {label:'Мужчина', value: "men" },
-      ]
+      ],
+      wrapClass: "col-12 col-xs-12"
     },
-    titleOne: {
-      type:"title",
-      label:"Возраст", 
-      
+    age: {
+      type: "multy", 
+      mainname: "age", 
+      label:"Возраст",  
+      allFields: [
+        { 
+          type:"text" ,
+          name: "age_from", 
+          placeholder: "От",
+          length: "col-6 col-xs-12" 
+        },
+        { 
+          type:"text", 
+          name: "age_to", 
+          placeholder: "До",
+          length: "col-6 col-xs-12" 
+        },
+      ],
+      wrapClass: "col-6 col-xs-12"
     },
-    age_from: { 
-      type:"text" ,
-      name: "age_from", 
-      placeholder: "От", 
-    },
-    age_to: { 
-      type:"text", 
-      name: "age_to", 
-      placeholder: "До", 
-      
-    },
-    titleTwo: {
-      type:"title",
-      label:"Опыт", 
-    },
-    exp_from: { 
-      type:"text" ,
-      name: "exp_from", 
-      label: "", 
-      placeholder: "От", 
-    },
-    exp_to: { 
-      type:"text",  
-      name: "exp_to", 
-      placeholder: "До", 
+    exp: {
+      type: "multy", 
+      mainname: "exp", 
+      label:"Опыт",  
+      allFields: [
+        { 
+          type:"text" ,
+          name: "exp_from", 
+          placeholder: "От",
+          length: "col-6 col-xs-12" 
+        },
+        { 
+          type:"text", 
+          name: "exp_to", 
+          placeholder: "До",
+          length: "col-6 col-xs-12" 
+        },
+      ],
+      wrapClass: "col-6 col-xs-12"
     },
     additional: { 
       type:"checkbox",
@@ -63,7 +69,8 @@ export default function(){
         { label: 'Срочный выезд', value: 'type_5' },
         { label: 'Разрешение на работу в России', value: 'type_6' },
         { label: 'Гражданство РФ', value: 'type_7' },
-      ]
+      ],
+      wrapClass: "col-12 col-xs-12"
     },
   }
 }

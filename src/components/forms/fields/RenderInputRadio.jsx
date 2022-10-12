@@ -4,7 +4,7 @@ import { Field } from 'redux-form';
 const TemplateInputRadio = ({ name, label, labelSecond, options, input }) => {
 
   return (
-    <div className="form-line">
+    <>
       {label && <label><b>{label}</b> {labelSecond ? <span>{labelSecond}</span> : ''}</label>}
       {options.map(item => (
         <div className='checkbox' key={item.value}>
@@ -21,7 +21,7 @@ const TemplateInputRadio = ({ name, label, labelSecond, options, input }) => {
         </div>
       ))}
 
-    </div>
+    </>
   );
 }
 

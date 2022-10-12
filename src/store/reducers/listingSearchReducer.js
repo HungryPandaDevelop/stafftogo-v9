@@ -1,7 +1,7 @@
 const search = {
   name: '', 
-  price_from: false, 
-  price_to: false,
+  price_from: '', 
+  price_to: '',
   gender: '',
   additional: {},
   age_from: 0,
@@ -9,6 +9,7 @@ const search = {
   exp_from: 0,
   exp_to: 0,
   specialization: [],
+  specializationImg: [],
   industry: []
 }
 
@@ -26,6 +27,10 @@ const  listingSearchReducer = (state=search, action) => {
       return {...state, specialization: [...state.specialization, action.payload]}
     case "REMOVE_SPECIALIZATION":
       return {...state, specialization: state.specialization.filter(el => el !== action.payload) }
+    case "ADD_SPECIALIZATION_IMG":
+      return {...state, specializationImg: [...state.specializationImg, action.payload]}
+    case "REMOVE_SPECIALIZATION_IMG":
+      return {...state, specializationImg: state.specializationImg.filter(el => el !== action.payload) }
     case "ADD_INDUSTRY":
       return {...state, industry: [...state.industry, action.payload]}
     case "REMOVE_INDUSTRY":

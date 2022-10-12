@@ -12,6 +12,7 @@ import fieldsVacancies from 'store/reducers/base/fieldsVacancies';
 import fieldsResume from 'store/reducers/base/fieldsResume';
 import fieldsChat from 'store/reducers/base/fieldsChat';
 import fieldsExtraFilter from 'store/reducers/base/fieldsExtraFilter';
+import fieldsPriceFilter from 'store/reducers/base/fieldsPriceFilter';
 
 import specializationBase from "store/reducers/base/specializationBase";
 import industryBase from "store/reducers/base/industryBase";
@@ -39,11 +40,11 @@ const rootReducer = combineReducers({
   fieldsResume: fieldsResume,
   fieldsChat: fieldsChat,
   fieldsExtraFilter: fieldsExtraFilter,
+  fieldsPriceFilter: fieldsPriceFilter,
   accountInfo: infoAccountReducer,
   specializationBase: specializationBase,
   industryBase: industryBase,
   popupReducer: popupReducer,
-  // alphabetListPopupReducer: alphabetListPopupReducer,
   popupMapInfoReducer: popupMapInfoReducer,
   listingTypeReducer: listingTypeReducer,
   listingSearchReducer: listingSearchReducer,

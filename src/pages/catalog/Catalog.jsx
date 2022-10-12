@@ -52,7 +52,8 @@ const Catalog = ({ listingType, listingSearch, uid, currentCard, cabinetType, ac
 
 
   return (
-    <div>
+    <>
+      <div className="stub"></div>
       <CardsControls />
       <Breadcrumbs />
       <div className="content">
@@ -80,7 +81,7 @@ const Catalog = ({ listingType, listingSearch, uid, currentCard, cabinetType, ac
         </div>
       </div>
 
-    </div>
+    </>
   )
 }
 

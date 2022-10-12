@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import Nav from 'blocks/header/Nav';
+import CheckLogged from 'blocks/header/CheckLogged';
 import Logo from 'blocks/header/Logo';
 import City from 'blocks/header/City';
 import Search from 'blocks/header/Search';
@@ -26,21 +26,13 @@ const Header = () => {
       <MenuPopup showNavMenu={showNavMenu} closePopup={closePopup} />
       <AuthInfo />
       <header >
-        <div className="header-bg"></div>
         <div className="main-grid">
-
           <Logo />
           <City />
           <Search />
-
-          <div className="sigin-container vertical-align col-3">
-            <Nav />
-            <a className="hamburger-btn element-btn" href="#" onClick={showPopup} ></a>
-          </div>
+          <CheckLogged showPopup={showPopup} />
         </div>
       </header>
-
-      <div className="stub"></div>
     </>
   )
 }

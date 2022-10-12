@@ -1,7 +1,7 @@
 import imgLogo from 'front-end/images/logo.svg'
-import instagramWhite from 'front-end/images/social/instagram-white.svg'
-import twitterWhite from 'front-end/images/social/twitter-white.svg'
-import facebookWhite from 'front-end/images/social/facebook-white.svg'
+// import instagramWhite from 'front-end/images/social/instagram-white.svg'
+// import twitterWhite from 'front-end/images/social/twitter-white.svg'
+// import facebookWhite from 'front-end/images/social/facebook-white.svg'
 
 const Footer = () => {
   return (
@@ -10,7 +10,9 @@ const Footer = () => {
       <footer>
         <div className="main-grid">
           <div className="footer-info col-3">
-            <div className="logo-container"><a className="logo" href="/"><img src={imgLogo} /></a></div>
+            <div className="logo-container"><a className="logo" href="/">
+              {/* <img src={imgLogo} /> */}
+            </a></div>
             <div className="copyright">
               Мы - команда профессиональных рекрутеров, исследующих и развивающих отраслевоай поиск в области подбора работы и персонала. Мы преобразовываем обрасль путем применения инновационных решений.</div>
           </div>
@@ -50,9 +52,9 @@ const Footer = () => {
           </div>
           <div className="social-container col-5">
             <div className="social">
-              <a className="social-ico--white" href="#"><img src={instagramWhite} alt="" /></a>
-              <a className="social-ico--white" href="#"><img src={twitterWhite} alt="" /></a>
-              <a className="social-ico--white" href="#"><img src={facebookWhite} alt="" /></a>
+              {/* <a className="social-ico--white" href="#"><img src={instagramWhite} alt="" /></a> */}
+              {/* <a className="social-ico--white" href="#"><img src={twitterWhite} alt="" /></a> */}
+              {/* <a className="social-ico--white" href="#"><img src={facebookWhite} alt="" /></a> */}
             </div>
           </div>
           <div className="col-4">

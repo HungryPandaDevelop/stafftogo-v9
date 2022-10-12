@@ -14,10 +14,8 @@ const LeftBtnContainer = () => {
 
   return (
     <>
-      <div className="left-btn-container">
-        <Link className={`btn btn--crystal btn-search ${(pathMathRoute('/map') ? 'active' : '')}`} to="/map">Карта</Link>
-        <Link className={`btn btn--crystal ${(pathMathRoute('/catalog') ? 'active' : '')}`} to="/catalog">Список</Link>
-      </div>
+      <Link className={`btn btn--white-border btn-search ${(pathMathRoute('/map') ? 'active' : '')}`} to="/map">Карта</Link>
+      <Link className={`btn btn--orange-border ${(pathMathRoute('/catalog') ? 'active' : '')}`} to="/catalog">Список</Link>
     </>
   )
 }

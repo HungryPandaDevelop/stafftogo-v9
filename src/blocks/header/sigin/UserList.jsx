@@ -6,7 +6,7 @@ import { getListing } from 'store/asyncActions/getListing';
 
 import ActionFn from 'store/actions';
 
-import { Link } from 'react-router-dom';
+
 const UserList = ({ uid, cabinetType, ownCards, ownCardsLoad, ActionFn }) => {
 
   useEffect(() => {
@@ -18,22 +18,8 @@ const UserList = ({ uid, cabinetType, ownCards, ownCardsLoad, ActionFn }) => {
   }, []);
 
   return (
-    <div className="sigin-lists">
-
-      <ul className="ln">
-        {ownCardsLoad ? 'Loading ownCards' : ownCards.length > 0 ? (
-          <>
-            {
-              ownCards.map((card) => (
-                <div key={card.id}>
-                  <li><Link to={`/catalog/${cabinetType}/${card.id}`}>{card.data.card_name}</Link></li>
-                </div>
-              ))
-            }
-          </>
-        ) : 'List Empty'}
-      </ul>
-    </div>
+    <>
+    </>
   )
 }
 

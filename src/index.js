@@ -4,7 +4,7 @@ import App from './App';
 
 
 import 'front-end/css/style.css'
-import 'front-end/css/temporary.css'
+
 
 import { createStore , applyMiddleware  } from 'redux';
 

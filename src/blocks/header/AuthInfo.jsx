@@ -32,7 +32,9 @@ const AuthInfo = ({ ActionFn, uid, checkingStatus }) => {
   }, []);
 
   return (
-    <div>AuthInfo: {checkingStatus ? 'Loading...' : (uid ? 'Logged: ' + uid : 'No Logged')}</div>
+    <>
+      {/* <div>AuthInfo: {checkingStatus ? 'Loading...' : (uid ? 'Logged: ' + uid : 'No Logged')}</div> */}
+    </>
   )
 }
 

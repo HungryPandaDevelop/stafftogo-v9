@@ -1,62 +1,61 @@
 
 import { connect } from 'react-redux';
+
+import RenderFormAccount from 'components/forms/RenderFormAccount';
+
 import ActionFn from 'store/actions';
 
-import CloseBtn from './CloseBtn';
+
+const RewardPopup = ({
+  onShowPopup,
+  ActionFn,
+  dataForm,
+  fields,
+  priceDataFrom,
+  priceDataTo
+}) => {
 
 
-const RewardContent = ({ showPopupControls, ActionFn, listingSearch }) => {
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-    ActionFn('SEARCH_PRICE_FROM_LISTING', e.target.price_from.value);
-    ActionFn('SEARCH_PRICE_TO_LISTING', e.target.price_to.value);
+  const onSubmit = () => {
+    ActionFn('SEARCH_PRICE_FROM_LISTING', dataForm.values.pricefrom);
+    ActionFn('SEARCH_PRICE_TO_LISTING', dataForm.values.priceto);
+  }
+  const onReset = () => {
+    console.log('ss', priceDataFrom)
+    ActionFn('SEARCH_PRICE_FROM_LISTING', '');
+    ActionFn('SEARCH_PRICE_TO_LISTING', '');
   }
 
   return (
-    <div className="map-popup">
 
-      <div className="main-full">
-        <div className="reward-popup active">
-          <CloseBtn showPopupControls={showPopupControls} />
+    <div className="filters-popup reward-popup">
+      <div className="filters-close-popup" onClick={() => { onShowPopup(0) }}></div>
+      <RenderFormAccount
+        btnSaveText="Сохранить изменения"
+        objFields={fields}
+        orderFields={fields.order}
+        initialValues={{ pricefrom: priceDataFrom, priceto: priceDataTo }}
+        showBtn='hide'
+        formClassAdd="reward-grid main-grid"
 
-          <form className="form" onSubmit={(e) => { onSubmit(e) }}>
-            <h3>От</h3>
-            <input
-              className="input-decorate"
-              type="text"
-              name="price_from"
-            />
-            <h3>До</h3>
-            <input
-              className="input-decorate"
-              type="text"
-              name="price_to" />
-            <h3>В месяц</h3>
-            <button
-              type="submit"
-              className="btn-search-head ico-in"
-
-            >
-              <span>Применить</span>
-            </button>
-          </form>
-        </div>
+      />
+      <div className="filters-btn-container">
+        <div className="btn btn--gren-border" onClick={() => { onSubmit(); onShowPopup(0); }}>Применить</div>
+        <span className="btn btn--orange-border" onClick={() => { onReset(); onShowPopup(0); }}>Сбросить</span>
       </div>
-
-    </div>
+    </div >
   )
 }
 
-
 const mapStateToProps = (state) => {
 
+  const formReducer = state.form && state.form.singleInput;
   return {
-    listingSearch: state.listingSearchReducer,
+    fields: state.fieldsPriceFilter, // база полей
+    dataForm: formReducer,
+    priceDataFrom: state.listingSearchReducer.price_from,
+    priceDataTo: state.listingSearchReducer.price_to,
   }
 }
 
-export default connect(mapStateToProps,
-  {
-    ActionFn
-  })(RewardContent);
+export default connect(mapStateToProps, { ActionFn })(RewardPopup);

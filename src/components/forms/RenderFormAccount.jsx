@@ -35,7 +35,7 @@ import RenderInputCoords from './fields/RenderInputCoords'; // поле с се�
 
 const TemplateForm = (props) => {
   //console.log(props)
-  const { handleSubmit, objFields, orderFields, btnSaveText, onSubmitProps } = props;
+  const { handleSubmit, objFields, orderFields, btnSaveText, onSubmitProps, formClassAdd, showBtn } = props;
 
   const [errorOn, setErrorOn] = useState(false);
 
@@ -183,19 +183,19 @@ const TemplateForm = (props) => {
 
   return (
     <form
-      className="form"
+      className={formClassAdd + " form"}
       onSubmit={handleSubmit(onSubmit)}
 
     >
-      {objFields && orderFields.map((item, index) => (
-        <div key={index}>
-          {objFields[item] && (
+      {orderFields.map((item, index) => (
+        <div key={index} className={objFields[item].wrapClass}>
+          {
             (RenderFields(objFields[item], index))
-          )}
+          }
         </div>
       ))}
 
-      <button onClick={showErr} className="btn btn--green">{btnSaveText}</button>
+      {showBtn !== 'hide' && <button onClick={showErr} className="btn btn--green">{btnSaveText}</button>}
 
     </form >
   )
