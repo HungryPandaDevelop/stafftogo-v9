@@ -1,0 +1,27 @@
+export default function(){
+  return [
+    {name:'Бары 1', type: 'type_1'},
+    {name:'Вендинг', type: 'type_2'},
+    {name:'Винные', type: 'type_3'},
+    {name:'Винодельни', type: 'type_4'},
+    {name:'Гостиницы', type: 'type_5'},
+    {name:'Кальянные', type: 'type_6'},
+    {name:'Кафе', type: 'type_7'},
+    {name:'Кейтеринг', type: 'type_8'},
+    {name:'Клубы'},
+    {name:'Кондитерские'},
+    {name:'Кофейни'},
+    {name:'Отели'},
+    {name:'Пекарни'},
+    {name:'Пивные'},
+    {name:'Пищевые заводы'},
+    {name:'Пиццерии'},
+    {name:'Развлечения'},
+    {name:'Реклама'},
+    {name:'Рестораны'},
+    {name:'Сыроварни'},
+    {name:'Фаст Фуд'},
+    {name:'Франчайзинг'},
+    {name:'Частные Фермы'},
+  ]
+} 
