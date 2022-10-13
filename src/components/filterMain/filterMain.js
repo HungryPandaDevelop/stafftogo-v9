@@ -62,7 +62,7 @@ const filterMain = (listingSearch, data)=>{
   }
 
   if (listingSearch.exp_from || listingSearch.exp_to) {
-    data = findFromTo(data, Number(listingSearch.userInfo.exp_from), Number(listingSearch.userInfo.exp_to), 'exp_work');
+    data = findFromTo(data, Number(listingSearch.exp_from), Number(listingSearch.exp_to), 'exp_work');
   }
 
 

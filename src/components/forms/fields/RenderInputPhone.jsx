@@ -7,8 +7,8 @@ const phoneMask = createTextMask({
 });
 const RenderInputPhone = ({ name, placeholder, label, labelSecond, disabled }) => {
   return (
-    <div className="form-line">
-      <label><b>{label}</b> {labelSecond ? <span>{labelSecond}</span> : ''}</label>
+    <>
+      {label && (<label><b>{label}</b> {labelSecond ? <span>{labelSecond}</span> : ''}</label>)}
 
       <Field
         name={name}
@@ -20,7 +20,7 @@ const RenderInputPhone = ({ name, placeholder, label, labelSecond, disabled }) =
         {...phoneMask}
 
       />
-    </div>
+    </>
   );
 }
 

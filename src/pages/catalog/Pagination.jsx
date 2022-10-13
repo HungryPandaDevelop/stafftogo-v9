@@ -64,6 +64,7 @@ const Pagination = ({
       <>
         <Items currentItems={currentItems} />
         <ReactPaginate
+          className="pagination"
           breakLabel="..."
           nextLabel="next >"
           onPageChange={handlePageClick}
@@ -79,7 +80,7 @@ const Pagination = ({
   return (
     <>
       <PaginatedItems
-        itemsPerPage={2}
+        itemsPerPage={4}
       />
     </>
   )

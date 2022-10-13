@@ -5,7 +5,7 @@ const TempateInputTextarea = (props) => {
   const { input, placeholder, label, labelSecond, maxLength, errorOn, meta: { touched, error } } = props;
 
   return (
-    <div className="form-line">
+    <>
       {label && <label><b>{label}</b> {labelSecond ? <span>{labelSecond}</span> : ''}</label>}
       <textarea
         {...input}
@@ -13,10 +13,7 @@ const TempateInputTextarea = (props) => {
         className={`input-decorate ${errorOn && touched && error && 'error-input'}`}
         maxLength={maxLength}
       >
-      </textarea>
-      {errorOn && touched && error && <span className='error-hint'>{error}</span>}
-
-    </div>
+      </textarea>{errorOn && touched && error && <span className='error-hint'>{error}</span>}</>
   );
 }
 

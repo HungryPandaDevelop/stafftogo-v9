@@ -11,7 +11,7 @@ import fieldsApplicantsAccount from 'store/reducers/base/fieldsApplicantsAccount
 import fieldsVacancies from 'store/reducers/base/fieldsVacancies';
 import fieldsResume from 'store/reducers/base/fieldsResume';
 import fieldsChat from 'store/reducers/base/fieldsChat';
-import fieldsExtraFilter from 'store/reducers/base/fieldsExtraFilter';
+import fieldsAdditionalFilter from 'store/reducers/base/fieldsAdditionalFilter';
 import fieldsPriceFilter from 'store/reducers/base/fieldsPriceFilter';
 
 import specializationBase from "store/reducers/base/specializationBase";
@@ -39,7 +39,7 @@ const rootReducer = combineReducers({
   fieldsVacancies: fieldsVacancies,
   fieldsResume: fieldsResume,
   fieldsChat: fieldsChat,
-  fieldsExtraFilter: fieldsExtraFilter,
+  fieldsAdditionalFilter: fieldsAdditionalFilter,
   fieldsPriceFilter: fieldsPriceFilter,
   accountInfo: infoAccountReducer,
   specializationBase: specializationBase,

@@ -16,11 +16,11 @@ const MenuPopup = ({ showNavMenu, closePopup }) => {
           <div className="close-btn close-btn_popup" onClick={closePopup}></div>
           <nav className="popup-nav">
             <ul className='ln'>
-              <li> <Link to="/">Главная</Link></li>
-              <li> <Link to="/catalog">Вакансии / Резюме</Link></li>
-              <li> <Link to="#">О нас</Link></li>
-              <li> <Link to="#">Контакты</Link></li>
-              <li> <Link to="/chatlist">Чат</Link></li>
+              <li> <Link to="/" onClick={closePopup}>Главная</Link></li>
+              <li> <Link to="/catalog" onClick={closePopup}>Вакансии / Резюме</Link></li>
+              <li> <Link to="#" onClick={closePopup}>О нас</Link></li>
+              <li> <Link to="#" onClick={closePopup}>Контакты</Link></li>
+              <li> <Link to="/chatlist" onClick={closePopup}>Чат</Link></li>
             </ul>
           </nav>
           <div className="popup-feedback">

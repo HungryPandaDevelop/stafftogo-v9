@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Switch from 'blocks/cardsControls/parts/Switch'; //  почему тут ?
+import Switch from 'blocks/filters/parts/Switch'; //  почему тут ?
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import ActionFn from 'store/actions';
@@ -8,6 +8,8 @@ const Search = ({ ActionFn }) => {
 
   const [headSearch, setHeadSearch] = useState('');
   const [showBtnEmpty, setShowBtnEmpty] = useState(false);
+
+  const [stateMobleSearch, setStateMobileSearch] = useState(false);
 
   const onHeadSearch = (e) => {
     setHeadSearch(e.target.value);
@@ -25,10 +27,14 @@ const Search = ({ ActionFn }) => {
     ActionFn('SEARCH_NAME_LISTING', headSearch);
   }
 
+  const onShowMobileSearch = () => {
+    setStateMobileSearch(!stateMobleSearch);
+  }
+
   return (
     <div className="vertical-align col-6 col-lg-7 col-md-9 col-sm-3">
-      <div className="btn-header-loop"></div>
-      <div className="search-header">
+      <div className={`btn-header-loop ${stateMobleSearch && 'active'}`} onClick={onShowMobileSearch}></div>
+      <div className={`search-header ${stateMobleSearch && 'search-header-mobile'}`}>
         <div className="search-container">
           <Switch />
           <div className="input-container">

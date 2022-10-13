@@ -1,14 +1,19 @@
-// import { useState } from "react";
 
-import RightBtnContainer from "blocks/cardsControls/parts/RightBtnContainer";
+import { useState } from 'react';
+import RightBtnContainer from "blocks/filters/parts/RightBtnContainer";
 
 
 import { connect } from 'react-redux';
 
-import LeftBtnContainer from "blocks/cardsControls/parts/LeftBtnContainer";
+import LeftBtnContainer from "blocks/filters/parts/LeftBtnContainer";
 
 const CardsControls = ({ listingSearch }) => {
 
+  const [stateFilter, setStateFilter] = useState(false);
+
+  const onShowFilter = () => {
+    setStateFilter(!stateFilter);
+  }
 
   const industry = listingSearch.industry;
   const specialization = listingSearch.specialization;
@@ -17,8 +22,14 @@ const CardsControls = ({ listingSearch }) => {
 
   return (
     <>
-      <div className="filters">
-        <div className="filters-close-mobile"></div>
+      <div className="find-container-mobile main-full">
+        <div className="btn-find btn btn--orange ico-in ico-in--right" onClick={onShowFilter}>
+          <span>Поиск</span>
+          <i></i>
+        </div>
+      </div>
+      <div className={`filters ${stateFilter && 'mobile-show'}`} >
+        <div className="filters-close-mobile" onClick={onShowFilter}></div>
         <div className="main-full filters-container">
           <div className="btn-container--left">
             <LeftBtnContainer

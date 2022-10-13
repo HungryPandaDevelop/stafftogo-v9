@@ -33,18 +33,21 @@ const Registration = (props) => {
 
   return (
     <>
-
+      <div className="stub"></div>
       <div className="content">
 
-        <div className="main-full">
-          <h1>Регистрация</h1>
-          <RenderFormAccount
-            btnSaveText="Регистрация"
-            objFields={props.fieldsRegistration}
-            orderFields={props.fieldsRegistration.order}
-            onSubmitProps={onSubmitIn}
+        <div className="main-grid">
+          <div className="col-5 col-sm-12 col-xs-12">
+            <h1>Регистрация</h1>
+            <RenderFormAccount
+              btnSaveText="Регистрация"
+              objFields={props.fieldsRegistration}
+              orderFields={props.fieldsRegistration.order}
+              onSubmitProps={onSubmitIn}
+              formClassAdd='form-default'
 
-          />
+            />
+          </div>
         </div>
       </div>
 

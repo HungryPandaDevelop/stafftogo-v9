@@ -25,7 +25,7 @@ const TemplateInputRadio = ({ name, label, labelSecond, options, input }) => {
   );
 }
 
-const RenderInputCheckbox = ({ name, label, labelSecond, options }) => {
+const RenderInputRadio = ({ name, label, labelSecond, options }) => {
 
   return <Field
     name={name}
@@ -36,4 +36,4 @@ const RenderInputCheckbox = ({ name, label, labelSecond, options }) => {
   />;
 }
 
-export default RenderInputCheckbox;
+export default RenderInputRadio;

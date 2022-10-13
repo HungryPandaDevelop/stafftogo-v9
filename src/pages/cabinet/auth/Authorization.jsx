@@ -27,15 +27,17 @@ const Authorization = ({ uid, formData, fieldsAuthorization }) => {
 
   return (
     <>
+      <div className="stub"></div>
       <div className="content">
         <div className="main-grid">
-          <div className="col-5">
+          <div className="col-5 col-sm-12 col-xs-12">
             <h1>Авторизация</h1>
             <RenderFormAccount
               btnSaveText="Авторизация"
               objFields={fieldsAuthorization}
               orderFields={fieldsAuthorization.order}
               onSubmitProps={onSubmitIn}
+              formClassAdd='form-default'
             />
             <Link to="/forgot-password">Восстановить пароль</Link>
           </div>

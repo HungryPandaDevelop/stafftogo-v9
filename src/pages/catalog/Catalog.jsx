@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import Breadcrumbs from 'pages/parts/Breadcrumbs';
 import PageTitle from 'pages/parts/PageTitle';
 
-import CardsControls from 'blocks/cardsControls/CardsControls';
+import Filters from 'blocks/filters/Filters';
 
 import { connect } from 'react-redux';
 import ActionFn from 'store/actions';
@@ -54,30 +54,28 @@ const Catalog = ({ listingType, listingSearch, uid, currentCard, cabinetType, ac
   return (
     <>
       <div className="stub"></div>
-      <CardsControls />
+      <Filters />
       <Breadcrumbs />
       <div className="content">
         <PageTitle title="список" />
 
-        <div className="main-grid">
-          <div className="col-10">
-            {loading ? 'Loading list' : listings.length > 0 ? (
-              <>
-                <Pagination
-                  listings={listings}
-                  idCategory={listingType}
-                  listingType={listingType}
-                  invited={invited}
-                  uid={uid}
-                  accountInfo={accountInfo}
-                  currentCard={currentCard}
-                  cabinetType={cabinetType}
-                />
-              </>
-            ) : (
-              <p>Нет элементов</p>
-            )}
-          </div>
+        <div className="main-full">
+          {loading ? 'Loading list' : listings.length > 0 ? (
+            <>
+              <Pagination
+                listings={listings}
+                idCategory={listingType}
+                listingType={listingType}
+                invited={invited}
+                uid={uid}
+                accountInfo={accountInfo}
+                currentCard={currentCard}
+                cabinetType={cabinetType}
+              />
+            </>
+          ) : (
+            <p>Нет элементов</p>
+          )}
         </div>
       </div>
 

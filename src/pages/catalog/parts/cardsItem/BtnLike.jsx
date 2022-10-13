@@ -31,7 +31,7 @@ const BtnLike = ({ accountInfo, listing, ActionFn, checkingStatus }) => {
 
   return (
     <>
-      {(!checkingStatus) && <div className={`btn ${accountInfo.likeMass && accountInfo.likeMass.includes(idElement) && 'btn--orange'}`} onClick={addLike}>Лайк</div>}
+      {(!checkingStatus) && <div className={`like-btn ${accountInfo.likeMass && accountInfo.likeMass.includes(idElement) && 'active'}`} onClick={addLike}></div>}
     </>
   )
 

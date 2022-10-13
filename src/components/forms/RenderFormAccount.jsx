@@ -30,27 +30,29 @@ import RenderInputSelectTrue from './fields/RenderInputSelectTrue'; // поле 
 
 import RenderInputCoords from './fields/RenderInputCoords'; // поле с селект
 
+import ploaderImg from 'front-end/images/preloader.gif'
 
 // --------------------------------------------------------------------
 
 const TemplateForm = (props) => {
   //console.log(props)
-  const { handleSubmit, objFields, orderFields, btnSaveText, onSubmitProps, formClassAdd, showBtn } = props;
+  const { handleSubmit, objFields, orderFields, btnSaveText, formClassAdd, showBtn, btnWrapClass, btnClass, sending, setSending, onSubmitIn } = props;
 
   const [errorOn, setErrorOn] = useState(false);
 
-
-  const onSubmit = (formData) => {
-    // console.log('save in formData', formData)
-
-    onSubmitProps();
-  }
-
   const showErr = () => {
-
     setErrorOn(true);
     setTimeout(() => { setErrorOn(false); }, 2500);
   }
+
+  const onSubmit = (formData) => {
+    // console.log('save in formData', formData);
+    showErr();
+    if (errorOn) {
+      onSubmitIn();
+    }
+  }
+
 
   const RenderFields = (obj, index) => {
 
@@ -104,7 +106,12 @@ const TemplateForm = (props) => {
             />
           )
         case 'checkbox':
-          return RenderInputCheckbox(obj.name, obj.label, obj.labelSecond, obj.options,);
+          return (<RenderInputCheckbox
+            name={obj.name}
+            label={obj.label}
+            labelSecond={obj.labelSecond}
+            options={obj.options}
+          />)
         case 'radio':
           return (
             <RenderInputRadio
@@ -181,9 +188,21 @@ const TemplateForm = (props) => {
   }
 
 
+  const renderBtnSubmit = () => {
+    return showBtn !== 'hide' && (
+      <button onClick={onSubmit} className={`btn ${btnClass}`}>
+        {sending ? (
+          btnSaveText
+        ) : (
+          <img className='preloader' src={ploaderImg} />
+        )}
+      </button>
+    );
+  }
+
   return (
     <form
-      className={formClassAdd + " form"}
+      className={`${formClassAdd} form`}
       onSubmit={handleSubmit(onSubmit)}
 
     >
@@ -194,8 +213,10 @@ const TemplateForm = (props) => {
           }
         </div>
       ))}
+      <div className={btnWrapClass}>
+        {renderBtnSubmit()}
+      </div>
 
-      {showBtn !== 'hide' && <button onClick={showErr} className="btn btn--green">{btnSaveText}</button>}
 
     </form >
   )

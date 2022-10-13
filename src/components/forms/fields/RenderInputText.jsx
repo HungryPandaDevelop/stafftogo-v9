@@ -3,7 +3,7 @@ import { Field } from 'redux-form';
 
 const TempateInputText = (props) => {
 
-  const { input, placeholder, label, labelSecond, disabled, errorOn, meta: { touched, error }, wrapClass } = props;
+  const { input, placeholder, label, labelSecond, disabled, errorOn, meta: { touched, error } } = props;
 
   return (
     <>

@@ -21,7 +21,7 @@ const RewardPopup = ({
     ActionFn('SEARCH_PRICE_TO_LISTING', dataForm.values.priceto);
   }
   const onReset = () => {
-    console.log('ss', priceDataFrom)
+    // console.log('ss', priceDataFrom)
     ActionFn('SEARCH_PRICE_FROM_LISTING', '');
     ActionFn('SEARCH_PRICE_TO_LISTING', '');
   }

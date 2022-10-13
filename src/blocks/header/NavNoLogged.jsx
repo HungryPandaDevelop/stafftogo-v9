@@ -11,9 +11,8 @@ const NavNoLogged = () => {
 
   return (
     <>
-      <nav className="nav">
-        <ul>
-          <li><Link className={(pathMathRoute('/') ? 'active' : '')} to="/">Главная</Link></li>
+      <nav className="nav nav-nologged">
+        <ul className='ln'>
           <li><Link className={(pathMathRoute('/authorization') ? 'active' : '')} to="/authorization">Войти</Link></li>
           <li><Link className={(pathMathRoute('/registration') ? 'active' : '')} to="/registration">Регистрация</Link></li>
         </ul>

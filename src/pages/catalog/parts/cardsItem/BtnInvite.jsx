@@ -20,17 +20,16 @@ const BtnInvite = ({ currentCard, listing, uid, invited, accountInfo, ActionFn }
 
 
   return (
-    <span
-      className={`btn ${inviteStatus && 'btn--green'}`}
+    <div
+      className={`btn btn--orange-border ${inviteStatus && 'active'}`}
       onClick={onInvite}
     >
 
       {inviteStatus ? 'Вы откликнулись' : 'Откликнуться'}
 
-    </span>
+    </div>
   )
 }
-
 
 
 export default connect(null, { ActionFn })(BtnInvite);

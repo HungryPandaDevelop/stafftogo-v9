@@ -1,270 +1,305 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { getSingleListing } from 'store/asyncActions/getSingleListing'
+import { Link } from 'react-router-dom';
+import { getSingleListing } from 'store/asyncActions/getSingleListing';
+import PageTitle from 'pages/parts/PageTitle';
+import Breadcrumbs from 'pages/parts/Breadcrumbs';
+import SimpleDateTime from 'react-simple-timestamp-to-date';
+import defaultCardsImg from 'front-end/images/icons/avatar-light-gray.svg';
+
+
+import phoneIco from 'front-end/images/icons/phone-gren.svg';
+import mainIco from 'front-end/images/icons/mail-gren.svg';
+import markerIco from 'front-end/images/icons/marker-gren.svg';
+
+import dayWork from 'front-end/images/icons/day-work.svg';
+import quicklyWork from 'front-end/images/icons/quickly-work.svg';
+import nightWork from 'front-end/images/icons/night-work.svg';
+import projectWork from 'front-end/images/icons/project-work.svg';
+
+import star from 'front-end/images/icons/star-white.svg';
+import view from 'front-end/images/icons/hide-view-white.svg';
+import download from 'front-end/images/icons/hide-view-white.svg';
+import print from 'front-end/images/icons/print-white.svg';
+
+import ReactScrollWheelHandler from "react-scroll-wheel-handler";
 
 const CardsDetail = () => {
 
+
+
+
+
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  const [viewSidebar, setViewSidebar] = useState(false);
   const params = useParams();
 
   useEffect(() => {
-
-
-
     getSingleListing(params.catagoryName, params.elementId).then(res => {
       setListing(res);
       setLoading(false);
     });
-
 
   }, []);
 
   if (loading) {
     return <>Loading</>
   }
-  console.log(listing);
+
+  console.log('listing', listing)
+
+  const imgCards = listing.userInfo.imgsAccount ? listing.userInfo.imgsAccount : defaultCardsImg;
+
 
   return (
-    <div className="content">
+    <>
+      <div className="stub"></div>
+      <ReactScrollWheelHandler
+        upHandler={
+          (e) => {
+            if (e.view.pageYOffset > 0) {
+              setViewSidebar(true);
+            }
+            else {
+              setViewSidebar(false);
+            }
+          }}
+        downHandler={(e) => {
+          if (e.view.pageYOffset > 0) {
+            setViewSidebar(true);
+          }
+          else {
+            setViewSidebar(false);
+          }
+        }}>
 
-      <div className="main-grid">
-        <div className="col-12">
-          <h1>{listing.name}</h1>
 
-        </div>
-      </div>
-      <div className="resume_detail main-grid">
-        <div className="col-10">
-          <div className="resume-header">
-            <div className="main-grid">
-              <div className="col-12 resume-header-roof">
-                <div className="resume-update"><span>На сайте с: 26.01.2022  </span><span>Резюме обновлено: 26.01.2022</span></div>
-                <div className="resume-raiting-count">Отзывов: 3</div>
-              </div>
-              <div className="col-2">
-                <div className="resume-face-container">
-                  <div className="video-ico"></div>
+
+        <Breadcrumbs />
+        <div className="content" >
+          <div className="main-full"><h1>Вакансия детально</h1></div>
+          <div className="main-grid">
+            <div className="col-10 col-lg-9 col-sm-12">
+              <div className="cards-main shadow-container">
+                <div className="cards-item-roof">
+                  <span>Резюме обновлено:&nbsp;
+                    <SimpleDateTime
+                      format="MYD"
+                      showTime="0"
+                      dateSeparator="."
+                    >{listing.timestamp.seconds}</SimpleDateTime></span>
                 </div>
-                <div className="resume-status-container">
-                  <div className="resume-status status--online">Сейчас на сайте</div>
+                <div className="main-grid">
+                  <div className="col-2 col-md-3 col-sm-4 col-xs-12">
+                    <div className="cards-face-container">
+                      <div
+                        className="cards-face img-cover"
+                        style={{ backgroundImage: `url(${imgCards})` }}
+                      >
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-6 col-xxl-5 col-md-9 col-sm-8 col-xs-12 cards-item-info-container">
+                    <div className="cards-item-info">
+                      <div className="cards-item-info-top">
+                        <h3>{listing.card_name}</h3>
+                        <div className="cards-description">
+                          <ul className="ln">
+                            <li>Разрешение на работу: Россия X</li>
+                            {listing.userInfo.age && (<li>Возраст: {listing.userInfo.age}</li>)}
+                            <li>Гражданство: РФ X</li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div className="cards-item-bottom">
+                        <ul className="ln">
+                          <li><span>Опыт работы </span><b>3 года 3 месяца</b> x</li>
+                          <li><span>Последнее место работы </span><b>Старший повар, Повар горячего цеха</b> x</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div className="cards-item-delimetr"></div>
+                  </div>
+                  <div className="cards-pay-offset col-md-3 col-sm-4 col-xs-12">
+                    <div className="cards-mobile-controls">
+                      <div className="sidebar-btn">
+                        <span>В избранное</span>
+                        {/* <img src="/images/icons/star-white.svg" alt="" /> */}
+                      </div>
+                      <div className="sidebar-btn"><span>Спрятать</span>
+                        {/* <img src="/images/icons/hide-view-white.svg" alt="" /> */}
+                      </div>
+                      <div className="sidebar-btn"><span>Скачать</span>
+                        {/* <img src="/images/icons/download-white.svg" alt="" /> */}
+                      </div>
+                      <div className="sidebar-btn"><span>Распечатать</span>
+                        {/* <img src="/images/icons/print-white.svg" alt="" /> */}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-4 col-xxl-5 col-md-9 col-sm-8 col-xs-12 cards-pay-container">
+                    <div className="cards-item-info cards-item-pay-info">
+                      {listing.userInfo.fio && (<h3>{listing.userInfo.fio}</h3>)}
+                      <ul className="ln cards-item-info-list">
+                        {listing.userInfo.phone && (
+                          <li>
+                            <img src={phoneIco} alt="" />
+                            <Link to={`tel:${listing.userInfo.phone}`}>
+                              {listing.userInfo.phone}
+                            </Link>
+                          </li>
+                        )}
+                        {listing.userInfo.email && (
+                          <li>
+                            <img src={mainIco} alt="" />
+                            <Link to={`mailto:${listing.userInfo.email}`}>{listing.userInfo.email}</Link>
+                          </li>
+                        )}
+
+                        <li>
+                          <img src={markerIco} alt="" />
+                          <span>Адрес: </span>
+                          <b>Окская улица, 48/2, Москва, ?</b>
+                        </li>
+                      </ul>
+                      <div className="cards-item-bottom btn-container">
+                        <div className="btn btn--gren-border ico-in ico-in--left btn-show-map">
+                          <i></i>
+                          <span>Показать на карте</span>
+                        </div>
+                        <div className="btn btn--gren-border btn-mobile">Видеочат</div>
+                        <div className="btn btn--gren-border btn-mobile">Чат</div>
+                        <div className="btn btn--gren-border btn-mobile">Откликнуться</div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="col-5">
-                <div className="resume-info">
-                  <h2>Старший повар на постоянной основе</h2>
+              <div className="cards-second-info main-grid">
+                <div className="col-7 col-md-12">
+                  <div className="cards-typework-item shadow-container">
+                    <div className="cards-typework-img">
+                      <img src={dayWork} alt="" />
+                    </div>
+                    <div className="cards-typework-info"><em>Полная занятость</em><span>В месяц</span><b>Р 155 000 - 180 000</b> x</div>
+                  </div>
+                  <div className="cards-typework-item shadow-container">
+                    <div className="cards-typework-img">
+                      <img src={quicklyWork} alt="" />
+                    </div>
+                    <div className="cards-typework-info"><em>Срочный выезд</em><span></span><b>Р 3 000</b> x</div>
+                  </div>
+                  <div className="cards-typework-item shadow-container">
+                    <div className="cards-typework-img">
+                      <img src={nightWork} alt="" />
+                    </div>
+                    <div className="cards-typework-info"><em>Работа ночью</em><span>В месяц</span><b>Р 5 500</b> x</div>
+                  </div>
+                  <div className="cards-typework-item shadow-container">
+                    <div className="cards-typework-img">
+                      <img src={projectWork} alt="" />
+                    </div>
+                    <div className="cards-typework-info"><em>Проектная работа</em><span></span><b>Р 5 500</b></div> x</div>
+                </div><div className="col-5 col-md-12"><div className="cards-verified-list shadow-container">
                   <ul className="ln">
-                    <li>Разрешение на работу: Россия</li>
-                    <li>Возраст: 31 год</li>
-                    <li>Гражданство: РФ</li>
-                    <li>Город: Москва</li>
+                    <li>Медицинская книжка Медицинская книжка x</li>
+                    <li>Выезжаю в течение часа x</li>
+                    <li>Готовность к командировкам x</li>
+                    <li>Есть ИП/Самозанятый x</li>
                   </ul>
                 </div>
+                </div>
               </div>
-              <div className="col-5">
-                <div className="resume-info resume-info--more">
-                  <div className="resume-delimentr"></div>
-                  <h2>Ирина Владимирована Кондакова</h2>
-                  <ul className="ln">
-                    <li> <a href="#"><i className="phone-ico--black"></i><span>+7 (985)	282-65-32</span></a></li>
-                    <li><a href="#"><i className="mail-ico--black"></i><span>info@yandex.ru </span></a></li>
-                    <li><a href="#"><i className="marker-ico--black"></i><span>Показать на карте</span></a></li>
-                    <li><a className="btn btn--blue" href="#"> Откликнуться</a></li>
+              <div className="cards-about">
+                <div className="cards-about-item">
+                  <h3>График и место работы:</h3>
+                  <p>Постоянный рабочий день, частичная занятость, свободный график, частичная занятость, удаленная работа, вахта Москва, Санкт-Петербург, Самара, Екатеринбург, Ульяновск, и еще 33 города</p>
+                </div>
+                <div className="cards-about-item">
+                  <h3>Опыт работы 15 лет и 6 месяцев</h3>
+                  <div className="cards-about-line">
+                    <h4>Июнь 2018 - По настоящее время / 10 месяцев</h4>
+                    <h5>Суповых дел мастер / ООО “Ромашка”</h5>
+                    <p>Готовила пельмени Варища борщ для семейной пары С самого детства без памяти любила варить супы и всякие жидкие смеси</p>
+                  </div>
+                  <div className="cards-about-line">
+                    <h4>Июнь 2018 - По настоящее время / 10 месяцев</h4>
+                    <h5>Суповых дел мастер / ООО “Ромашка”</h5>
+                    <p>Готовила пельмени Варища борщ для семейной пары С самого детства без памяти любила варить супы и всякие жидкие смеси</p>
+                  </div>
+                  <div className="cards-about-line">
+                    <h4>Июнь 2018 - По настоящее время / 10 месяцев</h4>
+                    <h5>Суповых дел мастер / ООО “Ромашка”</h5>
+                    <p>Готовила пельмени Варища борщ для семейной пары С самого детства без памяти любила варить супы и всякие жидкие смеси</p>
+                  </div>
+                </div>
+                <div className="cards-about-item">
+                  <h3>Профессиональные образование</h3>
+                  <div className="cards-about-line">
+                    <h4>Июнь 2018 - По настоящее время / 10 месяцев</h4>
+                    <h5>Специальность: Конфетчица / Кондитерское училище номер 15г. Санкт-Петербург</h5>
+                  </div>
+                  <div className="cards-about-line">
+                    <h4>Июнь 2018 - По настоящее время / 10 месяцев</h4>
+                    <h5>Специальность: Конфетчица / Кондитерское училище номер 15г. Санкт-Петербург</h5>
+                  </div>
+                </div>
+                <div className="cards-about-item">
+                  <h3>Обо мне</h3>
+                  <p>Пунктуален, порядочен, алкоголь - нет, курение - нет. Военный пенсионер. С 1980 г. по 1998 год - военный (связь).</p>
+                </div>
+              </div>
+
+            </div>
+            <div className="col-2 col-lg-3 hidden-sm hidden-xs">
+              <div className="cards-sidebar">
+                <div className={`cards-sidebar-about shadow-container ${viewSidebar && 'show'}`}>
+                  <div className="cards-face-container">
+                    <div
+                      className="cards-face img-cover"
+                      style={{ backgroundImage: `url(${imgCards})` }}
+                    >
+                    </div>
+                  </div>
+                  <div className="cards-info">
+                    <h3>{listing.userInfo.fio && (<h3>{listing.userInfo.fio}</h3>)}</h3>
+                  </div>
+                  <ul className="ln cards-item-info-list">
+                    {listing.userInfo.phone && (
+                      <li>
+                        <Link to={`tel:${listing.userInfo.phone}`}>
+                          {listing.userInfo.phone}
+                        </Link>
+                      </li>
+                    )}
+                    {listing.userInfo.email && (
+                      <li>
+                        <Link to={`mailto:${listing.userInfo.email}`}>{listing.userInfo.email}</Link>
+                      </li>
+                    )}
                   </ul>
                 </div>
+                <div className="cards-sidebar-controls">
+                  <div className="sidebar-btn"> <span>В избранное</span><img src={star} alt="" /></div>
+                  <div className="sidebar-btn"> <span>Спрятать</span><img src={view} alt="" /></div>
+                  <div className="sidebar-btn"> <span>Скачать</span><img src={download} alt="" /></div>
+                  <div className="sidebar-btn"> <span>Распечатать</span><img src={print} alt="" /></div>
+                </div>
+                <div className="btn-container">
+                  <div className="btn btn--gren-border">Видеочат</div>
+                  <div className="btn btn--gren-border">
+                    Чат</div>
+                  <div className="btn btn--gren-border">Откликнуться</div>
+                </div>
               </div>
             </div>
           </div>
-          <div className="resume-body main-grid">
-            <div className="resume-price col-7 main-grid">
-              <div className="resume-price__item col-12 resume-price__item--main">
-                <div className="resume-price__ico">
 
-
-                </div>
-                <div className="resume-price__info">
-                  <h3>Постоянная работа</h3>
-                  <div className="resume-price__amount">1 месяц</div>
-                </div>
-                <div className="resume-price__rate">Р 155 000 - 180 000</div>
-              </div>
-              <div className="resume-price__item col-4">
-
-                <div className="resume-price__info">
-                  <h3>Срочный выезд</h3>
-                  <div className="resume-price__amount">1 месяц</div>
-                  <div className="resume-price__rate">Р 2500 </div>
-                </div>
-              </div>
-              <div className="resume-price__item col-4">
-
-                <div className="resume-price__info">
-                  <h3>Работа ночью</h3>
-                  <div className="resume-price__amount">1 месяц</div>
-                  <div className="resume-price__rate">Р 5500 </div>
-                </div>
-              </div>
-              <div className="resume-price__item col-4">
-
-                <div className="resume-price__info">
-                  <h3>Проектная работа</h3>
-                  <div className="resume-price__amount">1 месяц</div>
-                  <div className="resume-price__rate">Р 2500</div>
-                </div>
-              </div>
-            </div>
-            <div className="col-5">
-              <div className="resume-schedule"><i className="resume-check"></i>
-                <ul className="ln">
-                  <li>Медицинская книжка</li>
-                  <li>Выезжаю в течение часа</li>
-                  <li>Готовность к командировкам</li>
-                  <li>Легко нахожу общий язык с гостями</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div className="resume-about col-12">
-            <div className="resume-about__item">
-              <h3>График и место работы:
-                <div className="resume-about__delimetr"></div>
-              </h3>
-              <p>Постоянный рабочий день, частичная занятость, свободный график, частичная занятость, удаленная работа, вахта </p>
-              <p>Москва, Санкт-Петербург, Самара, Екатеринбург, Ульяновск, и еще 33 города</p>
-            </div>
-            <div className="resume-about__item">
-              <h3>Опыт работы 15 лет и 6 месяцев
-                <div className="resume-about__delimetr"></div>
-              </h3>
-              <div className="main-grid">
-                <div className="resume-exp__item col-4">
-                  <div className="resume-exp__head"> <b>Июнь 2018 - По настоящее время /</b><span> 10 месяцев</span>
-                    <div className="resume-exp__delimetr"></div>
-                  </div>
-                  <div className="resume-exp__body">
-                    <h4>Суповых дел мастер /<span> ООО “Ромашка”</span></h4>
-                    <p>Готовила пельмени Варища борщ для семейной пары С самого детства без памяти любила варить супы и всякие жидкие смеси</p>
-                  </div>
-                </div>
-                <div className="resume-exp__item col-4">
-                  <div className="resume-exp__head"> <b>Июнь 2018 - По настоящее время /</b><span> 10 месяцев</span>
-                    <div className="resume-exp__delimetr"></div>
-                  </div>
-                  <div className="resume-exp__body">
-                    <h4>Суповых дел мастер /<span> ООО “Ромашка”</span></h4>
-                    <p>Готовила пельмени Варища борщ для семейной пары С самого детства без памяти любила варить супы и всякие жидкие смеси</p>
-                  </div>
-                </div>
-                <div className="resume-exp__item col-4">
-                  <div className="resume-exp__head"> <b>Июнь 2018 - По настоящее время /</b><span> 10 месяцев</span>
-                    <div className="resume-exp__delimetr"></div>
-                  </div>
-                  <div className="resume-exp__body">
-                    <h4>Суповых дел мастер /<span> ООО “Ромашка”</span></h4>
-                    <p>Готовила пельмени Варища борщ для семейной пары С самого детства без памяти любила варить супы и всякие жидкие смеси</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="resume-about__item">
-              <h3>Профессиональные образование </h3>
-              <div className="resume-education">
-                <h4><span>Базовое образование</span><i className="school-ico"></i></h4>
-                <div className="resume-education__item">
-                  <div className="resume-exp__head"> <b>Июнь 2018 - По настоящее время /</b><span> 10 месяцев</span>
-                    <div className="resume-exp__delimetr"></div>
-                  </div>
-                  <div className="resume-education__body">
-                    <h4>Специальность: Конфетчица /<span> Кондитерское училище номер 15г. Санкт-Петербург</span></h4><b>Специальность: Конфетчица</b>
-                  </div>
-                </div>
-              </div>
-              <div className="resume-education">
-                <h4><span>Профильное образование</span><i className="institute-ico"></i></h4>
-                <div className="resume-education__item">
-                  <div className="resume-exp__head"> <b>Июнь 2012 - Сентябрь 2019 /</b><span> 4 года и 3 месяца</span>
-                    <div className="resume-exp__delimetr"></div>
-                  </div>
-                  <div className="resume-education__body">
-                    <h4>Le Cordon Blue, France</h4><b>Диплом “Кулинарное искусство” Три уровня сертификата</b>
-                  </div>
-                </div>
-                <div className="resume-education__item">
-                  <div className="resume-exp__head"> <b>Июнь 2012 - Сентябрь 2019 /</b><span> 4 года и 3 месяца</span>
-                    <div className="resume-exp__delimetr"></div>
-                  </div>
-                  <div className="resume-education__body">
-                    <h4>Le Cordon Blue, France</h4><b>Диплом “Кулинарное искусство” Три уровня сертификата</b>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="resume-about__item">
-              <h3>Обо мне</h3>
-              <p>
-                Отличное знание HTML, HTML5, CSS, CSS3, SCSS, Emmet, Pug;
-                Знание Javascript, jQuery;
-              </p>
-              <p>
-                Верстка по методологии BEM;
-                Навык быстрой HTML-верcтки нестандартных макетов;
-                Отличное знание Photoshop, Illustrator, Figma;
-                SVG-анимация — знакомство с технологией;
-                Git — опыт работы с репозиториями;
-                Большой опыт работы с JS-библиотеками (не фреймворками);
-              </p>
-            </div>
-          </div>
         </div>
-        <div className="col-2">
-          <div className="resume-sidebar">
-            <div className="resume-client-container">
-              <div className="client-popup">
-                <div className="client-popup-body">
-                  <div className="clinet-face-container">
-                    <div className="video-ico"></div>
-                  </div>
-                  <div className="resume-status status--online">
-                    Сейчас на сайте</div>
-                  <div className="client-price">Р 155 000 - 180 000</div>
-                  <div className="client-info">
-                    <div>Возраст: 52 года</div>
-                    <div>Опыт: 15 лет 12 месяцев</div>
-                  </div>
-                  <div className="client-topic"><i className="ok-ico"></i>
-                    <h3>ИП/Самозанятый</h3>
-                    <h3>Медицинская книжка</h3>
-                  </div>
-                </div>
-                <div className="client-popup-footer"><a className="btn btn--blue" href="#"> Откликнуться</a></div>
-              </div>
-            </div>
-            <div className="resume-controls">
-              <div className="resume-btn">
-                <div className="btn-hint show">В избранное</div><i className="heart-ico--white"></i>
-              </div>
-              <div className="resume-btn">
-                <div className="btn-hint">Распечатать</div><i className="printer-ico--white"></i>
-              </div>
-              <div className="resume-btn">
-                <div className="btn-hint">Скачать</div><i className="download-ico--white"></i>
-              </div>
-              <div className="resume-btn">
-                <div className="btn-hint">Скрыть</div><i className="hidden-ico--white"></i>
-              </div>
-              <div className="resume-btn">
-                <div className="btn-hint">Поделиться</div><i className="social-ico"></i>
-              </div>
-            </div>
-            <div className="btn-container">
-              <div><a className="btn btn--blue btn--ico_right" href="#"> <span>Видео чат</span><i className="videochat-ico--white"> </i></a></div>
-              <div><a className="btn btn--orange btn--ico_right" href="#"> <span>Чат</span><i className="chat-ico--white"></i></a></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+        <div className="stub"></div>
+      </ReactScrollWheelHandler>
+    </>
   )
 }
 

@@ -9,7 +9,7 @@ import ActionFn from 'store/actions';
 import avatar from 'front-end/images/icons/avatar-white.svg';
 
 const CabinetHeader = ({ userInfo, showPopup }) => {
-  console.log(userInfo.typeCabinet)
+
   const [cabinetPopupShow, setCabinetPopupShow] = useState(false);
   const onCabinetPopupShow = () => {
     setCabinetPopupShow(!cabinetPopupShow);

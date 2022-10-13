@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import baseSorting from 'blocks/popupControls/js/baseSorting'
+import baseSorting from 'blocks/filtersPopup/js/baseSorting'
 
 import ActionFn from 'store/actions';
 
@@ -26,6 +26,11 @@ const SpecializationPopup = ({
       ActionFn('ADD_SPECIALIZATION_IMG', img);
     }
 
+  }
+
+
+  const onReset = () => {
+    ActionFn('REMOVE_SPECIALIZATION_ALL');
   }
 
 
@@ -59,7 +64,10 @@ const SpecializationPopup = ({
           </div>
         ))
         }
-      </div >
+      </div>
+      <div className="filters-btn-container">
+        <span className="btn btn--orange-border" onClick={() => { onReset(); onShowPopup(0); }}>Сбросить</span>
+      </div>
     </div >
   )
 }

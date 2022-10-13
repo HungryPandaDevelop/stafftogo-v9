@@ -1,14 +1,16 @@
 import MapYandex from "pages/goMap/parts/MapYandex";
-
+import Filters from 'blocks/filters/Filters';
 
 const GoMap = () => {
   return (
-    <div className="map">
+    <>
+      <div className="stub"></div>
+      <Filters />
+      <div className="map">
+        <MapYandex />
+      </div>
+    </>
 
-      <MapYandex />
-      {/* <div className="map-container">
-      </div> */}
-    </div>
   )
 }
 
