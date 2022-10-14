@@ -45,7 +45,8 @@ const Registration = (props) => {
               orderFields={props.fieldsRegistration.order}
               onSubmitProps={onSubmitIn}
               formClassAdd='form-default'
-
+              sending={true}
+              btnClass='btn--orange'
             />
           </div>
         </div>

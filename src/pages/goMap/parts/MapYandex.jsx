@@ -15,6 +15,7 @@ import { getListing } from 'store/asyncActions/getListing';
 import { connect } from 'react-redux';
 
 
+
 const MapYandex = ({ listingSearch, listingType }) => {
 
   // const myMap = useRef(null);
@@ -96,27 +97,40 @@ const MapYandex = ({ listingSearch, listingType }) => {
   return (
     <>
       <ClearYaMap myMapRef={myMapRef} setMyMap={setMyMap} />
-      <CardsPopup
-        currentCardId={currentCardId}
-        listingType={listingType}
-        myMapRef={myMapRef}
-        myRoute={myRoute}
-        setRouteboxState={setRouteboxState}
-        setCurrentCardId={setCurrentCardId}
-      />
-      <RoutePopup
-        currentCardId={currentCardId}
-        myMap={myMap}
-        myMapRef={myMapRef}
-        myRoute={myRoute}
-        setMyRoute={setMyRoute}
-        myPosition={myPosition}
-        choiseMarkerPosition={choiseMarkerPosition}
-        myPositionText={myPositionText}
-        markerPositionText={markerPositionText}
-        routeboxState={routeboxState}
-        setRouteboxState={setRouteboxState}
-      />
+      <div className="main-grid">
+        <div className="col-3 col-md-5 col-xs-12">
+          <CardsPopup
+            currentCardId={currentCardId}
+            listingType={listingType}
+            myMap={myMap}
+            myMapRef={myMapRef}
+            myRoute={myRoute}
+            setMyRoute={setMyRoute}
+            setRouteboxState={setRouteboxState}
+            setCurrentCardId={setCurrentCardId}
+            myPosition={myPosition}
+            choiseMarkerPosition={choiseMarkerPosition}
+            routeboxState={routeboxState}
+          />
+        </div>
+        <div className="col-9 col-md-7 col-xs-12 gomap-route-cell">
+          <RoutePopup
+            currentCardId={currentCardId}
+            myMap={myMap}
+            myMapRef={myMapRef}
+            myRoute={myRoute}
+            setMyRoute={setMyRoute}
+            myPosition={myPosition}
+            choiseMarkerPosition={choiseMarkerPosition}
+            myPositionText={myPositionText}
+            markerPositionText={markerPositionText}
+            routeboxState={routeboxState}
+            setRouteboxState={setRouteboxState}
+          />
+        </div>
+      </div>
+
+
 
     </>
   )

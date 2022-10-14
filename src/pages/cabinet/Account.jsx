@@ -1,54 +1,68 @@
 import { connect } from 'react-redux';
-
+import { Link } from 'react-router-dom';
 import TemplateAccount from 'pages/cabinet/parts/TemplateAccount';
-import RenderFormAccount from 'components/forms/RenderFormAccount';
 
-// import { sendUserInfo } from 'store/asyncActions/sendUserInfo';
-import { saveInfo } from 'store/asyncActions/saveInfo';
-
-import ActionFn from 'store/actions';
-
+import defaultCardsImg from 'front-end/images/icons/avatar-light-gray.svg'
 const Account = ({
-  ActionFn,
   uid,
-  userInfo,
   checkingStatus,
-  dataForm,
-  fields,
+  userInfo
 }) => {
 
+  console.log('userInfo', userInfo)
+  const imgCards = userInfo.imgsAccount ? userInfo.imgsAccount : defaultCardsImg;
 
-  /* получение данных пользователя */
-
-  /* сохранение данных пользователя */
-  const onSubmitIn = () => {
-    ActionFn('CHANGE_ACCOUNT_INFO', true);
-    saveInfo(dataForm.values, uid, 'users').then(() => {
-      ActionFn('CHANGE_ACCOUNT_INFO', false);
-
-      ActionFn('SET_INFO_ACCOUNT', dataForm.values);
-    });
-  }
-
-
-  /* сохранение данных пользователя */
 
 
 
   return (
     <>
-
-      {console.log('userInfo', userInfo)}
       <TemplateAccount title="Учетная запись компании" >
 
         {checkingStatus ? 'Loading account...' : (
-          <RenderFormAccount
-            btnSaveText="Сохранить изменения"
-            objFields={fields}
-            orderFields={fields.order}
-            initialValues={userInfo}
-            onSubmitProps={onSubmitIn}
-          />
+          <>
+            <div className="cabinet-account shadow-container main-grid">
+              <div className="col-2 col-lg-3 col-sm-5">
+                <div className="cards-face-container">
+                  <div
+                    className="cards-face img-cover"
+                    style={{ backgroundImage: `url(${imgCards})` }}
+                  >
+                  </div>
+                </div>
+              </div>
+              <div className="col-10 col-lg-9 col-sm-12">
+                <div className="account-container">
+                  <div className="account-item"> <b>Имя</b>
+                    <div>{userInfo.name ? userInfo.name : '-/-'}</div>
+                  </div>
+                  <div className="account-item"> <b>Email </b>
+                    <div>{userInfo.email ? (<a href={`mailto:${userInfo.email}`}>{userInfo.email}</a>) : '-/-'}</div>
+                  </div>
+                  <div className="account-item"> <b>Телефон</b>
+                    <div>{userInfo.phones_main ? (<a href={`mailto:${userInfo.phones_main}`}>{userInfo.phones_main}</a>) : '-/-'}</div>
+                  </div>
+                  <div className="account-item"> <b>Пол</b>
+                    <div> <div>{userInfo.gender ? userInfo.gender : '-/-'}</div></div>
+                  </div>
+                  <div className="account-item"> <b>Дата рождения</b>
+                    <div> <div>{userInfo.dateBerth ? userInfo.gender : '-/-'}</div></div>
+                  </div>
+                  <div className="account-item"> <b>Видимость профиля</b>
+                    <div> <div>{userInfo.profileStatisView ? userInfo.gender : '-/-'}</div></div>
+                  </div>
+                </div>
+                <div className="btn-container">
+                  <Link to='/cabinet/account-edit/' className="btn btn-edit btn--orange ico-in ico-in--left">
+                    <i></i>
+                    <span>Редактировать профиль</span>
+                  </Link>
+                  <div className="btn btn-delete-profiled btn--red ico-in ico-in--left">
+                    <i></i><span>Удалить профиль</span>
+                  </div>
+                </div>
+              </div>
+            </div></>
         )}
 
 
@@ -59,19 +73,10 @@ const Account = ({
 
 const mapStateToProps = (state) => {
 
-  const formReducer = state.form && state.form.singleInput;
-  const fields = state.accountInfo.info.typeCabinet === 'vacancies' ? state.fieldsEmployersAccount : state.fieldsApplicantsAccount;
-
   return {
-    fields: fields,
-    dataForm: formReducer,
     userInfo: state.accountInfo.info,
-    uid: state.accountInfo.info.uid,
     checkingStatus: state.accountInfo.checkingStatus
   }
 }
 
-export default connect(mapStateToProps,
-  {
-    ActionFn
-  })(Account);
+export default connect(mapStateToProps)(Account);

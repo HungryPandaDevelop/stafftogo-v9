@@ -6,8 +6,10 @@ const GoMap = () => {
     <>
       <div className="stub"></div>
       <Filters />
-      <div className="map">
-        <MapYandex />
+      <div className="content">
+        <div className="gomap">
+          <MapYandex />
+        </div>
       </div>
     </>
 

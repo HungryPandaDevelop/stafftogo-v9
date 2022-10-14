@@ -38,6 +38,8 @@ const Authorization = ({ uid, formData, fieldsAuthorization }) => {
               orderFields={fieldsAuthorization.order}
               onSubmitProps={onSubmitIn}
               formClassAdd='form-default'
+              btnClass='btn--orange'
+              sending={true}
             />
             <Link to="/forgot-password">Восстановить пароль</Link>
           </div>

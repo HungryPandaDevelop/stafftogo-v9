@@ -11,8 +11,7 @@ const ClearYaMap = ({ myMap, myMapRef, setMyMap }) => {
         <Map
           id="map"
           width="100%"
-          height="80%"
-          style={{ top: '90px' }}
+          height="100%"
           defaultState={
             {
               center: [55.75, 37.57],

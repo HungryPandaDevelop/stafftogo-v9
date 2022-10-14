@@ -1,13 +1,11 @@
-import { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 
 import { Link, useLocation } from 'react-router-dom';
 
 import { getAuth } from 'firebase/auth';
 
 
-const CabinetSidebar = () => {
-
-  const typeCabinet = 'employers';
+const CabinetSidebar = ({ userInfo }) => {
 
   const auth = getAuth();
   const onLogout = () => {
@@ -23,56 +21,59 @@ const CabinetSidebar = () => {
   }
 
   const NameMassEmployers = [
-    ['Мои реквизиты', 'account', ''],
-    ['Мои вакансии', 'vacancies', 'vacancies'],
-    ['Мне понравилось', 'vacancies', 'liked'],
-    ['Я пригласил', 'vacancies', 'invitations'],
-    ['Меня пригласили', 'vacancies', 'responses'],
-    ['Чат', 'vacancies', 'chat'],
-    ['Видеочат', 'vacancies', 'videochat'],
-    ['Подписка', 'vacancies', 'subscription'],
-    // ['Мой пакет услуг', 'packserv', 'packserv'],
-    // ['Мои счета', 'score', 'score'],
-    // ['История заказов', 'historyorder', 'order_history'],
+    ['Профиль', '', 'profile-nav'],
+    ['Вакансии', 'vacancies', 'cards-nav'],
+    ['Избранное', 'liked', 'favorites-nav'],
+    ['Отклики', 'invitations', 'responses-nav'],
+    ['Приглашения', 'responses', 'invitation-nav'],
+    ['Чат', 'chat', 'chat-nav'],
+    ['Видеочат', 'videochat', 'videochat-nav'],
+    ['Подписка', 'subscription', 'subscription'],
   ]
 
   const NameMassApplicants = [
-    ['Мой кабинет', 'account', ''],
-    ['Мои резюме', 'vacancies', 'resume'],
-    ['Мне понравилось', 'vacancies', 'liked'],
-    ['Я пригласил', 'vacancies', 'invitations'],
-    ['Меня пригласили', 'vacancies', 'responses'],
-    ['Чат', 'vacancies', 'chat'],
-    ['Видеочат', 'vacancies', 'videochat']
+    ['Профиль', '', 'profile-nav'],
+    ['Резюме', 'resume', 'cards-nav'],
+    ['Избранное', 'liked', 'favorites-nav'],
+    ['Отклики', 'invitations', 'responses-nav'],
+    ['Приглашения', 'responses', 'invitation-nav'],
+    ['Чат', 'chat', 'chat-nav'],
+    ['Видеочат', 'videochat', 'videochat-nav']
   ]
 
   return (
-    <>
-      <ul className="ln cabinet-sidebar">
-        {(typeCabinet === 'employers' ? NameMassEmployers : NameMassApplicants)
+    <div className='cabinet-nav'>
+      <ul className="ln ">
+        {(userInfo.typeCabinet === 'resume' ? NameMassApplicants : NameMassEmployers)
           .map((item, index) => (
-            <li key={index}>
-              <Link className={`${pathMathRoute('/cabinet/' + item[2]) ? 'active' : ''} sidebar_link ico-in`} to={`/cabinet/${item[2]}`}>
-                <i>
-                  <div className={`${item[1]}-ico--white back-ico`}></div>
-                  <div className={`${item[1]}-ico--gray front-ico`}></div>
-                </i>
+            <li key={index} >
+              <Link className={`${item[2]} ${pathMathRoute('/cabinet/' + item[1]) ? 'active' : ''}`} to={`/cabinet/${item[1]}`}>
+                <i></i>
                 <span>{item[0]}</span>
               </Link>
             </li>
           )
-          )};
-
+          )}
+        <li onClick={onLogout}>
+          <em className='cabinet-logout'>
+            <i></i>
+            <span>Выйти</span>
+          </em>
+        </li>
       </ul>
 
-      <input
-        className="btn btn--orange"
-        type="submit"
-        value="Выйти"
-        onClick={onLogout}
-      />
-    </>
+
+    </div>
   )
 }
 
-export default CabinetSidebar
+const mapStateToProps = (state) => {
+
+
+  return {
+
+    userInfo: state.accountInfo.info,
+  }
+}
+
+export default connect(mapStateToProps)(CabinetSidebar);

@@ -18,7 +18,7 @@ const CabinetPopup = ({ userInfo, onCabinetPopupShow }) => {
           to="/cabinet/"
           className="btn btn--gren-border"
           onClick={onCabinetPopupShow}
-        >Настройки</Link>
+        >В кабинет</Link>
         <div onClick={() => auth.signOut()} className="btn btn--red-border">Выйти</div>
       </div>
     </div>

@@ -60,7 +60,7 @@ const ListItem = (props) => {
               style={{ backgroundImage: `url(${imgCards})` }}
             >
             </div>
-            <BtnCall listing={listing} />
+            <BtnCall listing={listing.data} />
 
           </div>
         </div>

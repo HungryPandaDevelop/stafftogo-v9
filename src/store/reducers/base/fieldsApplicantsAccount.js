@@ -1,13 +1,13 @@
 export default function(){
   return {
     order: [
+      "photoAccount",
       "typeCabinet",
       "titleOne",
       "name",
       "email",
       "phone",
       "statusInSite",
-      "imgsAccount",
       "gender",
       "fio",
       "age",
@@ -88,11 +88,11 @@ export default function(){
       label: "Гражданство", 
       placeholder: "Гражданство", 
     },
-    imgsAccount: {
-      type: "file", 
-      name: "imgsAccount", 
+    photoAccount: {
+      type: "photo", 
+      name: "photoAccount", 
       label:"Загрузите ваше фото", 
-      labelSecond:"(JPG или PNG, вес не более 1 Mb, ширина/высота логотипа не менее 320 px)", 
+      labelSecond:"(Изображение формата jpg,png не менее 150x150 px, не более 8Мб)", 
       typeFile: "img", 
       typeUpload:".png, .jpg, .jpeg", 
       maxSize: 1000000, 

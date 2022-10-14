@@ -28,6 +28,7 @@ import Registration from 'pages/cabinet/auth/Registration';
 
 
 import Account from 'pages/cabinet/Account';
+import AccountEdit from 'pages/cabinet/AccountEdit';
 
 
 // Страницы кабинет Нанимателя
@@ -76,7 +77,8 @@ const App = () => {
           {/*  Страницы кабинет  */}
             <Route path='/cabinet' element={<PrivateRoute/>}>
               <Route index  element={<Account/>}></Route>
-     
+    
+              <Route path='/cabinet/account-edit' element={<AccountEdit/>}></Route>
 
               <Route path='/cabinet/vacancies' element={<Vacancies/>}></Route>
               <Route path='/cabinet/vacancies-new' element={<VacanciesNew/>}></Route>

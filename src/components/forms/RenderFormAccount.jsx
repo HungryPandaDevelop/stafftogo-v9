@@ -25,6 +25,7 @@ import RenderInputMulty from './fields/RenderInputMulty'; // поле селек
 import RenderInputAddition from './fields/RenderInputAddition'; // поле с добавлением полей 
 
 import RenderInputFileNew from './fields/RenderInputFileNew'; // поле с добавлением поля! 
+import RenderInputFilePhoto from './fields/RenderInputFilePhoto'; // поле с добавлением поля! 
 
 import RenderInputSelectTrue from './fields/RenderInputSelectTrue'; // поле с селект
 
@@ -166,6 +167,19 @@ const TemplateForm = (props) => {
         case 'file':
           return (
             <RenderInputFileNew
+              name={obj.name}
+              label={obj.label}
+              labelSecond={obj.labelSecond}
+              allFields={obj.allFields}
+              typeUpload={obj.typeUpload}
+              maxSize={obj.maxSize}
+              typeFile={obj.typeFile}
+              textEmpty={obj.textEmpty}
+            />
+          );
+        case 'photo':
+          return (
+            <RenderInputFilePhoto
               name={obj.name}
               label={obj.label}
               labelSecond={obj.labelSecond}

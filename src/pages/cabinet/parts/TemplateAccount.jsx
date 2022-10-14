@@ -2,19 +2,20 @@ import CabinetSidebar from 'pages/cabinet/parts/CabinetSidebar';
 
 const TemplateAccount = ({ title, children, rightSibar }) => {
   return (
-    <div>
+    <>
+      <div className="stub"></div>
       <div className="content">
         <div className="main-grid cabinet-head">
-          <div className="col-2 col-lg-3"> </div>
-          <div className="col-10 col-lg-7">
+          <div className="col-3 col-sm-12"> </div>
+          <div className="col-9 col-sm-12">
             <h1>{title}</h1>
           </div>
         </div>
         <div className="main-grid">
-          <div className="col-2 col-lg-3">
+          <div className="col-3 col-sm-12">
             <CabinetSidebar />
           </div>
-          <div className="col-8 col-lg-7">
+          <div className="col-9 col-sm-12">
             <div className="cabinet-body">
               {children}
             </div>
@@ -24,7 +25,7 @@ const TemplateAccount = ({ title, children, rightSibar }) => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 
