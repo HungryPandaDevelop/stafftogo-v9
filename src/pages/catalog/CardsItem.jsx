@@ -100,7 +100,8 @@ const ListItem = (props) => {
         </div>
         <div className="col-4 col-xxl-5 col-md-9 col-sm-8 col-xs-12 cards-pay-container">
           <div className="cards-item-info cards-item-pay-info">
-            <h3>{listingData.userInfo.name_company} ?</h3>
+            {console.log('listingData', listingData)}
+            <h3>{cabinetType === 'resume' ? listingData.userInfo.fio : listingData.userInfo.name_company}</h3>
             <ul className="ln cards-item-info-list">
               {listingData.userInfo.phone && (
                 <li>
@@ -123,7 +124,7 @@ const ListItem = (props) => {
                 <b>Окская улица, 48/2, Москва, ?</b>
               </li>
             </ul>
-            <div class="cards-item-bottom btn-container">
+            <div className="cards-item-bottom btn-container">
               {(uid && listingType != cabinetType) && (
                 <BtnInvite
                   listing={listing}
@@ -134,7 +135,7 @@ const ListItem = (props) => {
                 />
               )}
 
-              <div class="btn btn--gren-border ico-in ico-in--left btn-show-map">
+              <div className="btn btn--gren-border ico-in ico-in--left btn-show-map">
                 <i></i>
                 <span>Показать на карте</span>
               </div>

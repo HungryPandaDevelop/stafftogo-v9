@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 
 import LeftBtnContainer from "blocks/filters/parts/LeftBtnContainer";
 
-const CardsControls = ({ listingSearch }) => {
+const Filters = ({ listingSearch, sectionTop }) => {
 
   const [stateFilter, setStateFilter] = useState(false);
 
@@ -35,6 +35,7 @@ const CardsControls = ({ listingSearch }) => {
             <LeftBtnContainer
               industry={industry}
               specialization={specialization}
+              sectionTop={sectionTop}
             />
           </div>
           <div className="btn-container--right">
@@ -55,4 +56,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(CardsControls);
+export default connect(mapStateToProps)(Filters);

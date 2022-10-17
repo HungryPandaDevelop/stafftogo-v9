@@ -66,17 +66,10 @@ const CardsList = ({ uid, cabinetType, accountInfo, ActionFn }) => {
     }
   }
 
-  const rightSibar = () => {
-    return (
-      <Link className="btn btn--orange" to={`/cabinet/${cabinetType}-new`}>
-        Создать {cabinetType}
-      </Link>
-    )
-  }
 
   return (
     <>
-      <TemplateAccount title={`${cabinetType}`} rightSibar={rightSibar()}>
+      <TemplateAccount title={`${cabinetType}`} cabinetType={cabinetType} showAddBtn={true}>
         {loading ? 'loading' : listings.length > 0 ? (
           <>
             {
@@ -89,6 +82,8 @@ const CardsList = ({ uid, cabinetType, accountInfo, ActionFn }) => {
                     onEdit={() => onEdit(listing.id)}
                     onDelete={() => deleteItem(listings, listing.id)}
                     onActivate={() => onActivateItem(listing.id)}
+                    cabinetType={cabinetType}
+
                   />
 
                 </div>

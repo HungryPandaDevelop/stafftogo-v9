@@ -16,6 +16,7 @@ import fieldsPriceFilter from 'store/reducers/base/fieldsPriceFilter';
 
 import specializationBase from "store/reducers/base/specializationBase";
 import industryBase from "store/reducers/base/industryBase";
+import russianCities from "store/reducers/base/russianCities";
 
 import infoAccountReducer from "store/reducers/infoAccountReducer";
 
@@ -44,6 +45,7 @@ const rootReducer = combineReducers({
   accountInfo: infoAccountReducer,
   specializationBase: specializationBase,
   industryBase: industryBase,
+  russianCities: russianCities,
   popupReducer: popupReducer,
   popupMapInfoReducer: popupMapInfoReducer,
   listingTypeReducer: listingTypeReducer,

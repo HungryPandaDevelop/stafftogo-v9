@@ -35,13 +35,6 @@ export default function(){
         {name:"Компания", value:"vacancies"},
       ],
     },
-    name: { 
-      type:"text" ,
-      name: "name", 
-      label: "Имя пользователя", 
-      placeholder: "Имя пользователя", 
-      
-    },
     name_company: { 
       type:"text", 
       name: "name_company", 

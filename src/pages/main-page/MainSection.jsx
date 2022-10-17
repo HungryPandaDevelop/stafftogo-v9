@@ -2,7 +2,7 @@
 import Filters from 'blocks/filters/Filters';
 
 
-const MainSection = () => {
+const MainSection = ({ sectionTop }) => {
 
 
 
@@ -24,7 +24,7 @@ const MainSection = () => {
         </div>
 
 
-        <Filters />
+        <Filters sectionTop={sectionTop} />
       </div>
     </>
   )

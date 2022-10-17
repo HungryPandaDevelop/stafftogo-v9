@@ -1,6 +1,7 @@
 import CabinetSidebar from 'pages/cabinet/parts/CabinetSidebar';
+import { Link } from 'react-router-dom';
 
-const TemplateAccount = ({ title, children, rightSibar }) => {
+const TemplateAccount = ({ title, children, cabinetType }) => {
   return (
     <>
       <div className="stub"></div>
@@ -16,12 +17,15 @@ const TemplateAccount = ({ title, children, rightSibar }) => {
             <CabinetSidebar />
           </div>
           <div className="col-9 col-sm-12">
+            {cabinetType && (
+              <Link className="btn btn--orange" to={`/cabinet/${cabinetType}-new`}>
+                Создать {cabinetType === 'resume' ? 'резюме' : 'вакансию'}
+              </Link>
+            )}
+
             <div className="cabinet-body">
               {children}
             </div>
-          </div>
-          <div className="col-2">
-            {rightSibar}
           </div>
         </div>
       </div>

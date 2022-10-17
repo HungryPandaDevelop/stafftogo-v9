@@ -37,7 +37,7 @@ import ploaderImg from 'front-end/images/preloader.gif'
 
 const TemplateForm = (props) => {
   //console.log(props)
-  const { handleSubmit, objFields, orderFields, btnSaveText, formClassAdd, showBtn, btnWrapClass, btnClass, sending, setSending, onSubmitIn } = props;
+  const { handleSubmit, objFields, orderFields, btnSaveText, formClassAdd, showBtn, btnWrapClass, btnClass, sending, onSubmitIn } = props;
 
   const [errorOn, setErrorOn] = useState(false);
 

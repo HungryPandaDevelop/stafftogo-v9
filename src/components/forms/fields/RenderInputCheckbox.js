@@ -5,8 +5,8 @@ const TemplateInputCheckbox = ({ name, label, labelSecond, options, input }) => 
   return (
     <>
       {label && <label><b>{label}</b> {labelSecond ? <span>{labelSecond}</span> : ''}</label>}
-      {options.map(item => (
-        <div className='checkbox' key={item.value}>
+      {options.map((item,index) => (
+        <div className='checkbox' key={index}>
           <label>{item.label}
             <input
               {...input}

@@ -1,6 +1,5 @@
-import { Link } from 'react-router-dom';
 
-const BtnListControls = ({ idPopup, children, name, onShowPopup, idVisiblePopup, additionalFilterValueObj }) => {
+const BtnListControls = ({ idPopup, children, name, onShowPopup, idVisiblePopup, additionalFilterValueObj, goToTop }) => {
 
   let count = 0;
   additionalFilterValueObj && Object.keys(additionalFilterValueObj).forEach(key => {
@@ -14,12 +13,12 @@ const BtnListControls = ({ idPopup, children, name, onShowPopup, idVisiblePopup,
   return (
     <div className="btn-item">
 
-      <Link to='/catalog/'
+      <div to='/catalog/'
         className={`btn btn-filters btn--white-border btn--list ${idPopup === idVisiblePopup && 'active'} ${count > 0 && 'filter-in'} `}
-        onClick={() => { onShowPopup(idPopup) }}
+        onClick={() => { onShowPopup(idPopup); goToTop(); }}
       >
         <span>{name}</span><i></i>
-      </Link>
+      </div>
       {children}
     </div>
   )

@@ -89,7 +89,6 @@ const mapStateToProps = (state) => {
     listingSearch: state.listingSearchReducer,
     cabinetType: state.accountInfo.info.typeCabinet,
     currentCard: state.accountInfo.info.currentCard,
-    typeCabinet: state.accountInfo.info.typeCabinet,
     roomUpdate: state.accountInfo.roomUpdate,
     uid: state.accountInfo.info.uid,
     accountInfo: state.accountInfo.info,

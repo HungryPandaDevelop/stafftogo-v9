@@ -2,15 +2,7 @@ import { required, minLength,mailCheck } from 'components/forms/validator';
 
 export default function(){
   return {
-    order: ["name","email","password","typeCabinet"],
-    name: { 
-      name: "name", 
-      label: "Имя пользователя", 
-      placeholder: "Имя пользователя", 
-      type:"text",
-      validate: [required,minLength] ,
-      wrapClass: "form-line"
-    },
+    order: ["email","password","typeCabinet"],
     email: { 
       name: "email", 
       label: "Почта", 

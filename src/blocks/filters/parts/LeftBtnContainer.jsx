@@ -15,7 +15,7 @@ import setPriceText from '../js/setPriceText';
 
 
 
-const ChoiseContentBtn = ({ listingSearch }) => {
+const ChoiseContentBtn = ({ listingSearch, sectionTop }) => {
   let additionalFilterValueObj = {
     gender: listingSearch.gender,
     additional: listingSearch.additional,
@@ -24,6 +24,16 @@ const ChoiseContentBtn = ({ listingSearch }) => {
     exp_from: listingSearch.exp_from,
     exp_to: listingSearch.exp_to
   }
+
+
+
+
+  const goToTop = () => {
+    window.scrollTo({
+      top: sectionTop - 160,
+      behavior: 'smooth',
+    });
+  };
 
   const [idVisiblePopup, setIdVisiblePopup] = useState('0');
 
@@ -44,6 +54,7 @@ const ChoiseContentBtn = ({ listingSearch }) => {
         idPopup="1"
         onShowPopup={onShowPopup}
         idVisiblePopup={idVisiblePopup}
+        goToTop={goToTop}
       >
         {idVisiblePopup === '1' && <SpecializationPopup onShowPopup={onShowPopup} />}
       </BtnTemplate>
@@ -52,6 +63,7 @@ const ChoiseContentBtn = ({ listingSearch }) => {
         idPopup="2"
         onShowPopup={onShowPopup}
         idVisiblePopup={idVisiblePopup}
+        goToTop={goToTop}
       >
         {idVisiblePopup === '2' && <IndustryPopup onShowPopup={onShowPopup} />}
       </BtnTemplate>
@@ -60,6 +72,7 @@ const ChoiseContentBtn = ({ listingSearch }) => {
         idPopup="3"
         onShowPopup={onShowPopup}
         idVisiblePopup={idVisiblePopup}
+        goToTop={goToTop}
       >
         {idVisiblePopup === '3' && <RewardPopup onShowPopup={onShowPopup} />}
       </BtnTemplate>
@@ -69,6 +82,7 @@ const ChoiseContentBtn = ({ listingSearch }) => {
         onShowPopup={onShowPopup}
         idVisiblePopup={idVisiblePopup}
         additionalFilterValueObj={additionalFilterValueObj}
+        goToTop={goToTop}
       >
         {idVisiblePopup === '4' && <AdditionalPopup onShowPopup={onShowPopup} />}
       </BtnTemplate>

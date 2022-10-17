@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import img1 from 'front-end/images/adv-1.svg'
 import img2 from 'front-end/images/adv-2.svg'
@@ -6,10 +7,14 @@ import img4 from 'front-end/images/adv-4.svg'
 
 
 
-const AdvantagesHome = () => {
+const AdvantagesHome = ({ setSectionTop }) => {
+  const boxRef = useRef(false);
+  useEffect(() => {
+    setSectionTop(boxRef.current.offsetTop);
+  }, []);
   return (
     <>
-      <section className="advantages-home">
+      <section className="advantages-home" ref={boxRef}>
         <div className="main-grid">
           <div className="advantages-home-header">
             <h2>Умная система GoMap</h2>

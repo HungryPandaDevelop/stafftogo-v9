@@ -1758,32 +1758,6 @@ header .hamburger-btn {
   margin-left: 15px;
 }
 
-.city-header span,
-.city-header em {
-  vertical-align: middle;
-  display: inline-block;
-}
-.city-header em {
-  font-size: 0;
-  margin-right: 15px;
-  display: inline-block;
-  vertical-align: middle;
-  width: 24px;
-  height: 24px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-image: url("../images/icons/marker-white.svg");
-}
-.city-header span {
-  font-size: 14px;
-  position: relative;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: calc(100% - 40px);
-}
-
 .nav-nologged ul {
   font-weight: 600;
 }
@@ -2146,6 +2120,89 @@ header .btn-add-desk {
     display: block;
   }
 }
+.city-header {
+  position: relative;
+}
+.city-header span,
+.city-header em {
+  vertical-align: middle;
+  display: inline-block;
+}
+.city-header em {
+  font-size: 0;
+  margin-right: 15px;
+  display: inline-block;
+  vertical-align: middle;
+  width: 24px;
+  height: 24px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url("../images/icons/marker-white.svg");
+}
+.city-header span {
+  font-size: 14px;
+  position: relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: calc(100% - 40px);
+}
+.city-header input {
+  background: none;
+  color: #ffffff;
+  border: 0;
+}
+
+.city-header-popup {
+  background-color: #ffffff;
+  color: #202020;
+  -webkit-box-shadow: rgba(38, 57, 77, 0.4) 0px 20px 30px -10px;
+          box-shadow: rgba(38, 57, 77, 0.4) 0px 20px 30px -10px;
+  border-radius: 4px;
+  width: 150px;
+  position: absolute;
+  left: 1px;
+  top: 33px;
+}
+.city-header-popup ul {
+  position: relative;
+  overflow-y: auto;
+  border-radius: 4px;
+  max-height: 148px;
+}
+.city-header-popup ul::-webkit-scrollbar {
+  height: 12px;
+  width: 8px;
+  background: #C4C4C4;
+}
+.city-header-popup ul::-webkit-scrollbar-thumb {
+  background: #777;
+  border-radius: 1ex;
+}
+.city-header-popup ul::-webkit-scrollbar-corner {
+  background: #777;
+}
+.city-header-popup li {
+  padding: 8px;
+}
+.city-header-popup li:hover {
+  background-color: #03ac9f;
+  cursor: pointer;
+  color: #ffffff;
+}
+.city-header-popup::before {
+  content: "";
+  width: 10px;
+  position: absolute;
+  height: 10px;
+  left: 5px;
+  top: -5px;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  background-color: #ffffff;
+}
+
 /*-----header-end----*/
 /*-----footer-start----*/
 .stub-footer {
@@ -3133,7 +3190,6 @@ footer .create {
   min-height: 620px;
   background-color: #202020;
   position: relative;
-  overflow: hidden;
   font-size: 16px;
   color: #ffffff;
 }

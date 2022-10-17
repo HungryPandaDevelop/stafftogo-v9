@@ -1,15 +1,14 @@
 export default function(){
   return {
     order: [
+      "fio",
       "photoAccount",
       "typeCabinet",
       "titleOne",
-      "name",
       "email",
       "phone",
       "statusInSite",
       "gender",
-      "fio",
       "age",
       "exp_work",
       "country",
@@ -22,13 +21,6 @@ export default function(){
         {name:"Соискатель",value:"resume"},
         {name:"Компания", value:"vacancies"},
       ],
-    },
-    name: { 
-      type:"text" ,
-      name: "name", 
-      label: "Имя пользователя", 
-      placeholder: "Имя пользователя", 
-      
     },
     gender: {
       type:"radio",

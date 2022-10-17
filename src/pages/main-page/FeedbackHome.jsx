@@ -94,7 +94,6 @@ const FeedbackHome = ({ fields, dataForm }) => {
               btnClass="btn--gren"
               sending={sending}
               initialValues={valueForm}
-              setSending={setSending}
               btnWrapClass="col-12"
               showBtn={true}
             />

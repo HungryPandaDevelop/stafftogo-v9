@@ -25,7 +25,6 @@ const AccountEdit = ({
     ActionFn('CHANGE_ACCOUNT_INFO', true);
     saveInfo(dataForm.values, uid, 'users').then(() => {
       ActionFn('CHANGE_ACCOUNT_INFO', false);
-
       ActionFn('SET_INFO_ACCOUNT', dataForm.values);
     });
   }
@@ -44,7 +43,9 @@ const AccountEdit = ({
             objFields={fields}
             orderFields={fields.order}
             initialValues={userInfo}
-            onSubmitProps={onSubmitIn}
+            onSubmitIn={onSubmitIn}
+            sending={true}
+            btnClass="btn--gren"
             formClassAdd="cabinet-account cabinet-edit shadow-container"
           />
         )}
