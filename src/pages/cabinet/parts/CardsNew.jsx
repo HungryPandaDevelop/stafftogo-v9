@@ -31,7 +31,8 @@ const VacanciesNew = ({ accountInfo, uid, cabinetType, fields, dataForm }) => {
           btnSaveText="Добавить вакансию"
           objFields={fields}
           orderFields={fields.order}
-          onSubmitProps={onSubmitIn}
+          onSubmitIn={onSubmitIn}
+          sending={true}
         />
       </TemplateAccount>
     </>

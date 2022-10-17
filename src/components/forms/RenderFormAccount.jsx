@@ -25,9 +25,12 @@ import RenderInputMulty from './fields/RenderInputMulty'; // поле селек
 import RenderInputAddition from './fields/RenderInputAddition'; // поле с добавлением полей 
 
 import RenderInputFileNew from './fields/RenderInputFileNew'; // поле с добавлением поля! 
+
 import RenderInputFilePhoto from './fields/RenderInputFilePhoto'; // поле с добавлением поля! 
 
 import RenderInputSelectTrue from './fields/RenderInputSelectTrue'; // поле с селект
+
+import RenderInputComplex from './fields/RenderInputComplex'; // поле с селект
 
 import RenderInputCoords from './fields/RenderInputCoords'; // поле с селект
 
@@ -188,6 +191,13 @@ const TemplateForm = (props) => {
               maxSize={obj.maxSize}
               typeFile={obj.typeFile}
               textEmpty={obj.textEmpty}
+            />
+          );
+        case 'complex':
+          return (
+            <RenderInputComplex
+              name={obj.name}
+              allFields={obj.allFields}
             />
           );
         default:

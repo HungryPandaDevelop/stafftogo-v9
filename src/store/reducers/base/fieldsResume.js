@@ -9,6 +9,7 @@ export default function(){
       "typeSpecialization",
       "titleTwo",
       "companyWork",
+      "companyWorkComplex",
       "titleThree",
       "education",
       "institution",
@@ -136,6 +137,39 @@ export default function(){
         },
       ],
     },
+    companyWorkComplex: {
+      type: "complex", 
+      name: "companyWorkComplex", 
+      label:"Организация",  
+      allFields: [
+        { 
+          type:"text", 
+          name: "name", 
+          placeholder: "Наименование организации", 
+          length: "col-6" 
+        },
+        { 
+          type:"text", 
+          name: "type", 
+          placeholder: "Должность",
+          length: "col-6" 
+        },
+        { 
+          type:"text", 
+          name: "work", 
+          placeholder: "Введите не более 500 символов (символы перестанут печататься, когда вы превысите лимит)", 
+          maxLength: 500,
+          length: "col-12" 
+        },
+      ],
+    },
+    lang: {
+      type: "additional", 
+      name: "lang", 
+      label:"Владение языками", 
+      btnTextAdd:"+ Добавить язык", 
+      typeInner: "text"
+    },
     education: { 
       type:"checkbox", 
       name: "typeEducation",
@@ -179,13 +213,7 @@ export default function(){
         },
       ],
     },
-    lang: {
-      type: "additional", 
-      name: "lang", 
-      label:"Владение языками", 
-      btnTextAdd:"+ Добавить язык", 
-      typeInner: "text"
-    },
+
     employment: { 
       type:"select", 
       name: "employment", 

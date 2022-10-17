@@ -1,8 +1,8 @@
 import { Field, FieldArray  } from 'redux-form';
 import {  createTextMask } from 'redux-form-input-masks';
 
-const TemplateInputAddition = ({ fields, btnTextAdd, nameField, typeInner }) => {
-
+const TemplateInputAddition = ({ fields, member, btnTextAdd, nameField, typeInner }) => {
+  console.log('test', member)
   const phoneMask = createTextMask({
     pattern: '+7 (999) 999-9999',
   });
@@ -12,17 +12,17 @@ const TemplateInputAddition = ({ fields, btnTextAdd, nameField, typeInner }) => 
 
   return(
     <div className="form-line form-addition">
-            <Field
+          <Field
             name={`${nameField}_main`}
             type="text"
             component="input"
             className="input-decorate"
             {...coditionProps}
           />
-      {fields.map((hobby, index) => (
+      {fields.map((item, index) => (
         <div key={index}>
           <Field
-            name={hobby}
+            name={item}
             type="text"
             component="input"
             className="input-decorate"
@@ -32,7 +32,6 @@ const TemplateInputAddition = ({ fields, btnTextAdd, nameField, typeInner }) => 
             onClick={() => fields.remove(index)}
             className="delete-field"
           >
-            
           </div>
         </div>
       ))}
@@ -48,9 +47,7 @@ const TemplateInputAddition = ({ fields, btnTextAdd, nameField, typeInner }) => 
 const RenderInputAddition = (name, label, btnTextAdd, typeInner) => {
   return (
     <>
-      <label>
-        <b>{label}</b>
-      </label>
+      {label&& (<label><b>{label}</b></label>)}
       <FieldArray
         name={name} 
         nameField={name}

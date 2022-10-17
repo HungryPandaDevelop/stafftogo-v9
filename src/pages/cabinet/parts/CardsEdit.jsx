@@ -52,7 +52,8 @@ const VacanciesEdit = ({ accountInfo, cabinetType, fields, dataForm }) => {
           objFields={fields}
           orderFields={fields.order}
           initialValues={getInfo ? getInfo : null}
-          onSubmitProps={onSubmitIn}
+          onSubmitIn={onSubmitIn}
+          sending={true}
         />
       </TemplateAccount>
     </>
