@@ -226,7 +226,7 @@ const TemplateForm = (props) => {
 
   return (
     <form
-      className={`${formClassAdd} form`}
+      className={formClassAdd ? formClassAdd + ' form' : 'form'}
       onSubmit={handleSubmit(onSubmit)}
 
     >

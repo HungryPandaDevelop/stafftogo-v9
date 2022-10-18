@@ -2,7 +2,7 @@ import { Field, FieldArray  } from 'redux-form';
 import {  createTextMask } from 'redux-form-input-masks';
 
 const TemplateInputAddition = ({ fields, member, btnTextAdd, nameField, typeInner }) => {
-  console.log('test', member)
+
   const phoneMask = createTextMask({
     pattern: '+7 (999) 999-9999',
   });

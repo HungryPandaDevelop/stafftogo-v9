@@ -72,6 +72,9 @@ const CardsList = ({ uid, cabinetType, accountInfo, ActionFn }) => {
       <TemplateAccount title={`${cabinetType}`} cabinetType={cabinetType} showAddBtn={true}>
         {loading ? 'loading' : listings.length > 0 ? (
           <>
+            <Link className="btn btn--orange" to={`/cabinet/${cabinetType}-new`}>
+              Создать {cabinetType === 'resume' ? 'резюме' : 'вакансию'}
+            </Link>
             {
               listings.map((listing) => (
                 <div key={listing.id}>

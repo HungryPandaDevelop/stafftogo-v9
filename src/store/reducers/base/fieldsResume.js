@@ -3,8 +3,8 @@ export default function(){
     order: [
       "titleOne",
       "card_name",
-      "coords",
       "salary",
+      "coords",
       "industry",
       "typeSpecialization",
       "titleTwo",
@@ -20,32 +20,71 @@ export default function(){
       "car_exp",
       "additional",
     ],
+    card_name:{
+      type:"text", 
+      name: "card_name",  
+      placeholder: "Желаемая должность", 
+      label:"Желаемая должность", 
+      wrapClass: "col-12 account-item"
+    },
+    salary: { 
+      type: "multy", 
+      mainname: "salary", 
+      label:"Зарплата",  
+      wrapClass: "col-12 account-item",
+      allFields: [
+        { 
+          type:"text", 
+          name: "priceFrom",  
+          placeholder: "От", 
+          length: "col-6"
+        },
+        { 
+          type:"select", 
+          name: "priceType",  
+          length: "col-6",
+          placeholder:"Руб./мес.",
+          options: [
+            {name:"Руб./Смена", value:"type1"}, 
+            {name:"Руб./Час", value:"type2"}, 
+            {name:"За проект", value:"type3"}, 
+          ]
+        },
+      ],
+    },
     coords: { 
       type:"coords", 
       name: "coords",  
       placeholder: "Адрес", 
-      label: "Адрес"
+      label: "Адрес",
+      wrapClass: "col-12 account-item",
+
     },
     titleOne: {
       type:"title",
       label:"Основная информация", 
+      wrapClass: 'col-12 account-item'
     },
     titleTwo: {
       type:"title",
       label:"Сведения о работе", 
+      wrapClass: "col-12 account-item",
     },
     titleThree: {
       type:"title",
       label:"Образование", 
+      wrapClass: "col-12 account-item",
     },
     titleFour: {
       type:"title",
       label:"Дополнительно", 
+      wrapClass: "col-12 account-item",
     },
     industry: {
       type: "list", 
       name: "industry", 
       label:"В какой сфере вы хотите работать?", 
+      wrapClass: "col-12 account-item",
       options:[
         {label: "Бар", value:"type_1"},
         {label: "Вендинг", value:"type_2"},
@@ -74,6 +113,7 @@ export default function(){
       type: "list", 
       name: "specialization", 
       label:"Специализация сотрудника?", 
+      wrapClass: "col-12 account-item",
       options:[
         {label: "Администратор", value:"spec_1"},
         {label: "Водитель", value:"spec_2"},
@@ -81,51 +121,23 @@ export default function(){
         {label: "Диджей", value:"spec_4"},
       ]
     },
-    salary: { 
-      type: "multy", 
-      mainname: "salary", 
-      label:"Зарплата",  
-      allFields: [
-        { 
-          type:"text", 
-          name: "priceFrom",  
-          placeholder: "От", 
-          length: "col-4"
-        },
-        { 
-          type:"select", 
-          name: "priceType",  
-          length: "col-4",
-          placeholder:"Руб./мес.",
-          options: [
-            {name:"Руб./Смена", value:"type1"}, 
-            {name:"Руб./Час", value:"type2"}, 
-            {name:"За проект", value:"type3"}, 
-          ]
-        },
-      ],
-    },
-    card_name:{
-      type:"text", 
-      name: "card_name",  
-      placeholder: "Желаемая должность", 
-      label:"Желаемая должность", 
-    },
+
     companyWork: {
       type: "multy", 
       mainname: "companyWork", 
       label:"Организация",  
+      wrapClass: "col-12 account-item",
       allFields: [
         { 
           type:"text", 
           name: "name", 
           placeholder: "Наименование организации", 
-          length: "col-6" 
+          length: "col-6 account-item" 
         },
         { 
           type:"text", 
           name: "type", 
-          placeholder: "Должность",
+          placeholder: "Должность account-item",
           length: "col-6" 
         },
         { 
@@ -133,7 +145,7 @@ export default function(){
           name: "work", 
           placeholder: "Введите не более 500 символов (символы перестанут печататься, когда вы превысите лимит)", 
           maxLength: 500,
-          length: "col-12" 
+          length: "col-12 account-item" 
         },
       ],
     },
@@ -141,6 +153,7 @@ export default function(){
       type: "complex", 
       name: "companyWorkComplex", 
       label:"Организация",  
+      wrapClass: "col-12 account-item",
       allFields: [
         { 
           type:"text", 
@@ -168,11 +181,13 @@ export default function(){
       name: "lang", 
       label:"Владение языками", 
       btnTextAdd:"+ Добавить язык", 
+      wrapClass: "col-12 account-item",
       typeInner: "text"
     },
     education: { 
       type:"checkbox", 
       name: "typeEducation",
+      wrapClass: "col-12 account-item",
       options: [
         { label: 'Среднее', value: 'type1' },
         { label: 'Неоконченное высшее', value: 'type2' },
@@ -186,6 +201,7 @@ export default function(){
       type: "multy", 
       mainname: "institution", 
       label:"Учебное заведение",  
+      wrapClass: "col-12 account-item",
       allFields: [
         { 
           type:"text", 
@@ -197,19 +213,19 @@ export default function(){
           type:"text", 
           name: "type", 
           placeholder: "Факультет",
-          length: "col-6" 
+          length: "col-6 account-item" 
         },
         { 
           type:"text", 
           name: "special", 
           placeholder: "Специализация",
-          length: "col-6" 
+          length: "col-6 account-item" 
         },
         { 
           type:"text", 
           name: "year", 
           placeholder: "Год окончания",
-          length: "col-6" 
+          length: "col-6 account-item" 
         },
       ],
     },
@@ -219,6 +235,7 @@ export default function(){
       name: "employment", 
       label: "Занятость", 
       placeholder: "Занятость", 
+      wrapClass: "col-12 account-item",
       options:[
         {name: "Полная", value:"type_1"},
         {name: "Частичная", value:"type_2"},
@@ -232,6 +249,7 @@ export default function(){
       name: "work_time", 
       label: "График работы", 
       placeholder: "График работы", 
+      wrapClass: "col-12 account-item",
       options:[
         {name: "Полный день", value:"type_1"},
         {name: "Сменый график", value:"type_2"},
@@ -245,6 +263,7 @@ export default function(){
       name: "car_exp", 
       label: "Опыт вождения", 
       placeholder: "Опыт вождения", 
+      wrapClass: "col-12 account-item",
       options:[
         {name: "A", value:"type_1"},
         {name: "B", value:"type_2"},
@@ -256,6 +275,7 @@ export default function(){
     additional: {
       type:"checkbox", 
       name: "additional",
+      wrapClass: "col-12 account-item",
       options: [
         { label: 'Есть ИП/Самозанятый', value: 'type_1' },
         { label: 'Медицинская книжка', value: 'type_2' },

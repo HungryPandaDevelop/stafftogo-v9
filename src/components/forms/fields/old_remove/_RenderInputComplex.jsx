@@ -6,55 +6,52 @@ import RenderInputTextarea from './RenderInputTextarea'; // поле текст�
 
 import RenderInputSelectTrue from './RenderInputSelectTrue';
 
-
-
 const TemplateInputComplex = ({ names, allFields, fields }) => {
 
-  const choiseFields = (hobbyParam, allFieldsParam) => {
+  // console.log('fields', fields)
 
-    return allFields.map((item, index) => {
-      switch (item.type) {
+  const choiseFields = (type) => {
+    return allFields.map((field, index) => {
+      switch (field.type) {
         case 'text':
           return (
             <div key={index}>
               <RenderInputText
                 className='input-decorate'
-                name={`${hobbyParam}.${item.name}`}
+                name={names + '_' + field.name + '_' + type}
               />
             </div>
           )
       }
     })
   };
-
   return (
-    <ul>
-      <li>
-        <button type="button" onClick={() => { fields.push(); }}>Add Hobby</button>
-      </li>
+    <>
       {fields.map((hobby, index) => (
-        <li key={index}>
-          <div key={index}>
-            {choiseFields(hobby, allFields)}
-            <button
-              onClick={() => fields.remove(index)}
-              className="delete-field"
-            >x
-            </button>
+        <div key={index}>
+          {choiseFields('add')}
+          <div
+            onClick={() => fields.remove(index)}
+            className="delete-field"
+          >
           </div>
-        </li>
+        </div>
       ))}
-    </ul>
+      <div className="btn" onClick={() => fields.push()}>
+        +++
+      </div>
+    </>
   )
-}
+};
 
 const RenderInputComplex = ({ name, allFields }) => {
 
   return (
     <div className='main-grid multy-field form-line'>
       <FieldArray
-        allFields={allFields}
         name={name}
+        names={name}
+        allFields={allFields}
         component={TemplateInputComplex}
       />
     </div>
@@ -62,4 +59,4 @@ const RenderInputComplex = ({ name, allFields }) => {
 }
 
 
-export default RenderInputComplex
+export default RenderInputComplex;

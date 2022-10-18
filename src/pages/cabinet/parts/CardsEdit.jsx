@@ -53,6 +53,7 @@ const VacanciesEdit = ({ accountInfo, cabinetType, fields, dataForm }) => {
           orderFields={fields.order}
           initialValues={getInfo ? getInfo : null}
           onSubmitIn={onSubmitIn}
+          formClassAdd='main-grid'
           sending={true}
         />
       </TemplateAccount>
