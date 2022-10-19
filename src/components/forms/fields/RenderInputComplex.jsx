@@ -8,18 +8,20 @@ import RenderInputSelectTrue from './RenderInputSelectTrue';
 
 
 
-const TemplateInputComplex = ({ names, allFields, fields }) => {
+const TemplateInputComplex = ({ allFields, fields, btnAddText }) => {
 
-  const choiseFields = (hobbyParam, allFieldsParam) => {
+  const choiseFields = (hobbyParam) => {
 
     return allFields.map((item, index) => {
       switch (item.type) {
         case 'text':
           return (
-            <div key={index}>
+            <div key={index} className={item.wrapClass}>
+              {console.log('item', item.wrapClass)}
               <RenderInputText
                 className='input-decorate'
                 name={`${hobbyParam}.${item.name}`}
+                placeholder={item.placeholder}
               />
             </div>
           )
@@ -28,36 +30,39 @@ const TemplateInputComplex = ({ names, allFields, fields }) => {
   };
 
   return (
-    <ul>
-      <li>
-        <button type="button" onClick={() => { fields.push(); }}>Add Hobby</button>
-      </li>
-      {fields.map((hobby, index) => (
-        <li key={index}>
-          <div key={index}>
-            {choiseFields(hobby, allFields)}
-            <button
-              onClick={() => fields.remove(index)}
-              className="delete-field"
-            >x
-            </button>
+    <>
+      {fields.map((item, index) => (
+        <div key={index} className="main-grid complex-input">
+          <div className="col-12">
+            <b className="comlex-num">#{index + 1}</b>
           </div>
-        </li>
+          {choiseFields(item, allFields)}
+          <div
+            onClick={() => fields.remove(index)}
+            className="complex-delete-field ico-in"
+          >
+          </div>
+        </div>
       ))}
-    </ul>
+      <div className="btn-container col-12">
+        <div className='btn btn--gren' onClick={() => { fields.push(); }}>{btnAddText}</div>
+      </div>
+    </>
   )
 }
 
-const RenderInputComplex = ({ name, allFields }) => {
+const RenderInputComplex = ({ name, allFields, label, btnAddText }) => {
 
   return (
-    <div className='main-grid multy-field form-line'>
+    <>
+      {label && (<b>{label}</b>)}
       <FieldArray
         allFields={allFields}
         name={name}
         component={TemplateInputComplex}
+        btnAddText={btnAddText}
       />
-    </div>
+    </>
   )
 }
 

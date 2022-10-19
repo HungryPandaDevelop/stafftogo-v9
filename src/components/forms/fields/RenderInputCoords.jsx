@@ -51,7 +51,7 @@ const TemplateCoords = (props) => {
   }
 
   return (
-    <>
+    <div className='map-input'>
       {label && <label className="col-12"><b>{label}</b><span>{labelSecond}</span></label>}
       <input
         ref={originRef}
@@ -71,7 +71,7 @@ const TemplateCoords = (props) => {
       />
 
 
-    </>
+    </div>
   )
 }
 const RenderInputCoords = (props) => {

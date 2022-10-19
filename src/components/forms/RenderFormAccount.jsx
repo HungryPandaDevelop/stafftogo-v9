@@ -197,7 +197,9 @@ const TemplateForm = (props) => {
           return (
             <RenderInputComplex
               name={obj.name}
+              label={obj.label}
               allFields={obj.allFields}
+              btnAddText={obj.btnAddText}
             />
           );
         default:

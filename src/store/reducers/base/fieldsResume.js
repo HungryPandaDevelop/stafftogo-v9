@@ -154,25 +154,40 @@ export default function(){
       name: "companyWorkComplex", 
       label:"Организация",  
       wrapClass: "col-12 account-item",
+      btnAddText: "Добавить организацию",
       allFields: [
         { 
           type:"text", 
-          name: "name", 
-          placeholder: "Наименование организации", 
-          length: "col-6" 
+          name: "namework", 
+          placeholder: "Какую должность вы занимали?", 
+          wrapClass: "col-6" 
         },
         { 
           type:"text", 
-          name: "type", 
-          placeholder: "Должность",
-          length: "col-6" 
+          name: "namecompany", 
+          placeholder: "Как называлась организация?",
+          wrapClass: "col-6" 
         },
         { 
           type:"text", 
-          name: "work", 
-          placeholder: "Введите не более 500 символов (символы перестанут печататься, когда вы превысите лимит)", 
+          name: "workresp", 
+          placeholder: "Обязанности", 
           maxLength: 500,
-          length: "col-12" 
+          wrapClass: "col-12" 
+        },
+        { 
+          type:"text", 
+          name: "workfrom", 
+          placeholder: "Период работы c", 
+          maxLength: 500,
+          wrapClass: "col-6" 
+        },
+        { 
+          type:"text", 
+          name: "workto", 
+          placeholder: "Период работы До", 
+          maxLength: 500,
+          wrapClass: "col-6" 
         },
       ],
     },

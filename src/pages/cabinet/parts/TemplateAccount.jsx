@@ -12,11 +12,14 @@ const TemplateAccount = ({ title, children }) => {
           <div className="col-3 col-sm-12">
             <CabinetSidebar />
           </div>
-          <div className="col-9 col-sm-12 cabinet-account shadow-container">
-            {children}
+          <div className="col-9 col-sm-12">
+            <div className="cabinet-account shadow-container">
+              {children}
+            </div>
           </div>
         </div>
       </div>
+      <div className="stub"></div>
     </>
   )
 }
