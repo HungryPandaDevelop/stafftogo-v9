@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import { Link } from 'react-router-dom';
+
 import { reduxForm } from 'redux-form';
 
 import RenderTitle from './fields/RenderTitle';
@@ -22,7 +24,7 @@ import RenderInputList from './fields/RenderInputList'; // поле список
 
 import RenderInputMulty from './fields/RenderInputMulty'; // поле селект + текст
 
-import RenderInputAddition from './fields/RenderInputAddition'; // поле с добавлением полей 
+// import RenderInputAddition from './fields/RenderInputAddition'; // поле с добавлением полей 
 
 import RenderInputFileNew from './fields/RenderInputFileNew'; // поле с добавлением поля! 
 
@@ -40,7 +42,18 @@ import ploaderImg from 'front-end/images/preloader.gif'
 
 const TemplateForm = (props) => {
   //console.log(props)
-  const { handleSubmit, objFields, orderFields, btnSaveText, formClassAdd, showBtn, btnWrapClass, btnClass, sending, onSubmitIn } = props;
+  const {
+    handleSubmit,
+    objFields,
+    orderFields,
+    btnSaveText,
+    formClassAdd,
+    showBtn,
+    cabinetBack,
+    btnWrapClass,
+    btnClass,
+    sending,
+    onSubmitIn } = props;
 
   const [errorOn, setErrorOn] = useState(false);
 
@@ -146,8 +159,6 @@ const TemplateForm = (props) => {
               options={obj.options}
             />
           );
-        case 'additional':
-          return RenderInputAddition(obj.name, obj.label, obj.btnTextAdd, obj.typeInner);
         case 'multy':
           return (
             <RenderInputMulty
@@ -216,13 +227,16 @@ const TemplateForm = (props) => {
 
   const renderBtnSubmit = () => {
     return showBtn !== 'hide' && (
-      <button onClick={onSubmit} className={`btn ${btnClass}`}>
-        {sending ? (
-          btnSaveText
-        ) : (
-          <img className='preloader' src={ploaderImg} />
-        )}
-      </button>
+      <>
+        <button onClick={onSubmit} className={`btn  ${btnClass}`}>
+          {sending ? (
+            cabinetBack ? (<><i></i><span>{btnSaveText}</span></>) :
+              btnSaveText
+          ) : (
+            <img className='preloader' src={ploaderImg} />
+          )}
+        </button>
+      </>
     );
   }
 
@@ -241,6 +255,7 @@ const TemplateForm = (props) => {
       ))}
       <div className={btnWrapClass}>
         {renderBtnSubmit()}
+        {cabinetBack && <Link to={`/cabinet/${cabinetBack}`} className="btn btn--red-border ico-in ico-in--left btn-cancel "><i></i><span>Отменить</span></Link>}
       </div>
 
 

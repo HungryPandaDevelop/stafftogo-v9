@@ -40,10 +40,10 @@ const TemplateSelect = (props) => {
       setFirstLoad(1);
       setCustVal(input.value);
 
-      const findEl = (options.filter((fl) => fl.value === input.value));
-
+      const findEl = (options.filter((fl) => fl.label === input.value));
+      // console.log('findEl', findEl)
       if (findEl.length > 0) {
-        setSelect(findEl[0].name);
+        setSelect(findEl[0].label);
       };
 
     }
@@ -58,7 +58,7 @@ const TemplateSelect = (props) => {
       <li
         key={li.value}
         onClick={() => { onSelectedChange(li) }}>
-        {li.name}
+        {li.label}
       </li>
     )
   });
@@ -66,8 +66,8 @@ const TemplateSelect = (props) => {
   const onSelectedChange = (value) => {
     elRef.current.focus();
 
-    setCustVal(value.value);
-    setSelect(value.name);
+    setCustVal(value.label);
+    setSelect(value.label);
 
   }
 
@@ -79,7 +79,7 @@ const TemplateSelect = (props) => {
         ref={selectRef}
         className={`custom-select ${open ? 'active' : ''}`}
         onClick={() => { setOpen(!open) }} >
-        <input ref={elRef} type="text" {...input} value={custVal} />
+        <input ref={elRef} type="text" {...input} value={custVal} name={name} />
         <span>{select}</span>
         <i></i>
         <ul className='ln'>
@@ -92,6 +92,7 @@ const TemplateSelect = (props) => {
 }
 
 const RenderInputSelectTrue = (props) => {
+
   return <Field
     name={props.name}
     props={props}

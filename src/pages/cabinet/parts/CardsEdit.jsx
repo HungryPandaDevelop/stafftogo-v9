@@ -53,7 +53,10 @@ const VacanciesEdit = ({ accountInfo, cabinetType, fields, dataForm }) => {
           orderFields={fields.order}
           initialValues={getInfo ? getInfo : null}
           onSubmitIn={onSubmitIn}
+          btnWrapClass='btn-container col-12'
+          btnClass='btn-save btn--green ico-in ico-in--left'
           formClassAdd='main-grid'
+          cabinetBack={cabinetType}
           sending={true}
         />
       </TemplateAccount>

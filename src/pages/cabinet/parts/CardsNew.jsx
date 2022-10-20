@@ -22,17 +22,30 @@ const VacanciesNew = ({ accountInfo, uid, cabinetType, fields, dataForm }) => {
 
   }
 
+  const cabinetText = () => {
+    if (cabinetType === 'resume') {
+      return ['резюме', 'резюме']
+    }
+    else {
+      return ['вакансии', 'вакансию']
+    }
+  }
 
 
   return (
     <>
-      <TemplateAccount title="Создание вакансии" >
+      <TemplateAccount title={`Создание ${cabinetText()[0]}`} >
         <RenderFormAccount
-          btnSaveText="Добавить вакансию"
+          btnSaveText={`Добавить ${cabinetText()[1]}`}
           objFields={fields}
           orderFields={fields.order}
           onSubmitIn={onSubmitIn}
           sending={true}
+
+          btnWrapClass='btn-container col-12'
+          btnClass='btn-save btn--green ico-in ico-in--left'
+          formClassAdd='main-grid'
+          cabinetBack={cabinetType}
         />
       </TemplateAccount>
     </>

@@ -1,22 +1,22 @@
 export default function(){
   return {
     order: [
+      "activeCards",
       "titleOne",
       "card_name",
       "salary",
       "coords",
       "industry",
       "typeSpecialization",
+      "titleFive",
+      "extraWorkType",
       "titleTwo",
       "companyWork",
-      "companyWorkComplex",
       "titleThree",
       "education",
       "institution",
       "lang",
       "titleFour",
-      "employment",
-      "work_time",
       "car_exp",
       "additional",
     ],
@@ -35,19 +35,21 @@ export default function(){
       allFields: [
         { 
           type:"text", 
-          name: "priceFrom",  
-          placeholder: "От", 
+          name: "price",  
+          placeholder: "Укажите сумму", 
           length: "col-6"
         },
         { 
           type:"select", 
-          name: "priceType",  
+          name: "worktime",  
           length: "col-6",
-          placeholder:"Руб./мес.",
+          placeholder:"Выберете занятость",
           options: [
-            {name:"Руб./Смена", value:"type1"}, 
-            {name:"Руб./Час", value:"type2"}, 
-            {name:"За проект", value:"type3"}, 
+            {label: "Полный день", value:"type_1"},
+            {label: "Сменный график", value:"type_2"},
+            {label: "Гибкий график", value:"type_3"},
+            {label: "Вахтовый метод", value:"type_4"},
+            {label: "Удаленая работа", value:"type_5"},
           ]
         },
       ],
@@ -63,22 +65,27 @@ export default function(){
     titleOne: {
       type:"title",
       label:"Основная информация", 
-      wrapClass: 'col-12 account-item'
+      wrapClass: 'col-12'
     },
     titleTwo: {
       type:"title",
       label:"Сведения о работе", 
-      wrapClass: "col-12 account-item",
+      wrapClass: "col-12",
     },
     titleThree: {
       type:"title",
       label:"Образование", 
-      wrapClass: "col-12 account-item",
+      wrapClass: "col-12",
     },
     titleFour: {
       type:"title",
       label:"Дополнительно", 
-      wrapClass: "col-12 account-item",
+      wrapClass: "col-12",
+    },
+    titleFive: {
+      type:"title",
+      label:"Дополнительные условия занятости", 
+      wrapClass: "col-12",
     },
     industry: {
       type: "list", 
@@ -122,34 +129,8 @@ export default function(){
       ]
     },
 
+
     companyWork: {
-      type: "multy", 
-      mainname: "companyWork", 
-      label:"Организация",  
-      wrapClass: "col-12 account-item",
-      allFields: [
-        { 
-          type:"text", 
-          name: "name", 
-          placeholder: "Наименование организации", 
-          length: "col-6 account-item" 
-        },
-        { 
-          type:"text", 
-          name: "type", 
-          placeholder: "Должность account-item",
-          length: "col-6" 
-        },
-        { 
-          type:"textarea", 
-          name: "work", 
-          placeholder: "Введите не более 500 символов (символы перестанут печататься, когда вы превысите лимит)", 
-          maxLength: 500,
-          length: "col-12 account-item" 
-        },
-      ],
-    },
-    companyWorkComplex: {
       type: "complex", 
       name: "companyWorkComplex", 
       label:"Организация",  
@@ -192,16 +173,139 @@ export default function(){
       ],
     },
     lang: {
-      type: "additional", 
+      type: "complex", 
       name: "lang", 
       label:"Владение языками", 
-      btnTextAdd:"+ Добавить язык", 
+      btnAddText:"Добавить язык", 
       wrapClass: "col-12 account-item",
-      typeInner: "text"
+      allFields: [
+        { 
+          type:"select", 
+          name: "namework", 
+          label: "Язык",
+          placeholder: "Язык", 
+          wrapClass: "col-6",
+          options: [
+            { label: 'Английский язык', value: 'type1' },
+            { label: 'Немецкий язык', value: 'type2' },
+            { label: 'Французский язык', value: 'type3' },
+            { label: 'Испанский язык', value: 'type4' },
+            { label: 'Итальянский язык', value: 'type5' },
+            { label: 'Арабский язык', value: 'type6' },
+            { label: 'Армянский язык', value: 'type7' },
+            { label: 'Башкирский язык', value: 'type8' },
+            { label: 'Белорусский язык', value: 'type9' },
+            { label: 'Болгарский язык', value: 'type10' },
+            { label: 'Венгерский язык', value: 'type11' },
+            { label: 'Нидерландский язык', value: 'type12' },
+            { label: 'Греческий язык', value: 'type13' },
+            { label: 'Грузинский язык', value: 'type14' },
+            { label: 'Датский язык', value: 'type15' },
+            { label: 'Иврит', value: 'type16' },
+            { label: 'Китайский язык', value: 'type17' },
+            { label: 'Корейский язык', value: 'type18' },
+            { label: 'Латынь', value: 'type19' },
+            { label: 'Латышский язык', value: 'type21' },
+            { label: 'Литовский язык', value: 'type22' },
+            { label: 'Молдавский язык', value: 'type23' },
+            { label: 'Монгольский язык', value: 'type24' },
+            { label: 'Норвежский язык', value: 'type25' },
+            { label: 'Осетинский язык', value: 'type26' },
+            { label: 'Персидский язык', value: 'type27' },
+            { label: 'Польский язык', value: 'type28' },
+            { label: 'Португальский язык', value: 'type29' },
+            { label: 'Румынский язык', value: 'type30' },
+            { label: 'Сербский язык', value: 'type31' },
+            { label: 'Словацкий язык', value: 'type32' },
+            { label: 'Таджикский язык', value: 'type33' },
+            { label: 'Татарский язык', value: 'type34' },
+            { label: 'Турецкий язык', value: 'type35' },
+            { label: 'Туркменский язык', value: 'type36' },
+            { label: 'Узбекский язык', value: 'type37' },
+            { label: 'Украинский язык', value: 'type38' },
+            { label: 'Фарси', value: 'type39' },
+            { label: 'Финский язык', value: 'type40' },
+            { label: 'Хинди', value: 'type41' },
+            { label: 'Чешский язык', value: 'type42' },
+            { label: 'Чувашский язык', value: 'type43' },
+            { label: 'Шведский язык', value: 'type44' },
+            { label: 'Эсперанто', value: 'type45' },
+            { label: 'Эстонский язык', value: 'type46' },
+            { label: 'Японский язык', value: 'type47' },
+            { label: 'Азербайджанский язык', value: 'type48' },
+            { label: 'Хорватский язык', value: 'type49' },
+            { label: 'Словенский язык', value: 'type50' },
+            { label: 'Киргизский язык', value: 'type51' },
+            { label: 'Урду', value: 'type52' },
+            { label: 'Пушту', value: 'type53' },
+            { label: 'Тайский язык', value: 'type54' },
+            { label: 'Дагестанский язык', value: 'type55' },
+            { label: 'Албанский язык', value: 'type56' },
+            { label: 'Чеченский язык', value: 'type57' },
+            { label: 'Кумыкский язык', value: 'type58' },
+            { label: 'Русский язык', value: 'type59' },
+            { label: 'Аварский язык', value: 'type60' },
+            { label: 'Бурятский язык', value: 'type61' },
+            { label: 'Езидский язык', value: 'type62' },
+            { label: 'Ингушский язык', value: 'type63' },
+            { label: 'Исландский язык', value: 'type64' },
+            { label: 'Кабардинский язык', value: 'type65' },
+            { label: 'Карельский язык', value: 'type66' },
+            { label: 'Лакский язык', value: 'type67' },
+            { label: 'Лезгинский язык', value: 'type68' },
+            { label: 'Марийский язык', value: 'type69' },
+            { label: 'Тувинский язык', value: 'type70' },
+            { label: 'Фламандский язык', value: 'type71' },
+            { label: 'Ханты-манси', value: 'type72' },
+            { label: 'Черкесский язык', value: 'type73' },
+            { label: 'Вьетнамский язык', value: 'type74' },
+            { label: 'Дари', value: 'type75' },
+            { label: 'Талышский язык', value: 'type76' },
+            { label: 'Индонезийский язык', value: 'type77' },
+            { label: 'Македонский язык', value: 'type78' },
+            { label: 'Боснийский язык', value: 'type79' },
+            { label: 'Амхарский язык', value: 'type80' },
+            { label: 'Африкаанс', value: 'type81' },
+            { label: 'Бенгальский язык', value: 'type82' },
+            { label: 'Лаосский язык', value: 'type83' },
+            { label: 'Малайский язык', value: 'type84' },
+            { label: 'Суахили', value: 'type85' },
+            { label: 'Тагальский язык', value: 'type86' },
+            { label: 'Уйгурский язык', value: 'type87' },
+            { label: 'Якутский язык', value: 'type88' },
+            { label: 'Каталанский язык', value: 'type89' },
+            { label: 'Баскский язык', value: 'type90' },
+            { label: 'Ирландский язык', value: 'type91' },
+            { label: 'Курдский язык', value: 'type92' },
+            { label: 'Непальский язык', value: 'type93' },
+            { label: 'Пенджаби', value: 'type94' },
+            { label: 'Сомалийский язык', value: 'type95' },
+            { label: 'Тамильский язык', value: 'type96' },
+            { label: 'Тибетский язык', value: 'type97' },
+            { label: 'Бирманский язык', value: 'type98' },
+            { label: 'Мальтийский язык', value: 'type99' },
+          ] 
+        },
+        { 
+          type:"select", 
+          name: "namework", 
+          label: "Уровень владения",
+          placeholder: "Уровень владения", 
+          wrapClass: "col-6",
+          options: [
+            { label: 'Базовый', value: 'type1' },
+            { label: 'Технический', value: 'type2' },
+            { label: 'Разговорный', value: 'type3' },
+            { label: 'Свободное владение', value: 'type4' },
+          ] 
+        },
+      ],
     },
     education: { 
-      type:"checkbox", 
-      name: "typeEducation",
+      type:"select", 
+      name: "education",
+      label:"Уровень", 
+      placeholder: "Выбрать образование",
       wrapClass: "col-12 account-item",
       options: [
         { label: 'Среднее', value: 'type1' },
@@ -213,65 +317,39 @@ export default function(){
       ] 
     },
     institution: {
-      type: "multy", 
-      mainname: "institution", 
-      label:"Учебное заведение",  
+      type: "complex", 
+      name: "institution", 
+      label: "Место образование",
       wrapClass: "col-12 account-item",
+      btnAddText: "Добавить место обучения",
       allFields: [
         { 
           type:"text", 
-          name: "name", 
-          placeholder: "Наименование учебного заведения", 
-          length: "col-6" 
+          name: "place", 
+          placeholder: "Учебное заведение", 
+          wrapClass: "col-6" 
         },
         { 
           type:"text", 
-          name: "type", 
+          name: "faculty", 
           placeholder: "Факультет",
-          length: "col-6 account-item" 
+          wrapClass: "col-6" 
         },
         { 
           type:"text", 
-          name: "special", 
-          placeholder: "Специализация",
-          length: "col-6 account-item" 
+          name: "specialization", 
+          placeholder: "Специализация", 
+          wrapClass: "col-6" 
         },
         { 
           type:"text", 
-          name: "year", 
-          placeholder: "Год окончания",
-          length: "col-6 account-item" 
+          name: "endeducation", 
+          placeholder: "Год окончания", 
+          maxLength: 500,
+          wrapClass: "col-6" 
         },
-      ],
-    },
 
-    employment: { 
-      type:"select", 
-      name: "employment", 
-      label: "Занятость", 
-      placeholder: "Занятость", 
-      wrapClass: "col-12 account-item",
-      options:[
-        {name: "Полная", value:"type_1"},
-        {name: "Частичная", value:"type_2"},
-        {name: "Волонтерство", value:"type_3"},
-        {name: "Стажировка", value:"type_4"},
-        {name: "Подработка", value:"type_5"},
-      ]
-    },
-    work_time: { 
-      type:"select", 
-      name: "work_time", 
-      label: "График работы", 
-      placeholder: "График работы", 
-      wrapClass: "col-12 account-item",
-      options:[
-        {name: "Полный день", value:"type_1"},
-        {name: "Сменый график", value:"type_2"},
-        {name: "Гибкий график", value:"type_3"},
-        {name: "Вахтовый метод", value:"type_4"},
-        {name: "Удаленная работа", value:"type_5"},
-      ]
+      ],
     },
     car_exp: { 
       type: "select", 
@@ -280,11 +358,11 @@ export default function(){
       placeholder: "Опыт вождения", 
       wrapClass: "col-12 account-item",
       options:[
-        {name: "A", value:"type_1"},
-        {name: "B", value:"type_2"},
-        {name: "C", value:"type_3"},
-        {name: "D", value:"type_4"},
-        {name: "E", value:"type_5"},
+        {label: "A", value:"type_1"},
+        {label: "B", value:"type_2"},
+        {label: "C", value:"type_3"},
+        {label: "D", value:"type_4"},
+        {label: "E", value:"type_5"},
       ]
     },    
     additional: {
@@ -300,6 +378,68 @@ export default function(){
         { label: 'Разрешение на работу в России', value: 'type_6' },
         { label: 'Гражданство РФ', value: 'type_6' },
       ] 
+    },
+    extraWorkType: {
+      type: "complex", 
+      name: "institution", 
+      wrapClass: "col-12 account-item",
+      btnAddText: "Добавить",
+      allFields: [
+        { 
+          type:"select", 
+          name: "employment", 
+          placeholder: "Занятость", 
+          wrapClass: "col-6",
+          options:[
+            {label: "Полная", value:"type_1"},
+            {label: "Частичная", value:"type_2"},
+            {label: "Волонтерство", value:"type_3"},
+            {label: "Стажировка", value:"type_4"},
+            {label: "Подработка", value:"type_5"},
+          ]
+        },
+        { 
+          type:"select", 
+          name: "worktime", 
+          placeholder: "График работы", 
+          wrapClass: "col-6" ,
+          options:[
+            {label: "Полный день", value:"type_1"},
+            {label: "Сменный график", value:"type_2"},
+            {label: "Гибкий график", value:"type_3"},
+            {label: "Вахтовый метод", value:"type_4"},
+            {label: "Удаленая работа", value:"type_5"},
+          ]
+        },
+        { 
+          type:"text", 
+          name: "price",  
+          placeholder: "Желаемая зарплата", 
+          wrapClass: "col-6"
+        },
+        { 
+          type:"select", 
+          name: "priceType",  
+          wrapClass: "col-6",
+          placeholder:"Руб./мес.",
+          options: [
+            {label:"Руб./Смена", value:"type1"}, 
+            {label:"Руб./Час", value:"type2"}, 
+            {label:"За проект", value:"type3"}, 
+          ]
+        },
+
+      ],
+    },
+    activeCards: {
+      type:"switch",
+      name: "activeCards", 
+      label: "Статус", 
+      options: [
+        {name:"Активно",value:"on"},
+        {name:"Не активно", value:"off"},
+      ],
+      wrapClass: "col-12 account-item"
     },
   }
 }

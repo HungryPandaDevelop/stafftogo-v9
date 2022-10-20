@@ -8,9 +8,9 @@ import SimpleDateTime from 'react-simple-timestamp-to-date';
 import defaultCardsImg from 'front-end/images/icons/avatar-light-gray.svg';
 
 
-import phoneIco from 'front-end/images/icons/phone-gren.svg';
-import mainIco from 'front-end/images/icons/mail-gren.svg';
-import markerIco from 'front-end/images/icons/marker-gren.svg';
+import phoneIco from 'front-end/images/icons/phone-green.svg';
+import mainIco from 'front-end/images/icons/mail-green.svg';
+import markerIco from 'front-end/images/icons/marker-green.svg';
 
 import dayWork from 'front-end/images/icons/day-work.svg';
 import quicklyWork from 'front-end/images/icons/quickly-work.svg';
@@ -154,13 +154,13 @@ const CardsDetail = () => {
                       </li>
                     </ul>
                     <div className="cards-item-bottom btn-container">
-                      <div className="btn btn--gren-border ico-in ico-in--left btn-show-map">
+                      <div className="btn btn--green-border ico-in ico-in--left btn-show-map">
                         <i></i>
                         <span>Показать на карте</span>
                       </div>
-                      <div className="btn btn--gren-border btn-mobile">Видеочат</div>
-                      <div className="btn btn--gren-border btn-mobile">Чат</div>
-                      <div className="btn btn--gren-border btn-mobile">Откликнуться</div>
+                      <div className="btn btn--green-border btn-mobile">Видеочат</div>
+                      <div className="btn btn--green-border btn-mobile">Чат</div>
+                      <div className="btn btn--green-border btn-mobile">Откликнуться</div>
                     </div>
                   </div>
                 </div>
@@ -277,10 +277,10 @@ const CardsDetail = () => {
                 <div className="sidebar-btn"> <span>Распечатать</span><img src={print} alt="" /></div>
               </div>
               <div className="btn-container">
-                <div className="btn btn--gren-border">Видеочат</div>
-                <div className="btn btn--gren-border">
+                <div className="btn btn--green-border">Видеочат</div>
+                <div className="btn btn--green-border">
                   Чат</div>
-                <div className="btn btn--gren-border">Откликнуться</div>
+                <div className="btn btn--green-border">Откликнуться</div>
               </div>
             </div>
           </div>

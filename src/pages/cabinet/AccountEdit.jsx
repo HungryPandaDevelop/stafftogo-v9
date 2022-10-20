@@ -45,7 +45,7 @@ const AccountEdit = ({
             initialValues={userInfo}
             onSubmitIn={onSubmitIn}
             sending={true}
-            btnClass="btn--gren"
+            btnClass="btn--green"
             formClassAdd="cabinet-account cabinet-edit shadow-container"
           />
         )}

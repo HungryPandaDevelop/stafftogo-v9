@@ -1,59 +1,56 @@
 import Controls from 'pages/cabinet/parts/cards/Controls';
-import UserInfo from 'pages/cabinet/parts/cards/UserInfo';
-import UserImg from 'pages/cabinet/parts/cards/UserImg';
-import ResumeInfo from 'pages/cabinet/parts/cards/ResumeInfo';
 import CardsUpdate from 'pages/cabinet/parts/cards/CardsUpdate';
 
-const ListItem = (props) => {
+import { Link } from 'react-router-dom';
 
-  const {
-    listing,
-    onDelete,
-    onEdit,
-    onActivate,
-    currentCard,
-    id
-  } = props;
+const ListItem = ({
+  listing,
+  onDelete,
+  onEdit,
+  onActivate,
+  currentCard,
+  id,
+  cabinetType
+
+}) => {
+
 
   return (
-    <div className="resume-header vacancies-item">
-      <div className="main-grid">
-        <div className="col-12 ">
-          <CardsUpdate update={listing.timestamp} />
+    <>
+      <td>
+        <div className="cards-account-topic">
+          <Link to={`/catalog/${cabinetType}/${id}`}>{listing.card_name}</Link>
         </div>
-        <div className="col-2">
-          <UserImg img={listing.userInfo.imgsAccount} />
-        </div>
-
-        <div className="col-5">
-          <ResumeInfo
-            name={listing.card_name}
-            expFrom={listing.ageWork_from}
-            expTo={listing.ageWork_to}
-            priceFrom={listing.salary_priceFrom}
-            priceTo={listing.salary_priceTo}
-            education={listing.typeEducation}
-            id={id}
-          />
+      </td>
+      <td>
+        <div className="cards-item-salary">
+          {listing.salary_price && (<b>Р {listing.salary_price}</b>)}
+          {listing.salary_worktime && (<span>{listing.salary_worktime}</span>)}
         </div>
 
-        <div className="col-5">
-          <UserInfo
-            name={listing.userInfo.fio}
-            phone={listing.userInfo.phones_main}
-            mail={listing.userInfo.email}
-          />
-          <Controls
-            id={id}
-            name={listing.name}
-            onEdit={onEdit}
-            onDelete={onDelete}
-            onActivate={onActivate}
-            currentCard={currentCard}
-          />
+
+      </td>
+      <td>
+        <CardsUpdate update={listing.timestamp} />
+      </td>
+      <td>
+        <div className={listing.activeCards === 'off' ?
+          'cards-status cards-status--noactive' :
+          'cards-status cards-status--active'}>
+          {listing.activeCards === 'off' ? 'Не активно' : 'Активно'}
         </div>
-      </div>
-    </div>
+      </td>
+      <td>
+        <Controls
+          id={id}
+          name={listing.name}
+          onEdit={onEdit}
+          onDelete={onDelete}
+          onActivate={onActivate}
+          currentCard={currentCard}
+        />
+      </td>
+    </>
   )
 }
 

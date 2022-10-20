@@ -40,7 +40,7 @@ const RewardPopup = ({
 
       />
       <div className="filters-btn-container">
-        <div className="btn btn--gren-border" onClick={() => { onSubmit(); onShowPopup(0); }}>Применить</div>
+        <div className="btn btn--green-border" onClick={() => { onSubmit(); onShowPopup(0); }}>Применить</div>
         <span className="btn btn--orange-border" onClick={() => { onReset(); onShowPopup(0); }}>Сбросить</span>
       </div>
     </div >

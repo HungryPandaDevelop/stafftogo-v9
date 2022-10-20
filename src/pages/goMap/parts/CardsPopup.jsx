@@ -13,9 +13,9 @@ import SimpleDateTime from 'react-simple-timestamp-to-date';
 import defaultCardsImg from 'front-end/images/icons/avatar-light-gray.svg'
 import BtnCall from 'pages/catalog/parts/cardsItem/BtnCall';
 
-import phoneIco from 'front-end/images/icons/phone-gren.svg'
-import mainIco from 'front-end/images/icons/mail-gren.svg'
-import markerIco from 'front-end/images/icons/marker-gren.svg'
+import phoneIco from 'front-end/images/icons/phone-green.svg'
+import mainIco from 'front-end/images/icons/mail-green.svg'
+import markerIco from 'front-end/images/icons/marker-green.svg'
 
 
 
@@ -123,7 +123,7 @@ const CardsPopup = (
                 <b>Окская улица, 48/2, Москва, ?</b>
               </li>
             </ul>
-            <div className="btn btn--gren-border">Откликнуться</div>
+            <div className="btn btn--green-border">Откликнуться</div>
           </div>
         </div>
         <div className="btn btn--white btn-show-map ico-in--right" onClick={showRoutebox}><span>Маршрут</span><i></i></div>

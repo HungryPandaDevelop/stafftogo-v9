@@ -1,6 +1,6 @@
 import CabinetSidebar from 'pages/cabinet/parts/CabinetSidebar';
 
-const TemplateAccount = ({ title, children }) => {
+const TemplateAccount = ({ title, children, addWrapClass }) => {
   return (
     <>
       <div className="stub"></div>
@@ -13,7 +13,7 @@ const TemplateAccount = ({ title, children }) => {
             <CabinetSidebar />
           </div>
           <div className="col-9 col-sm-12">
-            <div className="cabinet-account shadow-container">
+            <div className={addWrapClass ? "cabinet-account shadow-container " + addWrapClass : "cabinet-account shadow-container"}>
               {children}
             </div>
           </div>

@@ -17,11 +17,21 @@ const TemplateInputComplex = ({ allFields, fields, btnAddText }) => {
         case 'text':
           return (
             <div key={index} className={item.wrapClass}>
-              {console.log('item', item.wrapClass)}
               <RenderInputText
                 className='input-decorate'
                 name={`${hobbyParam}.${item.name}`}
                 placeholder={item.placeholder}
+              />
+            </div>
+          )
+        case 'select':
+          return (
+            <div key={index} className={item.wrapClass}>
+              {item.label && <label><b>{item.label}</b></label>}
+              <RenderInputSelectTrue
+                name={`${hobbyParam}.${item.name}`}
+                placeholder={item.placeholder}
+                options={item.options}
               />
             </div>
           )
@@ -45,7 +55,9 @@ const TemplateInputComplex = ({ allFields, fields, btnAddText }) => {
         </div>
       ))}
       <div className="btn-container col-12">
-        <div className='btn btn--gren' onClick={() => { fields.push(); }}>{btnAddText}</div>
+        <div className='btn btn--green ico-in ico-in--left btn-add' onClick={() => { fields.push(); }}>
+          <i></i><span>{btnAddText}</span>
+        </div>
       </div>
     </>
   )

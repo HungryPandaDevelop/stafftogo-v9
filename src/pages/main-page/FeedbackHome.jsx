@@ -91,7 +91,7 @@ const FeedbackHome = ({ fields, dataForm }) => {
               orderFields={fields.order}
               onSubmitIn={onSubmitIn}
               formClassAdd="main-grid form-default"
-              btnClass="btn--gren"
+              btnClass="btn--green"
               sending={sending}
               initialValues={valueForm}
               btnWrapClass="col-12"

@@ -69,29 +69,54 @@ const CardsList = ({ uid, cabinetType, accountInfo, ActionFn }) => {
 
   return (
     <>
-      <TemplateAccount title={`${cabinetType}`} cabinetType={cabinetType} showAddBtn={true}>
+      <TemplateAccount
+        title={`${cabinetType}`}
+        cabinetType={cabinetType}
+        addWrapClass='cards-account-container'
+        showAddBtn={true}
+
+      >
         {loading ? 'loading' : listings.length > 0 ? (
           <>
-            <Link className="btn btn--orange" to={`/cabinet/${cabinetType}-new`}>
-              Создать {cabinetType === 'resume' ? 'резюме' : 'вакансию'}
-            </Link>
-            {
-              listings.map((listing) => (
-                <div key={listing.id}>
-                  <CardItem
-                    listing={listing.data}
-                    id={listing.id}
-                    currentCard={accountInfo.currentCard}
-                    onEdit={() => onEdit(listing.id)}
-                    onDelete={() => deleteItem(listings, listing.id)}
-                    onActivate={() => onActivateItem(listing.id)}
-                    cabinetType={cabinetType}
+            <div className="add-cards-container">
+              <Link className="btn btn--orange-border cabinet-add-cards ico-in ico-in--left" to={`/cabinet/${cabinetType}-new`}>
+                <i></i>
+                <span>
+                  Создать {cabinetType === 'resume' ? 'резюме' : 'вакансию'}
+                </span>
+              </Link>
+            </div>
+            <table>
+              <thead>
+                <tr className="cards-account-head">
+                  <th>Название</th>
+                  <th>З/п</th>
+                  <th>Резюме обновлено</th>
+                  <th>Статус</th>
+                  <th>Действия</th>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  listings.map((listing) => (
+                    <tr key={listing.id}>
+                      <CardItem
+                        listing={listing.data}
+                        id={listing.id}
+                        currentCard={accountInfo.currentCard}
+                        onEdit={() => onEdit(listing.id)}
+                        onDelete={() => deleteItem(listings, listing.id)}
+                        onActivate={() => onActivateItem(listing.id)}
+                        cabinetType={cabinetType}
 
-                  />
+                      />
+                      {console.log('listing', listing)}
+                    </tr>
+                  ))
+                }
+              </tbody>
+            </table>
 
-                </div>
-              ))
-            }
           </>
         ) : 'Empty'}
       </TemplateAccount>

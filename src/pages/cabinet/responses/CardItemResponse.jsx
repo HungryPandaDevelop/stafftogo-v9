@@ -33,7 +33,7 @@ const CardItemResponse = ({ listing, typeCabinet }) => {
     }
   }
 
-  const tagRender = (tags) => {
+  const tagreender = (tags) => {
     return tags.map((el, index) => (
       <div key={index}
         className={`tag-invite ${el[2]} ${status === el[0] ? 'active' : ''}`}
@@ -49,7 +49,7 @@ const CardItemResponse = ({ listing, typeCabinet }) => {
       <h3>Отклик на <Link to={`/catalog/${reverseTypeCabinet}/${listing.data.hisId}`}>{data.card_name}</Link> От <Link to={`/catalog/${typeCabinet}/${listing.data.ownId}`}>{secData.card_name}</Link>
       </h3>
       <div>
-        {tagRender([['agree', 'Согласен', 'green'], ['refuse', 'Отказать', 'red'], ['view', 'Рассматривается', 'yellow']])}
+        {tagreender([['agree', 'Согласен', 'green'], ['refuse', 'Отказать', 'red'], ['view', 'Рассматривается', 'yellow']])}
       </div>
     </div>
   )

@@ -16,7 +16,7 @@ const CabinetPopup = ({ userInfo, onCabinetPopupShow }) => {
       <div className="cabinet-popup-controls">
         <Link
           to="/cabinet/"
-          className="btn btn--gren-border"
+          className="btn btn--green-border"
           onClick={onCabinetPopupShow}
         >В кабинет</Link>
         <div onClick={() => auth.signOut()} className="btn btn--red-border">Выйти</div>

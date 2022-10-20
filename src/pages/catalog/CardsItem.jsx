@@ -4,9 +4,9 @@ import BtnLike from 'pages/catalog/parts/cardsItem/BtnLike';
 import BtnInvite from 'pages/catalog/parts/cardsItem/BtnInvite';
 import BtnCall from 'pages/catalog/parts/cardsItem/BtnCall';
 
-import phoneIco from 'front-end/images/icons/phone-gren.svg'
-import mainIco from 'front-end/images/icons/mail-gren.svg'
-import markerIco from 'front-end/images/icons/marker-gren.svg'
+import phoneIco from 'front-end/images/icons/phone-green.svg'
+import mainIco from 'front-end/images/icons/mail-green.svg'
+import markerIco from 'front-end/images/icons/marker-green.svg'
 
 import SimpleDateTime from 'react-simple-timestamp-to-date';
 
@@ -135,7 +135,7 @@ const ListItem = (props) => {
                 />
               )}
 
-              <div className="btn btn--gren-border ico-in ico-in--left btn-show-map">
+              <div className="btn btn--green-border ico-in ico-in--left btn-show-map">
                 <i></i>
                 <span>Показать на карте</span>
               </div>
