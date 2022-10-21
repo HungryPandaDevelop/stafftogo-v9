@@ -4652,7 +4652,7 @@ footer .create {
 
 .cards-item {
   margin: 0 auto 30px;
-  padding: 15px 30px 30px;
+  padding: 8px 30px 30px;
 }
 .cards-item .main-grid {
   padding: 0;
@@ -4714,7 +4714,7 @@ footer .create {
 .cards-item-info h3 {
   font-size: 24px;
   color: #03ac9f;
-  margin: 0 0 15px;
+  margin: 0 0 8px;
 }
 .cards-item-info h3 a {
   text-decoration: none;
@@ -4726,9 +4726,13 @@ footer .create {
   color: #fba72a;
 }
 
-.cards-item-price {
-  font-weight: 600;
+.cards-item-price b {
   font-size: 24px;
+  display: inline-block;
+  margin-right: 30px;
+}
+.cards-item-price span {
+  font-size: 14px;
 }
 
 .cards-item-info-list img {
@@ -4749,6 +4753,22 @@ footer .create {
 
 .cards-item-bottom {
   margin-top: auto;
+}
+
+.cards-item-bottom-info {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 8px 1fr 8px 1fr 8px 1fr;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.cards-item-bottom-info li {
+  -ms-grid-column-span: 2;
+  grid-column: span 2;
+}
+.cards-item-bottom-info span {
+  font-size: 14px;
+  display: block;
 }
 
 .cards-pay-container .btn-container {
@@ -4775,9 +4795,9 @@ footer .create {
 .cards-item-delimetr {
   width: 2px;
   position: absolute;
-  height: calc(100% + 81px);
+  height: calc(100% + 68px);
   right: 30px;
-  top: -51px;
+  top: -37px;
   background-color: #C4C4C4;
   border-left: 1px solid #F8F8F8;
   -webkit-box-shadow: rgba(38, 57, 77, 0.4) 0px 20px 30px -10px;
@@ -4788,7 +4808,7 @@ footer .create {
 .cards-item-roof {
   font-size: 14px;
   color: #777;
-  margin: 0 0 15px;
+  margin: 0 0 8px;
 }
 
 .cards-face-container {
@@ -4925,7 +4945,7 @@ footer .create {
 }
 .cards-main {
   margin: 0 auto 30px;
-  padding: 15px 30px 30px;
+  padding: 8px 30px 30px;
 }
 .cards-main .main-grid {
   padding: 0;
@@ -6024,9 +6044,12 @@ footer .create {
   position: relative;
 }
 .map-input .hidden-field {
+  width: 0;
   position: absolute;
-  visibility: hidden;
+  height: 0;
   left: 0;
+  top: 0;
+  opacity: 0;
 }
 
 .complex-input {
@@ -6049,8 +6072,8 @@ footer .create {
   position: absolute;
   height: 30px;
   right: 0;
-  top: 100%;
-  margin-top: 8px;
+  top: 0%;
+  margin-top: -5px;
   cursor: pointer;
   border-radius: 100%;
   background-color: #ed1834;

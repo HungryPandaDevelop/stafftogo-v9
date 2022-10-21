@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-
+import { useNavigate, useParams } from 'react-router-dom';
 import addPlacemark from 'pages/goMap/js/addPlacemark';
 // import addRoute from 'pages/goMap/js/addRoute';
 import removePlacemark from 'pages/goMap/js/removePlacemark';
@@ -18,6 +18,7 @@ import { connect } from 'react-redux';
 
 const MapYandex = ({ listingSearch, listingType }) => {
 
+  const params = useParams();
   // const myMap = useRef(null);
 
   const [myMap, setMyMap] = useState(null);
@@ -35,6 +36,8 @@ const MapYandex = ({ listingSearch, listingType }) => {
   const [myPositionText, setMyPositionText] = useState('');
   const [markerPositionText, setMarkerPositionText] = useState('');
 
+  const navigate = useNavigate();
+
   useEffect(() => {
 
     listings && removePlacemark(myMapRef, listings);
@@ -47,6 +50,7 @@ const MapYandex = ({ listingSearch, listingType }) => {
 
     if (myMap) {
 
+      params.idPopup && setCurrentCardId(params.idPopup);
       getListing(listingType).then(res => {
 
         let data = filterMain(listingSearch, res);
@@ -81,7 +85,8 @@ const MapYandex = ({ listingSearch, listingType }) => {
           setCurrentCardId(e.get('target').properties.get('itemId'));
           setChoiseMarkerPosition(e.get('target').geometry.getCoordinates());
 
-
+          navigate('/map/' + e.get('target').properties.get('itemId'), { replace: true });
+          // myMapRef.current.setCenter(e.get('target').geometry.getCoordinates())
 
           getAddress(e.get('target').geometry.getCoordinates(), setMarkerPositionText);
           // addRoute(myMap, myMapRef, setMyRoute, pos, pointTo);
@@ -92,6 +97,7 @@ const MapYandex = ({ listingSearch, listingType }) => {
     };
 
   }, [myMap, listingType, listingSearch]);
+
 
 
   return (
@@ -111,6 +117,7 @@ const MapYandex = ({ listingSearch, listingType }) => {
             myPosition={myPosition}
             choiseMarkerPosition={choiseMarkerPosition}
             routeboxState={routeboxState}
+            navigate={navigate}
           />
         </div>
         <div className="col-9 col-md-7 col-xs-12 gomap-route-cell">

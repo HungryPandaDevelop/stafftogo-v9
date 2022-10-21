@@ -10,6 +10,8 @@ import markerIco from 'front-end/images/icons/marker-green.svg'
 
 import SimpleDateTime from 'react-simple-timestamp-to-date';
 
+import InfoExp from 'pages/catalog/parts/cardsItem/InfoExp'
+
 import defaultCardsImg from 'front-end/images/icons/avatar-light-gray.svg'
 
 const ListItem = (props) => {
@@ -27,9 +29,10 @@ const ListItem = (props) => {
 
   const listingData = listing.data;
 
+  // console.log('listingData', listingData)
 
   const imgCards = listingData.userInfo.imgsAccount ? listingData.userInfo.imgsAccount : defaultCardsImg;
-
+  const address = listingData.coords && listingData.coords.split('--');
   return (
     <div className="cards-item shadow-container">
       <div className="main-grid cards-item-roof">
@@ -72,25 +75,17 @@ const ListItem = (props) => {
                   {listingData.card_name}
                 </Link>
               </h3>
-              <div className="cards-item-price">
-                {listingData.salary_priceFrom && `Р ${listingData.salary_priceFrom}`}
-              </div>
+              {listingData.salary_price && (
+                <div className="cards-item-price">
+                  <b>P {listingData.salary_price}</b>
+                  <span>{listingData.salary_worktime}</span>
+                </div>
+              )}
             </div>
 
-            <div className="cards-item-bottom">
-              <ul className="ln">
-                <li>
-                  <span>Опыт работы </span>
-                  <b>3 года 3 месяца X</b>
-                </li>
-                <li>
-                  <span>
-                    Последнее место работы
-                  </span>
-                  <b>Старший повар, Повар горячего цеха X</b>
-                </li>
-              </ul>
-            </div>
+            <ul className="ln cards-item-bottom cards-item-bottom-info">
+              <InfoExp listing={listingData} />
+            </ul>
           </div>
           <div className="cards-item-delimetr"></div>
         </div>
@@ -100,7 +95,6 @@ const ListItem = (props) => {
         </div>
         <div className="col-4 col-xxl-5 col-md-9 col-sm-8 col-xs-12 cards-pay-container">
           <div className="cards-item-info cards-item-pay-info">
-            {console.log('listingData', listingData)}
             <h3>{cabinetType === 'resume' ? listingData.userInfo.fio : listingData.userInfo.name_company}</h3>
             <ul className="ln cards-item-info-list">
               {listingData.userInfo.phone && (
@@ -117,12 +111,12 @@ const ListItem = (props) => {
                   <Link to={`mailto:${listingData.userInfo.email}`}>{listingData.userInfo.email}</Link>
                 </li>
               )}
-
-              <li>
+              {address && (<li>
                 <img src={markerIco} alt="" />
                 <span>Адрес: </span>
-                <b>Окская улица, 48/2, Москва, ?</b>
-              </li>
+                <b>{address[0]}</b>
+              </li>)}
+
             </ul>
             <div className="cards-item-bottom btn-container">
               {(uid && listingType != cabinetType) && (
@@ -134,11 +128,11 @@ const ListItem = (props) => {
                   accountInfo={accountInfo}
                 />
               )}
-
-              <div className="btn btn--green-border ico-in ico-in--left btn-show-map">
+              {address && (<Link to={`/map/${listing.id}`} className="btn btn--green-border ico-in ico-in--left btn-show-map">
                 <i></i>
                 <span>Показать на карте</span>
-              </div>
+              </Link>)}
+
             </div>
           </div>
 

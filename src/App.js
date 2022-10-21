@@ -127,6 +127,7 @@ const ScrollToTop =(props) => {
 
           <Route path='/catalog' element={<Catalog/>}></Route>
           <Route path='/map' element={<GoMap/>}></Route>
+          <Route path='/map/:idPopup' element={<GoMap/>}></Route>
           <Route path='/catalog/:catagoryName/:elementId' element={<CardsDetail/>}></Route>
 
 

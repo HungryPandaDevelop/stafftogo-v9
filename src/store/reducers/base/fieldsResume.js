@@ -150,21 +150,21 @@ export default function(){
           wrapClass: "col-6" 
         },
         { 
-          type:"text", 
+          type:"textarea", 
           name: "workresp", 
           placeholder: "Обязанности", 
           maxLength: 500,
           wrapClass: "col-12" 
         },
         { 
-          type:"text", 
+          type:"date", 
           name: "workfrom", 
           placeholder: "Период работы c", 
           maxLength: 500,
           wrapClass: "col-6" 
         },
         { 
-          type:"text", 
+          type:"date", 
           name: "workto", 
           placeholder: "Период работы До", 
           maxLength: 500,
@@ -342,7 +342,7 @@ export default function(){
           wrapClass: "col-6" 
         },
         { 
-          type:"text", 
+          type:"date", 
           name: "endeducation", 
           placeholder: "Год окончания", 
           maxLength: 500,

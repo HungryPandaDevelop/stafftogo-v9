@@ -2,11 +2,14 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { getSingleListing } from 'store/asyncActions/getSingleListing';
-import PageTitle from 'pages/parts/PageTitle';
-import Breadcrumbs from 'pages/parts/Breadcrumbs';
-import SimpleDateTime from 'react-simple-timestamp-to-date';
-import defaultCardsImg from 'front-end/images/icons/avatar-light-gray.svg';
 
+import Breadcrumbs from 'pages/parts/Breadcrumbs';
+import SimpleDateTime from 'react-simple-timestamp-to-date'; // ???
+
+import InfoExp from 'pages/catalog/parts/cardsItem/InfoExp'
+
+
+import defaultCardsImg from 'front-end/images/icons/avatar-light-gray.svg';
 
 import phoneIco from 'front-end/images/icons/phone-green.svg';
 import mainIco from 'front-end/images/icons/mail-green.svg';
@@ -59,6 +62,10 @@ const CardsDetail = () => {
 
 
   const imgCards = listing.userInfo.imgsAccount ? listing.userInfo.imgsAccount : defaultCardsImg;
+  const address = listing.coords && listing.coords.split('--');
+  console.log('listing', listing)
+
+
 
 
   return (
@@ -94,20 +101,17 @@ const CardsDetail = () => {
                   <div className="cards-item-info">
                     <div className="cards-item-info-top">
                       <h3>{listing.card_name}</h3>
-                      <div className="cards-description">
-                        <ul className="ln">
-                          <li>Разрешение на работу: Россия X</li>
-                          {listing.userInfo.age && (<li>Возраст: {listing.userInfo.age}</li>)}
-                          <li>Гражданство: РФ X</li>
-                        </ul>
-                      </div>
+
+                      {listing.salary_price && (
+                        <div className="cards-item-price">
+                          <b>P {listing.salary_price}</b>
+                          <span>{listing.salary_worktime}</span>
+                        </div>
+                      )}
                     </div>
-                    <div className="cards-item-bottom">
-                      <ul className="ln">
-                        <li><span>Опыт работы </span><b>3 года 3 месяца</b> x</li>
-                        <li><span>Последнее место работы </span><b>Старший повар, Повар горячего цеха</b> x</li>
-                      </ul>
-                    </div>
+                    <ul className="cards-item-bottom ln">
+                      <InfoExp listing={listing} />
+                    </ul>
                   </div>
                   <div className="cards-item-delimetr"></div>
                 </div>
@@ -147,17 +151,20 @@ const CardsDetail = () => {
                         </li>
                       )}
 
-                      <li>
+                      {address && (<li>
                         <img src={markerIco} alt="" />
                         <span>Адрес: </span>
-                        <b>Окская улица, 48/2, Москва, ?</b>
-                      </li>
+                        <b>{address[0]}</b>
+                      </li>)}
                     </ul>
                     <div className="cards-item-bottom btn-container">
-                      <div className="btn btn--green-border ico-in ico-in--left btn-show-map">
-                        <i></i>
-                        <span>Показать на карте</span>
-                      </div>
+                      {address && (
+                        <Link to={`/map/${params.elementId}`} className="btn btn--green-border ico-in ico-in--left btn-show-map">
+                          <i></i>
+                          <span>Показать на карте</span>
+                        </Link>
+                      )}
+
                       <div className="btn btn--green-border btn-mobile">Видеочат</div>
                       <div className="btn btn--green-border btn-mobile">Чат</div>
                       <div className="btn btn--green-border btn-mobile">Откликнуться</div>
@@ -168,32 +175,35 @@ const CardsDetail = () => {
             </div>
             <div className="cards-second-info main-grid">
               <div className="col-7 col-md-12">
+                ? Расхождение с кабинетом ?
                 <div className="cards-typework-item shadow-container">
                   <div className="cards-typework-img">
                     <img src={dayWork} alt="" />
                   </div>
-                  <div className="cards-typework-info"><em>Полная занятость</em><span>В месяц</span><b>Р 155 000 - 180 000</b> x</div>
+                  <div className="cards-typework-info"><em>Полная занятость</em><span>В месяц</span><b>Р 155 000 - 180 000</b></div>
                 </div>
                 <div className="cards-typework-item shadow-container">
                   <div className="cards-typework-img">
                     <img src={quicklyWork} alt="" />
                   </div>
-                  <div className="cards-typework-info"><em>Срочный выезд</em><span></span><b>Р 3 000</b> x</div>
+                  <div className="cards-typework-info"><em>Срочный выезд</em><span></span><b>Р 3 000</b></div>
                 </div>
                 <div className="cards-typework-item shadow-container">
                   <div className="cards-typework-img">
                     <img src={nightWork} alt="" />
                   </div>
-                  <div className="cards-typework-info"><em>Работа ночью</em><span>В месяц</span><b>Р 5 500</b> x</div>
+                  <div className="cards-typework-info"><em>Работа ночью</em><span>В месяц</span><b>Р 5 500</b></div>
                 </div>
                 <div className="cards-typework-item shadow-container">
                   <div className="cards-typework-img">
                     <img src={projectWork} alt="" />
                   </div>
-                  <div className="cards-typework-info"><em>Проектная работа</em><span></span><b>Р 5 500</b></div> x</div>
-              </div><div className="col-5 col-md-12"><div className="cards-verified-list shadow-container">
+                  <div className="cards-typework-info"><em>Проектная работа</em><span></span><b>Р 5 500</b></div></div>
+                ? Расхождение с кабинетом ?
+              </div>
+              <div className="col-5 col-md-12"><div className="cards-verified-list shadow-container">
                 <ul className="ln">
-                  <li>Медицинская книжка Медицинская книжка x</li>
+                  <li>Медицинская книжка</li>
                   <li>Выезжаю в течение часа x</li>
                   <li>Готовность к командировкам x</li>
                   <li>Есть ИП/Самозанятый x</li>
@@ -253,7 +263,7 @@ const CardsDetail = () => {
                   </div>
                 </div>
                 <div className="cards-info">
-                  <h3>{listing.userInfo.fio && (<h3>{listing.userInfo.fio}</h3>)}</h3>
+                  <h3>{listing.userInfo.fio && listing.userInfo.fio}</h3>
                 </div>
                 <ul className="ln cards-item-info-list">
                   {listing.userInfo.phone && (

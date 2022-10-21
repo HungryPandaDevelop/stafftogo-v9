@@ -1,6 +1,7 @@
 import { Field, FieldArray } from 'redux-form';
 
 import RenderInputText from './RenderInputText'; // поле стандартное
+import RenderInputDate from './RenderInputDate'; // поле стандартное
 
 import RenderInputTextarea from './RenderInputTextarea'; // поле текста
 
@@ -18,6 +19,26 @@ const TemplateInputComplex = ({ allFields, fields, btnAddText }) => {
           return (
             <div key={index} className={item.wrapClass}>
               <RenderInputText
+                className='input-decorate'
+                name={`${hobbyParam}.${item.name}`}
+                placeholder={item.placeholder}
+              />
+            </div>
+          )
+        case 'date':
+          return (
+            <div key={index} className={item.wrapClass}>
+              <RenderInputDate
+                className='input-decorate'
+                name={`${hobbyParam}.${item.name}`}
+                placeholder={item.placeholder}
+              />
+            </div>
+          )
+        case 'textarea':
+          return (
+            <div key={index} className={item.wrapClass}>
+              <RenderInputTextarea
                 className='input-decorate'
                 name={`${hobbyParam}.${item.name}`}
                 placeholder={item.placeholder}

@@ -8,6 +8,8 @@ import RenderTitle from './fields/RenderTitle';
 
 import RenderInputText from './fields/RenderInputText'; // поле стандартное
 
+import RenderInputDate from './fields/RenderInputDate'; // поле стандартное
+
 import RenderInputPhone from './fields/RenderInputPhone'; // поле телефон
 
 import RenderInputPassword from './fields/RenderInputPassword'; // поле пароля
@@ -85,6 +87,17 @@ const TemplateForm = (props) => {
               label={obj.label}
               labelSecond={obj.labelSecond}
               disabled={obj.disabled}
+              validate={obj.validate}
+              errorOn={errorOn}
+            />
+          );
+        case 'date':
+          return (
+            <RenderInputDate
+              name={obj.name}
+              placeholder={obj.placeholder}
+              label={obj.label}
+              labelSecond={obj.labelSecond}
               validate={obj.validate}
               errorOn={errorOn}
             />

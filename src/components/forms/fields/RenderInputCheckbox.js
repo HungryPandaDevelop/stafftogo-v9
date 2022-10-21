@@ -7,14 +7,15 @@ const TemplateInputCheckbox = ({ name, label, labelSecond, options, input }) => 
       {label && <label><b>{label}</b> {labelSecond ? <span>{labelSecond}</span> : ''}</label>}
       {options.map((item,index) => (
         <div className='checkbox' key={index}>
+          {  console.log('value,',item.value)}
           <label>{item.label}
             <input
-              {...input}
-              name={name}
-              value={item.value}
               type="checkbox"
+              {...input}
+              value={item.value}
               defaultChecked={item.checked  && 'checked' }
               disabled={item.disabled && 'disabled'}
+            
             />
             <span></span>
           </label>
@@ -33,6 +34,7 @@ const RenderInputCheckbox = ({ name, label, labelSecond, options }) => {
     labelSecond={labelSecond}
     options={options}
     component={TemplateInputCheckbox}
+    
   />;
 }
 

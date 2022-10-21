@@ -30,13 +30,13 @@ const VacanciesEdit = ({ accountInfo, cabinetType, fields, dataForm }) => {
 
   /* сохранение данных пользователя */
   const onSubmitIn = () => {
-    console.log(dataForm.values, getInfo);
+    console.log(dataForm.values);
 
 
 
-    saveInfo({ ...dataForm.values, userInfo: accountInfo }, params.elementId, cabinetType).then(() => {
-      navigate('/cabinet/' + cabinetType, { replace: true });
-    });
+    // saveInfo({ ...dataForm.values, userInfo: accountInfo }, params.elementId, cabinetType).then(() => {
+    //   navigate('/cabinet/' + cabinetType, { replace: true });
+    // });
   }
 
   /* сохранение данных пользователя */

@@ -33,31 +33,41 @@ const CardsPopup = (
     setCurrentCardId,
     myPosition,
     choiseMarkerPosition,
-    routeboxState
+    routeboxState,
+    navigate
   }) => {
 
   const [cardInfo, setCardInfo] = useState(null);
 
-  useEffect(() => {
-    if (currentCardId) {
-      getSingleListing(listingType, currentCardId).then(res => {
+
+
+
+  const onShowPopup = (id) => {
+    console.log('myMapRef', myMapRef.current)
+    if (id && myMapRef.current) {
+      getSingleListing(listingType, id).then(res => {
         setCardInfo(res);
         removeRoute(myMapRef, myRoute);
-        // console.log(res)
+
+        const coords = res.coords.split('--');
+        const ltd = Number(coords[1]);
+        const lng = Number(coords[2]);
+
+        myMapRef.current.setCenter([ltd, lng], 15)
       });
     }
-  }, [currentCardId])
+  }
 
   const closePopup = () => {
     setCardInfo(null);
     setRouteboxState(null);
     setCurrentCardId(null);
     removeRoute(myMapRef, myRoute);
+    navigate('/map');
   }
-  console.log('cardInfo', cardInfo)
 
   const showRoutebox = () => {
-    console.log('set route', myRoute);
+
     removeRoute(myMapRef, myRoute);
     addRoute(myMap, myMapRef, setMyRoute, myPosition, choiseMarkerPosition, 'auto');
 
@@ -65,10 +75,24 @@ const CardsPopup = (
     // setRouteFirst(); // построить маршрут
   }
 
+
+
+  useEffect(() => {
+
+
+    onShowPopup(currentCardId);
+
+
+
+  }, [currentCardId])
+
+
+
+
   const rednderCards = () => {
 
     const imgCards = cardInfo.userInfo.imgsAccount ? cardInfo.userInfo.imgsAccount : defaultCardsImg;
-    console.log(imgCards)
+
     return (
       <div
         className="gomap-popup-container"
