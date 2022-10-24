@@ -55,7 +55,9 @@ const TemplateForm = (props) => {
     btnWrapClass,
     btnClass,
     sending,
-    onSubmitIn } = props;
+    onSubmitIn,
+    cabinetBackLink
+  } = props;
 
   const [errorOn, setErrorOn] = useState(false);
 
@@ -268,7 +270,7 @@ const TemplateForm = (props) => {
       ))}
       <div className={btnWrapClass}>
         {renderBtnSubmit()}
-        {cabinetBack && <Link to={`/cabinet/${cabinetBack}`} className="btn btn--red-border ico-in ico-in--left btn-cancel "><i></i><span>Отменить</span></Link>}
+        {cabinetBack && <Link to={`/cabinet/${cabinetBackLink}`} className="btn btn--red-border ico-in ico-in--left btn-cancel "><i></i><span>Отменить</span></Link>}
       </div>
 
 

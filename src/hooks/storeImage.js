@@ -1,4 +1,3 @@
-import { db } from 'firebase.config';
 import {
   getStorage,
   ref,
@@ -10,7 +9,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 const auth = getAuth();
 
-const storeImage = async (image) => {
+const storeImage = async (image, setLoadingFile) => {
   return new Promise((resolve, reject) => {
     const storage = getStorage();
     const fileName = `${auth.currentUser.uid}-${image.name}-${uuidv4()}`;
@@ -28,6 +27,7 @@ const storeImage = async (image) => {
             break;
           case 'running':
             console.log('Upload is running');
+            setLoadingFile(true)
             break;
         }
       },
@@ -41,6 +41,7 @@ const storeImage = async (image) => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           console.log('File available at', downloadURL);
           resolve(downloadURL);
+          setLoadingFile(false)
         });
       }
     );

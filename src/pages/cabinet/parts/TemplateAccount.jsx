@@ -1,9 +1,11 @@
 import CabinetSidebar from 'pages/cabinet/parts/CabinetSidebar';
+import Breadcrumbs from 'pages/parts/Breadcrumbs';
 
 const TemplateAccount = ({ title, children, addWrapClass }) => {
   return (
     <>
       <div className="stub"></div>
+      <Breadcrumbs />
       <div className="content">
         <div className="main-full">
           <h1>{title}</h1>

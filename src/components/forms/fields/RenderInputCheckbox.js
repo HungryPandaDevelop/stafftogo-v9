@@ -1,41 +1,31 @@
-import { Field } from 'redux-form';
+import { Field} from 'redux-form';
+import { ReduxCheckbox, Checkboxes } from 'react-form-checkbox';
 
-const TemplateInputCheckbox = ({ name, label, labelSecond, options, input }) => {
 
+
+const TemplateCheckbox = ({ name, input, label }) => (
+  <div className="checkbox">
+    <label>
+      {label}
+      <input type="checkbox" {...input} />
+      <span></span>
+    </label>
+  </div>
+);
+
+const RenderInputCheckbox = ({name, label, labelSecond, options}) => {
   return (
     <>
-      {label && <label><b>{label}</b> {labelSecond ? <span>{labelSecond}</span> : ''}</label>}
-      {options.map((item,index) => (
-        <div className='checkbox' key={index}>
-          {  console.log('value,',item.value)}
-          <label>{item.label}
-            <input
-              type="checkbox"
-              {...input}
-              value={item.value}
-              defaultChecked={item.checked  && 'checked' }
-              disabled={item.disabled && 'disabled'}
-            
-            />
-            <span></span>
-          </label>
-        </div>
-      ))}
-
+      <label><b>{label}</b> {labelSecond ? <span>{labelSecond}</span> : ''}</label>
+      <Field
+        name={name}
+        component={ReduxCheckbox(Checkboxes)}
+        data={options}
+        itemComponent={TemplateCheckbox}
+        variants={options}
+      />
     </>
   );
-}
-
-const RenderInputCheckbox = ({ name, label, labelSecond, options }) => {
-
-  return <Field
-    name={name}
-    label={label}
-    labelSecond={labelSecond}
-    options={options}
-    component={TemplateInputCheckbox}
-    
-  />;
 }
 
 export default RenderInputCheckbox;

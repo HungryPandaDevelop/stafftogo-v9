@@ -110,7 +110,6 @@ const CardsList = ({ uid, cabinetType, accountInfo, ActionFn }) => {
                         cabinetType={cabinetType}
 
                       />
-                      {console.log('listing', listing)}
                     </tr>
                   ))
                 }

@@ -10,6 +10,7 @@ import PrivateRoute from 'blocks/header/PrivateRouter';
 import Footer from 'blocks/Footer';
 
 import MainPage from 'pages/MainPage';
+import Demo from 'pages/Demo';
 
 import Chat from 'pages/cabinet/chat/Chat';
 // import ChatList from 'pages/cabinet/chat/ChatList';
@@ -79,6 +80,7 @@ const ScrollToTop =(props) => {
         <Header/>
         <Routes> 
           <Route path='/' exept element={<MainPage/>} ></Route>
+          <Route path='/demo' element={<Demo/>} ></Route>
           
           <Route path='/authorization'  element={<Authorization/>} ></Route>
           <Route path='/forgot-password' element={<ForgotPassword/>}></Route>

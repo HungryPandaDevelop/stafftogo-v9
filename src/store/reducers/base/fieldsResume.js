@@ -8,6 +8,7 @@ export default function(){
       "coords",
       "industry",
       "typeSpecialization",
+      "about",
       "titleFive",
       "extraWorkType",
       "titleTwo",
@@ -25,6 +26,13 @@ export default function(){
       name: "card_name",  
       placeholder: "Желаемая должность", 
       label:"Желаемая должность", 
+      wrapClass: "col-12 account-item"
+    },
+    about:{
+      type:"textarea", 
+      name: "about",  
+      placeholder: "Обо мне", 
+      label:"Обо мне", 
       wrapClass: "col-12 account-item"
     },
     salary: { 
@@ -128,8 +136,6 @@ export default function(){
         {label: "Диджей", value:"spec_4"},
       ]
     },
-
-
     companyWork: {
       type: "complex", 
       name: "companyWorkComplex", 
@@ -343,7 +349,7 @@ export default function(){
         },
         { 
           type:"date", 
-          name: "endeducation", 
+          name: "dateEnd", 
           placeholder: "Год окончания", 
           maxLength: 500,
           wrapClass: "col-6" 

@@ -1,16 +1,15 @@
 export default function(){
   return {
     order: [
-      "fio",
-      "photoAccount",
-      "typeCabinet",
       "titleOne",
+      "imgsAccount",
+      "fio",
       "email",
       "phone",
+      "age",
+      "typeCabinet",
       "statusInSite",
       "gender",
-      "age",
-      "exp_work",
       "country",
     ],
     typeCabinet: {
@@ -21,6 +20,7 @@ export default function(){
         {name:"Соискатель",value:"resume"},
         {name:"Компания", value:"vacancies"},
       ],
+      wrapClass: "col-5 col-offset-3  account-itemы"
     },
     gender: {
       type:"radio",
@@ -29,27 +29,23 @@ export default function(){
       options: [
         {label:'Женщина', value: "women" },
         {label:'Мужчина', value: "men" },
-      ]
-    },
-    exp_work: { 
-      type:"text" ,
-      name: "exp_work", 
-      label: "Общий стаж работы", 
-      placeholder: "Общий стаж работы", 
-      
+      ],
+      wrapClass: "col-5 col-offset-3  account-item"
     },
     email: { 
       type:"text" ,
       name: "email", 
       label: "Почта", 
       placeholder: "Почта", 
-      disabled: 0
+      disabled: 0,
+      wrapClass: "col-5 account-item"
     },
     phone: { 
       type:"phone" ,
       name: "phone", 
       label: "Телефон", 
       placeholder: "Телефон",
+      wrapClass: "col-5 col-offset-3  account-item"
     },
     statusInSite: {
       type:"switch",
@@ -59,19 +55,21 @@ export default function(){
         {name:"Я ищу работу",value:"on"},
         {name:"Я не ищу работу", value:"off"},
       ],
+      wrapClass: "col-5  account-item"
     },
     fio: { 
       type:"text" ,
       name: "fio", 
       label: "Фио", 
       placeholder: "Фио", 
+      wrapClass: "col-5 account-item"
       
     },
     age: { 
-      type:"text" ,
+      type:"date" ,
       name: "age", 
-      label: "Возраст", 
-      placeholder: "Возраст", 
+      label: "Дата рождения", 
+      wrapClass: "col-5 account-item"
       
     },
     country: { 
@@ -79,20 +77,23 @@ export default function(){
       name: "country", 
       label: "Гражданство", 
       placeholder: "Гражданство", 
+      wrapClass: "col-5  account-item"
     },
-    photoAccount: {
+    imgsAccount: {
       type: "photo", 
-      name: "photoAccount", 
-      label:"Загрузите ваше фото", 
+      name: "imgsAccount", 
+      label:"Фото профиля", 
       labelSecond:"(Изображение формата jpg,png не менее 150x150 px, не более 8Мб)", 
       typeFile: "img", 
       typeUpload:".png, .jpg, .jpeg", 
       maxSize: 1000000, 
-      textEmpty: "На данный момент фоно не выбрано"
+      textEmpty: "На данный момент фоно не выбрано",
+      wrapClass: "col-2 col-lg-3 col-sm-5 input-photo-container"
     },
     titleOne: {
       type:"title",
       label:"Основная информация", 
+      wrapClass: "col-12"
     },
   }
 }

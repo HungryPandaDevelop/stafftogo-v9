@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-
+import { useNavigate } from 'react-router-dom';
 import TemplateAccount from 'pages/cabinet/parts/TemplateAccount';
 import RenderFormAccount from 'components/forms/RenderFormAccount';
 
@@ -18,7 +18,8 @@ const AccountEdit = ({
 }) => {
 
 
-  /* получение данных пользователя */
+  const navigate = useNavigate();
+
 
   /* сохранение данных пользователя */
   const onSubmitIn = () => {
@@ -27,7 +28,10 @@ const AccountEdit = ({
       ActionFn('CHANGE_ACCOUNT_INFO', false);
       ActionFn('SET_INFO_ACCOUNT', dataForm.values);
     });
+
+    navigate('/cabinet/', { replace: true });
   }
+
 
 
   /* сохранение данных пользователя */
@@ -36,7 +40,7 @@ const AccountEdit = ({
 
   return (
     <>
-      <TemplateAccount title="Учетная запись компании" >
+      <TemplateAccount title="Учетная запись" >
         {checkingStatus ? 'Loading account...' : (
           <RenderFormAccount
             btnSaveText="Сохранить изменения"
@@ -45,8 +49,11 @@ const AccountEdit = ({
             initialValues={userInfo}
             onSubmitIn={onSubmitIn}
             sending={true}
-            btnClass="btn--green"
-            formClassAdd="cabinet-account cabinet-edit shadow-container"
+            btnWrapClass="col-9 col-offset-3 btn-container"
+            btnClass='btn-save btn--green ico-in ico-in--left'
+            formClassAdd="main-grid"
+            cabinetBack={true}
+            cabinetBackLink=""
           />
         )}
 

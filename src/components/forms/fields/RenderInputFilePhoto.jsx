@@ -5,6 +5,8 @@ import { Field } from 'redux-form';
 
 import storeImage from 'hooks/storeImage';
 
+import avatarBlack from 'front-end/images/icons/avatar-black.svg'
+import photoIco from 'front-end/images/icons/cabinet/photo-add-black.svg'
 
 // import userIco from 'front-end/images/icons/avatar-black.svg';
 // import photoIco from 'front-end/images/icons/photo-add-black.svg';
@@ -25,6 +27,7 @@ const TemplateFile = (props) => {
 
   const [nameFile, setNameFile] = useState('');
   const [firstLoad, setFirstLoad] = useState(0);
+  const [loadingFile, setLoadingFile] = useState(false);
 
   useEffect(() => {
 
@@ -48,7 +51,7 @@ const TemplateFile = (props) => {
     }
 
     let fileUrls = await Promise.all( // загрузили получили урлы
-      [...files].map((file) => storeImage(file))
+      [...files].map((file) => storeImage(file, setLoadingFile))
     ).catch(() => {
       console.log('err')
       return
@@ -64,22 +67,27 @@ const TemplateFile = (props) => {
   }
 
   return (
-    <div className='form-line'>
-      {label && <label className="col-12"><b>{label}</b><span>{labelSecond}</span></label>}
-      <div
-        className="file-input-container"
-      >
-        {!nameFile && <div className="file-decorate"><span>{textEmpty}</span><i></i></div>}
-        <input ref={elRef} type="text" {...input} value={nameFile} className="input-file" />
-        <input type="file" onChange={onChange} className="input-file" />
+    <>
+      {label && <b>{label}</b>}
+      <div className='input-photo'>
+        <div
+          className="input-file-container"
+        >
+          {loadingFile === true && <div className="preloader"></div>}
+          <input ref={elRef} type="text" {...input} value={nameFile} className="input-file" />
+          <input type="file" onChange={onChange} className="input-file" />
+        </div>
+
+        {!nameFile && <>
+          <img src={avatarBlack} alt="" className="input-user-ico" />
+          <img src={photoIco} alt="" className="input-photo-ico" />
+        </>}
         {nameFile && (
-          <div>
-            <img src={nameFile} className="cabinet-img" alt="" />
-            <div className='cabinet-img-delete' onClick={() => { deleteFile() }}>delete</div>
+          <div className='input-photo-uploaded' style={{ backgroundImage: `url(${nameFile})` }}>
+            <div className='input-photo-clear' onClick={() => { deleteFile() }}></div>
           </div>
         )}
-      </div>
-    </div>
+      </div></>
   )
 }
 

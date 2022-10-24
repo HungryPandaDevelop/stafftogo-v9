@@ -1,12 +1,21 @@
-import { useState, useEffect } from 'react';
+// import html2canvas from "html2canvas";
+// import { jsPDF } from "jspdf";
+
+import Pdf from "react-to-pdf";
+// import { pdfFromReact } from "generate-pdf-from-react-html";
+
+import { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { getSingleListing } from 'store/asyncActions/getSingleListing';
+
 
 import Breadcrumbs from 'pages/parts/Breadcrumbs';
 import SimpleDateTime from 'react-simple-timestamp-to-date'; // ???
 
 import InfoExp from 'pages/catalog/parts/cardsItem/InfoExp'
+import ExpWorkSingle from 'pages/catalog/parts/cardsItem/ExpWorkSingle';
+import Additional from 'pages/catalog/parts/cardsItem/Additional';
 
 
 import defaultCardsImg from 'front-end/images/icons/avatar-light-gray.svg';
@@ -31,11 +40,28 @@ const CardsDetail = () => {
 
 
 
+  const refContent = useRef(null);
+  const toPdf = () => {
 
+
+    // const input = refContent.current;
+    // html2canvas(input)
+    //   .then((canvas) => {
+    //     const imgData = canvas.toDataURL('image/png');
+    //     const pdf = new jsPDF();
+    //     pdf.addImage(imgData, 'JPEG', 2, 0);
+    //     pdf.save(`test.pdf`);
+    //   })
+
+
+
+
+  }
 
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(true);
   const [viewSidebar, setViewSidebar] = useState(false);
+
   const params = useParams();
 
   useEffect(() => {
@@ -63,21 +89,37 @@ const CardsDetail = () => {
 
   const imgCards = listing.userInfo.imgsAccount ? listing.userInfo.imgsAccount : defaultCardsImg;
   const address = listing.coords && listing.coords.split('--');
-  console.log('listing', listing)
+  // console.log('listing', listing)
 
 
+  const options = {
+    orientation: 'landscape',
+    unit: 'in',
+    format: [2, 4]
+  };
 
 
   return (
     <>
       <div className="stub"></div>
 
+      <Pdf
+        targetRef={refContent}
+        filename="cenaze-yardimlasma.pdf"
+        scale={0.6}
+      >
+        {({ toPdf }) => (
+          <button className="button" onClick={toPdf} >
+            Pdf İndir
+          </button>
+        )}
+      </Pdf>
 
       <Breadcrumbs />
       <div className="content" >
-        <div className="main-full"><h1>Вакансия детально</h1></div>
+        <div className="main-full" ><h1>Вакансия детально</h1></div>
         <div className="main-grid">
-          <div className="col-10 col-lg-9 col-sm-12">
+          <div className="col-10 col-lg-9 col-sm-12" ref={refContent}>
             <div className="cards-main shadow-container">
               <div className="cards-item-roof">
                 <span>Резюме обновлено:&nbsp;
@@ -88,7 +130,7 @@ const CardsDetail = () => {
                   >{listing.timestamp.seconds}</SimpleDateTime></span>
               </div>
               <div className="main-grid">
-                <div className="col-2 col-md-3 col-sm-4 col-xs-12">
+                <div className="col-2 col-md-3 col-sm-4 col-xs-12" >
                   <div className="cards-face-container">
                     <div
                       className="cards-face img-cover"
@@ -98,7 +140,7 @@ const CardsDetail = () => {
                   </div>
                 </div>
                 <div className="col-6 col-xxl-5 col-md-9 col-sm-8 col-xs-12 cards-item-info-container">
-                  <div className="cards-item-info">
+                  <div className="cards-item-info" >
                     <div className="cards-item-info-top">
                       <h3>{listing.card_name}</h3>
 
@@ -132,7 +174,7 @@ const CardsDetail = () => {
                     </div>
                   </div>
                 </div>
-                <div className="col-4 col-xxl-5 col-md-9 col-sm-8 col-xs-12 cards-pay-container">
+                <div className="col-4 col-xxl-5 col-md-9 col-sm-8 col-xs-12 cards-pay-container" >
                   <div className="cards-item-info cards-item-pay-info">
                     {listing.userInfo.fio && (<h3>{listing.userInfo.fio}</h3>)}
                     <ul className="ln cards-item-info-list">
@@ -201,54 +243,50 @@ const CardsDetail = () => {
                   <div className="cards-typework-info"><em>Проектная работа</em><span></span><b>Р 5 500</b></div></div>
                 ? Расхождение с кабинетом ?
               </div>
-              <div className="col-5 col-md-12"><div className="cards-verified-list shadow-container">
-                <ul className="ln">
-                  <li>Медицинская книжка</li>
-                  <li>Выезжаю в течение часа x</li>
-                  <li>Готовность к командировкам x</li>
-                  <li>Есть ИП/Самозанятый x</li>
-                </ul>
-              </div>
+              <div className="col-5 col-md-12">
+                <Additional list={listing.additional} />
               </div>
             </div>
-            <div className="cards-about">
-              <div className="cards-about-item">
-                <h3>График и место работы:</h3>
-                <p>Постоянный рабочий день, частичная занятость, свободный график, частичная занятость, удаленная работа, вахта Москва, Санкт-Петербург, Самара, Екатеринбург, Ульяновск, и еще 33 города</p>
-              </div>
-              <div className="cards-about-item">
-                <h3>Опыт работы 15 лет и 6 месяцев</h3>
-                <div className="cards-about-line">
-                  <h4>Июнь 2018 - По настоящее время / 10 месяцев</h4>
-                  <h5>Суповых дел мастер / ООО “Ромашка”</h5>
-                  <p>Готовила пельмени Варища борщ для семейной пары С самого детства без памяти любила варить супы и всякие жидкие смеси</p>
+            <div className="cards-about" convert-html-to-pdf>
+              {listing.companyWorkComplex && (
+                <div className="cards-about-item">
+                  <h3>Опыт работы {<ExpWorkSingle listing={listing} />}</h3>
+                  {listing.companyWorkComplex.map((item, index) => (
+                    <div className="cards-about-line" key={index}>
+                      {item.namework && (<h4>{item.workfrom} / {item.workto}</h4>)}
+                      {item.namework && (<h5>Должность: {item.namework}</h5>)}
+                      {item.namecompany && (<h5>Организация: {item.namecompany}</h5>)}
+                      {item.workresp && (
+                        <>
+                          <h5>Обязанности: </h5>
+                          <p>{item.workresp}</p>
+                        </>
+                      )}
+                    </div>
+                  ))}
                 </div>
-                <div className="cards-about-line">
-                  <h4>Июнь 2018 - По настоящее время / 10 месяцев</h4>
-                  <h5>Суповых дел мастер / ООО “Ромашка”</h5>
-                  <p>Готовила пельмени Варища борщ для семейной пары С самого детства без памяти любила варить супы и всякие жидкие смеси</p>
+              )}
+              {listing.institution && (
+                <div className="cards-about-item">
+                  <h3>Профессиональные образование</h3>
+                  {listing.institution.map((item, index) => (
+                    <div className="cards-about-line" key={index}>
+                      {item.dateEnd && (<h4>Дата окончания: {item.dateEnd}</h4>)}
+                      {item.place && (<h5>Учебное заведение: {item.place}</h5>)}
+                      {item.faculty && (<h5>Факультет: {item.faculty}</h5>)}
+                      {item.specialization && (<h5>Специализация: {item.specialization}</h5>)}
+                    </div>
+                  ))}
                 </div>
-                <div className="cards-about-line">
-                  <h4>Июнь 2018 - По настоящее время / 10 месяцев</h4>
-                  <h5>Суповых дел мастер / ООО “Ромашка”</h5>
-                  <p>Готовила пельмени Варища борщ для семейной пары С самого детства без памяти любила варить супы и всякие жидкие смеси</p>
+              )}
+
+              {listing.about && (
+                <div className="cards-about-item">
+                  <h3>Обо мне</h3>
+                  {listing.about}
                 </div>
-              </div>
-              <div className="cards-about-item">
-                <h3>Профессиональные образование</h3>
-                <div className="cards-about-line">
-                  <h4>Июнь 2018 - По настоящее время / 10 месяцев</h4>
-                  <h5>Специальность: Конфетчица / Кондитерское училище номер 15г. Санкт-Петербург</h5>
-                </div>
-                <div className="cards-about-line">
-                  <h4>Июнь 2018 - По настоящее время / 10 месяцев</h4>
-                  <h5>Специальность: Конфетчица / Кондитерское училище номер 15г. Санкт-Петербург</h5>
-                </div>
-              </div>
-              <div className="cards-about-item">
-                <h3>Обо мне</h3>
-                <p>Пунктуален, порядочен, алкоголь - нет, курение - нет. Военный пенсионер. С 1980 г. по 1998 год - военный (связь).</p>
-              </div>
+              )}
+
             </div>
 
           </div>
@@ -283,7 +321,7 @@ const CardsDetail = () => {
               <div className="cards-sidebar-controls">
                 <div className="sidebar-btn"> <span>В избранное</span><img src={star} alt="" /></div>
                 <div className="sidebar-btn"> <span>Спрятать</span><img src={view} alt="" /></div>
-                <div className="sidebar-btn"> <span>Скачать</span><img src={download} alt="" /></div>
+                <div className="sidebar-btn" onClick={toPdf}> <span>Скачать</span><img src={download} alt="" /></div>
                 <div className="sidebar-btn"> <span>Распечатать</span><img src={print} alt="" /></div>
               </div>
               <div className="btn-container">

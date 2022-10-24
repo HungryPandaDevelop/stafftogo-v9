@@ -16,6 +16,8 @@ const VacanciesNew = ({ accountInfo, uid, cabinetType, fields, dataForm }) => {
   const onSubmitIn = () => {
     const addUserInfo = { ...dataForm.values, userInfo: accountInfo };
 
+
+    // console.log('addUserInfo', addUserInfo)
     addCards(addUserInfo, cabinetType, uid).then(() => {
       navigate('/cabinet/' + cabinetType, { replace: true });
     });
@@ -41,11 +43,11 @@ const VacanciesNew = ({ accountInfo, uid, cabinetType, fields, dataForm }) => {
           orderFields={fields.order}
           onSubmitIn={onSubmitIn}
           sending={true}
-
           btnWrapClass='btn-container col-12'
           btnClass='btn-save btn--green ico-in ico-in--left'
           formClassAdd='main-grid'
-          cabinetBack={cabinetType}
+          cabinetBack={true}
+          cabinetBackLink={cabinetType}
         />
       </TemplateAccount>
     </>

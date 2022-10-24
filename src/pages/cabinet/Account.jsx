@@ -9,10 +9,40 @@ const Account = ({
   userInfo
 }) => {
 
-  console.log('userInfo', userInfo)
-  const imgCards = userInfo.imgsAccount ? userInfo.imgsAccount : defaultCardsImg;
+  // console.log('userInfo', userInfo)
 
 
+
+  const renderImgCards = () => {
+    const imgCards = userInfo.imgsAccount ? userInfo.imgsAccount : defaultCardsImg;
+
+    return (
+      <div className="cards-face-container">
+        <b>Фото профиля</b>
+        <div
+          className={`img-cover ${userInfo.imgsAccount ? 'cards-face' : 'empty-face'} `}
+          style={{ backgroundImage: `url(${imgCards})` }}
+        >
+        </div>
+      </div>
+    )
+  }
+
+  const genderTextRender = () => {
+    if (userInfo.gender === 'men') { return 'Мужской' }
+    else if (userInfo.gender === 'women') { return 'Женский' }
+    else { return '-/-' }
+  }
+
+  const statusSiteTextRender = () => {
+    if (userInfo.statusInSite === 'on') { return 'Я ищу работу' }
+    else if (userInfo.statusInSite === 'off') { return 'Я не ищу работу' }
+    else { return '-/-' }
+  }
+
+  const formatPhone = (value) => {
+    return `(${value.slice(0, 3)}) ${value.slice(3, 6)}-${value.slice(6, value.length)}`
+  }
 
 
   return (
@@ -21,34 +51,29 @@ const Account = ({
 
         {checkingStatus ? 'Loading account...' : (
           <div className='main-grid'>
+            <div className="col-12"><h3>Основная информация</h3></div>
             <div className="col-2 col-lg-3 col-sm-5">
-              <div className="cards-face-container">
-                <div
-                  className="cards-face img-cover"
-                  style={{ backgroundImage: `url(${imgCards})` }}
-                >
-                </div>
-              </div>
+              {renderImgCards()}
             </div>
             <div className="col-10 col-lg-9 col-sm-12">
               <div className="main-grid">
-                <div className="account-item col-4"> <b>Имя</b>
-                  <div>{userInfo.name ? userInfo.name : '-/-'}</div>
+                <div className="account-item col-6"> <b>Фио</b>
+                  <div>{userInfo.fio ? userInfo.fio : '-/-'}</div>
                 </div>
-                <div className="account-item col-4"> <b>Email </b>
+                <div className="account-item col-6"> <b>Email </b>
                   <div>{userInfo.email ? (<a href={`mailto:${userInfo.email}`}>{userInfo.email}</a>) : '-/-'}</div>
                 </div>
-                <div className="account-item col-4"> <b>Телефон</b>
-                  <div>{userInfo.phones_main ? (<a href={`mailto:${userInfo.phones_main}`}>{userInfo.phones_main}</a>) : '-/-'}</div>
+                <div className="account-item col-6"> <b>Телефон</b>
+                  <div>{userInfo.phone ? (<a href={`mailto:+7${userInfo.phone}`}>+7{formatPhone(userInfo.phone)}</a>) : '-/-'}</div>
                 </div>
-                <div className="account-item col-4"> <b>Пол</b>
-                  <div> <div>{userInfo.gender ? userInfo.gender : '-/-'}</div></div>
+                <div className="account-item col-6"> <b>Пол</b>
+                  <div> {genderTextRender()}</div>
                 </div>
-                <div className="account-item col-4"> <b>Дата рождения</b>
-                  <div> <div>{userInfo.dateBerth ? userInfo.gender : '-/-'}</div></div>
+                <div className="account-item col-6"> <b>Дата рождения</b>
+                  <div> {userInfo.age ? userInfo.age : '-/-'}</div>
                 </div>
-                <div className="account-item col-4"> <b>Видимость профиля</b>
-                  <div> <div>{userInfo.profileStatisView ? userInfo.gender : '-/-'}</div></div>
+                <div className="account-item col-6"> <b>Видимость профиля</b>
+                  <div> {statusSiteTextRender()}</div>
                 </div>
                 <div className="col-12 btn-container">
                   <Link to='/cabinet/account-edit/' className="btn btn-edit btn--orange ico-in ico-in--left">

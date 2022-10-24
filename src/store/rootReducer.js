@@ -3,6 +3,7 @@ import { combineReducers } from "redux";
 import {reducer as formReducer} from 'redux-form';
 
 
+import fieldsDemo from 'store/reducers/base/fieldsDemo';
 import fieldsAuthorization from 'store/reducers/base/fieldsAuthorization';
 import fieldsRegistration from 'store/reducers/base/fieldsRegistration';
 import fieldsEmployersAccount from 'store/reducers/base/fieldsEmployersAccount';
@@ -32,6 +33,7 @@ import listingSearchReducer from "store/reducers/listingSearchReducer";
 
 const rootReducer = combineReducers({
   form: formReducer,
+  fieldsDemo: fieldsDemo,
   fieldsAuthorization: fieldsAuthorization,
   fieldsRegistration: fieldsRegistration,
   fieldsEmployersAccount: fieldsEmployersAccount,
