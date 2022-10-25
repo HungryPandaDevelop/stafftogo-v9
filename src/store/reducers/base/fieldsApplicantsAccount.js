@@ -3,7 +3,7 @@ export default function(){
     order: [
       "titleOne",
       "imgsAccount",
-      "fio",
+      "accountName",
       "email",
       "phone",
       "age",
@@ -57,9 +57,9 @@ export default function(){
       ],
       wrapClass: "col-5  account-item"
     },
-    fio: { 
+    accountName: { 
       type:"text" ,
-      name: "fio", 
+      name: "accountName", 
       label: "Фио", 
       placeholder: "Фио", 
       wrapClass: "col-5 account-item"

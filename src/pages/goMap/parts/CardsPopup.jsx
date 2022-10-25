@@ -123,7 +123,7 @@ const CardsPopup = (
           </div>
           <div className="gomap-popup-info">
             <h3> <a href="/">{cardInfo.card_name}</a></h3>
-            {cardInfo.userInfo.fio && (<h4>{cardInfo.userInfo.fio}</h4>)}
+            {cardInfo.userInfo.accountName && (<h4>{cardInfo.userInfo.accountName}</h4>)}
             <div className="gomap-popup-price">{cardInfo.salary_priceFrom}</div>
             <ul className="ln gomap-popup-list">
               {cardInfo.userInfo.phone && (

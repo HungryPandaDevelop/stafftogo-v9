@@ -85,13 +85,13 @@ const Catalog = ({ listingType, listingSearch, uid, currentCard, cabinetType, ac
 
 const mapStateToProps = (state) => {
   return {
-    listingType: state.listingTypeReducer,
     listingSearch: state.listingSearchReducer,
-    cabinetType: state.accountInfo.info.typeCabinet,
     currentCard: state.accountInfo.info.currentCard,
     roomUpdate: state.accountInfo.roomUpdate,
     uid: state.accountInfo.info.uid,
     accountInfo: state.accountInfo.info,
+    cabinetType: state.accountInfo.info.typeCabinet,
+    listingType: state.listingTypeReducer,
   }
 }
 

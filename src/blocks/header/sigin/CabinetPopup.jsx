@@ -10,7 +10,7 @@ const CabinetPopup = ({ userInfo, onCabinetPopupShow }) => {
     <div className="cabinet-popup">
       <div className="cabinet-popup-roof"></div>
       <div className="cabinet-popup-info">
-        <div className="cabinet-popup-name">{userInfo.fio}</div>
+        <div className="cabinet-popup-name">{userInfo.accountName}</div>
         <div className="cabinet-popup-mail">{userInfo.email}</div>
       </div>
       <div className="cabinet-popup-controls">

@@ -5,7 +5,7 @@ import { db } from '../../firebase.config';
 
 const OAuth = () => {
   const navigate = useNavigate();
-  const location = useLocation();
+
 
   const onGoogleClick = async () => {
     try {

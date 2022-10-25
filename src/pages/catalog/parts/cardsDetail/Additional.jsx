@@ -4,6 +4,7 @@ const Additional = ({ list }) => {
 
   const additionalListRender = (list) => {
 
+
     const additionalTypeArr = [
       { label: 'Есть ИП/Самозанятый', value: 'type_1' },
       { label: 'Медицинская книжка', value: 'type_2' },
@@ -30,13 +31,14 @@ const Additional = ({ list }) => {
 
   if (list.length === 0) { return false }
   return (
-    <div>
+    <>
       <div className="cards-verified-list shadow-container">
+        <h3>Проверено Staff 2 Go</h3>
         <ul className="ln">
           {additionalListRender(list)}
         </ul>
       </div>
-    </div>
+    </>
   )
 }
 

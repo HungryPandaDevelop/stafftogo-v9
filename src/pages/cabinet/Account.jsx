@@ -58,7 +58,7 @@ const Account = ({
             <div className="col-10 col-lg-9 col-sm-12">
               <div className="main-grid">
                 <div className="account-item col-6"> <b>Фио</b>
-                  <div>{userInfo.fio ? userInfo.fio : '-/-'}</div>
+                  <div>{userInfo.accountName ? userInfo.accountName : '-/-'}</div>
                 </div>
                 <div className="account-item col-6"> <b>Email </b>
                   <div>{userInfo.email ? (<a href={`mailto:${userInfo.email}`}>{userInfo.email}</a>) : '-/-'}</div>

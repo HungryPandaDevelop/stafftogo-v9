@@ -48,6 +48,7 @@ const ListItem = (props) => {
           {(uid && listingType != cabinetType) && (
             <BtnLike
               listing={listing}
+              locationBtn='catalog'
             />
           )}
 
@@ -95,7 +96,7 @@ const ListItem = (props) => {
         </div>
         <div className="col-4 col-xxl-5 col-md-9 col-sm-8 col-xs-12 cards-pay-container">
           <div className="cards-item-info cards-item-pay-info">
-            <h3>{cabinetType === 'resume' ? listingData.userInfo.fio : listingData.userInfo.name_company}</h3>
+            <h3>{listingData.userInfo.accountName}</h3>
             <ul className="ln cards-item-info-list">
               {listingData.userInfo.phone && (
                 <li>
