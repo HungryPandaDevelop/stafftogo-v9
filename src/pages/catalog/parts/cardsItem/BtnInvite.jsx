@@ -4,7 +4,7 @@ import ActionFn from 'store/actions';
 
 import { createRoom } from 'store/asyncActions/inviteChat';
 
-const BtnInvite = ({ currentCard, listing, uid, invited, accountInfo, ActionFn }) => {
+const BtnInvite = ({ currentCard, listing, uid, invited, ActionFn }) => {
 
 
 
@@ -12,7 +12,8 @@ const BtnInvite = ({ currentCard, listing, uid, invited, accountInfo, ActionFn }
 
   const onInvite = () => {
 
-    !inviteStatus && createRoom(currentCard, listing.id, uid, listing.data.userRef).then(() => {
+    !inviteStatus && createRoom(currentCard[0], listing.id, uid, listing.data.userRef, listing.data.card_name, currentCard[1]).then(() => {
+      // console.log(currentCard, listing.id, uid, listing.data.userRef);
       ActionFn('UPDATE_ROOM', true);
     });
 
@@ -21,7 +22,7 @@ const BtnInvite = ({ currentCard, listing, uid, invited, accountInfo, ActionFn }
 
   return (
     <div
-      className={`btn btn--orange-border ${inviteStatus && 'active'}`}
+      className={`btn btn--orange-border response-btn ${inviteStatus && 'active'}`}
       onClick={onInvite}
     >
 

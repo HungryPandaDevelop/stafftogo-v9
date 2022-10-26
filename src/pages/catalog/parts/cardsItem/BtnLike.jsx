@@ -1,14 +1,13 @@
-
 import { saveInfo } from 'store/asyncActions/saveInfo';
 import { connect } from 'react-redux';
 import ActionFn from 'store/actions';
 
 import star from 'front-end/images/icons/star-white.svg';
 
-const BtnLike = ({ accountInfo, listing, ActionFn, checkingStatus, locationBtn }) => {
+const BtnLike = ({ accountInfo, listing, ActionFn, checkingStatus, locationBtn, elementIdDetail }) => {
 
 
-  const idElement = listing.id;
+  const idElement = listing.id ? listing.id : elementIdDetail;
 
 
   const addLike = () => {
@@ -31,13 +30,13 @@ const BtnLike = ({ accountInfo, listing, ActionFn, checkingStatus, locationBtn }
       ActionFn('SET_INFO_ACCOUNT', { ...accountInfo, likeMass: sendData.likeMass });
     });
   }
-  console.log(accountInfo.likeMass, idElement)
+  // console.log(accountInfo.likeMass, idElement)
   return (
     <>
       {(!checkingStatus) && (locationBtn === 'catalog') ?
         <div className={`like-btn ${accountInfo.likeMass && accountInfo.likeMass.includes(idElement) && 'active'}`} onClick={addLike}></div>
         :
-        <div className={`sidebar-btn ${accountInfo.likeMass && accountInfo.likeMass.includes(idElement) && 'active'}`}> <span>В избранное</span><img src={star} alt="" /></div>
+        <div className={`sidebar-btn ${accountInfo.likeMass && accountInfo.likeMass.includes(idElement) && 'active'}`} onClick={addLike} > <span>В избранное</span><img src={star} alt="" /></div>
       }
     </>
   )

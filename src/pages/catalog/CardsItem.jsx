@@ -23,7 +23,6 @@ const ListItem = (props) => {
     uid,
     invited,
     currentCard,
-    accountInfo
   } = props;
 
 
@@ -126,7 +125,7 @@ const ListItem = (props) => {
                   invited={invited}
                   uid={uid}
                   currentCard={currentCard}
-                  accountInfo={accountInfo}
+
                 />
               )}
               {address && (<Link to={`/map/${listing.id}`} className="btn btn--green-border ico-in ico-in--left btn-show-map">

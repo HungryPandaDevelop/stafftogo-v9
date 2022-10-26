@@ -41,16 +41,24 @@ const Messages = ({ roomId, uid, roomUpdate }) => {
   }
 
   return (
-    <div>
+    <>
       {result ? result.map((item, index) => (
-        <div className={`message-item ${uid === item.uid && 'my-message'}`} key={index} >
-          {<Moment unix>{item.timestamp.seconds}</Moment>}
-          <hr />
-          {item.text}
-
+        <div className={`chat-messages-item ${uid === item.uid && 'own-messages'}`} key={index} >
+          {uid !== item.uid && (
+            <div class="chat-list-img img-cover" >
+            </div>
+          )}
+          <div className="chat-messages-body">
+            <div className="chat-messages-date">{item.text}</div>
+            <div className="chat-messages-text"> {<Moment unix>{item.timestamp.seconds}</Moment>}</div>
+          </div>
+          {uid === item.uid && (
+            <div class="chat-list-img img-cover" >
+            </div>
+          )}
         </div>
       )) : 'Список сообщений пуст'}
-    </div>
+    </>
   )
 }
 

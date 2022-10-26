@@ -29,7 +29,7 @@ const CardsList = ({ uid, cabinetType, accountInfo, ActionFn }) => {
         setListings(res);
 
         if (res.length === 1) {
-          onActivateItem(res[res.length - 1].id);
+          onActivateItem([res[res.length - 1].id, res[res.length - 1].data.card_name]);
         }
 
         setLoading(false);
@@ -46,7 +46,7 @@ const CardsList = ({ uid, cabinetType, accountInfo, ActionFn }) => {
     onDeleteCards(listings, id, cabinetType).then(res => {
       setListings(res);
 
-      onActivateItem(res[res.length - 1].id);
+      onActivateItem([res[res.length - 1].id, res[res.length - 1].data.card_name]);
     });
     onDeleteMessage(id);
   }
@@ -56,9 +56,9 @@ const CardsList = ({ uid, cabinetType, accountInfo, ActionFn }) => {
     navigate(`/cabinet/${cabinetType}-edit/${listingId}`)
   }
 
-  const onActivateItem = (id) => {
-    if (accountInfo.currentCard !== id) {
-      const addUserInfo = { ...accountInfo, currentCard: id };
+  const onActivateItem = (el) => {
+    if (accountInfo.currentCard !== el) {
+      const addUserInfo = { ...accountInfo, currentCard: el };
       console.log(addUserInfo)
       saveInfo(addUserInfo, uid, 'users').then(() => {
         ActionFn('SET_INFO_ACCOUNT', addUserInfo);
@@ -76,16 +76,17 @@ const CardsList = ({ uid, cabinetType, accountInfo, ActionFn }) => {
         showAddBtn={true}
 
       >
+        <div className="add-cards-container">
+          <Link className="btn btn--orange-border cabinet-add-cards ico-in ico-in--left" to={`/cabinet/${cabinetType}-new`}>
+            <i></i>
+            <span>
+              Создать {cabinetType === 'resume' ? 'резюме' : 'вакансию'}
+            </span>
+          </Link>
+        </div>
         {loading ? 'loading' : listings.length > 0 ? (
           <>
-            <div className="add-cards-container">
-              <Link className="btn btn--orange-border cabinet-add-cards ico-in ico-in--left" to={`/cabinet/${cabinetType}-new`}>
-                <i></i>
-                <span>
-                  Создать {cabinetType === 'resume' ? 'резюме' : 'вакансию'}
-                </span>
-              </Link>
-            </div>
+
             <table>
               <thead>
                 <tr className="cards-account-head">
@@ -106,7 +107,7 @@ const CardsList = ({ uid, cabinetType, accountInfo, ActionFn }) => {
                         currentCard={accountInfo.currentCard}
                         onEdit={() => onEdit(listing.id)}
                         onDelete={() => deleteItem(listings, listing.id)}
-                        onActivate={() => onActivateItem(listing.id)}
+                        onActivate={() => onActivateItem([listing.id, listing.data.card_name])}
                         cabinetType={cabinetType}
 
                       />

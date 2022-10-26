@@ -36,7 +36,7 @@ const Authorization = ({ uid, formData, fieldsAuthorization }) => {
               btnSaveText="Авторизация"
               objFields={fieldsAuthorization}
               orderFields={fieldsAuthorization.order}
-              onSubmitProps={onSubmitIn}
+              onSubmitIn={onSubmitIn}
               formClassAdd='form-default'
               btnClass='btn--orange'
               sending={true}

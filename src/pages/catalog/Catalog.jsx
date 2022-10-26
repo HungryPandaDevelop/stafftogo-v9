@@ -31,6 +31,10 @@ const Catalog = ({ listingType, listingSearch, uid, currentCard, cabinetType, ac
 
       let data = filterMain(listingSearch, res);
 
+      accountInfo.hideMass && accountInfo.hideMass.forEach(el => {
+        data = data.filter(item => item.id !== el)
+      })
+
       setListings(data);
       setLoading(false);
     });

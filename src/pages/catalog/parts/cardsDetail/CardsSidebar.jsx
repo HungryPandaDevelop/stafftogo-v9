@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react';
+import { Link } from "react-router-dom"
 
 import BtnLike from 'pages/catalog/parts/cardsItem/BtnLike';
+import BtnHide from 'pages/catalog/parts/cardsItem/BtnHide';
 
 
-import view from 'front-end/images/icons/hide-view-white.svg';
 import download from 'front-end/images/icons/download-white.svg';
 import print from 'front-end/images/icons/print-white.svg';
 
 
-const CardsSidebar = ({ listing, imgCards, toPdf, handlePrint, uid, cabinetType, listingType }) => {
+const CardsSidebar = ({ listing, imgCards, toPdf, handlePrint, uid, cabinetType, listingType, elementId }) => {
 
 
   const [viewSidebar, setViewSidebar] = useState(false);
@@ -62,16 +63,22 @@ const CardsSidebar = ({ listing, imgCards, toPdf, handlePrint, uid, cabinetType,
           {(uid && listingType != cabinetType) && (
             <BtnLike
               listing={listing}
+              elementIdDetail={elementId}
             />
           )}
-          <div className="sidebar-btn"> <span>Спрятать</span><img src={view} alt="" /></div>
+          {(uid) && (
+            <BtnHide
+              listing={listing}
+              elementIdDetail={elementId}
+            />
+          )}
           <div className="sidebar-btn"
             onClick={() => { toPdf(listing.card_name, listing.userInfo.fio) }}
           > <span>Скачать</span><img src={download} alt="" /></div>
           <div className="sidebar-btn" onClick={handlePrint}> <span>Распечатать</span><img src={print} alt="" /></div>
         </div>
         <div className="btn-container">
-          <div className="btn btn--green-border">Видеочат</div>
+          <Link to={`/cabinet/videochat/${listing.userRef}`} className="btn btn--green-border">Видеочат</Link>
           <div className="btn btn--green-border">
             Чат</div>
           <div className="btn btn--green-border">Откликнуться</div>

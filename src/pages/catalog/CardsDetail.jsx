@@ -29,7 +29,6 @@ const CardsDetail = ({ uid, cabinetType, listingType }) => {
   const refContent = useRef(null);
 
   const toPdf = (namecards, nameaccount) => {
-    console.log(namecards, nameaccount)
     // норм решение но не работает с картинкой fb
     htmlToImage.toPng(refContent.current, { quality: 0.95 })
       .then(function (dataUrl) {
@@ -98,6 +97,7 @@ const CardsDetail = ({ uid, cabinetType, listingType }) => {
               uid={uid}
               cabinetType={cabinetType}
               listingType={listingType}
+              elementId={params.elementId}
             />
           </div>
         </div>

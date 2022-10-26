@@ -25,7 +25,7 @@ const RoomList = ({ uid }) => {
 
 
   return (
-    <div>
+    <div className='chat-list'>
       {rooms && rooms.map(room => <RoomItem key={room.id} room={room} />)}
     </div>
   )

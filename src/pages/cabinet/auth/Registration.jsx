@@ -43,7 +43,7 @@ const Registration = (props) => {
               btnSaveText="Регистрация"
               objFields={props.fieldsRegistration}
               orderFields={props.fieldsRegistration.order}
-              onSubmitProps={onSubmitIn}
+              onSubmitIn={onSubmitIn}
               formClassAdd='form-default'
               sending={true}
               btnClass='btn--orange'
