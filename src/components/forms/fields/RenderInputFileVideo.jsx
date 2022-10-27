@@ -5,12 +5,6 @@ import { Field } from 'redux-form';
 
 import storeImage from 'hooks/storeImage';
 
-import avatarBlack from 'front-end/images/icons/avatar-black.svg'
-import photoIco from 'front-end/images/icons/cabinet/photo-add-black.svg'
-
-// import userIco from 'front-end/images/icons/avatar-black.svg';
-// import photoIco from 'front-end/images/icons/photo-add-black.svg';
-
 const TemplateFile = (props) => {
 
   const elRef = useRef();
@@ -18,8 +12,9 @@ const TemplateFile = (props) => {
   const {
     input,
     label,
+    labelSecond,
     maxSize,
-    typeFile,
+    textEmpty
   } = props;
 
   const [nameFile, setNameFile] = useState('');
@@ -64,27 +59,25 @@ const TemplateFile = (props) => {
   }
 
   return (
-    <>
-      {label && <b>{label}</b>}
-      <div className='input-photo'>
-        <div
-          className="input-file-container"
-        >
-          {loadingFile === true && <div className="preloader"></div>}
-          <input ref={elRef} type="text" {...input} value={nameFile} className="input-file" />
-          <input type="file" onChange={onChange} className="input-file" accept=".jpg, .jpeg, .png" />
-        </div>
-
-        {!nameFile && <>
-          <img src={avatarBlack} alt="" className="input-user-ico" />
-          <img src={photoIco} alt="" className="input-photo-ico" />
-        </>}
+    <div className='form-line'>
+      {label && <label className="col-12"><b>{label}</b><span>{labelSecond}</span></label>}
+      <div
+        className="file-input-container"
+      >
+        {loadingFile === true && <div className="preloader"></div>}
+        {!nameFile && <div className="file-decorate"><span>{textEmpty}</span><i></i></div>}
+        <input ref={elRef} type="text" {...input} value={nameFile} className="input-file" />
+        <input type="file" onChange={onChange} className="input-file" accept='video/mp4' />
         {nameFile && (
-          <div className='input-photo-uploaded' style={{ backgroundImage: `url(${nameFile})` }}>
-            <div className='input-photo-clear' onClick={() => { deleteFile() }}></div>
+          <div className='file-uploaded'>
+            <video className='file-uploaded-container' width="400" height="300" controls="controls" >
+              <source src={nameFile} type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+            </video>
+            <div className='file-uploaded-delete' onClick={() => { deleteFile() }}>delete</div>
           </div>
         )}
-      </div></>
+      </div>
+    </div>
   )
 }
 

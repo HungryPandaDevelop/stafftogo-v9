@@ -20,22 +20,22 @@ const Chat = ({ uid, roomId }) => {
 
     <TemplateAccount title='Чат' addWrapClass='cabinet-account-chat'>
       <div className="main-grid">
-        <div className="col-3">
+        <div className="col-3 chat-cell">
           <RoomList uid={uid} roomId={roomId} />
         </div>
-        <div className="col-9">
+        <div className="col-9 chat-cell">
           <div className="chat-messages">
-            <div class="chat-messages-head">
-              <div class="chat-list-img img-cover" >
+            <div className="chat-messages-head">
+              <div className="chat-list-img img-cover" >
               </div>
-              <div class="chat-list-cardsname">React Разработчик</div>
-              <div class="chat-list-accountname">Cotton Club</div>
+              <div className="chat-list-cardsname">React Разработчик</div>
+              <div className="chat-list-accountname">Cotton Club</div>
             </div>
             {!params.roomId && !roomId ? 'Выберете окно чата' : (
-              <div className='chat-messages-list'>
+              <>
                 <Messages uid={uid} />
                 <ChatForm uid={uid} />
-              </div>
+              </>
 
             )}
           </div>

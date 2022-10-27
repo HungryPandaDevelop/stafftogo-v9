@@ -1380,23 +1380,42 @@ section {
 
 /*-custom-select-*/
 /*-file-upload-*/
-.file-input-container {
+.file-input-container,
+.file-input-item {
   position: relative;
-  overflow: hidden;
 }
 
 .input-file {
-  visibility: hidden;
+  opacity: 0;
+  width: 100%;
   position: absolute;
-  margin-top: -20px;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+
+.input-file-second {
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
 
 .file-decorate {
-  border: 1px solid;
-  border-top: 0;
-  position: relative;
-  padding: 5px;
   cursor: pointer;
+  padding: 9px 12px;
+  border: 0;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 500;
+  resize: none;
+  width: 100%;
+  background: none;
+  color: #202020;
+  border-radius: 30px;
+  -webkit-box-shadow: rgba(38, 57, 77, 0.6) 0px 10px 40px -10px;
+          box-shadow: rgba(38, 57, 77, 0.6) 0px 10px 40px -10px;
+  border: 1px solid #ffffff;
 }
 .file-decorate span {
   padding-left: 25px;
@@ -1405,15 +1424,15 @@ section {
 }
 .file-decorate span::before {
   content: "";
-  width: 15px;
+  width: 20px;
   position: absolute;
-  height: 15px;
+  height: 20px;
   left: 0;
-  top: 0;
+  top: 2px;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: contain;
-  background-image: url("../images/controls/arrow-right-black.svg");
+  background-size: 20px;
+  background-image: url("../images/icons/file.svg");
 }
 .file-decorate i {
   width: 30px;
@@ -1461,6 +1480,23 @@ section {
   padding: 5px;
   border: 1px solid;
   border-bottom: 0;
+}
+
+.file-uploaded {
+  position: relative;
+  font-size: 0;
+  max-width: 300px;
+  -webkit-box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+          box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.file-uploaded-container {
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+}
+.file-uploaded-container img {
+  width: 100%;
 }
 
 /*-file-upload-*/
@@ -1552,7 +1588,9 @@ section {
   -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 9px 12px;
           box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 9px 12px;
 }
-.input-photo .input-photo-clear {
+
+.file-uploaded-delete,
+.input-photo-clear {
   width: 30px;
   position: absolute;
   height: 30px;
@@ -1570,8 +1608,10 @@ section {
   background-image: url("../images/controls/close-white.svg");
   -webkit-transition: ease-out 0.25s;
   transition: ease-out 0.25s;
+  cursor: pointer;
 }
-.input-photo .input-photo-clear:hover {
+.file-uploaded-delete:hover,
+.input-photo-clear:hover {
   background-color: #ffffff;
   background-image: url("../images/controls/close-red.svg");
   border-color: #ed1834;
@@ -4949,7 +4989,8 @@ footer .create {
   position: relative;
   width: 80%;
 }
-.cards-face-container .cards-face {
+.cards-face-container .cards-face,
+.cards-face-container .empty-face {
   width: 100%;
   height: inherit;
   padding-bottom: 100%;
@@ -6512,9 +6553,44 @@ footer,
     width: 100%;
   }
 }
+.cabinet-account-chat {
+  height: calc(100vh - 360px);
+}
+.cabinet-account-chat .main-grid {
+  height: 100%;
+  min-height: 0;
+}
+
 .chat-list {
   border-right: 1px solid #C4C4C4;
   height: 100%;
+  position: relative;
+  overflow-y: auto;
+}
+.chat-list::-webkit-scrollbar {
+  height: 12px;
+  width: 8px;
+  background: #C4C4C4;
+}
+.chat-list::-webkit-scrollbar-thumb {
+  background: #777;
+  border-radius: 1ex;
+}
+.chat-list::-webkit-scrollbar-corner {
+  background: #777;
+}
+
+.chat-cell {
+  height: 100%;
+  min-height: 0;
+}
+
+.chat-messages {
+  height: 100%;
+}
+
+.chat-messages-list {
+  height: calc(100% - 170px);
 }
 
 .cabinet-account-chat {
@@ -6571,7 +6647,6 @@ footer,
 
 .chat-messages-list {
   padding: 15px;
-  max-height: calc(100vh - 460px);
   position: relative;
   overflow-y: auto;
 }
@@ -6653,7 +6728,8 @@ footer,
   left: auto;
   right: -5px;
 }
-.own-messages .chat-messages-date {
+
+.chat-messages-date {
   font-size: 14px;
 }
 
@@ -6662,10 +6738,13 @@ footer,
   border-top: 1px solid #C4C4C4;
 }
 .chat-messages-form .btn-chat-send {
-  margin: auto 0;
+  margin: auto;
+  margin-right: 0;
+  min-width: auto;
+  font-size: 0;
 }
 .chat-messages-form .btn-container {
-  text-align: right;
+  padding-left: 15px;
 }
 
 /*-----cabinet-end-----*/

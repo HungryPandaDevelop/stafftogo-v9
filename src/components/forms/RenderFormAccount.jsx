@@ -28,7 +28,8 @@ import RenderInputMulty from './fields/RenderInputMulty'; // поле селек
 
 // import RenderInputAddition from './fields/RenderInputAddition'; // поле с добавлением полей 
 
-import RenderInputFileNew from './fields/RenderInputFileNew'; // поле с добавлением поля! 
+import RenderInputFile from './fields/RenderInputFile'; // поле с добавлением поля! 
+import RenderInputFileVideo from './fields/RenderInputFileVideo'; // поле с добавлением поля! 
 
 import RenderInputFilePhoto from './fields/RenderInputFilePhoto'; // поле с добавлением поля! 
 
@@ -195,14 +196,24 @@ const TemplateForm = (props) => {
           );
         case 'file':
           return (
-            <RenderInputFileNew
+            <RenderInputFile
+              name={obj.name}
+              label={obj.label}
+              labelSecond={obj.labelSecond}
+              typeAccept={obj.typeAccept}
+              maxSize={obj.maxSize}
+              textEmpty={obj.textEmpty}
+            />
+          );
+        case 'fileVideo':
+          return (
+            <RenderInputFileVideo
               name={obj.name}
               label={obj.label}
               labelSecond={obj.labelSecond}
               allFields={obj.allFields}
               typeUpload={obj.typeUpload}
               maxSize={obj.maxSize}
-              typeFile={obj.typeFile}
               textEmpty={obj.textEmpty}
             />
           );
@@ -268,7 +279,7 @@ const TemplateForm = (props) => {
           }
         </div>
       ))}
-      <div className={btnWrapClass}>
+      <div className={btnWrapClass && btnWrapClass}>
         {renderBtnSubmit()}
         {cabinetBack && <Link to={`/cabinet/${cabinetBackLink}`} className="btn btn--red-border ico-in ico-in--left btn-cancel "><i></i><span>Отменить</span></Link>}
       </div>

@@ -1,6 +1,7 @@
 import _ from "lodash";
 
 import Moment from 'react-moment';
+import moment from 'moment';
 
 import { connect } from 'react-redux';
 import ActionFn from 'store/actions';
@@ -40,8 +41,12 @@ const Messages = ({ roomId, uid, roomUpdate }) => {
 
   }
 
+  const getTime = (time) => {
+    return moment.unix(time).format("MM.DD.YYYY HH:mm");
+  }
+
   return (
-    <>
+    <div className='chat-messages-list'>
       {result ? result.map((item, index) => (
         <div className={`chat-messages-item ${uid === item.uid && 'own-messages'}`} key={index} >
           {uid !== item.uid && (
@@ -49,8 +54,11 @@ const Messages = ({ roomId, uid, roomUpdate }) => {
             </div>
           )}
           <div className="chat-messages-body">
-            <div className="chat-messages-date">{item.text}</div>
-            <div className="chat-messages-text"> {<Moment unix>{item.timestamp.seconds}</Moment>}</div>
+            <div className="chat-messages-date">
+              {getTime(item.timestamp.seconds)}
+
+            </div>
+            <div className="chat-messages-text">{item.text}</div>
           </div>
           {uid === item.uid && (
             <div class="chat-list-img img-cover" >
@@ -58,7 +66,7 @@ const Messages = ({ roomId, uid, roomUpdate }) => {
           )}
         </div>
       )) : 'Список сообщений пуст'}
-    </>
+    </div>
   )
 }
 

@@ -5,7 +5,6 @@ import { getListing } from 'store/asyncActions/getListing';
 import RoomItem from 'pages/cabinet/chat/RoomItem';
 
 
-
 const RoomList = ({ uid }) => {
 
 

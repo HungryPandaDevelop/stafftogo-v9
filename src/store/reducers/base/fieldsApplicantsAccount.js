@@ -20,7 +20,7 @@ export default function(){
         {name:"Соискатель",value:"resume"},
         {name:"Компания", value:"vacancies"},
       ],
-      wrapClass: "col-5 col-offset-3  account-itemы"
+      wrapClass: "col-5 col-offset-3  account-item"
     },
     gender: {
       type:"radio",

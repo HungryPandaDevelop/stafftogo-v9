@@ -49,7 +49,7 @@ const AccountEdit = ({
             initialValues={userInfo}
             onSubmitIn={onSubmitIn}
             sending={true}
-            btnWrapClass="col-9 col-offset-3 btn-container"
+            btnWrapClass={userInfo.typeCabinet === 'resume' ? "col-9 col-offset-3  btn-container" : "col-9  btn-container"}
             btnClass='btn-save btn--green ico-in ico-in--left'
             formClassAdd="main-grid"
             cabinetBack={true}

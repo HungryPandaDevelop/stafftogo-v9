@@ -1,21 +1,22 @@
 export default function(){
   return {
     order: [
-      "typeCabinet",
       "titleOne",
-      "name","email",
-      "typeEmployer",
-      "name_company",
+      "imgsAccount",
+      "accountName",
+      "email",
       "site_company",
+      "typeEmployer",
+      "phones",
+      "typeCabinet",
       "typeJob",
       "description_company",
-      "imgsAccount",
       "num_workers",
+      "videoCompany",
       "titleTwo", 
       "legalNameCompany",
       "centralOffice",
       "how_get",
-      "phones",
       "inn_company",
       "kpp",
       "bank",
@@ -24,7 +25,7 @@ export default function(){
       "pc",
       "legal_address", 
       "closeDoc",
-      "videoCompany"
+
     ],
     typeCabinet: {
       type:"switch",
@@ -34,27 +35,28 @@ export default function(){
         {name:"Соискатель",value:"resume"},
         {name:"Компания", value:"vacancies"},
       ],
+      wrapClass: "col-5 account-item"
     },
-    name_company: { 
-      type:"text", 
-      name: "name_company", 
-      label: "Наименование компании", 
-      labelSecond:"(Так наименование компании будет отображатся в вакансиях)", 
-      placeholder: "Наименование компании", 
-      
+    accountName: { 
+      type:"text" ,
+      name: "accountName", 
+      label: "Название компании", 
+      wrapClass: "col-5 account-item" 
     },
     email: { 
       type:"text" ,
       name: "email", 
       label: "Почта", 
       placeholder: "Почта", 
-      disabled: 0
+      disabled: 0,
+      wrapClass: "col-5 account-item"
     },
     site_company: { 
       type:"text",  
       name: "site_company", 
       label: "Сайт компании", 
-      placeholder: "Доменное имя вашего сайта ", 
+      placeholder: "Доменное имя вашего сайта ",
+      wrapClass: "col-5 col-offset-3  account-item"
     },
     num_workers: { 
       type:"text", 
@@ -62,64 +64,74 @@ export default function(){
       label: "Количество сотрудников", 
       labelSecond:"(Указывается число сотрудников в цифровом эквиваленте)", 
       placeholder: "Введите цифру от 1", 
-      typeField: "number"
+      typeField: "number",
+      wrapClass: "col-12 account-item"
     },
     kpp: { 
       type:"text",
       name: "kpp", 
       label: "КПП компании", 
-      placeholder: "Кпп",  
+      placeholder: "Кпп",
+      wrapClass: "col-12 account-item"  
     },
     inn_company: { 
       type:"text", 
       name: "inn_company", 
       label: "ИНН компании", 
-      placeholder: "ИНН компании", 
+      placeholder: "ИНН компании",
+      wrapClass: "col-12 account-item", 
     },
     bank: { 
       type:"text",
       name: "bank", 
       label: "Банк", 
-      placeholder: "Банк", 
+      placeholder: "Банк",
+      wrapClass: "col-12 account-item" 
     },
     bik: { 
       type:"text", 
       name: "bik", 
       label: "БИК",
-      placeholder: "БИК", 
+      placeholder: "БИК",
+      wrapClass: "col-12 account-item" 
     },
     kc: { 
       type:"text", 
       name: "kc", 
       label: "К/С", 
-      placeholder: "К/С", 
+      placeholder: "К/С",
+      wrapClass: "col-12 account-item" 
       
     },
     pc: { 
       type:"text",  
       name: "pc", 
       label: "Р/С", 
-      placeholder: "Р/С", 
+      placeholder: "Р/С",
+      wrapClass: "col-12 account-item", 
     },
     legal_address: { 
       type:"text", 
       name: "legal_address", 
       label: "Юридический адрес", 
-      placeholder: "Юридический адрес", 
+      placeholder: "Юридический адрес",
+      wrapClass: "col-12 account-item" 
     },
     description_company: { 
       type:"textarea", 
       name: "description_company", 
       label: "Краткое описание компании", 
       placeholder: "Введите не более 500 символов (символы перестанут печататься, когда вы превысите лимит)", 
-      maxLength: 500
+      maxLength: 500,
+      wrapClass: "col-12 account-item"
     },
     how_get: { 
       type:"textarea", 
       name: "how_get", 
       label: "Как добраться до офиса", 
       placeholder: "Введите не более 500 символов (символы перестанут печататься, когда вы превысите лимит)", 
-      maxLength: 500
+      maxLength: 500,
+      wrapClass: "col-12 account-item"
     },
     
     closeDoc: { 
@@ -130,7 +142,8 @@ export default function(){
         { label: 'По почте', value: 'to_mail' },
         { label: 'По электронной почте', value: 'to_email' },
         { label: 'Документы не нужны', value: 'not' }
-      ]
+      ],
+      wrapClass: "col-12 account-item"
     },
     typeEmployer: { 
       type:"checkbox", 
@@ -139,16 +152,20 @@ export default function(){
       options: [
         { label: 'Прямой работодатель', value: 'direct' },
         { label: 'Кадровое агентство', value: 'agency' }
-      ] }
+      ] ,
+      wrapClass: "col-5 account-item"
+    }
       ,
     titleOne: {
       type:"title",
-      label:"Основная информация", 
+      label:"Основная информация",
+      wrapClass: "col-12 account-item" 
       
     },
     titleTwo: {
       type:"title",
       label:"Реквизиты компании",
+      wrapClass: "col-12 account-item" 
     },
     typeJob: {
       type: "list", 
@@ -176,14 +193,22 @@ export default function(){
         {label: "Фаст Фуд", value:"type_19"},
         {label: "Франчайзинг", value:"type_20"},
         {label: "Частная ферма", value:"type_21"},
-      ]
+      ],
+      wrapClass: "col-12 account-item"
     },
     phones: {
-      type: "additional", 
+      type: "complex", 
       name: "phones", 
-      label:"Телефоны", 
-      btnTextAdd:"+ Добавить еще один телефон", 
-      typeInner: "phone"
+      label:"Телефоны компании",  
+      wrapClass: "col-5 col-offset-3 account-item",
+      btnAddText: "Добавить телефон",
+      allFields: [
+        { 
+          type:"phone", 
+          name: "phones", 
+          wrapClass: "col-12" 
+        },
+      ],
     },
     legalNameCompany: {
       type: "multy", 
@@ -217,6 +242,7 @@ export default function(){
         },
 
       ],
+      wrapClass: "col-12 account-item"
     },
     centralOffice: { 
       type: "multy", 
@@ -243,23 +269,27 @@ export default function(){
           length: "col-6" 
         },
       ],
+      wrapClass: "col-12 account-item"
     },
     imgsAccount: {
-      type: "file", 
+      type: "photo", 
       name: "imgsAccount", 
-      label:"Загрузите логотип компании", 
-      labelSecond:"(JPG или PNG, вес не более 1 Mb, ширина/высота логотипа не менее 320 px)", 
+      label:"Фото профиля", 
+      labelSecond:"(Изображение формата jpg,png не менее 150x150 px, не более 8Мб)", 
       typeFile: "img", 
       typeUpload:".png, .jpg, .jpeg", 
-      maxSize: 1000000, 
-      textEmpty: "На данный момент логотип не выбран"
+      maxSize: 5242880, 
+      textEmpty: "На данный момент фоно не выбрано",
+      wrapClass: "col-2 col-lg-3 col-sm-5 input-photo-container"
     },
     videoCompany: {
-      type: "file",
+      type: "fileVideo",
       name: "videoCompany",
       label:"Загрузите видеоприветствие", 
-      typeFile: "video", 
-      textEmpty:"На данный момент видео не выбрано"
+      typeAccept: ".jpg, .jpeg, .png", 
+      textEmpty:"На данный момент видео не выбрано",
+      wrapClass: "col-12 account-item",
+      maxSize: 104857600
     },
     typeCompany: {
       type: "select",
@@ -270,7 +300,8 @@ export default function(){
         {name:"ООО", value:"ooo"}, 
         {name:"ЗАО", value:"zao"} ,
         {name:"ИП", value:"ip"}
-      ]
+      ],
+      wrapClass: "col-12 account-item"
     },
   }
 }

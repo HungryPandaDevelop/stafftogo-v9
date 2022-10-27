@@ -1,6 +1,7 @@
-import { Field, FieldArray } from 'redux-form';
+import { FieldArray } from 'redux-form';
 
 import RenderInputText from './RenderInputText'; // поле стандартное
+import RenderInputPhone from './RenderInputPhone'; // поле стандартное
 import RenderInputDate from './RenderInputDate'; // поле стандартное
 
 import RenderInputTextarea from './RenderInputTextarea'; // поле текста
@@ -22,6 +23,15 @@ const TemplateInputComplex = ({ allFields, fields, btnAddText }) => {
                 className='input-decorate'
                 name={`${hobbyParam}.${item.name}`}
                 placeholder={item.placeholder}
+              />
+            </div>
+          )
+        case 'phone':
+          return (
+            <div key={index} className={item.wrapClass}>
+              <RenderInputPhone
+                className='input-decorate'
+                name={`${hobbyParam}.${item.name}`}
               />
             </div>
           )

@@ -20,20 +20,24 @@ import { db } from 'firebase.config';
 
 
 
-const createRoom = async (ownId, hisId, masterId, invitedId, hisInvitingName, ownInvitedName) => {
-
+const createRoom = async (
+  listingId, 
+  uid, 
+  invitedUid, 
+  hisInvitingName, 
+  hisInvitingImg, 
+  ownInvitedName) => {
+    console.log('hisInvitingImg', hisInvitingImg)
 
   //if(querySnap.docs.length === 0){
     try {
       const sendData = {
-        interlocutors: [masterId, invitedId],
-        cardsConnect: [ownId, hisId],
+        interlocutors: [uid, invitedUid],
         timestamp: serverTimestamp(),
-        ownId: ownId,
-        hisId: hisId,
-        masterId: masterId,
-        invitedId: invitedId,
+        listingId: listingId,
+        uid: uid,
         hisInvitingName: hisInvitingName,
+        hisInvitingImg: hisInvitingImg,
         ownInvitedName: ownInvitedName,
         invite: 'view',
         messages:{}

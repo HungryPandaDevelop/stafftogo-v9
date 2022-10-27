@@ -42,7 +42,7 @@ export const getListing = async (baseName, uid, type) => {
   else if(type==='invite'){
     q = query(
       listingsRef,
-      where("masterId", "==", uid),
+      where("uid", "==", uid),
       //where('idLike', '==', 'Ks8AALPMJ0MkLl888A9jSBr2IaC3'),
       // where('userRef', '==', 'YpguqFwp1YeEFrQlQeJHaRWVKar1'),
       // orderBy('timestamp', 'desc'),

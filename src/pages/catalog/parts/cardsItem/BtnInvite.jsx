@@ -11,8 +11,17 @@ const BtnInvite = ({ currentCard, listing, uid, invited, ActionFn }) => {
   let inviteStatus = invited && invited.includes(listing.id);
 
   const onInvite = () => {
-
-    !inviteStatus && createRoom(currentCard[0], listing.id, uid, listing.data.userRef, listing.data.card_name, currentCard[1]).then(() => {
+    const img = listing.data.userInfo.imgsAccount ? listing.data.userInfo.imgsAccount : '';
+    console.log('img', img)
+    !inviteStatus && createRoom(
+      listing.id,
+      uid,
+      listing.data.userRef,
+      listing.data.card_name,
+      listing.data.userInfo.imgsAccount,
+      img,
+      currentCard[1]
+    ).then(() => {
       // console.log(currentCard, listing.id, uid, listing.data.userRef);
       ActionFn('UPDATE_ROOM', true);
     });

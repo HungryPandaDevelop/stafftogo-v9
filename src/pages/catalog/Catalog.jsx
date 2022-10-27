@@ -46,7 +46,7 @@ const Catalog = ({ listingType, listingSearch, uid, currentCard, cabinetType, ac
 
     uid && getListing('message', uid, 'invite').then(res => {
 
-      setInvited(res.map(el => el.data.hisId));
+      setInvited(res.map(el => el.data.listingId));
       ActionFn('UPDATE_ROOM', false);
     });
 

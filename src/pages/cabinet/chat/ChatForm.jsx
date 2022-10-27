@@ -20,18 +20,18 @@ const ChatForm = ({ formData, fieldsChat, roomId, uid }) => {
   }
 
   return (
-    <>
+    <div className="chat-messages-form" >
       <RenderFormAccount
-        formClassAdd="chat-messages-form main-grid"
+        formClassAdd=" main-grid"
         btnSaveText="Отправить"
         objFields={fieldsChat}
         orderFields={fieldsChat.order}
-        btnClass='btn--green'
+        btnClass='btn-chat-send'
         onSubmitIn={onSubmitIn}
         btnWrapClass='btn-container col-1'
         sending={true}
       />
-    </>
+    </div >
   )
 }
 
