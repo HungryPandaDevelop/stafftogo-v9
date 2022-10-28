@@ -48,6 +48,7 @@ import ResumeEdit from 'pages/cabinet/resume/ResumeEdit';
 // Страницы кабинет Соискателя
 
 import Liked from 'pages/cabinet/liked/Liked';
+import Hidden from 'pages/cabinet/hidden/Hidden';
 import Invitations from 'pages/cabinet/invitations/Invitations';
 import Responses from 'pages/cabinet/responses/Responses';
 
@@ -104,6 +105,7 @@ const ScrollToTop =(props) => {
 
 
               <Route path='/cabinet/liked/' element={<Liked/>}></Route>
+              <Route path='/cabinet/hidden/' element={<Hidden/>}></Route>
               <Route path='/cabinet/invitations/' element={<Invitations/>}></Route>
               <Route path='/cabinet/responses/' element={<Responses/>}></Route>
 

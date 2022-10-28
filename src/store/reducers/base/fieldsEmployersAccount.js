@@ -221,16 +221,16 @@ export default function(){
           length: "col-6", 
           placeholder: "Общество с ограниченной ответственностью",
           options: [
-            {name:"ООО", value:"type1"}, 
-            {name:"ЗАО", value:"type2"}, 
-            {name:"ОАО", value:"type3"}, 
-            {name:"ИП", value:"type4"} ,
-            {name:"УП", value:"type5"}  , 
-            {name:"Общ. орг.", value:"type6"}  , 
-            {name:"Некорм. орг.", value:"type7"}  , 
-            {name:"Гос. уч.", value:"type8"}  , 
-            {name:"АО", value:"type9"}  , 
-            {name:"ПАО", value:"type10"}  , 
+            {label:"ООО", value:"type1"}, 
+            {label:"ЗАО", value:"type2"}, 
+            {label:"ОАО", value:"type3"}, 
+            {label:"ИП", value:"type4"} ,
+            {label:"УП", value:"type5"}  , 
+            {label:"Общ. орг.", value:"type6"}  , 
+            {label:"Некорм. орг.", value:"type7"}  , 
+            {label:"Гос. уч.", value:"type8"}  , 
+            {label:"АО", value:"type9"}  , 
+            {label:"ПАО", value:"type10"}  , 
             
           ]
         },
@@ -255,11 +255,11 @@ export default function(){
           length: "col-6", 
           placeholder: "Город",
           options: [
-            {name:"Москва", value:"type1"}, 
-            {name:"Санкт-Петербург", value:"type2"}, 
-            {name:"Казань", value:"type3"}, 
-            {name:"Сочи", value:"type4"}  , 
-            {name:"Севастополь", value:"type5"}
+            {label:"Москва", value:"type1"}, 
+            {label:"Санкт-Петербург", value:"type2"}, 
+            {label:"Казань", value:"type3"}, 
+            {label:"Сочи", value:"type4"}  , 
+            {label:"Севастополь", value:"type5"}
           ]
         },
         { 

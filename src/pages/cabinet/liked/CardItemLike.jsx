@@ -1,31 +1,51 @@
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { getSingleListing } from 'store/asyncActions/getSingleListing';
+import { saveInfo } from 'store/asyncActions/saveInfo';
 
-const CardItemLike = ({ like, typeCabinet }) => {
 
-  const [data, setData] = useState(false);
-  const reverseTypeCabinet = (typeCabinet === 'vacancies') ? 'resume' : 'vacancies';
-  useEffect(() => {
 
-    if (typeCabinet === 'vacancies') {
-      getSingleListing('resume', like).then(res => { setData(res); });
-    } else {
-      getSingleListing('vacancies', like).then(res => { setData(res); });
-    }
-    //
-  }, []);
+const CardItemLike = ({
+  like,
+  reverseTypeCabinet,
+  accountInfo,
+  ActionFn,
+
+}) => {
+
+
+  const onDeleteLike = (idElement) => {
+
+    const filterLike = accountInfo.likeMass.filter(like => like !== idElement);
+    const sendData = { likeMass: filterLike };
+
+    saveInfo(sendData, accountInfo.uid, 'users').then(() => {
+      ActionFn('SET_INFO_ACCOUNT', { ...accountInfo, likeMass: sendData.likeMass });
+    });
+
+    // currentLike.current.remove()
+
+  }
+
 
   return (
     <>
-      {data && (<div className="cards-cabinet-item main-full">
-        <h3>
-          <Link to={`/catalog/${reverseTypeCabinet}/${like}`}>{data.card_name}</Link>
-          <Link className='btn btn--orange' to={`/cabinet/videochat/videoroom-out/${data.userRef}`}>Позвонить {data.userInfo.name}</Link>
-        </h3>
-      </div>)}
+      <td>
+        <div className="cards-cabinet-item main-full">
+          <div className="cards-account-topic">
+            <Link to={`/catalog/${reverseTypeCabinet}/${like.id}`}>{like.data.card_name}</Link>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div className="btn-container">
+          <Link className='table-btn table-btn--call' to={`/cabinet/videochat/videoroom-out/${like.data.userRef}`}>
+            <span>{like.data.userInfo.accountName}</span>
+          </Link>
+          <div onClick={() => { onDeleteLike(like.id) }} className="table-btn table-btn--delete"></div>
+        </div>
+      </td>
     </>
   )
 }
 
 export default CardItemLike;
+

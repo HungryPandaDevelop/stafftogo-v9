@@ -65,16 +65,20 @@ const TemplateFile = (props) => {
         className="file-input-container"
       >
         {loadingFile === true && <div className="preloader"></div>}
-        {!nameFile && <div className="file-decorate"><span>{textEmpty}</span><i></i></div>}
-        <input ref={elRef} type="text" {...input} value={nameFile} className="input-file" />
-        <input type="file" onChange={onChange} className="input-file" accept='video/mp4' />
-        {nameFile && (
+
+        {nameFile ? (
           <div className='file-uploaded'>
             <video className='file-uploaded-container' width="400" height="300" controls="controls" >
               <source src={nameFile} type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
             </video>
             <div className='file-uploaded-delete' onClick={() => { deleteFile() }}>delete</div>
           </div>
+        ) : (
+          <>
+            <div className="file-decorate"><span>{textEmpty}</span><i></i></div>
+            <input ref={elRef} type="text" {...input} value={nameFile} className="input-file" />
+            <input type="file" onChange={onChange} className="input-file" accept='video/mp4' />
+          </>
         )}
       </div>
     </div>

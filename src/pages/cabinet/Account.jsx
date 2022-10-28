@@ -8,7 +8,8 @@ import TemplateAccount from 'pages/cabinet/parts/TemplateAccount';
 import defaultCardsImg from 'front-end/images/icons/avatar-light-gray.svg'
 const Account = ({
   checkingStatus,
-  userInfo
+  userInfo,
+  fields
 }) => {
 
 
@@ -51,6 +52,7 @@ const Account = ({
               userInfo={userInfo}
               renderImgCards={renderImgCards}
               formatPhone={formatPhone}
+              fields={fields}
             />
           )
         }
@@ -62,8 +64,9 @@ const Account = ({
 }
 
 const mapStateToProps = (state) => {
-
+  const fields = state.accountInfo.info.typeCabinet === 'vacancies' ? state.fieldsEmployersAccount : state.fieldsApplicantsAccount;
   return {
+    fields: fields,
     userInfo: state.accountInfo.info,
     checkingStatus: state.accountInfo.checkingStatus
   }

@@ -5,7 +5,7 @@ import { getListing } from 'store/asyncActions/getListing';
 import RoomItem from 'pages/cabinet/chat/RoomItem';
 
 
-const RoomList = ({ uid }) => {
+const RoomList = ({ uid, setCurrentInfoChat }) => {
 
 
   const [rooms, setRooms] = useState();
@@ -25,7 +25,7 @@ const RoomList = ({ uid }) => {
 
   return (
     <div className='chat-list'>
-      {rooms && rooms.map(room => <RoomItem key={room.id} room={room} />)}
+      {rooms && rooms.map(room => <RoomItem key={room.id} room={room} setCurrentInfoChat={setCurrentInfoChat} />)}
     </div>
   )
 }

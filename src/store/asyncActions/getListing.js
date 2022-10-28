@@ -89,6 +89,13 @@ export const getListing = async (baseName, uid, type) => {
       // limit(2)
     );
   }
+  else if(type==='liked'){
+
+    q = query(
+      listingsRef,
+      where('__name__', 'in', uid),
+    );
+  }
   else{
     q = query(
       listingsRef,

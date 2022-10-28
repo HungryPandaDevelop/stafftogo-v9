@@ -22,7 +22,7 @@ const Additional = ({ list }) => {
           filterList.push(item.label);
         }
       })
-    })
+    });
 
     return filterList.map((item, index) => (
       <li key={index}>{item}</li>

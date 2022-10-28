@@ -7,7 +7,7 @@ import RenderInputTextarea from './RenderInputTextarea'; // поле текст�
 
 import RenderInputSelectTrue from './RenderInputSelectTrue';
 
-
+// name={`${hobbyParam}.${item.name}`}
 const RenderInputMulty = (props) => {
 
   const { mainname, allFields, label, labelSecond } = props;
@@ -18,7 +18,7 @@ const RenderInputMulty = (props) => {
           <div key={index} className={field.length}>
             {field.label && <label><b>{field.label}</b></label>}
             <RenderInputText
-              name={mainname + '_' + field.name}
+              name={`${mainname}.${field.name}`}
               placeholder={field.placeholder}
             />
           </div>
@@ -28,7 +28,7 @@ const RenderInputMulty = (props) => {
           <div key={index} className={field.length}>
             {field.label && <label><b>{field.label}</b></label>}
             <RenderInputTextarea
-              name={mainname + '_' + field.name}
+              name={`${mainname}.${field.name}`}
               placeholder={field.placeholder}
             />
           </div>
@@ -38,7 +38,7 @@ const RenderInputMulty = (props) => {
           <div key={index} className={field.length}>
             {field.label && <label><b>{field.label}</b></label>}
             <RenderInputSelectTrue
-              name={mainname + '_' + field.name}
+              name={`${mainname}.${field.name}`}
               placeholder={field.placeholder}
               options={field.options}
             />

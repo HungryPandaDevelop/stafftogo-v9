@@ -8,7 +8,7 @@ import { Link, useParams } from 'react-router-dom';
 import defaultCardsImg from 'front-end/images/icons/avatar-light-gray.svg'
 
 
-const RoomItem = ({ room, uid, roomId, ActionFn }) => {
+const RoomItem = ({ room, uid, roomId, ActionFn, setCurrentInfoChat }) => {
 
   const params = useParams();
 
@@ -30,7 +30,10 @@ const RoomItem = ({ room, uid, roomId, ActionFn }) => {
   return (
     <Link
       to={`/cabinet/chat/${room.id}`}
-      onClick={() => { changeRoom(room.id) }}
+      onClick={() => {
+        changeRoom(room.id);
+        setCurrentInfoChat([room.ownInvitedName, room.ownInvitedNameAccount]);
+      }}
       className={`chat-list-item ${(roomId === room.id) && 'active'}`} >
       <div
         className="chat-list-img img-cover"
@@ -46,7 +49,7 @@ const RoomItem = ({ room, uid, roomId, ActionFn }) => {
               room.data.ownInvitedName
           }
         </div>
-        <div className="chat-list-accountname">OOO Рога и копыта</div>
+        <div className="chat-list-accountname">{room.data.hisInvitingNameAccount}</div>
       </div>
 
 

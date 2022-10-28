@@ -27,8 +27,8 @@ const CardsList = ({ uid, cabinetType, accountInfo, ActionFn }) => {
     getListing(cabinetType, uid, 'users').then(res => {
       if (isMounted) {
         setListings(res);
-
-        if (res.length === 1) {
+        console.log(res.length, accountInfo.currentCard)
+        if (res.length === 1 && !accountInfo.currentCard) {
           onActivateItem([res[res.length - 1].id, res[res.length - 1].data.card_name]);
         }
 
@@ -45,8 +45,11 @@ const CardsList = ({ uid, cabinetType, accountInfo, ActionFn }) => {
   const deleteItem = (listings, id) => {
     onDeleteCards(listings, id, cabinetType).then(res => {
       setListings(res);
-
-      onActivateItem([res[res.length - 1].id, res[res.length - 1].data.card_name]);
+      if (res.length > 1) {
+        onActivateItem([res[res.length - 1].id, res[res.length - 1].data.card_name]);
+      } else {
+        onActivateItem('');
+      }
     });
     onDeleteMessage(id);
   }
@@ -66,7 +69,7 @@ const CardsList = ({ uid, cabinetType, accountInfo, ActionFn }) => {
     }
   }
 
-
+  console.log(listings)
   return (
     <>
       <TemplateAccount

@@ -26,7 +26,12 @@ const createRoom = async (
   invitedUid, 
   hisInvitingName, 
   hisInvitingImg, 
-  ownInvitedName) => {
+  hisInvitingNameAccount,
+  ownInvitedName,
+  ownInvitedNameAccount,
+
+  
+  ) => {
     console.log('hisInvitingImg', hisInvitingImg)
 
   //if(querySnap.docs.length === 0){
@@ -38,7 +43,9 @@ const createRoom = async (
         uid: uid,
         hisInvitingName: hisInvitingName,
         hisInvitingImg: hisInvitingImg,
+        hisInvitingNameAccount:hisInvitingNameAccount,
         ownInvitedName: ownInvitedName,
+        ownInvitedNameAccount: ownInvitedNameAccount,
         invite: 'view',
         messages:{}
       }

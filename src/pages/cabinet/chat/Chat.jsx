@@ -1,4 +1,5 @@
 
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 // import { sendMessage } from 'store/asyncActions/getMessageAsync';
@@ -14,6 +15,7 @@ const Chat = ({ uid, roomId }) => {
 
   const params = useParams();
 
+  const [currentInfoChat, setCurrentInfoChat] = useState(null);
 
 
   return (
@@ -21,16 +23,19 @@ const Chat = ({ uid, roomId }) => {
     <TemplateAccount title='Чат' addWrapClass='cabinet-account-chat'>
       <div className="main-grid">
         <div className="col-3 chat-cell">
-          <RoomList uid={uid} roomId={roomId} />
+          <RoomList uid={uid} roomId={roomId} setCurrentInfoChat={setCurrentInfoChat} />
         </div>
         <div className="col-9 chat-cell">
           <div className="chat-messages">
-            <div className="chat-messages-head">
-              <div className="chat-list-img img-cover" >
+            {currentInfoChat && (
+              <div className="chat-messages-head">
+                <div className="chat-list-img img-cover" >
+                </div>
+                <div className="chat-list-cardsname">{currentInfoChat[0]}</div>
+                <div className="chat-list-accountname">{currentInfoChat[1]}</div>
               </div>
-              <div className="chat-list-cardsname">React Разработчик</div>
-              <div className="chat-list-accountname">Cotton Club</div>
-            </div>
+            )}
+
             {!params.roomId && !roomId ? 'Выберете окно чата' : (
               <>
                 <Messages uid={uid} />

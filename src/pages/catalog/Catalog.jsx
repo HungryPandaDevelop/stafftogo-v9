@@ -16,7 +16,7 @@ import filterMain from 'components/filterMain/filterMain';
 
 import Pagination from 'pages/catalog/Pagination';
 
-const Catalog = ({ listingType, listingSearch, uid, currentCard, cabinetType, accountInfo, roomUpdate, ActionFn }) => {
+const Catalog = ({ listingType, listingSearch, uid, cabinetType, accountInfo, roomUpdate, ActionFn }) => {
 
   const [listings, setListings] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -66,6 +66,7 @@ const Catalog = ({ listingType, listingSearch, uid, currentCard, cabinetType, ac
         <div className="main-full">
           {loading ? 'Loading list' : listings.length > 0 ? (
             <>
+
               <Pagination
                 listings={listings}
                 idCategory={listingType}
@@ -73,7 +74,6 @@ const Catalog = ({ listingType, listingSearch, uid, currentCard, cabinetType, ac
                 invited={invited}
                 uid={uid}
                 accountInfo={accountInfo}
-                currentCard={currentCard}
                 cabinetType={cabinetType}
               />
             </>
@@ -90,7 +90,6 @@ const Catalog = ({ listingType, listingSearch, uid, currentCard, cabinetType, ac
 const mapStateToProps = (state) => {
   return {
     listingSearch: state.listingSearchReducer,
-    currentCard: state.accountInfo.info.currentCard,
     roomUpdate: state.accountInfo.roomUpdate,
     uid: state.accountInfo.info.uid,
     accountInfo: state.accountInfo.info,

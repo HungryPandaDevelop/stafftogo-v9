@@ -10,9 +10,11 @@ const Pagination = ({
   listingType,
   invited,
   accountInfo,
-  currentCard,
   cabinetType,
   uid }) => {
+
+
+
 
   const Items = ({ currentItems }) => {
     return (
@@ -30,7 +32,6 @@ const Pagination = ({
                 invited={invited}
                 uid={uid}
                 accountInfo={accountInfo}
-                currentCard={currentCard}
                 cabinetType={cabinetType}
               />
             </div>

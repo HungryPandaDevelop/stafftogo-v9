@@ -4,7 +4,7 @@ import ActionFn from 'store/actions';
 
 import { createRoom } from 'store/asyncActions/inviteChat';
 
-const BtnInvite = ({ currentCard, listing, uid, invited, ActionFn }) => {
+const BtnInvite = ({ accountInfo, listing, uid, invited, ActionFn }) => {
 
 
 
@@ -12,15 +12,17 @@ const BtnInvite = ({ currentCard, listing, uid, invited, ActionFn }) => {
 
   const onInvite = () => {
     const img = listing.data.userInfo.imgsAccount ? listing.data.userInfo.imgsAccount : '';
-    console.log('img', img)
+    console.log('accountInfo', accountInfo)
     !inviteStatus && createRoom(
       listing.id,
       uid,
       listing.data.userRef,
       listing.data.card_name,
-      listing.data.userInfo.imgsAccount,
       img,
-      currentCard[1]
+      listing.data.userInfo.accountName,
+      accountInfo.currentCard[1],
+      accountInfo.accountName
+
     ).then(() => {
       // console.log(currentCard, listing.id, uid, listing.data.userRef);
       ActionFn('UPDATE_ROOM', true);

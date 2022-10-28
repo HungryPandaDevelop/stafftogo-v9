@@ -24,8 +24,13 @@ const ListItem = ({
       </td>
       <td>
         <div className="cards-item-salary">
-          {listing.salary_price && (<b>Р {listing.salary_price}</b>)}
-          {listing.salary_worktime && (<span>{listing.salary_worktime}</span>)}
+          {listing.salary && (
+            <>
+              <b>Р {listing.salary.price}</b>
+              <span>{listing.salary.worktime}</span>
+            </>
+          )}
+
         </div>
 
 

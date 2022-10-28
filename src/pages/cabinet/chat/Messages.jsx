@@ -14,7 +14,7 @@ const Messages = ({ roomId, uid, roomUpdate }) => {
 
   const [messages, setMessages] = useState([]);
   const [startSee, setStartSee] = useState(0);
-  const [loadingMessages, setLoadingMessages] = useState(true);
+
   useEffect(() => {
 
 

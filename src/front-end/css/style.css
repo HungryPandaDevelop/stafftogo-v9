@@ -1485,9 +1485,9 @@ section {
 .file-uploaded {
   position: relative;
   font-size: 0;
-  max-width: 300px;
   -webkit-box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
           box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  display: inline-block;
 }
 
 .file-uploaded-container {
@@ -1595,10 +1595,9 @@ section {
   position: absolute;
   height: 30px;
   z-index: 2;
-  left: 50%;
-  top: 100%;
-  -webkit-transform: translateX(-50%) translateY(-50%);
-          transform: translateX(-50%) translateY(-50%);
+  right: 0%;
+  top: 0%;
+  margin: -15px;
   border-radius: 100%;
   background-color: #ed1834;
   border: 2px solid #ffffff;
@@ -6170,6 +6169,15 @@ footer,
 .cabinet-nav .favorites-nav:hover i, .cabinet-nav .favorites-nav.active i {
   background-image: url(../images/icons/cabinet/favorites-white.svg);
 }
+.cabinet-nav .hidden-nav i {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url("../images/icons/cabinet/hidden-black.svg");
+}
+.cabinet-nav .hidden-nav:hover i, .cabinet-nav .hidden-nav.active i {
+  background-image: url(../images/icons/cabinet/hidden-white.svg);
+}
 .cabinet-nav .responses-nav i {
   background-position: center;
   background-repeat: no-repeat;
@@ -6521,9 +6529,20 @@ footer,
   background-size: 60%;
   background-image: url("../images/icons/cabinet/view-orange.svg");
 }
-.cards-account-container .table-btn--view.active {
+.cards-account-container .table-btn--view:hover, .cards-account-container .table-btn--view.active {
   background-color: #fba72a;
   background-image: url("../images/icons/cabinet/view-white.svg");
+}
+.cards-account-container .table-btn--call {
+  background-color: rgba(251, 167, 42, 0.1);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 60%;
+  background-image: url("../images/icons/cabinet/video-orange.svg");
+}
+.cards-account-container .table-btn--call:hover {
+  background-color: #fba72a;
+  background-image: url("../images/icons/cabinet/video-white.svg");
 }
 
 @media (max-width: 1280px) {
@@ -6610,6 +6629,7 @@ footer,
   cursor: pointer;
   -webkit-transition: ease-out 0.25s;
   transition: ease-out 0.25s;
+  text-decoration: none;
 }
 .chat-list-item:hover, .chat-list-item.active {
   background-color: rgba(3, 172, 159, 0.05);

@@ -3,16 +3,16 @@ import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import ActionFn from 'store/actions';
 
-import CardItemLike from 'pages/cabinet/liked/CardItemLike';
+import CardItemLike from 'pages/cabinet/hidden/CardItemHidden';
 import TemplateAccount from 'pages/cabinet/parts/TemplateAccount';
 
 import { getListing } from 'store/asyncActions/getListing';
 
-const Liked = ({ typeCabinet, accountInfo, ActionFn }) => {
+const Hidden = ({ typeCabinet, accountInfo, ActionFn }) => {
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
-  const [listings, setListings] = useState(null);
+  const [listings, setListings] = useState([]);
 
 
 
@@ -20,13 +20,18 @@ const Liked = ({ typeCabinet, accountInfo, ActionFn }) => {
 
   useEffect(() => {
     let isMounted = true;
-    console.log('render')
-    getListing(reverseTypeCabinet, accountInfo.likeMass, 'liked').then(res => {
-      if (isMounted) {
-        setListings(res);
-        setLoading(false);
-      }
-    });
+
+    if (accountInfo.hideMass && accountInfo.hideMass.length > 0) {
+      setLoading(true);
+      getListing(reverseTypeCabinet, accountInfo.hideMass, 'liked').then(res => {
+        if (isMounted) {
+          setListings(res);
+          setLoading(false);
+        }
+      });
+    } else {
+      setListings([]);
+    };
 
     return () => { isMounted = false };
   }, [accountInfo]);
@@ -47,10 +52,10 @@ const Liked = ({ typeCabinet, accountInfo, ActionFn }) => {
           {
             loading ? (<tr><td>Loading...</td></tr>) : (
               listings.length !== 0 ? (
-                listings.map((like, index) => (
+                listings.map((hide, index) => (
                   <tr key={index} >
                     <CardItemLike
-                      like={like}
+                      hide={hide}
                       reverseTypeCabinet={reverseTypeCabinet}
                       accountInfo={accountInfo}
                       ActionFn={ActionFn}
@@ -92,4 +97,4 @@ const mapStateToProps = (state) => {
 
 
 
-export default connect(mapStateToProps, { ActionFn })(Liked);
+export default connect(mapStateToProps, { ActionFn })(Hidden);
