@@ -1292,6 +1292,11 @@ section {
   border-color: #fba72a;
 }
 
+.error-hint {
+  color: #ed1834;
+  margin-top: 2px;
+}
+
 .form-default h2, .form-default h3 {
   margin: 0 0 15px;
 }
@@ -6441,7 +6446,7 @@ footer,
   text-align: left;
   border-bottom: 1px solid #C4C4C4;
 }
-.cards-account-container td {
+.cards-account-container .cards-account-topic {
   font-weight: 600;
 }
 .cards-account-container .cards-account-topic a {
@@ -6543,6 +6548,54 @@ footer,
 .cards-account-container .table-btn--call:hover {
   background-color: #fba72a;
   background-image: url("../images/icons/cabinet/video-white.svg");
+}
+.cards-account-container .status-btn-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  gap: 8px;
+  font-weight: 600;
+}
+.cards-account-container .status-btn {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 4px;
+  background-color: #C4C4C4;
+  font-size: 14px;
+  cursor: pointer;
+  -webkit-transition: ease-out 0.25s;
+  transition: ease-out 0.25s;
+}
+.cards-account-container .status-btn.active {
+  -webkit-box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+          box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+.cards-account-container .status-btn--roger {
+  background-color: rgba(3, 172, 159, 0.1);
+  color: #03ac9f;
+}
+.cards-account-container .status-btn--roger.active, .cards-account-container .status-btn--roger:hover {
+  background-color: #03ac9f;
+  color: #ffffff;
+}
+.cards-account-container .status-btn--turnoff {
+  background-color: rgba(237, 24, 52, 0.1);
+  color: #ed1834;
+}
+.cards-account-container .status-btn--turnoff.active, .cards-account-container .status-btn--turnoff:hover {
+  background-color: #ed1834;
+  color: #ffffff;
+}
+.cards-account-container .status-btn--considered {
+  background-color: rgba(251, 167, 42, 0.1);
+  color: #fba72a;
+}
+.cards-account-container .status-btn--considered.active, .cards-account-container .status-btn--considered:hover {
+  background-color: #fba72a;
+  color: #ffffff;
 }
 
 @media (max-width: 1280px) {

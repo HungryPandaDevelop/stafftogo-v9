@@ -1,29 +1,19 @@
-import { useEffect, useState } from 'react';
-
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getSingleListing } from 'store/asyncActions/getSingleListing';
 
 import { saveInfo } from 'store/asyncActions/saveInfo';
 
-const CardItemResponse = ({ listing, typeCabinet }) => {
-  // console.log(listing)
+
+
+import SimpleDateTime from 'react-simple-timestamp-to-date';
+
+const CardItemResponse = ({ listing, typeCabinet, onDelete }) => {
+
   const reverseTypeCabinet = (typeCabinet === 'vacancies') ? 'resume' : 'vacancies';
-  const [data, setData] = useState([]);
-  const [secData, setSecData] = useState([]);
+  const getTypeCabinetText = (cabinet) => { if (cabinet === 'vacancies') { return 'вакансию' } else { return 'резюме' }; };
   const [status, setChangeStatus] = useState(listing.data.status);
 
 
-  useEffect(() => {
-    if (typeCabinet === 'vacancies') {
-      getSingleListing('resume', listing.data.ownId).then(res => setData(res));
-      getSingleListing('vacancies', listing.data.hisId).then(res => setSecData(res));
-
-    } else {
-      getSingleListing('vacancies', listing.data.ownId).then(res => setData(res));
-      getSingleListing('resume', listing.data.hisId).then(res => setSecData(res));
-    }
-    //
-  }, []);
 
   const onChangeStatus = (statusParam) => {
     if (status !== statusParam) {
@@ -36,22 +26,46 @@ const CardItemResponse = ({ listing, typeCabinet }) => {
   const tagreender = (tags) => {
     return tags.map((el, index) => (
       <div key={index}
-        className={`tag-invite ${el[2]} ${status === el[0] ? 'active' : ''}`}
+        className={`status-btn status-btn--${el[0]} ${status === el[0] ? 'active' : ''}`}
         onClick={() => onChangeStatus(el[0])}
       >{el[1]}
       </div>
     ))
   }
 
+
+
   return (
-    <div className="cards-cabinet-item main-full">
-      {console.log(typeCabinet, listing.data.ownId, data)}
-      <h3>Отклик на <Link to={`/catalog/${reverseTypeCabinet}/${listing.data.hisId}`}>{data.card_name}</Link> От <Link to={`/catalog/${typeCabinet}/${listing.data.ownId}`}>{secData.card_name}</Link>
-      </h3>
-      <div>
-        {tagreender([['agree', 'Согласен', 'green'], ['refuse', 'Отказать', 'red'], ['view', 'Рассматривается', 'yellow']])}
-      </div>
-    </div>
+    <tr>
+      <td>
+        Вас пригласили на
+        <div className="cards-account-topic">
+          {getTypeCabinetText(reverseTypeCabinet)}  <Link to={`/catalog/${reverseTypeCabinet}/${listing.data.owmListingId}`}>{listing.data.ownInvitedName}</Link>
+        </div>
+        По резюме {listing.data.hisInvitingName}
+      </td>
+      <td>
+        <SimpleDateTime
+          format="MYD"
+          showTime="0"
+          dateSeparator="."
+        >{listing.data.timestamp.seconds}</SimpleDateTime>
+      </td>
+      <td>
+        <div className="status-btn-container">
+          {tagreender([['roger', 'Согласен'], ['turnoff', 'Отказать'], ['considered', 'Рассматривается']])}
+        </div>
+      </td>
+      <td>
+        <div className="btn-container">
+          <div
+            className="table-btn table-btn--delete"
+            onClick={() => onDelete()}
+          >
+          </div>
+        </div>
+      </td>
+    </tr>
   )
 }
 

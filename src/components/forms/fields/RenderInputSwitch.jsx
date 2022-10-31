@@ -4,7 +4,7 @@ import { Field } from 'redux-form';
 
 const TemplateFieldSwitch = (props) => {
 
-  const { input, label, options } = props;
+  const { input, label, options, extraType, setChangeForRegistration } = props;
 
   const [switchStatus, setSwitchStatus] = useState(false);
   const [firstLoad, setFirstLoad] = useState(0);
@@ -13,11 +13,18 @@ const TemplateFieldSwitch = (props) => {
   const elRefR = useRef();
 
   const switchChange = () => {
+
     setSwitchStatus(!switchStatus);
     if (switchStatus) {
       elRefL.current.focus();
+      if (extraType === 'change-label-reg') {
+        setChangeForRegistration('Фио')
+      }
     } else {
       elRefR.current.focus();
+      if (extraType === 'change-label-reg') {
+        setChangeForRegistration('Название компании')
+      }
     }
   };
 
@@ -69,13 +76,15 @@ const TemplateFieldSwitch = (props) => {
   )
 }
 
-const RenderInputSwitch = ({ name, label, options }) => {
+const RenderInputSwitch = ({ name, label, options, extraType, setChangeForRegistration }) => {
 
   return <Field
     name={name}
     label={label}
     options={options}
+    extraType={extraType}
     component={TemplateFieldSwitch}
+    setChangeForRegistration={setChangeForRegistration}
   />;
 }
 

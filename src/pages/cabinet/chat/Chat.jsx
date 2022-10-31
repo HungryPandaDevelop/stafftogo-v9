@@ -11,7 +11,10 @@ import RoomList from 'pages/cabinet/chat/RoomList';
 import Messages from 'pages/cabinet/chat/Messages';
 import ChatForm from 'pages/cabinet/chat/ChatForm';
 
+
+
 const Chat = ({ uid, roomId }) => {
+
 
   const params = useParams();
 
@@ -29,7 +32,10 @@ const Chat = ({ uid, roomId }) => {
           <div className="chat-messages">
             {currentInfoChat && (
               <div className="chat-messages-head">
-                <div className="chat-list-img img-cover" >
+                <div
+                  className="chat-list-img img-cover"
+                  style={{ backgroundImage: `url(${currentInfoChat[2]})` }}
+                >
                 </div>
                 <div className="chat-list-cardsname">{currentInfoChat[0]}</div>
                 <div className="chat-list-accountname">{currentInfoChat[1]}</div>

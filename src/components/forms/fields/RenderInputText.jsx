@@ -23,7 +23,11 @@ const TempateInputText = (props) => {
 
 
 
-const RenderInputText = ({ name, placeholder, label, validate, errorOn }) => {
+const RenderInputText = ({ name, placeholder, label, validate, errorOn, nameChangingBool, nameChanging }) => {
+  if (nameChangingBool) {
+    label = nameChanging;
+    placeholder = nameChanging;
+  }
   return <Field
     name={name}
     label={label}

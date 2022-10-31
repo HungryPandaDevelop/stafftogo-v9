@@ -29,24 +29,26 @@ const createRoom = async (
   hisInvitingNameAccount,
   ownInvitedName,
   ownInvitedNameAccount,
-
-  
+  ownInvitedImg,
+  owmListingId
   ) => {
-    console.log('hisInvitingImg', hisInvitingImg)
 
   //if(querySnap.docs.length === 0){
     try {
       const sendData = {
         interlocutors: [uid, invitedUid],
+        uid: uid,
+        invitedUid: invitedUid, 
         timestamp: serverTimestamp(),
         listingId: listingId,
-        uid: uid,
         hisInvitingName: hisInvitingName,
         hisInvitingImg: hisInvitingImg,
         hisInvitingNameAccount:hisInvitingNameAccount,
         ownInvitedName: ownInvitedName,
         ownInvitedNameAccount: ownInvitedNameAccount,
-        invite: 'view',
+        ownInvitedImg: ownInvitedImg,
+        owmListingId: owmListingId,
+        status: 'considered',
         messages:{}
       }
       

@@ -1,3 +1,6 @@
+import { required, minLength,mailCheck } from 'components/forms/validator';
+
+
 export default function(){
   return {
     order: [
@@ -26,7 +29,8 @@ export default function(){
       name: "card_name",  
       placeholder: "Желаемая должность", 
       label:"Желаемая должность", 
-      wrapClass: "col-12 account-item"
+      wrapClass: "col-12 account-item",
+      validate: [required, minLength],
     },
     about:{
       type:"textarea", 
@@ -45,7 +49,7 @@ export default function(){
           type:"text", 
           name: "price",  
           placeholder: "Укажите сумму", 
-          length: "col-6"
+          length: "col-6",
         },
         { 
           type:"select", 

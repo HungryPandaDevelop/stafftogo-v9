@@ -1,6 +1,6 @@
 import _ from "lodash";
 
-import Moment from 'react-moment';
+
 import moment from 'moment';
 
 import { connect } from 'react-redux';
@@ -10,14 +10,14 @@ import { getSingleListing } from "store/asyncActions/getSingleListing";
 
 import { useState, useEffect } from 'react';
 
-const Messages = ({ roomId, uid, roomUpdate }) => {
+const Messages = ({ roomId, uid }) => {
 
   const [messages, setMessages] = useState([]);
   const [startSee, setStartSee] = useState(0);
 
   useEffect(() => {
 
-
+    console.log('roomId', roomId)
     getSingleListing('message', roomId).then(res => {
 
       setMessages(res);
@@ -50,7 +50,7 @@ const Messages = ({ roomId, uid, roomUpdate }) => {
       {result ? result.map((item, index) => (
         <div className={`chat-messages-item ${uid === item.uid && 'own-messages'}`} key={index} >
           {uid !== item.uid && (
-            <div class="chat-list-img img-cover" >
+            <div className="chat-list-img img-cover" >
             </div>
           )}
           <div className="chat-messages-body">
@@ -61,7 +61,7 @@ const Messages = ({ roomId, uid, roomUpdate }) => {
             <div className="chat-messages-text">{item.text}</div>
           </div>
           {uid === item.uid && (
-            <div class="chat-list-img img-cover" >
+            <div className="chat-list-img img-cover" >
             </div>
           )}
         </div>
@@ -74,7 +74,6 @@ const mapStateToProps = (state) => {
 
   return {
     roomId: state.accountInfo.roomId,
-    roomUpdate: state.accountInfo.roomUpdate,
 
   }
 }

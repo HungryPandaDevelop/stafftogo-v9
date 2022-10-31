@@ -5,6 +5,7 @@ import CardItemInvite from 'pages/cabinet/invitations/CardItemInvite';
 import { getListing } from 'store/asyncActions/getListing';
 import TemplateAccount from 'pages/cabinet/parts/TemplateAccount';
 
+import { onDeleteCards } from 'store/asyncActions/getListing';
 
 
 const Invitations = ({ uid, typeCabinet }) => {
@@ -20,19 +21,47 @@ const Invitations = ({ uid, typeCabinet }) => {
 
   }, []);
 
+  const deleteItem = (listings, id) => {
+    onDeleteCards(listings, id, 'message').then(res => {
+      setListings(res);
+
+    });
+  }
 
   return (
     <>
-      <TemplateAccount title="Мои отклики" >
-        {
-          loading ?
-            'Loading list' :
-            listings ?
-              listings.map(listing =>
-                <CardItemInvite key={listing.id} listing={listing} typeCabinet={typeCabinet} />
-              ) :
-              'Список приглашений пуст'
-        }
+      <TemplateAccount
+        title="Мои отклики"
+        addWrapClass='cards-account-container'
+      >
+        <table>
+          <thead>
+            <tr className='cards-account-head'>
+              <th><b>Вакансии</b></th>
+              <th><b>Дата</b></th>
+              <th><b>Статус</b></th>
+              <th><b>Действия</b></th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              loading ?
+                (<tr><td>Loading list</td></tr>) :
+                listings ?
+                  listings.map(listing =>
+                    <CardItemInvite
+                      key={listing.id}
+                      listing={listing}
+                      typeCabinet={typeCabinet}
+                      onDelete={() => deleteItem(listings, listing.id)}
+                    />
+                  ) :
+                  (<tr><td>Список приглашений пуст</td></tr>)
+            }
+          </tbody>
+        </table>
+
+
       </TemplateAccount>
     </>
   )

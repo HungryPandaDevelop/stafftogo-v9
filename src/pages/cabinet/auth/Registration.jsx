@@ -2,6 +2,8 @@ import { useNavigate } from 'react-router-dom';
 
 import RenderFormAccount from 'components/forms/RenderFormAccount';
 
+import RenderInputText from 'components/forms/fields/RenderInputText'; // поле стандартное
+
 import { connect } from 'react-redux';
 import ActionFn from 'store/actions';
 

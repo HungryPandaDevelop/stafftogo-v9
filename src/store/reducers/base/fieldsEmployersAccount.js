@@ -1,3 +1,6 @@
+import { required, minLength,mailCheck } from 'components/forms/validator';
+
+
 export default function(){
   return {
     order: [
@@ -41,7 +44,8 @@ export default function(){
       type:"text" ,
       name: "accountName", 
       label: "Название компании", 
-      wrapClass: "col-5 account-item" 
+      wrapClass: "col-5 account-item" ,
+      validate: [required,minLength],
     },
     email: { 
       type:"text" ,

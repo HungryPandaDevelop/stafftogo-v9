@@ -4,24 +4,30 @@ import ActionFn from 'store/actions';
 
 import { createRoom } from 'store/asyncActions/inviteChat';
 
+import defaultCardsImg from 'front-end/images/icons/avatar-light-gray.svg'
+
+
+
 const BtnInvite = ({ accountInfo, listing, uid, invited, ActionFn }) => {
-
-
 
   let inviteStatus = invited && invited.includes(listing.id);
 
   const onInvite = () => {
-    const img = listing.data.userInfo.imgsAccount ? listing.data.userInfo.imgsAccount : '';
-    console.log('accountInfo', accountInfo)
+    const imgListing = listing.data.userInfo.imgsAccount ? listing.data.userInfo.imgsAccount : defaultCardsImg;
+    const imgOwn = accountInfo.imgsAccount ? accountInfo.imgsAccount : defaultCardsImg;
+
+
     !inviteStatus && createRoom(
       listing.id,
       uid,
       listing.data.userRef,
       listing.data.card_name,
-      img,
+      imgListing,
       listing.data.userInfo.accountName,
       accountInfo.currentCard[1],
-      accountInfo.accountName
+      accountInfo.accountName,
+      imgOwn,
+      accountInfo.currentCard[0]
 
     ).then(() => {
       // console.log(currentCard, listing.id, uid, listing.data.userRef);

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { Link } from 'react-router-dom';
 
@@ -62,9 +62,16 @@ const TemplateForm = (props) => {
 
   const [errorOn, setErrorOn] = useState(false);
 
+
+  const [nameChangeForRegistration, setChangeForRegistration] = useState('Фио');
+
+  useEffect(() => {
+
+  }, []);
+
   const showErr = () => {
     setErrorOn(true);
-    setTimeout(() => { setErrorOn(false); }, 2500);
+    setTimeout(() => { setErrorOn(false); }, 5000);
   }
 
   const onSubmit = (formData) => {
@@ -86,6 +93,8 @@ const TemplateForm = (props) => {
           return (
             <RenderInputText
               name={obj.name}
+              nameChangingBool={obj.nameChangingBool}
+              nameChanging={nameChangeForRegistration}
               placeholder={obj.placeholder}
               label={obj.label}
               labelSecond={obj.labelSecond}
@@ -173,6 +182,8 @@ const TemplateForm = (props) => {
               name={obj.name}
               label={obj.label}
               options={obj.options}
+              extraType={obj.extraType}
+              setChangeForRegistration={setChangeForRegistration}
             />
           );
         case 'multy':
@@ -283,8 +294,6 @@ const TemplateForm = (props) => {
         {renderBtnSubmit()}
         {cabinetBack && <Link to={`/cabinet/${cabinetBackLink}`} className="btn btn--red-border ico-in ico-in--left btn-cancel "><i></i><span>Отменить</span></Link>}
       </div>
-
-
     </form >
   )
 }

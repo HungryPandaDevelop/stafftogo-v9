@@ -5,9 +5,6 @@ import { useEffect } from "react"
 
 import { Link, useParams } from 'react-router-dom';
 
-import defaultCardsImg from 'front-end/images/icons/avatar-light-gray.svg'
-
-
 const RoomItem = ({ room, uid, roomId, ActionFn, setCurrentInfoChat }) => {
 
   const params = useParams();
@@ -16,28 +13,31 @@ const RoomItem = ({ room, uid, roomId, ActionFn, setCurrentInfoChat }) => {
     // console.log(room.data.masterId, room.data.ownId)
 
     if (params.roomUrl) {
-      changeRoom(params.roomUrl)
+
+      changeRoom(room)
     }
 
   }, []);
 
   const changeRoom = (setRoom) => {
-    ActionFn('CHANGE_ROOM', setRoom);
-  }
-  console.log(room.data.hisInvitingImg)
+    ActionFn('CHANGE_ROOM', setRoom.id);
 
-  const imgCards = room.data.hisInvitingImg ? room.data.hisInvitingImg : defaultCardsImg;
+    setCurrentInfoChat([setRoom.data.ownInvitedName, setRoom.data.ownInvitedNameAccount, setRoom.data.ownInvitedImg]);
+  }
+
+
+
+
   return (
     <Link
       to={`/cabinet/chat/${room.id}`}
       onClick={() => {
-        changeRoom(room.id);
-        setCurrentInfoChat([room.ownInvitedName, room.ownInvitedNameAccount]);
+        changeRoom(room);
       }}
       className={`chat-list-item ${(roomId === room.id) && 'active'}`} >
       <div
         className="chat-list-img img-cover"
-        style={{ backgroundImage: `url(${imgCards})` }}
+        style={{ backgroundImage: `url(${room.data.hisInvitingImg})` }}
       >
       </div>
       <div className="chat-list-about">
@@ -71,16 +71,3 @@ export default connect(mapStateToProps,
     ActionFn
   })(RoomItem);
 
-
-//   <Link
-//   to={`/cabinet/chat/${room.id}`}
-//   onClick={() => { changeRoom(room.id) }}
-//   className={`chat-list-item ${(roomId === room.id) && 'active'}`} >
-//   {
-//     room.data.masterId === uid ?
-//       'Я позвал ' + room.data.hisInvitingName + ' на ' + room.data.ownInvitedName
-//       :
-//       'Меня позвали ' + room.data.ownInvitedName + ' на ' + room.data.hisInvitingName
-//   }
-
-// </Link>

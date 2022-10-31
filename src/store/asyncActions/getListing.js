@@ -52,7 +52,7 @@ export const getListing = async (baseName, uid, type) => {
   else if(type==='response'){
     q = query(
       listingsRef,
-      where('invitedId', '==', uid),
+      where('invitedUid', '==', uid),
       //where('idLike', '==', 'Ks8AALPMJ0MkLl888A9jSBr2IaC3'),
       // where('userRef', '==', 'YpguqFwp1YeEFrQlQeJHaRWVKar1'),
       // orderBy('timestamp', 'desc'),
@@ -132,35 +132,5 @@ export const onDeleteCards = async (listings, listingId, name) => {
   }
 }
 
-export const onDeleteMessage = async(id)=>{
-
-  const q = query(
-    collection(db, 'message'),
-    where('cardsConnect', 'array-contains', id),
-  )
-  const querySnap = await getDocs(q);
-
-  const getData = []
-
-  querySnap.forEach((doc) => {
-    return getData.push({
-      id: doc.id,
-      data: doc.data()
-    });
-  });
-
-  getData.map(item=>{
-    deleteDoc(doc(db, 'message', item.id));
-  });
-
-}
-
-
-
-// export const onEdit = async (listingId) => {
-//   const navigate = useNavigate();
-
-//   navigate(`/cabinet/vacancies-edit/${listingId}`)
-// }
 
 

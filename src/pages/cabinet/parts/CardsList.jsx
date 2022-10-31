@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
-import { getListing, onDeleteCards, onDeleteMessage } from 'store/asyncActions/getListing';
+import { getListing, onDeleteCards } from 'store/asyncActions/getListing';
 
 import CardItem from 'pages/cabinet/parts/CardItem';
 
@@ -51,7 +51,7 @@ const CardsList = ({ uid, cabinetType, accountInfo, ActionFn }) => {
         onActivateItem('');
       }
     });
-    onDeleteMessage(id);
+    // onDeleteMessage(id);
   }
 
 
