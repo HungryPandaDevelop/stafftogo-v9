@@ -6,7 +6,7 @@ import PageTitle from 'pages/parts/PageTitle';
 import Filters from 'blocks/filters/Filters';
 
 import { connect } from 'react-redux';
-import ActionFn from 'store/actions';
+
 
 import { getListing } from 'store/asyncActions/getListing';
 
@@ -16,13 +16,10 @@ import filterMain from 'components/filterMain/filterMain';
 
 import Pagination from 'pages/catalog/Pagination';
 
-const Catalog = ({ listingType, listingSearch, uid, cabinetType, accountInfo, roomUpdate, ActionFn }) => {
+const Catalog = ({ listingType, listingSearch, uid, cabinetType, accountInfo, }) => {
 
   const [listings, setListings] = useState(null);
   const [loading, setLoading] = useState(true);
-
-
-  const [invited, setInvited] = useState([]);
 
 
   useEffect(() => {
@@ -42,15 +39,6 @@ const Catalog = ({ listingType, listingSearch, uid, cabinetType, accountInfo, ro
   }, [listingSearch, listingType]);
 
 
-  useEffect(() => {
-
-    uid && getListing('message', uid, 'invite').then(res => {
-
-      setInvited(res.map(el => el.data.listingId));
-      ActionFn('UPDATE_ROOM', false);
-    });
-
-  }, [uid, roomUpdate]);
 
 
 
@@ -69,9 +57,7 @@ const Catalog = ({ listingType, listingSearch, uid, cabinetType, accountInfo, ro
 
               <Pagination
                 listings={listings}
-                idCategory={listingType}
                 listingType={listingType}
-                invited={invited}
                 uid={uid}
                 accountInfo={accountInfo}
                 cabinetType={cabinetType}
@@ -90,7 +76,6 @@ const Catalog = ({ listingType, listingSearch, uid, cabinetType, accountInfo, ro
 const mapStateToProps = (state) => {
   return {
     listingSearch: state.listingSearchReducer,
-    roomUpdate: state.accountInfo.roomUpdate,
     uid: state.accountInfo.info.uid,
     accountInfo: state.accountInfo.info,
     cabinetType: state.accountInfo.info.typeCabinet,
@@ -100,4 +85,4 @@ const mapStateToProps = (state) => {
 
 
 
-export default connect(mapStateToProps, { ActionFn })(Catalog);
+export default connect(mapStateToProps)(Catalog);

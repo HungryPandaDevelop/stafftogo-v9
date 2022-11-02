@@ -8,7 +8,6 @@ import CardsItem from 'pages/catalog/CardsItem';
 const Pagination = ({
   listings,
   listingType,
-  invited,
   accountInfo,
   cabinetType,
   uid }) => {
@@ -29,7 +28,7 @@ const Pagination = ({
                 link={`/catalog/${listingType}/${item.id}`}
                 idCategory={listingType}
                 listingType={listingType}
-                invited={invited}
+
                 uid={uid}
                 accountInfo={accountInfo}
                 cabinetType={cabinetType}

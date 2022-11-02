@@ -3,13 +3,14 @@ import { Link } from "react-router-dom"
 
 import BtnLike from 'pages/catalog/parts/cardsItem/BtnLike';
 import BtnHide from 'pages/catalog/parts/cardsItem/BtnHide';
-
+import BtnInvite from 'pages/catalog/parts/cardsDetail/BtnInvite';
 
 import download from 'front-end/images/icons/download-white.svg';
 import print from 'front-end/images/icons/print-white.svg';
 
 
 const CardsSidebar = ({ listing, imgCards, toPdf, handlePrint, uid, cabinetType, listingType, elementId }) => {
+
 
 
   const [viewSidebar, setViewSidebar] = useState(false);
@@ -81,6 +82,14 @@ const CardsSidebar = ({ listing, imgCards, toPdf, handlePrint, uid, cabinetType,
           <Link to={`/cabinet/videochat/${listing.userRef}`} className="btn btn--green-border">Видеочат</Link>
           <div className="btn btn--green-border">
             Чат</div>
+
+          {(uid && listingType != cabinetType) && (
+            <BtnInvite
+              listing={listing}
+              elementId={elementId}
+            />
+          )}
+
           <div className="btn btn--green-border">Откликнуться</div>
         </div>
       </div>

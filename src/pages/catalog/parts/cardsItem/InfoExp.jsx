@@ -8,7 +8,6 @@ const InfoExp = ({ listing }) => {
 
   const lastWork = listing.companyWorkComplex && listing.companyWorkComplex[listing.companyWorkComplex.length - 1].namework
 
-
   return (
     <>
       {lastWork && (

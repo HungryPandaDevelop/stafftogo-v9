@@ -14,25 +14,19 @@ import InfoExp from 'pages/catalog/parts/cardsItem/InfoExp'
 
 import defaultCardsImg from 'front-end/images/icons/avatar-light-gray.svg'
 
-const ListItem = (props) => {
-  const {
-    listing,
-    link,
-    listingType,
-    cabinetType,
-    uid,
-    invited,
-    accountInfo,
-  } = props;
-
-
+const ListItem = ({
+  listing,
+  link,
+  listingType,
+  cabinetType,
+  uid,
+}) => {
 
   const listingData = listing.data;
 
-  // console.log('listingData', listingData)
-
   const imgCards = listingData.userInfo.imgsAccount ? listingData.userInfo.imgsAccount : defaultCardsImg;
   const address = listingData.coords && listingData.coords.split('--');
+
   return (
     <div className="cards-item shadow-container">
       <div className="main-grid cards-item-roof">
@@ -123,9 +117,6 @@ const ListItem = (props) => {
               {(uid && listingType != cabinetType) && (
                 <BtnInvite
                   listing={listing}
-                  invited={invited}
-                  uid={uid}
-                  accountInfo={accountInfo}
                 />
               )}
               {address && (<Link to={`/map/${listing.id}`} className="btn btn--green-border ico-in ico-in--left btn-show-map">

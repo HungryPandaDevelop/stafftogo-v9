@@ -14,7 +14,7 @@ const Controls = ({ onEdit, onDelete, onActivate, id, name, currentCard }) => {
       >
       </div>
       <div
-        className={`table-btn table-btn--view ${currentCard[0] === id && `active`} `}
+        className={`table-btn table-btn--view ${currentCard && currentCard[0] === id && `active`} `}
         onClick={() => onActivate(id)}
       >
       </div>

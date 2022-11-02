@@ -15,7 +15,8 @@ const BtnInvite = ({
   listing,
   uid,
   ActionFn,
-  roomUpdate
+  roomUpdate,
+  elementId
 }) => {
 
   const [invited, setInvited] = useState([]);
@@ -31,20 +32,20 @@ const BtnInvite = ({
   }, [uid, roomUpdate]);
 
 
-  let inviteStatus = invited && invited.includes(listing.id);
+  let inviteStatus = invited && invited.includes(elementId);
 
   const onInvite = () => {
-    const imgListing = listing.data.userInfo.imgsAccount ? listing.data.userInfo.imgsAccount : defaultCardsImg;
+    const imgListing = listing.userInfo.imgsAccount ? listing.userInfo.imgsAccount : defaultCardsImg;
     const imgOwn = accountInfo.imgsAccount ? accountInfo.imgsAccount : defaultCardsImg;
 
 
     !inviteStatus && createRoom(
-      listing.id,
+      elementId,
       uid,
-      listing.data.userRef,
-      listing.data.card_name,
+      listing.userRef,
+      listing.card_name,
       imgListing,
-      listing.data.userInfo.accountName,
+      listing.userInfo.accountName,
       accountInfo.currentCard[1],
       accountInfo.accountName,
       imgOwn,
@@ -60,7 +61,7 @@ const BtnInvite = ({
 
   return (
     <div
-      className={`btn btn--orange-border response-btn ${inviteStatus && 'active'}`}
+      className={`btn btn--green-border response-btn ${inviteStatus && 'active'}`}
       onClick={onInvite}
     >
 

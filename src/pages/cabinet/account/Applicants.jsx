@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import DeleteBtnAccount from 'pages/cabinet/parts/DeleteBtnAccount';
 
 const Applicants = ({ renderImgCards, userInfo, formatPhone }) => {
 
@@ -12,6 +13,7 @@ const Applicants = ({ renderImgCards, userInfo, formatPhone }) => {
     else if (userInfo.gender === 'women') { return 'Женский' }
     else { return '-/-' }
   }
+
 
   return (
     <div className='main-grid'>
@@ -44,9 +46,7 @@ const Applicants = ({ renderImgCards, userInfo, formatPhone }) => {
               <i></i>
               <span>Редактировать профиль</span>
             </Link>
-            <div className="btn btn-delete-profiled btn--red ico-in ico-in--left">
-              <i></i><span>Удалить профиль</span>
-            </div>
+            <DeleteBtnAccount />
           </div>
         </div>
       </div>
