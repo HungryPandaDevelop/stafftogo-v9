@@ -1,16 +1,18 @@
+import { useState, useEffect } from 'react';
+
 import { connect } from 'react-redux';
 
-import { useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
 import ActionFn from 'store/actions';
 
-import { createRoom } from 'store/asyncActions/inviteChat';
-
 import defaultCardsImg from 'front-end/images/icons/avatar-light-gray.svg';
+
+import { createRoom } from 'store/asyncActions/inviteChat';
 
 import { getListing } from 'store/asyncActions/getListing';
 
-const BtnInvite = ({
+const BtnChat = ({
   accountInfo,
   listing,
   uid,
@@ -19,13 +21,21 @@ const BtnInvite = ({
   elementId
 }) => {
 
+  const navigate = useNavigate();
+
+
   const [invited, setInvited] = useState([]);
+
+  const [currentRoom, setCurrentRoom] = useState('');
 
   useEffect(() => {
 
     uid && getListing('message', uid, 'invite').then(res => {
-
+      console.log('res', res);
       setInvited(res.map(el => el.data.listingId));
+      let roomThis = res.filter(el => el.data.listingId === elementId);
+      roomThis.length > 0 && setCurrentRoom(roomThis[0].id)
+
       ActionFn('UPDATE_ROOM', false);
     });
 
@@ -39,7 +49,7 @@ const BtnInvite = ({
     const imgOwn = accountInfo.imgsAccount ? accountInfo.imgsAccount : defaultCardsImg;
 
 
-    !inviteStatus && createRoom(
+    !inviteStatus ? createRoom(
       elementId,
       uid,
       listing.userRef,
@@ -51,22 +61,24 @@ const BtnInvite = ({
       imgOwn,
       accountInfo.currentCard[0]
 
-    ).then(() => {
+    ).then((res) => {
       // console.log(currentCard, listing.id, uid, listing.data.userRef);
       ActionFn('UPDATE_ROOM', true);
-    });
+
+      navigate('/cabinet/chat/' + res.id, { replace: true })
+
+    }) : navigate('/cabinet/chat/' + currentRoom, { replace: true });
 
   }
 
 
+
   return (
     <div
-      className={`btn btn--green-border ${inviteStatus && 'active'}`}
+      className="btn btn--green-border"
       onClick={onInvite}
     >
-
-      {inviteStatus ? 'Вы откликнулись' : 'Откликнуться'}
-
+      Чат
     </div>
   )
 }
@@ -85,4 +97,4 @@ const mapStateToProps = (state) => {
 
 
 
-export default connect(mapStateToProps, { ActionFn })(BtnInvite);
+export default connect(mapStateToProps, { ActionFn })(BtnChat);

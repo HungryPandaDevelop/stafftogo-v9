@@ -25,13 +25,13 @@ const CardItemLike = ({
 
   }
 
-
+  console.log('like', like);
   return (
     <>
       <td>
         <div className="cards-cabinet-item main-full">
           <div className="cards-account-topic">
-            <Link to={`/catalog/${reverseTypeCabinet}/${like.id}`}>{like.data.card_name}</Link>
+            <Link to={`/cabinet/videochat/videoroom-out/${like.data.userRef}`}>{like.data.card_name}</Link>
           </div>
         </div>
       </td>

@@ -12,7 +12,8 @@ import SimpleDateTime from 'react-simple-timestamp-to-date';
 
 import defaultCardsImg from 'front-end/images/icons/avatar-light-gray.svg'
 import BtnCall from 'pages/catalog/parts/cardsItem/BtnCall';
-
+import BtnLike from 'pages/catalog/parts/cardsItem/BtnLike';
+import BtnInvite from 'pages/catalog/parts/cardsDetail/BtnInvite';
 import phoneIco from 'front-end/images/icons/phone-green.svg'
 import mainIco from 'front-end/images/icons/mail-green.svg'
 import markerIco from 'front-end/images/icons/marker-green.svg'
@@ -34,7 +35,9 @@ const CardsPopup = (
     myPosition,
     choiseMarkerPosition,
     routeboxState,
-    navigate
+    navigate,
+    uid,
+    cabinetType
   }) => {
 
   const [cardInfo, setCardInfo] = useState(null);
@@ -79,10 +82,7 @@ const CardsPopup = (
 
   useEffect(() => {
 
-
     onShowPopup(currentCardId);
-
-
 
   }, [currentCardId])
 
@@ -92,7 +92,7 @@ const CardsPopup = (
   const rednderCards = () => {
 
     const imgCards = cardInfo.userInfo.imgsAccount ? cardInfo.userInfo.imgsAccount : defaultCardsImg;
-
+    const address = cardInfo.coords && cardInfo.coords.split('--');
     return (
       <div
         className="gomap-popup-container"
@@ -109,9 +109,14 @@ const CardsPopup = (
                 showTime="0"
                 dateSeparator="."
               >{cardInfo.timestamp.seconds}</SimpleDateTime></span>
-            <div className="like-btn">
-              <div className="like-hint">Добавить в избранное</div>
-            </div>
+            {(uid && listingType != cabinetType) && (
+              <BtnLike
+                listing={cardInfo}
+                elementIdDetail={currentCardId}
+                locationBtn='map'
+              />
+            )}
+
           </div>
           <div className="cards-face-container" >
             <div
@@ -144,18 +149,29 @@ const CardsPopup = (
               <li>
                 <img src={markerIco} alt="" />
                 <span>Адрес: </span>
-                <b>Окская улица, 48/2, Москва, ?</b>
+
+                <b>{address[0]}</b>
               </li>
             </ul>
-            <div className="btn btn--green-border">Откликнуться</div>
+            {(uid && listingType != cabinetType) && (
+              <BtnInvite
+                listing={cardInfo}
+                elementId={currentCardId}
+              />
+            )}
           </div>
         </div>
         <div className="btn btn--white btn-show-map ico-in--right" onClick={showRoutebox}><span>Маршрут</span><i></i></div>
       </div >
     )
   }
+  if (cardInfo) {
+    return rednderCards();
+  }
+  else {
+    return false;
+  }
 
-  return cardInfo && rednderCards();
 }
 
 const mapStateToProps = (state) => {

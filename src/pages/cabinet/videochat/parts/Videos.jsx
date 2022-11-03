@@ -38,9 +38,9 @@ const Videos = ({ mode, callId, setPage, invitedId, uid }) => {
 
   return (
     <div className="videos">
-      <div className="roomId">roomId: {roomId}
-        {/* <Link to={`/roomId/${roomId}`}>{roomId}</Link> */}
-      </div>
+      {/* <div className="roomId">roomId: {roomId} */}
+      {/* <Link to={`/roomId/${roomId}`}>{roomId}</Link> */}
+      {/* </div> */}
 
       <video
         ref={localRef}
@@ -65,17 +65,21 @@ const Videos = ({ mode, callId, setPage, invitedId, uid }) => {
         <div className="modalContainer">
           <div className="modal">
             <h3>
-              Turn on your camera and microphone and start the
-              call
+              Включите камеру и микрофон, для начала разговора
             </h3>
-            <div className="container">
+            <div className="btn-container">
+              <button
+                className="btn  btn--green"
+                onClick={() => setupSources(pc, localRef, remoteRef, setWebcamActive, mode, createCall, joinCall, setRoomId, callId, hangUp, roomId, invitedId, uid)}>
+                Начать
+              </button>
               <button
                 onClick={() => setPage("home")}
-                className="secondary"
+                className="btn btn--red-border"
               >
-                Cancel
+                Отмена
               </button>
-              <button onClick={() => setupSources(pc, localRef, remoteRef, setWebcamActive, mode, createCall, joinCall, setRoomId, callId, hangUp, roomId, invitedId, uid)}>Start</button>
+
             </div>
           </div>
         </div>

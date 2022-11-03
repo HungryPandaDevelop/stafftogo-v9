@@ -1,5 +1,5 @@
 import {useEffect } from 'react';
-import {BrowserRouter, Routes, Route, useLocation} from 'react-router-dom';
+import {BrowserRouter, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -11,6 +11,7 @@ import Footer from 'blocks/Footer';
 
 import MainPage from 'pages/MainPage';
 import Demo from 'pages/Demo';
+import NotFound from 'pages/NotFound';
 
 import Chat from 'pages/cabinet/chat/Chat';
 // import ChatList from 'pages/cabinet/chat/ChatList';
@@ -82,6 +83,9 @@ const ScrollToTop =(props) => {
         <Routes> 
           <Route path='/' exept element={<MainPage/>} ></Route>
           <Route path='/demo' element={<Demo/>} ></Route>
+
+          <Route path="/404" element={ <NotFound /> } />
+          <Route path="*" element={ <Navigate to="/404" replace />} />
           
           <Route path='/authorization'  element={<Authorization/>} ></Route>
           <Route path='/forgot-password' element={<ForgotPassword/>}></Route>
@@ -118,6 +122,8 @@ const ScrollToTop =(props) => {
               <Route path='/cabinet/videochat/videolist-out/'  element={<VideoListOut/>} ></Route>
               <Route path='/cabinet/videochat/videoroom-out/:userId'  element={<VideoRoomOut/>} ></Route>
               <Route path='/cabinet/videochat/videoroom-in/:roomUrl'  element={<VideoRoomIn/>} ></Route>
+
+              <Route path='/cabinet/subscription/'  element={<Subscription/>} ></Route>
 
               <Route path='/cabinet/subscription/'  element={<Subscription/>} ></Route>
 

@@ -19,7 +19,7 @@ const MainScreen = ({ typeConnect, videoroomid, invitedId, uid }) => {
     <div>
 
       {currentPage === "home" ? (
-        <button onClick={() => setCurrentPage("create")}>Позвонить</button>
+        <button className="btn btn--orange" onClick={() => setCurrentPage("create")}>Позвонить</button>
       ) : (
         <Videos
           mode={typeConnect}

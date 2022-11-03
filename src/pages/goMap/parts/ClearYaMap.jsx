@@ -22,7 +22,7 @@ const ClearYaMap = ({ myMap, myMapRef, setMyMap }) => {
           onLoad={(y) => {
             // myMap.current = y;
             setMyMap(y)
-            console.log('ready', y);
+            // console.log('ready', y);
           }}
           instanceRef={myMapRef}
         >

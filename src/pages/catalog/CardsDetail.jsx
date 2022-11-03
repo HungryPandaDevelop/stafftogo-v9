@@ -81,7 +81,9 @@ const CardsDetail = ({ uid, cabinetType, listingType }) => {
         </div>
         <div className="main-grid">
           <div className="col-10 col-lg-9 col-sm-12" ref={refContent}>
+
             <CardsMain listing={listing} elementId={params.elementId} imgCards={imgCards} />
+
             <CardsSecond listing={listing} />
 
             <CardsAbout listing={listing} />

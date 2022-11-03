@@ -14,13 +14,16 @@ const Videochat = () => {
 
 
   return (
-    <TemplateAccount title='Чат' >
+    <TemplateAccount title='Чат' addWrapClass='cabinet-account'>
       {params.userId}
       <div className="main-full">
-        <h2>Видеочат</h2>
+        <h3>Видеочат</h3>
       </div>
-      <Link className='btn btn--yellow' to='/cabinet/videochat/videolist-out'>Исходящие звонки</Link>
-      <Link className='btn btn--yellow' to='/cabinet/videochat/videolist-in'>Входящте звонки</Link>
+      <div className="btn-container">
+        <Link className='btn btn--orange-border' to='/cabinet/videochat/videolist-out'>Исходящие звонки</Link>
+        <Link className='btn btn--green-border' to='/cabinet/videochat/videolist-in'>Входящие звонки</Link>
+      </div>
+
     </TemplateAccount >
   )
 }

@@ -1,53 +1,85 @@
 
 import TemplateAccount from 'pages/cabinet/parts/TemplateAccount';
 import { connect } from 'react-redux';
+import ActionFn from 'store/actions';
 
 import CardItemLike from 'pages/cabinet/liked/CardItemLike';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { getListing } from 'store/asyncActions/getListing';
 
 import { db } from 'firebase.config';
 import { collection, doc, deleteDoc } from 'firebase/firestore';
 
-const Videochat = ({ typeCabinet, accountInfo, uid }) => {
+const Videochat = ({ typeCabinet, accountInfo, uid, ActionFn }) => {
 
+  const reverseTypeCabinet = (typeCabinet === 'vacancies') ? 'resume' : 'vacancies';
+
+  const [loading, setLoading] = useState(true);
+
+  const [listings, setListings] = useState(null);
 
   useEffect(() => {
     getListing('calls', uid, 'videolist-my').then(res => {
-
       res.map(item => {
         let roomRef = doc(collection(db, "calls"), item.id);
         deleteDoc(roomRef);
       })
-
     });
+
   }, []);
+
+  useEffect(() => {
+    let isMounted = true;
+    console.log('render')
+    getListing(reverseTypeCabinet, accountInfo.likeMass, 'liked').then(res => {
+      if (isMounted) {
+        setListings(res);
+        setLoading(false);
+      }
+    });
+
+    return () => { isMounted = false };
+  }, [accountInfo]);
 
   const contentPage = () => {
 
     return (
-      <>
-        <h3>
-          Новые звонки
-        </h3>
-        {
+      <table>
+        <thead>
+          <tr className="cards-account-head">
+            <th>Новые звонки</th>
+            <th>Действия</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            loading ? (<tr><td>Loading...</td></tr>) : (
+              listings.length !== 0 ? (
+                listings.map((like, index) => (
+                  <tr key={index} >
+                    <CardItemLike
+                      like={like}
+                      reverseTypeCabinet={reverseTypeCabinet}
+                      accountInfo={accountInfo}
 
-          (accountInfo.likeMass && accountInfo.likeMass.length !== 0) ? accountInfo.likeMass.map((like) => (
-            <div key={like}>
-              <CardItemLike
-                like={like}
-                typeCabinet={typeCabinet}
-              />
-            </div>
-          )) : 'Empty Like List'
-        }
-      </>
+                    />
+                  </tr>
+                ))
+              ) : <tr><td>Empty Like List</td></tr>
+            )
+          }
+        </tbody>
+      </table>
     )
   }
 
   return (
-    <TemplateAccount title='Чат' >
+    <TemplateAccount
+      title='Чат'
+      addWrapClass='cards-account-container'
+
+    >
 
       {contentPage()}
 
@@ -66,4 +98,4 @@ const mapStateToProps = (state) => {
 
 
 
-export default connect(mapStateToProps)(Videochat);
+export default connect(mapStateToProps, { ActionFn })(Videochat);

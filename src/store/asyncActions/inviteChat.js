@@ -52,10 +52,15 @@ const createRoom = async (
         messages:{}
       }
       
-      await addDoc(collection(db, 'message'), sendData);
-    
-    
+      const docRef = await addDoc(collection(db, 'message'), sendData);
       toast.success('Данные обновлены')
+      return docRef;
+
+    
+  
+      
+
+     
     } catch (error) {
         console.error(error);
         toast.error(error)

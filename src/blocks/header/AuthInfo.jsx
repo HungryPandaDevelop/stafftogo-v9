@@ -20,11 +20,11 @@ const AuthInfo = ({ ActionFn, uid, checkingStatus }) => {
           console.log('res', res)
           ActionFn('SET_INFO_ACCOUNT', res);
           ActionFn('CHECK_STATUS_ACCOUNT', false);
-          if (res.typeCabinet === 'resume') {
-            ActionFn('CHANGE_LISTING', 'vacancies');
-          } else {
-            ActionFn('CHANGE_LISTING', 'resume');
-          }
+          // if (res.typeCabinet === 'resume') {
+          //   ActionFn('CHANGE_LISTING', 'vacancies');
+          // } else {
+          //   ActionFn('CHANGE_LISTING', 'resume');
+          // }
 
         });
       }

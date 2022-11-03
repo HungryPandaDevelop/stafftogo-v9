@@ -31,13 +31,22 @@ const BtnLike = ({ accountInfo, listing, ActionFn, checkingStatus, locationBtn, 
     });
   }
   // console.log(accountInfo.likeMass, idElement)
+
+  const renderBtn = () => {
+    if (locationBtn === 'catalog') {
+      return <div className={`like-btn ${accountInfo.likeMass && accountInfo.likeMass.includes(idElement) && 'active'}`} onClick={addLike}></div>
+    }
+    else if (locationBtn === 'map') {
+      return <div className={`like-btn ${accountInfo.likeMass && accountInfo.likeMass.includes(idElement) && 'active'}`} onClick={addLike}><span className='like-hint'>В избранное</span></div>
+    }
+    else {
+      return <div className={`sidebar-btn ${accountInfo.likeMass && accountInfo.likeMass.includes(idElement) && 'active'}`} onClick={addLike} > <span>В избранное</span><img src={star} alt="" /></div>
+    }
+  }
+
   return (
     <>
-      {(!checkingStatus) && (locationBtn === 'catalog') ?
-        <div className={`like-btn ${accountInfo.likeMass && accountInfo.likeMass.includes(idElement) && 'active'}`} onClick={addLike}></div>
-        :
-        <div className={`sidebar-btn ${accountInfo.likeMass && accountInfo.likeMass.includes(idElement) && 'active'}`} onClick={addLike} > <span>В избранное</span><img src={star} alt="" /></div>
-      }
+      {(!checkingStatus) && (renderBtn())}
     </>
   )
 

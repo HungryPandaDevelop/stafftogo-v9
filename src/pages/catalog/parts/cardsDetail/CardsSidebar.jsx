@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 import BtnLike from 'pages/catalog/parts/cardsItem/BtnLike';
+import BtnChat from 'pages/catalog/parts/cardsDetail/BtnChat';
 import BtnHide from 'pages/catalog/parts/cardsItem/BtnHide';
 import BtnInvite from 'pages/catalog/parts/cardsDetail/BtnInvite';
 
@@ -80,8 +81,12 @@ const CardsSidebar = ({ listing, imgCards, toPdf, handlePrint, uid, cabinetType,
         </div>
         <div className="btn-container">
           <Link to={`/cabinet/videochat/${listing.userRef}`} className="btn btn--green-border">Видеочат</Link>
-          <div className="btn btn--green-border">
-            Чат</div>
+
+
+          <BtnChat
+            listing={listing}
+            elementId={elementId}
+          />
 
           {(uid && listingType != cabinetType) && (
             <BtnInvite
@@ -89,8 +94,6 @@ const CardsSidebar = ({ listing, imgCards, toPdf, handlePrint, uid, cabinetType,
               elementId={elementId}
             />
           )}
-
-          <div className="btn btn--green-border">Откликнуться</div>
         </div>
       </div>
     </>

@@ -16,7 +16,7 @@ import { connect } from 'react-redux';
 
 
 
-const MapYandex = ({ listingSearch, listingType }) => {
+const MapYandex = ({ listingSearch, listingType, uid, cabinetType }) => {
 
   const params = useParams();
   // const myMap = useRef(null);
@@ -118,6 +118,8 @@ const MapYandex = ({ listingSearch, listingType }) => {
             choiseMarkerPosition={choiseMarkerPosition}
             routeboxState={routeboxState}
             navigate={navigate}
+            uid={uid}
+            cabinetType={cabinetType}
           />
         </div>
         <div className="col-9 col-md-7 col-xs-12 gomap-route-cell">
@@ -147,8 +149,10 @@ const MapYandex = ({ listingSearch, listingType }) => {
 const mapStateToProps = (state) => {
 
   return {
+    uid: state.accountInfo.info.uid,
     listingSearch: state.listingSearchReducer,
-    listingType: state.listingTypeReducer
+    listingType: state.listingTypeReducer,
+    cabinetType: state.accountInfo.info.typeCabinet,
   }
 }
 
