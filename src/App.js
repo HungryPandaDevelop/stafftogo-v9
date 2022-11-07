@@ -58,9 +58,11 @@ import Catalog from 'pages/catalog/Catalog';
 import CardsDetail from 'pages/catalog/CardsDetail';
 // Страницы Елементов Вакансии\ Резюме
 
-
+import Routess from 'pages/Routes';
 
 import GoMap from 'pages/goMap/GoMap';
+
+
 
 
 const App = () => {
@@ -140,6 +142,14 @@ const ScrollToTop =(props) => {
           <Route path='/map/:idPopup' element={<GoMap/>}></Route>
           <Route path='/catalog/:catagoryName/:elementId' element={<CardsDetail/>}></Route>
 
+
+          {Routess.map(({ path, name, Component }, key) => (
+            <Route path={path} element={Component} key={key}  
+              render={props=>{
+                console.log('props', props)
+              }}
+            ></Route>
+          ))}
 
         </Routes>
         <Footer/>

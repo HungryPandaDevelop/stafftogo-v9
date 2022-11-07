@@ -6,7 +6,6 @@ import {
   serverTimestamp
 } from 'firebase/firestore';
 
-
 import { toast } from 'react-toastify';
 
 
@@ -21,6 +20,25 @@ export const addCards = async (dataForm, baseCards, uid)=>{
     await addDoc(collection(db, baseCards), dataForm);
 
     toast.success('Карточка добавлена');
+
+  } catch (error) {
+    toast.error('Невозможно обновить профиль')
+    console.log(error)
+  }
+}
+
+export const addRews = async (dataForm, baseCards, listingId)=>{
+
+  try {
+    
+    dataForm['listingRef'] = listingId;
+    dataForm['timestamp'] = serverTimestamp();
+
+    await addDoc(collection(db, baseCards), dataForm);
+    
+    toast.success('Карточка добавлена');
+
+    
 
   } catch (error) {
     toast.error('Невозможно обновить профиль')

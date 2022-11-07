@@ -8,6 +8,8 @@ import RenderTitle from './fields/RenderTitle';
 
 import RenderInputText from './fields/RenderInputText'; // поле стандартное
 
+import RenderInputStar from './fields/RenderInputStar'; // поле стандартное
+
 import RenderInputDate from './fields/RenderInputDate'; // поле стандартное
 
 import RenderInputPhone from './fields/RenderInputPhone'; // поле телефон
@@ -101,6 +103,14 @@ const TemplateForm = (props) => {
               disabled={obj.disabled}
               validate={obj.validate}
               errorOn={errorOn}
+            />
+          );
+        case 'star':
+          return (
+            <RenderInputStar
+              name={obj.name}
+              placeholder={obj.placeholder}
+              label={obj.label}
             />
           );
         case 'date':

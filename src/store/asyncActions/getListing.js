@@ -96,6 +96,13 @@ export const getListing = async (baseName, uid, type) => {
       where('__name__', 'in', uid),
     );
   }
+  else if(type==='reviews'){
+
+    q = query(
+      listingsRef,
+      where('listingRef', '==', uid),
+    );
+  }
   else{
     q = query(
       listingsRef,

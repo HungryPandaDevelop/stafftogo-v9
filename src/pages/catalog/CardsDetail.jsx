@@ -21,6 +21,7 @@ import CardsSecond from 'pages/catalog/parts/cardsDetail/CardsSecond';
 
 import CardsAbout from 'pages/catalog/parts/cardsDetail/CardsAbout';
 import CardsSidebar from 'pages/catalog/parts/cardsDetail/CardsSidebar';
+import Reviews from 'pages/catalog/parts/cardsDetail/Reviews';
 
 import defaultCardsImg from 'front-end/images/icons/avatar-light-gray.svg';
 
@@ -88,7 +89,11 @@ const CardsDetail = ({ uid, cabinetType, listingType }) => {
 
             <CardsAbout listing={listing} />
 
-
+            <Reviews
+              listingType={listingType}
+              elementId={params.elementId}
+              listing={listing}
+            />
           </div>
           <div className="col-2 col-lg-3 hidden-sm hidden-xs">
             <CardsSidebar
