@@ -13,7 +13,7 @@ export default function(){
       "typeSpecialization",
       "about",
       "titleFive",
-      "extraWorkType",
+      "typeWork",
       "titleTwo",
       "companyWork",
       "titleThree",
@@ -42,26 +42,54 @@ export default function(){
     salary: { 
       type: "multy", 
       mainname: "salary", 
-      label:"Зарплата",  
       wrapClass: "col-12 account-item",
       allFields: [
         { 
           type:"text", 
           name: "price",  
+          label:"Зарплата",  
           placeholder: "Укажите сумму", 
-          length: "col-6",
+          length: "col-6 account-item"
+        },
+        { 
+          type:"select", 
+          name: "priceType",  
+          length: "col-6  account-item",
+          label:"Тип оплаты",  
+          placeholder:"Руб./мес.",
+          options: [
+            {label:"Руб./Смена", value:"type1"}, 
+            {label:"Руб./Час", value:"type2"}, 
+            {label:"За проект", value:"type3"}, 
+          ]
+        },
+        { 
+          type:"select", 
+          name: "worktype",  
+          length: "col-6 ",
+          label:"Тип работы",
+          placeholder:"Выберете тип работы",
+          options: [
+            {label: "Постоянная работа", value:"type_1"},
+            {label: "Ночная работы", value:"type_2"},
+            {label: "Сдельная работа / Подмена", value:"type_3"},
+            {label: "Срочная работа", value:"type_4"},
+            {label: "Консалтинг", value:"type_5"},
+            {label: "Фриланс", value:"type_6"},
+          ]
         },
         { 
           type:"select", 
           name: "worktime",  
           length: "col-6",
-          placeholder:"Выберете занятость",
+          label:"Тип занятости",
+          placeholder:"Выберете тип занятости",
           options: [
-            {label: "Полный день", value:"type_1"},
-            {label: "Сменный график", value:"type_2"},
-            {label: "Гибкий график", value:"type_3"},
-            {label: "Вахтовый метод", value:"type_4"},
-            {label: "Удаленая работа", value:"type_5"},
+            {label: "Полная", value:"type_1"},
+            {label: "Частичная", value:"type_2"},
+            {label: "Волонтерство", value:"type_3"},
+            {label: "Стажировка", value:"type_4"},
+            {label: "Подработка", value:"type_5"},
           ]
         },
       ],
@@ -389,57 +417,17 @@ export default function(){
         { label: 'Гражданство РФ', value: 'type_6' },
       ] 
     },
-    extraWorkType: {
-      type: "complex", 
-      name: "institution", 
+    typeWork: {
+      type:"checkbox", 
+      name: "typeWork",
       wrapClass: "col-12 account-item",
-      btnAddText: "Добавить",
-      allFields: [
-        { 
-          type:"select", 
-          name: "employment", 
-          placeholder: "Занятость", 
-          wrapClass: "col-6",
-          options:[
-            {label: "Полная", value:"type_1"},
-            {label: "Частичная", value:"type_2"},
-            {label: "Волонтерство", value:"type_3"},
-            {label: "Стажировка", value:"type_4"},
-            {label: "Подработка", value:"type_5"},
-          ]
-        },
-        { 
-          type:"select", 
-          name: "worktime", 
-          placeholder: "График работы", 
-          wrapClass: "col-6" ,
-          options:[
-            {label: "Полный день", value:"type_1"},
-            {label: "Сменный график", value:"type_2"},
-            {label: "Гибкий график", value:"type_3"},
-            {label: "Вахтовый метод", value:"type_4"},
-            {label: "Удаленая работа", value:"type_5"},
-          ]
-        },
-        { 
-          type:"text", 
-          name: "price",  
-          placeholder: "Желаемая зарплата", 
-          wrapClass: "col-6"
-        },
-        { 
-          type:"select", 
-          name: "priceType",  
-          wrapClass: "col-6",
-          placeholder:"Руб./мес.",
-          options: [
-            {label:"Руб./Смена", value:"type1"}, 
-            {label:"Руб./Час", value:"type2"}, 
-            {label:"За проект", value:"type3"}, 
-          ]
-        },
-
-      ],
+      options: [
+        {label: "Постоянная работа", value:"type_1"},
+        {label: "Ночная работы", value:"type_2"},
+        {label: "Сдельная работа / Подмена", value:"type_3"},
+        {label: "Срочная работа", value:"type_4"},
+        {label: "Фриланс", value:"type_6"},
+      ] 
     },
     activeCards: {
       type:"switch",

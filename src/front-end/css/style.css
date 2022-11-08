@@ -2133,10 +2133,11 @@ section {
   margin: 0 9px;
   font-size: 14px;
 }
-.switch-btn span, .switch-btn i {
+.switch-btn span, .switch-btn i, .switch-btn a {
   vertical-align: middle;
+  text-decoration: none;
 }
-.switch-btn i {
+.switch-btn i, .switch-btn a {
   position: relative;
   margin: 2px;
   display: block;
@@ -2152,18 +2153,18 @@ section {
 .switch-btn--white {
   border-color: #ffffff;
 }
-.switch-btn--white i {
+.switch-btn--white i, .switch-btn--white a {
   background-color: #ffffff;
 }
 
 .switch-btn--orange {
   border-color: #fba72a;
 }
-.switch-btn--orange i {
+.switch-btn--orange i, .switch-btn--orange a {
   background-color: #fba72a;
 }
 
-.switch-btn--active i {
+.switch-btn--active i, .switch-btn--active a {
   left: 50%;
 }
 
@@ -5045,18 +5046,20 @@ footer .create {
   -webkit-box-shadow: rgba(38, 57, 77, 0.71) 0px 20px 30px -10px;
           box-shadow: rgba(38, 57, 77, 0.71) 0px 20px 30px -10px;
 }
-.cards-typework-item:hover .cards-typework-img {
-  background-color: rgba(3, 172, 159, 0.1);
+
+.cards-second-info h3 {
+  font-size: 18px;
+  color: #03ac9f;
+  margin: 0 0 15px;
 }
 
 .cards-typework-img {
   border-right: 1px solid #C4C4C4;
   width: 60px;
-  height: iherit;
+  height: 60px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  background-color: #ffffff;
   -webkit-transition: ease-out 0.25s;
   transition: ease-out 0.25s;
 }

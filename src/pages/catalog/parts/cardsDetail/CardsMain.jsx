@@ -7,15 +7,20 @@ import markerIco from 'front-end/images/icons/marker-green.svg';
 import SimpleDateTime from 'react-simple-timestamp-to-date';
 import InfoExp from 'pages/catalog/parts/cardsItem/InfoExp';
 
-const CardsMain = ({ listing, imgCards, elementId, refContent }) => {
+const CardsMain = ({ listing, imgCards, elementId, refContent, listingType }) => {
 
   const address = listing.coords && listing.coords.split('--');
+
+  const renderDataText = () => {
+    return listingType === 'resume' ? 'Резюме обновлено:' : 'Вакансия обновлена:'
+  }
+
 
   return (
     <>
       <div className="cards-main shadow-container" ref={refContent}>
         <div className="cards-item-roof">
-          <span>Резюме обновлено:&nbsp;
+          <span>{renderDataText()}&nbsp;
             <SimpleDateTime
               format="MYD"
               showTime="0"
@@ -37,10 +42,12 @@ const CardsMain = ({ listing, imgCards, elementId, refContent }) => {
               <div className="cards-item-info-top">
                 <h3>{listing.card_name}</h3>
 
-                {listing.salary_price && (
+                {listing.salary.price && (
                   <div className="cards-item-price">
-                    <b>P {listing.salary_price}</b>
-                    <span>{listing.salary_worktime}</span>
+                    <b>P {listing.salary.price}</b>
+                    {listing.salary.priceType && <span>\ {listing.salary.priceType} </span>}
+                    {listing.salary.worktime && <span>\ {listing.salary.worktime} </span>}
+                    {listing.salary.worktype && <span>\ {listing.salary.worktype} </span>}
                   </div>
                 )}
               </div>

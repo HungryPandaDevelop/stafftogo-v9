@@ -31,7 +31,7 @@ const BtnChat = ({
   useEffect(() => {
 
     uid && getListing('message', uid, 'invite').then(res => {
-      console.log('res', res);
+      // console.log('res', res);
       setInvited(res.map(el => el.data.listingId));
       let roomThis = res.filter(el => el.data.listingId === elementId);
       roomThis.length > 0 && setCurrentRoom(roomThis[0].id)

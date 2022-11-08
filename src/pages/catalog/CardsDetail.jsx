@@ -26,7 +26,7 @@ import Reviews from 'pages/catalog/parts/cardsDetail/Reviews';
 import defaultCardsImg from 'front-end/images/icons/avatar-light-gray.svg';
 
 
-const CardsDetail = ({ uid, cabinetType, listingType }) => {
+const CardsDetail = ({ uid, cabinetType }) => {
   const refContent = useRef(null);
 
   const toPdf = (namecards, nameaccount) => {
@@ -76,21 +76,19 @@ const CardsDetail = ({ uid, cabinetType, listingType }) => {
       <div className="stub"></div>
 
       <Breadcrumbs />
+      <div className="stub"></div>
       <div className="content" >
-        <div className="main-full">
-          <h1>Вакансия детально</h1>
-        </div>
         <div className="main-grid">
           <div className="col-10 col-lg-9 col-sm-12" ref={refContent}>
 
-            <CardsMain listing={listing} elementId={params.elementId} imgCards={imgCards} />
+            <CardsMain listing={listing} elementId={params.elementId} imgCards={imgCards} listingType={params.catagoryName} />
 
             <CardsSecond listing={listing} />
 
             <CardsAbout listing={listing} />
 
             <Reviews
-              listingType={listingType}
+              listingType={params.catagoryName}
               elementId={params.elementId}
               listing={listing}
             />
@@ -103,7 +101,7 @@ const CardsDetail = ({ uid, cabinetType, listingType }) => {
               imgCards={imgCards}
               uid={uid}
               cabinetType={cabinetType}
-              listingType={listingType}
+              listingType={params.catagoryName}
               elementId={params.elementId}
             />
           </div>
@@ -122,7 +120,6 @@ const mapStateToProps = (state) => {
     roomUpdate: state.accountInfo.roomUpdate,
     uid: state.accountInfo.info.uid,
     cabinetType: state.accountInfo.info.typeCabinet,
-    listingType: state.listingTypeReducer,
   }
 }
 

@@ -20,7 +20,7 @@ const CardsAbout = ({ listing }) => {
             ))}
           </div>
         )}
-        {listing.institution && (
+        {listing.institution && listing.institution.lenght > 0 && (
           <div className="cards-about-item">
             <h3>Профессиональные образование</h3>
             {listing.institution.map((item, index) => (
@@ -42,6 +42,15 @@ const CardsAbout = ({ listing }) => {
             {listing.about}
           </div>
         )}
+
+        {listing.responsibilities && (
+          <div className="cards-about-item">
+            <h3>Основные обязанности</h3>
+            {listing.responsibilities}
+          </div>
+        )}
+
+
 
       </div>
     </>

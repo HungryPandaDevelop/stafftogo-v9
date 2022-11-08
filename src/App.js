@@ -1,5 +1,5 @@
 import {useEffect } from 'react';
-import {BrowserRouter, Routes, Route, useLocation, Navigate } from 'react-router-dom';
+import {BrowserRouter, Routes, Route, useLocation, Navigate, useParams } from 'react-router-dom';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -58,14 +58,14 @@ import Catalog from 'pages/catalog/Catalog';
 import CardsDetail from 'pages/catalog/CardsDetail';
 // Страницы Елементов Вакансии\ Резюме
 
-import Routess from 'pages/Routes';
-
 import GoMap from 'pages/goMap/GoMap';
 
 
 
 
 const App = () => {
+
+const params = useParams();
 
 const ScrollToTop =(props) => {
   const { pathname } = useLocation();
@@ -81,13 +81,12 @@ const ScrollToTop =(props) => {
     <>
       <BrowserRouter>
         <ScrollToTop />
-        <Header/>
+        <Header typeListing={params.catagoryName}/>
         <Routes> 
           <Route path='/' exept element={<MainPage/>} ></Route>
           <Route path='/demo' element={<Demo/>} ></Route>
 
-          <Route path="/404" element={ <NotFound /> } />
-          <Route path="*" element={ <Navigate to="/404" replace />} />
+
           
           <Route path='/authorization'  element={<Authorization/>} ></Route>
           <Route path='/forgot-password' element={<ForgotPassword/>}></Route>
@@ -137,19 +136,14 @@ const ScrollToTop =(props) => {
 
 
 
-          <Route path='/catalog' element={<Catalog/>}></Route>
-          <Route path='/map' element={<GoMap/>}></Route>
-          <Route path='/map/:idPopup' element={<GoMap/>}></Route>
+          <Route path='/catalog/:catagoryName'  element={<Catalog/>}></Route>
+          <Route path='/catalog/:catagoryName/map' element={<GoMap/>}></Route>
+          <Route path='/catalog/:catagoryName/map/:idPopup' element={<GoMap/>}></Route>
           <Route path='/catalog/:catagoryName/:elementId' element={<CardsDetail/>}></Route>
 
+          <Route path="/404" element={ <NotFound /> } />
+          <Route path="*" element={ <Navigate to="/404" replace />} />
 
-          {Routess.map(({ path, name, Component }, key) => (
-            <Route path={path} element={Component} key={key}  
-              render={props=>{
-                console.log('props', props)
-              }}
-            ></Route>
-          ))}
 
         </Routes>
         <Footer/>

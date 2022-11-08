@@ -16,7 +16,7 @@ import { connect } from 'react-redux';
 
 
 
-const MapYandex = ({ listingSearch, listingType, uid, cabinetType }) => {
+const MapYandex = ({ listingSearch, uid, cabinetType }) => {
 
   const params = useParams();
   // const myMap = useRef(null);
@@ -49,9 +49,9 @@ const MapYandex = ({ listingSearch, listingType, uid, cabinetType }) => {
     };
 
     if (myMap) {
-
+      // console.log(params.catagoryName)
       params.idPopup && setCurrentCardId(params.idPopup);
-      getListing(listingType).then(res => {
+      getListing(params.catagoryName).then(res => {
 
         let data = filterMain(listingSearch, res);
 
@@ -85,7 +85,7 @@ const MapYandex = ({ listingSearch, listingType, uid, cabinetType }) => {
           setCurrentCardId(e.get('target').properties.get('itemId'));
           setChoiseMarkerPosition(e.get('target').geometry.getCoordinates());
 
-          navigate('/map/' + e.get('target').properties.get('itemId'), { replace: true });
+          navigate('/catalog/' + params.catagoryName + '/map/' + e.get('target').properties.get('itemId'), { replace: true });
           // myMapRef.current.setCenter(e.get('target').geometry.getCoordinates())
 
           getAddress(e.get('target').geometry.getCoordinates(), setMarkerPositionText);
@@ -96,7 +96,7 @@ const MapYandex = ({ listingSearch, listingType, uid, cabinetType }) => {
 
     };
 
-  }, [myMap, listingType, listingSearch]);
+  }, [myMap, params.catagoryName, listingSearch]);
 
 
 
@@ -107,7 +107,7 @@ const MapYandex = ({ listingSearch, listingType, uid, cabinetType }) => {
         <div className="col-3 col-md-5 col-xs-12">
           <CardsPopup
             currentCardId={currentCardId}
-            listingType={listingType}
+            listingType={params.catagoryName}
             myMap={myMap}
             myMapRef={myMapRef}
             myRoute={myRoute}
@@ -151,7 +151,6 @@ const mapStateToProps = (state) => {
   return {
     uid: state.accountInfo.info.uid,
     listingSearch: state.listingSearchReducer,
-    listingType: state.listingTypeReducer,
     cabinetType: state.accountInfo.info.typeCabinet,
   }
 }

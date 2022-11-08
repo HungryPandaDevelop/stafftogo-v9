@@ -27,11 +27,18 @@ const ListItem = ({
   const imgCards = listingData.userInfo.imgsAccount ? listingData.userInfo.imgsAccount : defaultCardsImg;
   const address = listingData.coords && listingData.coords.split('--');
 
+
+  const renderDataText = () => {
+    return listingType === 'resume' ? 'Резюме обновлено:' : 'Вакансия обновлена:'
+  }
+
+
+
   return (
     <div className="cards-item shadow-container">
       <div className="main-grid cards-item-roof">
         <div className="col-6">
-          <span>Резюме обновлено:&nbsp;
+          <span>{renderDataText()} &nbsp;
             <SimpleDateTime
               format="MYD"
               showTime="0"
@@ -70,10 +77,12 @@ const ListItem = ({
                   {listingData.card_name}
                 </Link>
               </h3>
-              {listingData.salary_price && (
+              {listingData.salary && (
                 <div className="cards-item-price">
-                  <b>P {listingData.salary_price}</b>
-                  <span>{listingData.salary_worktime}</span>
+                  <b>P {listingData.salary.price}</b>
+                  {listingData.salary.priceType && <span>\ {listingData.salary.priceType} </span>}
+                  {listingData.salary.worktime && <span>\ {listingData.salary.worktime} </span>}
+                  {listingData.salary.worktype && <span>\ {listingData.salary.worktype} </span>}
                 </div>
               )}
             </div>
@@ -95,15 +104,15 @@ const ListItem = ({
               {listingData.userInfo.phone && (
                 <li>
                   <img src={phoneIco} alt="" />
-                  <Link to={`tel:${listingData.userInfo.phone}`}>
+                  <a href={`tel:${listingData.userInfo.phone}`}>
                     {listingData.userInfo.phone}
-                  </Link>
+                  </a>
                 </li>
               )}
               {listingData.userInfo.email && (
                 <li>
                   <img src={mainIco} alt="" />
-                  <Link to={`mailto:${listingData.userInfo.email}`}>{listingData.userInfo.email}</Link>
+                  <a href={`mailto:${listingData.userInfo.email}`}>{listingData.userInfo.email}</a>
                 </li>
               )}
               {address && (<li>
@@ -119,7 +128,7 @@ const ListItem = ({
                   listing={listing}
                 />
               )}
-              {address && (<Link to={`/map/${listing.id}`} className="btn btn--green-border ico-in ico-in--left btn-show-map">
+              {address && (<Link to={`/catalog/${listingType}/map/${listing.id}`} className="btn btn--green-border ico-in ico-in--left btn-show-map">
                 <i></i>
                 <span>Показать на карте</span>
               </Link>)}

@@ -5,7 +5,7 @@ import logo from 'front-end/images/logo.svg';
 
 import { Link } from 'react-router-dom';
 
-const MenuPopup = ({ showNavMenu, closePopup }) => {
+const MenuPopup = ({ showNavMenu, closePopup, listingType }) => {
 
 
   return (
@@ -17,7 +17,7 @@ const MenuPopup = ({ showNavMenu, closePopup }) => {
           <nav className="popup-nav">
             <ul className='ln'>
               <li> <Link to="/" onClick={closePopup}>Главная</Link></li>
-              <li> <Link to="/catalog" onClick={closePopup}>Вакансии / Резюме</Link></li>
+              <li> <Link to={`/catalog/${listingType}`} onClick={closePopup}>{listingType === 'resume' ? 'Резюме' : 'Вакансии'} </Link></li>
               <li> <Link to="#" onClick={closePopup}>О нас</Link></li>
               <li> <Link to="#" onClick={closePopup}>Контакты</Link></li>
               <li> <Link to="/chatlist" onClick={closePopup}>Чат</Link></li>

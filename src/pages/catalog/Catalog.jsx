@@ -10,21 +10,24 @@ import { connect } from 'react-redux';
 
 import { getListing } from 'store/asyncActions/getListing';
 
-
+import { useParams } from 'react-router-dom';
 
 import filterMain from 'components/filterMain/filterMain';
 
 import Pagination from 'pages/catalog/Pagination';
 
-const Catalog = ({ listingType, listingSearch, uid, cabinetType, accountInfo, }) => {
+const Catalog = ({ listingSearch, uid, cabinetType, accountInfo, }) => {
 
   const [listings, setListings] = useState(null);
   const [loading, setLoading] = useState(true);
 
 
+  const params = useParams();
+
+
   useEffect(() => {
 
-    getListing(listingType).then(res => {
+    getListing(params.catagoryName).then(res => {
 
       let data = filterMain(listingSearch, res);
 
@@ -36,11 +39,13 @@ const Catalog = ({ listingType, listingSearch, uid, cabinetType, accountInfo, })
       setLoading(false);
     });
 
-  }, [listingSearch, listingType]);
+  }, [listingSearch, params.catagoryName]);
 
 
 
-
+  const renderTitle = () => {
+    return params.catagoryName === 'resume' ? 'Резюме' : 'Вакансии'
+  }
 
 
   return (
@@ -49,7 +54,7 @@ const Catalog = ({ listingType, listingSearch, uid, cabinetType, accountInfo, })
       <Filters />
       <Breadcrumbs />
       <div className="content">
-        <PageTitle title="список" />
+        <PageTitle title={renderTitle()} />
 
         <div className="main-full">
           {loading ? 'Loading list' : listings.length > 0 ? (
@@ -57,7 +62,7 @@ const Catalog = ({ listingType, listingSearch, uid, cabinetType, accountInfo, })
 
               <Pagination
                 listings={listings}
-                listingType={listingType}
+                listingType={params.catagoryName}
                 uid={uid}
                 accountInfo={accountInfo}
                 cabinetType={cabinetType}
@@ -79,7 +84,6 @@ const mapStateToProps = (state) => {
     uid: state.accountInfo.info.uid,
     accountInfo: state.accountInfo.info,
     cabinetType: state.accountInfo.info.typeCabinet,
-    listingType: state.listingTypeReducer,
   }
 }
 

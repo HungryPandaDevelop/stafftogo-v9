@@ -46,7 +46,7 @@ const CardsPopup = (
 
 
   const onShowPopup = (id) => {
-    console.log('myMapRef', myMapRef.current)
+    // console.log('myMapRef', myMapRef.current)
     if (id && myMapRef.current) {
       getSingleListing(listingType, id).then(res => {
         setCardInfo(res);
@@ -66,7 +66,8 @@ const CardsPopup = (
     setRouteboxState(null);
     setCurrentCardId(null);
     removeRoute(myMapRef, myRoute);
-    navigate('/map');
+    navigate('/catalog/' + listingType + '/map');
+    // console.log('/catalog/' + listingType + '/map')
   }
 
   const showRoutebox = () => {

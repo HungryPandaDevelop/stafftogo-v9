@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import UserList from 'blocks/header/sigin/UserList';
@@ -11,11 +11,29 @@ import avatar from 'front-end/images/icons/avatar-white.svg';
 const CabinetHeader = ({ userInfo, showPopup }) => {
 
   const [cabinetPopupShow, setCabinetPopupShow] = useState(false);
+
+
+  useEffect(() => {
+    const hideByBody = (e) => {
+      if (e.target.className !== 'cabinet-header-avatar img-cover') {
+        setCabinetPopupShow(false)
+      }
+      if (e.key === 'Escape') { setCabinetPopupShow(false); }
+    }
+    document.addEventListener('keydown', hideByBody);
+    document.body.addEventListener('click', hideByBody);
+    return () => {
+      document.body.removeEventListener('click', hideByBody)
+      document.body.removeEventListener('keydown', hideByBody)
+    };
+  }, []);
+
+
   const onCabinetPopupShow = () => {
     setCabinetPopupShow(!cabinetPopupShow);
   }
   return (
-    //<UserList /> // УДАЛИТЬ ПОТОМ, если сейчас просто удалить, что то да сломается
+    //<UserList /> // УДАЛИТЬ ПОТОМ, если сейчас удалить, что то да сломается
     <>
       <UserList />
       <div className="sigin-body">
@@ -26,7 +44,7 @@ const CabinetHeader = ({ userInfo, showPopup }) => {
           <i></i>
         </Link>
         <div
-          className={`cabinet-header-avatar-container ${cabinetPopupShow && 'active'}`}
+          className={`cabinet-header-avatar-container ${cabinetPopupShow ? 'active' : ''}`}
           onClick={onCabinetPopupShow}
         >
           <div
