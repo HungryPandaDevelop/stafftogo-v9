@@ -10,8 +10,7 @@ const ListItem = ({
   onActivate,
   currentCard,
   id,
-  cabinetType
-
+  cabinetType,
 }) => {
 
 

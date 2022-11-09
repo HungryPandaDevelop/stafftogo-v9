@@ -13,8 +13,8 @@ const CardItemInvite = ({ listing, typeCabinet, onDelete }) => {
 
   const tagreender = (check) => {
 
-    return statusArr.filter(el => el[0] === check).map(item => (
-      <div className={`status-btn status-btn--${item[0]} active`}>
+    return statusArr.filter(el => el[0] === check).map((item, index) => (
+      <div key={index} className={`status-btn status-btn--${item[0]} active`}>
         {item[1]}
       </div>
     ))

@@ -73,15 +73,14 @@ const TemplateInputComplex = ({ allFields, fields, btnAddText }) => {
   return (
     <>
       {fields.map((item, index) => (
-        <div key={index} className="main-grid complex-input">
-          <div className="col-12">
-            <b className="comlex-num">#{index + 1}</b>
-          </div>
-          {choiseFields(item, allFields)}
-          <div
-            onClick={() => fields.remove(index)}
-            className="complex-delete-field ico-in"
-          >
+        <div key={index} className="complex-input">
+          <div className="main-grid">
+            {choiseFields(item, allFields)}
+            <div
+              onClick={() => fields.remove(index)}
+              className="complex-delete-field ico-in"
+            >
+            </div>
           </div>
         </div>
       ))}

@@ -43,10 +43,13 @@ const Employers = ({ renderImgCards, userInfo, formatPhone, fields }) => {
             <div>{userInfo.phones ? (
               <>
                 {userInfo.phones.map((item, index) => (
-                  <a key={index} href={`mailto:+7${item.phones}`}>+7{formatPhone(item.phones)}</a>
+                  <div>
+                    <a key={index} href={`mailto:+7${item.phones}`}>+7{formatPhone(item.phones)}</a>
+                  </div>
                 ))}
               </>
-            ) : '-/-'}</div>
+            ) : '-/-'}
+            </div>
           </div>
           <div className="account-item col-6"> <b>Тип компании</b>
             <div> {userInfo.typeJob ? (

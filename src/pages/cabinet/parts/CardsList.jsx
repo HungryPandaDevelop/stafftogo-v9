@@ -69,11 +69,14 @@ const CardsList = ({ uid, cabinetType, accountInfo, ActionFn }) => {
     }
   }
 
-  console.log(listings)
+  const renderDataText = () => {
+    return cabinetType === 'resume' ? 'Мои резюме' : 'Мои вакансия'
+  }
+
   return (
     <>
       <TemplateAccount
-        title={`${cabinetType}`}
+        title={renderDataText()}
         cabinetType={cabinetType}
         addWrapClass='cards-account-container'
         showAddBtn={true}
@@ -95,7 +98,7 @@ const CardsList = ({ uid, cabinetType, accountInfo, ActionFn }) => {
                 <tr className="cards-account-head">
                   <th>Название</th>
                   <th>З/п</th>
-                  <th>Резюме обновлено</th>
+                  <th>Обновлено</th>
                   <th>Статус</th>
                   <th>Действия</th>
                 </tr>

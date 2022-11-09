@@ -17,28 +17,33 @@ const BtnInvite = ({
   ActionFn,
   roomUpdate
 }) => {
-
+  // console.log(accountInfo.currentCard[0])
   const [invited, setInvited] = useState([]);
 
   useEffect(() => {
 
-    uid && getListing('message', uid, 'invite').then(res => {
+    uid && getListing('message', uid, 'invite', listing.id).then(res => {
 
-      setInvited(res.map(el => el.data.listingId));
+      setInvited(res.map(el => el.data.owmListingId));
       ActionFn('UPDATE_ROOM', false);
+
+      console.log(res)
     });
 
   }, [uid, roomUpdate]);
 
 
-  let inviteStatus = invited && invited.includes(listing.id);
+  let inviteStatus = invited && invited.includes(accountInfo.currentCard[0]);
+
+
 
   const onInvite = () => {
     const imgListing = listing.data.userInfo.imgsAccount ? listing.data.userInfo.imgsAccount : defaultCardsImg;
     const imgOwn = accountInfo.imgsAccount ? accountInfo.imgsAccount : defaultCardsImg;
 
 
-    !inviteStatus && createRoom(
+    // !inviteStatus && 
+    createRoom(
       listing.id,
       uid,
       listing.data.userRef,
@@ -60,10 +65,11 @@ const BtnInvite = ({
 
   return (
     <div
+      // className={`btn btn--orange-border`}
       className={`btn btn--orange-border response-btn ${inviteStatus && 'active'}`}
       onClick={onInvite}
     >
-
+      {/* 111 */}
       {inviteStatus ? 'Вы откликнулись' : 'Откликнуться'}
 
     </div>

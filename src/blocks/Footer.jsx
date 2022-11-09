@@ -39,7 +39,6 @@ const Footer = () => {
             <h3>Портал</h3>
             <ul>
               <li> <a href="#"> О нас</a></li>
-              <li> <a href="#"> Политика</a></li>
               <li> <a href="#"> Контакты</a></li>
             </ul>
           </nav>

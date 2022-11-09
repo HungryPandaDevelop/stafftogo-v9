@@ -60,7 +60,7 @@ const CardItemResponse = ({ listing, typeCabinet, onDelete }) => {
         <div className="btn-container">
           <div
             className="table-btn table-btn--delete"
-            onClick={() => onDelete()}
+            onClick={onDelete}
           >
           </div>
         </div>

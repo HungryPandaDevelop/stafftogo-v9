@@ -29,7 +29,7 @@ const CabinetSidebar = ({ userInfo }) => {
     ['Приглашения', 'responses', 'invitation-nav'],
     ['Чат', 'chat', 'chat-nav'],
     ['Видеочат', 'videochat', 'videochat-nav'],
-    ['Подписка', 'subscription', 'subscription'],
+    ['Подписка', 'subscription', 'subscription-nav'],
   ]
 
   const NameMassApplicants = [

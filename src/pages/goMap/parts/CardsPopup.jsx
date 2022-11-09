@@ -128,22 +128,22 @@ const CardsPopup = (
             <BtnCall listing={cardInfo} />
           </div>
           <div className="gomap-popup-info">
-            <h3> <a href="/">{cardInfo.card_name}</a></h3>
+            <h3> <Link to={`/catalog/${listingType}/${currentCardId}`}>{cardInfo.card_name}</Link></h3>
             {cardInfo.userInfo.accountName && (<h4>{cardInfo.userInfo.accountName}</h4>)}
             <div className="gomap-popup-price">{cardInfo.salary_priceFrom}</div>
             <ul className="ln gomap-popup-list">
               {cardInfo.userInfo.phone && (
                 <li>
                   <img src={phoneIco} alt="" />
-                  <Link to={`tel:${cardInfo.userInfo.phone}`}>
+                  <a href={`tel:${cardInfo.userInfo.phone}`}>
                     {cardInfo.userInfo.phone}
-                  </Link>
+                  </a>
                 </li>
               )}
               {cardInfo.userInfo.email && (
                 <li>
                   <img src={mainIco} alt="" />
-                  <Link to={`mailto:${cardInfo.userInfo.email}`}>{cardInfo.userInfo.email}</Link>
+                  <a href={`mailto:${cardInfo.userInfo.email}`}>{cardInfo.userInfo.email}</a>
                 </li>
               )}
 

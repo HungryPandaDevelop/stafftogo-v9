@@ -17,7 +17,7 @@ const LeftBtnContainer = () => {
 
   return (
     <>
-      <Link className={`btn btn--white-border btn-search ${(pathMathRoute('/catalog/' + getCategoryName + '/map') ? 'active' : '')}`} to={`/catalog/${getCategoryName}/map`}>Карта</Link>
+      <Link className={`btn btn-map-filters ${(pathMathRoute('/catalog/' + getCategoryName + '/map') ? 'active' : '')}`} to={`/catalog/${getCategoryName}/map`}>Карта</Link>
       <Link className={`btn btn--orange-border ${(pathMathRoute('/catalog/' + getCategoryName) ? 'active' : '')}`} to={`/catalog/${getCategoryName}`}>Список</Link>
     </>
   )

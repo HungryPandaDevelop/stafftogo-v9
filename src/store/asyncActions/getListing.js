@@ -13,7 +13,7 @@ import {
 import { db } from 'firebase.config';
 
 
-export const getListing = async (baseName, uid, type) => {
+export const getListing = async (baseName, uid, type, listingId) => {
 
   // console.log('in', baseName, uid)
 
@@ -43,6 +43,7 @@ export const getListing = async (baseName, uid, type) => {
     q = query(
       listingsRef,
       where("uid", "==", uid),
+      where("listingId", "==", listingId),
       //where('idLike', '==', 'Ks8AALPMJ0MkLl888A9jSBr2IaC3'),
       // where('userRef', '==', 'YpguqFwp1YeEFrQlQeJHaRWVKar1'),
       // orderBy('timestamp', 'desc'),

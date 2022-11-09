@@ -5,7 +5,8 @@ import { useEffect } from "react"
 
 import { Link, useParams } from 'react-router-dom';
 
-const RoomItem = ({ room, uid, roomId, ActionFn, setCurrentInfoChat }) => {
+
+const RoomItem = ({ room, uid, roomId, ActionFn, setCurrentInfoChat, onDelete }) => {
 
   const params = useParams();
 
@@ -27,33 +28,36 @@ const RoomItem = ({ room, uid, roomId, ActionFn, setCurrentInfoChat }) => {
 
 
 
-
   return (
-    <Link
-      to={`/cabinet/chat/${room.id}`}
+    <div
+
       onClick={() => {
         changeRoom(room);
       }}
       className={`chat-list-item ${(roomId === room.id) && 'active'}`} >
-      <div
-        className="chat-list-img img-cover"
-        style={{ backgroundImage: `url(${room.data.hisInvitingImg})` }}
-      >
-      </div>
-      <div className="chat-list-about">
-        <div className="chat-list-cardsname">
-          {
-            room.data.uid === uid ?
-              room.data.hisInvitingName
-              :
-              room.data.ownInvitedName
-          }
+      <Link to={`/cabinet/chat/${room.id}`}>
+        <div
+          className="chat-list-img img-cover"
+          style={{ backgroundImage: `url(${room.data.hisInvitingImg})` }}
+        >
         </div>
-        <div className="chat-list-accountname">{room.data.hisInvitingNameAccount}</div>
-      </div>
+      </Link>
+      <Link to={`/cabinet/chat/${room.id}`}>
+        <div className="chat-list-about">
+          <div className="chat-list-cardsname">
+            {
+              room.data.uid === uid ?
+                room.data.hisInvitingName
+                :
+                room.data.ownInvitedName
+            }
+          </div>
+          <div className="chat-list-accountname">{room.data.hisInvitingNameAccount}</div>
+        </div>
+      </Link>
+      <Link to="/cabinet/chat/" className="table-btn table-btn--delete" onClick={onDelete}></Link>
 
-
-    </Link>
+    </div>
   )
 }
 

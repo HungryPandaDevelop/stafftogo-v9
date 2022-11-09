@@ -42,7 +42,7 @@ const CardsMain = ({ listing, imgCards, elementId, refContent, listingType }) =>
               <div className="cards-item-info-top">
                 <h3>{listing.card_name}</h3>
 
-                {listing.salary.price && (
+                {listing.salary && (
                   <div className="cards-item-price">
                     <b>P {listing.salary.price}</b>
                     {listing.salary.priceType && <span>\ {listing.salary.priceType} </span>}
@@ -101,7 +101,7 @@ const CardsMain = ({ listing, imgCards, elementId, refContent, listingType }) =>
               </ul>
               <div className="cards-item-bottom btn-container">
                 {address && (
-                  <Link to={`/map/${elementId}`} className="btn btn--green-border ico-in ico-in--left btn-show-map">
+                  <Link to={`/catalog/${listingType}/map/${elementId}`} className="btn btn--green-border ico-in ico-in--left btn-show-map">
                     <i></i>
                     <span>Показать на карте</span>
                   </Link>

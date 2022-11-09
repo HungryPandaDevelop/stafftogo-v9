@@ -1809,6 +1809,19 @@ section {
   background-color: #fba72a;
 }
 
+.btn-map-filters {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 58px;
+  background-image: url("../images/btn-map.svg");
+  background-color: rgba(255, 255, 255, 0);
+  font-size: 0;
+}
+.btn-map-filters:hover {
+  background-color: #03ac9f;
+  border-color: #03ac9f;
+}
+
 .btn-find i {
   display: inline-block;
   vertical-align: middle;
@@ -3539,8 +3552,8 @@ footer .create {
   height: 100%;
   left: 0;
   top: 0;
-  background-color: #202020;
-  opacity: 0.6;
+  background-color: #03ac9f;
+  opacity: 0.3;
 }
 .popup a:hover {
   color: #202020;
@@ -3607,7 +3620,7 @@ footer .create {
   background-color: #ffffff;
   width: 50%;
   height: 100%;
-  max-width: none;
+  max-width: 460px;
   color: #202020;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -6045,6 +6058,15 @@ footer,
 .cabinet-nav .videochat-nav:hover i, .cabinet-nav .videochat-nav.active i {
   background-image: url(../images/icons/cabinet/videochat-white.svg);
 }
+.cabinet-nav .subscription-nav i {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url("../images/icons/cabinet/wallet-black.svg");
+}
+.cabinet-nav .subscription-nav:hover i, .cabinet-nav .subscription-nav.active i {
+  background-image: url(../images/icons/cabinet/wallet-white.svg);
+}
 .cabinet-nav .cabinet-logout i {
   background-position: center;
   background-repeat: no-repeat;
@@ -6169,6 +6191,7 @@ footer,
   position: relative;
   border-bottom: 1px solid #C4C4C4;
   margin-bottom: 30px;
+  padding-right: 45px;
   padding-bottom: 15px;
 }
 .complex-input .input-decorate,
@@ -6186,7 +6209,6 @@ footer,
   height: 30px;
   right: 0;
   top: 0%;
-  margin-top: -5px;
   cursor: pointer;
   border-radius: 100%;
   background-color: #ed1834;
@@ -6314,64 +6336,6 @@ footer,
 .cards-account-container .btn-container {
   text-align: right;
 }
-.cards-account-container .table-btn {
-  font-size: 0;
-  background-color: #777;
-  width: 40px;
-  height: 40px;
-  display: inline-block;
-  vertical-align: text-top;
-  border-radius: 100%;
-  margin-left: 30px;
-  cursor: pointer;
-}
-.cards-account-container .table-btn:first-child {
-  margin-left: auto;
-}
-.cards-account-container .table-btn--edit {
-  background-color: rgba(3, 172, 159, 0.2);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 60%;
-  background-image: url("../images/icons/cabinet/edit-green.svg");
-}
-.cards-account-container .table-btn--edit:hover {
-  background-color: #03ac9f;
-  background-image: url("../images/icons/cabinet/edit-white.svg");
-}
-.cards-account-container .table-btn--delete {
-  background-color: rgba(237, 24, 52, 0.2);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 60%;
-  background-image: url("../images/icons/cabinet/trash-red.svg");
-}
-.cards-account-container .table-btn--delete:hover {
-  background-color: #ed1834;
-  background-image: url("../images/icons/cabinet/trash-white.svg");
-}
-.cards-account-container .table-btn--view {
-  background-color: rgba(251, 167, 42, 0.1);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 60%;
-  background-image: url("../images/icons/cabinet/view-orange.svg");
-}
-.cards-account-container .table-btn--view:hover, .cards-account-container .table-btn--view.active {
-  background-color: #fba72a;
-  background-image: url("../images/icons/cabinet/view-white.svg");
-}
-.cards-account-container .table-btn--call {
-  background-color: rgba(251, 167, 42, 0.1);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 60%;
-  background-image: url("../images/icons/cabinet/video-orange.svg");
-}
-.cards-account-container .table-btn--call:hover {
-  background-color: #fba72a;
-  background-image: url("../images/icons/cabinet/video-white.svg");
-}
 .cards-account-container .status-btn-container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -6419,6 +6383,69 @@ footer,
 .cards-account-container .status-btn--considered.active, .cards-account-container .status-btn--considered:hover {
   background-color: #fba72a;
   color: #ffffff;
+}
+
+.table-btn {
+  font-size: 0;
+  background-color: #777;
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+  vertical-align: text-top;
+  border-radius: 100%;
+  margin-left: 30px;
+  cursor: pointer;
+}
+.table-btn:first-child {
+  margin-left: auto;
+}
+
+.table-btn--edit {
+  background-color: rgba(3, 172, 159, 0.2);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 60%;
+  background-image: url("../images/icons/cabinet/edit-green.svg");
+}
+.table-btn--edit:hover {
+  background-color: #03ac9f;
+  background-image: url("../images/icons/cabinet/edit-white.svg");
+}
+
+.table-btn--delete {
+  background-color: rgba(237, 24, 52, 0.2);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 60%;
+  background-image: url("../images/icons/cabinet/trash-red.svg");
+}
+.table-btn--delete:hover {
+  background-color: #ed1834;
+  background-image: url("../images/icons/cabinet/trash-white.svg");
+}
+
+.table-btn--view {
+  background-color: rgba(251, 167, 42, 0.1);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 60%;
+  background-image: url("../images/icons/cabinet/view-orange.svg");
+}
+.table-btn--view:hover, .table-btn--view.active {
+  background-color: #fba72a;
+  background-image: url("../images/icons/cabinet/view-white.svg");
+}
+
+.table-btn--call {
+  background-color: rgba(251, 167, 42, 0.1);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 60%;
+  background-image: url("../images/icons/cabinet/video-orange.svg");
+}
+.table-btn--call:hover {
+  background-color: #fba72a;
+  background-image: url("../images/icons/cabinet/video-white.svg");
 }
 
 @media (max-width: 1280px) {
@@ -6518,6 +6545,12 @@ footer,
 .chat-list-item h3 {
   color: inherit;
   font-size: inherit;
+}
+.chat-list-item .table-btn--delete {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  right: 10px;
 }
 
 .chat-list-img {
@@ -6641,6 +6674,51 @@ footer,
 }
 .chat-messages-form .btn-container {
   padding-left: 15px;
+}
+
+.subscribe-ico {
+  margin: 0 0 30px;
+}
+.subscribe-ico img {
+  width: 40px;
+}
+
+.subscribe-item {
+  border: 1px solid #03ac9f;
+  padding: 30px 30px 15px;
+  border-radius: 8px;
+}
+.subscribe-item h3 {
+  font-size: 24px;
+}
+
+.subscribe-price {
+  color: #03ac9f;
+  font-size: 32px;
+  font-weight: 700;
+  margin: 30px 0;
+}
+
+.subscribe-list {
+  margin: 0 0 45px;
+}
+.subscribe-list li {
+  position: relative;
+  padding-left: 30px;
+  font-weight: 700;
+  margin: 0 0 5px;
+}
+.subscribe-list li::before {
+  content: "";
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url("../images/icons/ok-circle-orange.svg");
+  width: 20px;
+  position: absolute;
+  height: 20px;
+  left: 0;
+  top: 4px;
 }
 
 /*-----cabinet-end-----*/

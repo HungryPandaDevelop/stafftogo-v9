@@ -75,7 +75,7 @@ const Hidden = ({ typeCabinet, accountInfo, ActionFn }) => {
   return (
     <>
       <TemplateAccount
-        title="Мне понравилось"
+        title="Спрятанное"
         addWrapClass='cards-account-container'
       >
         {contentPage()}

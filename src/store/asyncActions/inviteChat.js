@@ -43,7 +43,7 @@ const createRoom = async (
         listingId: listingId,
         hisInvitingName: hisInvitingName,
         hisInvitingImg: hisInvitingImg,
-        hisInvitingNameAccount:hisInvitingNameAccount,
+        // hisInvitingNameAccount:hisInvitingNameAccount, // *
         ownInvitedName: ownInvitedName,
         ownInvitedNameAccount: ownInvitedNameAccount,
         ownInvitedImg: ownInvitedImg,
@@ -60,7 +60,7 @@ const createRoom = async (
   
       
 
-     
+  
     } catch (error) {
         console.error(error);
         toast.error(error)

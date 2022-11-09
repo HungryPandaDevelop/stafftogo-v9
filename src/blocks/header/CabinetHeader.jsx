@@ -40,7 +40,7 @@ const CabinetHeader = ({ userInfo, showPopup }) => {
         <Link
           to={`/cabinet/${userInfo.typeCabinet}-new`}
           className="btn btn-add-desk btn-add-cards btn--orange-border ico-in ico-in--right">
-          <span>{userInfo.typeCabinet === 'resume' ? 'Создать резюме' : 'Создать вакнсию'}</span>
+          <span>{userInfo.typeCabinet === 'resume' ? 'Создать резюме' : 'Создать вакансию'}</span>
           <i></i>
         </Link>
         <div

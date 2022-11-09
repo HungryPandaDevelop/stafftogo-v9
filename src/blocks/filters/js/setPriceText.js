@@ -22,7 +22,7 @@ const setPriceText = (listingSearch) => {
     )
   }
   else {
-    return 'Вознагрождение';
+    return 'Вознаграждение';
   }
 }
 
