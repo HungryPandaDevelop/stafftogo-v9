@@ -1,5 +1,3 @@
-import ActionFn from 'store/actions';
-import { connect } from 'react-redux';
 
 import { useEffect } from "react"
 
@@ -11,19 +9,26 @@ const RoomItem = ({ room, uid, roomId, ActionFn, setCurrentInfoChat, onDelete })
   const params = useParams();
 
   useEffect(() => {
-    // console.log(room.data.masterId, room.data.ownId)
 
-    if (params.roomUrl) {
+
+    if (params.roomUrl === room.id) {
 
       changeRoom(room)
     }
 
-  }, []);
+  }, [params.roomUrl]);
 
   const changeRoom = (setRoom) => {
-    ActionFn('CHANGE_ROOM', setRoom.id);
 
-    setCurrentInfoChat([setRoom.data.ownInvitedName, setRoom.data.ownInvitedNameAccount, setRoom.data.ownInvitedImg]);
+
+    if (setRoom.data.uid === uid) {
+      setCurrentInfoChat([setRoom.data.ownInvitedName, setRoom.data.ownInvitedNameAccount, setRoom.data.ownInvitedImg]);
+
+
+    } else {
+
+      setCurrentInfoChat([setRoom.data.hisInvitingName, setRoom.data.hisInvitingNameAccount, setRoom.data.hisInvitingImg]);
+    }
   }
 
 
@@ -31,28 +36,39 @@ const RoomItem = ({ room, uid, roomId, ActionFn, setCurrentInfoChat, onDelete })
   return (
     <div
 
-      onClick={() => {
-        changeRoom(room);
-      }}
+      // onClick={() => {
+      //   changeRoom(room);
+      // }}
       className={`chat-list-item ${(roomId === room.id) && 'active'}`} >
       <Link to={`/cabinet/chat/${room.id}`}>
-        <div
+        {room.data.uid === uid ? (<div
+          className="chat-list-img img-cover"
+          style={{ backgroundImage: `url(${room.data.ownInvitedImg})` }}
+        >
+        </div>) : (<div
           className="chat-list-img img-cover"
           style={{ backgroundImage: `url(${room.data.hisInvitingImg})` }}
         >
-        </div>
+        </div>)}
+
       </Link>
       <Link to={`/cabinet/chat/${room.id}`}>
         <div className="chat-list-about">
           <div className="chat-list-cardsname">
             {
               room.data.uid === uid ?
-                room.data.hisInvitingName
-                :
                 room.data.ownInvitedName
+                :
+                room.data.hisInvitingName
             }
           </div>
-          <div className="chat-list-accountname">{room.data.hisInvitingNameAccount}</div>
+          <div className="chat-list-accountname">
+            {
+              room.data.uid === uid ?
+                room.data.ownInvitedNameAccount
+                :
+                room.data.hisInvitingNameAccount
+            }</div>
         </div>
       </Link>
       <Link to="/cabinet/chat/" className="table-btn table-btn--delete" onClick={onDelete}></Link>
@@ -61,17 +77,11 @@ const RoomItem = ({ room, uid, roomId, ActionFn, setCurrentInfoChat, onDelete })
   )
 }
 
-const mapStateToProps = (state) => {
-
-  return {
-    uid: state.accountInfo.info.uid,
-    roomId: state.accountInfo.roomId,
-  }
-}
 
 
-export default connect(mapStateToProps,
-  {
-    ActionFn
-  })(RoomItem);
 
+export default RoomItem;
+
+
+// ActionFn('CHANGE_ROOM', setRoom.id);
+// roomId: state.accountInfo.roomId,

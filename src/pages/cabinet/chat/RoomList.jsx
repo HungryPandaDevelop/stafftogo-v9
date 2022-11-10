@@ -16,7 +16,6 @@ const RoomList = ({ uid, setCurrentInfoChat }) => {
 
     getListing('message', uid, 'rooms').then(res => {
       setRooms(res);
-
     });
 
   }, []);
@@ -26,7 +25,7 @@ const RoomList = ({ uid, setCurrentInfoChat }) => {
   const deleteItem = (listings, id) => {
     onDeleteCards(listings, id, 'message').then(res => {
       setRooms(res);
-
+      setCurrentInfoChat(false)
     });
   }
   return (

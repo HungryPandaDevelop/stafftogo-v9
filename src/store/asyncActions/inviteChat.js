@@ -1,5 +1,5 @@
 import { toast } from 'react-toastify';
-
+// import { Timestamp } from '@google-cloud/firestore';
 import {
   collection,
   query,
@@ -43,18 +43,18 @@ const createRoom = async (
         listingId: listingId,
         hisInvitingName: hisInvitingName,
         hisInvitingImg: hisInvitingImg,
-        // hisInvitingNameAccount:hisInvitingNameAccount, // *
+        hisInvitingNameAccount:hisInvitingNameAccount, // *
         ownInvitedName: ownInvitedName,
         ownInvitedNameAccount: ownInvitedNameAccount,
         ownInvitedImg: ownInvitedImg,
         owmListingId: owmListingId,
         status: 'considered',
-        messages:{}
+        messages: [],
       }
       
       const docRef = await addDoc(collection(db, 'message'), sendData);
       toast.success('Данные обновлены')
-      return docRef;
+      return docRef.id;
 
     
   
@@ -68,45 +68,33 @@ const createRoom = async (
 
 }
 
-const sendMessage = async (roomId, text, randomId,  uid) => {
-  // console.log('messages', roomId, text, randomId,  uid)
+const sendMessage = async (roomId, text,  uid) => {
 
-  // const docSnap = await getDoc(doc(db, 'message', chatId));
+
   const getDocRoomInfo =  await getDoc(doc(db, 'message', roomId));
   const getRoomInfo = getDocRoomInfo.data();
 
+  // console.log(roomId, text,  uid, getRoomInfo.messages)
+
+  getRoomInfo.messages.push({
+    text: text,
+    uid: uid,
+    read: false,
+    timestamp: new Date()
+  });
+  // console.log('m', getRoomInfo.messages)
 
   try {
-    let setData
-    if(getRoomInfo){
-      setData = { 
+
+    const  setData = { 
         ...getRoomInfo,
-          messages:{
-            ...getRoomInfo.messages,
-            [randomId]:{
-              text: text,
-              uid: uid,
-              timestamp: serverTimestamp(),
-            }
-          }
+        messages: getRoomInfo.messages
       };
-    }
-    else{
-      setData = { 
-        getRoomInfo,
-          messages:{
-            [randomId]:{
-              text: text,
-              uid: uid,
-              timestamp: serverTimestamp(),
-            }
-          }
-      };
-    }
-    // console.log('sendMessage', 'setData')
+
     await setDoc(doc(db, 'message', roomId), setData);
 
-      toast.success('Данные обновлены');
+    toast.success('Данные обновлены');
+    
       
   } catch (error) {
       console.error(error);
@@ -116,27 +104,31 @@ const sendMessage = async (roomId, text, randomId,  uid) => {
 
 
 const getMyRoomMessages = (chatId, callback) => {
-  // console.log('getMyRoomMessages',chatId)
   const docRef =  doc(db, 'message', chatId);
   let a = 0;
-  const unsubscribe = onSnapshot(
+  onSnapshot(
     query(docRef),
     (doc)=>{
       const source = doc.metadata.hasPendingWrites ? "Local" : "Server";
       if(source === "Server"){
-        // callback(doc.data());
-        console.log('in s')
-        callback(a++)
+        console.log('refresh')
+        callback(a++);
+    
+
       }
     },
   );
-  //unsubscribe();
-  // const docSnap = await getDoc(doc(db, 'message', chatId));
-
-  // return docSnap.data().messages;
 }
 
-
+const updateRead = async (roomId, res)=>{
+  console.log(res.messages)
+  const changeRead = res.messages.map(item=>{
+    item.read = true
+    return item;
+  })
+  res.messages = changeRead
+  await updateDoc(doc(db, 'message', roomId), res);
+}
 
 
 
@@ -162,7 +154,7 @@ const getMyRooms = async (uid) =>{
 }
 
 
-export {getMyRoomMessages, sendMessage, createRoom, getMyRooms};
+export {getMyRoomMessages, sendMessage, createRoom, getMyRooms, updateRead};
 
 
 

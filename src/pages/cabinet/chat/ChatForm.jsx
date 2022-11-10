@@ -1,17 +1,21 @@
 import RenderFormAccount from 'components/forms/RenderFormAccount';
-import { v4 as uuid } from 'uuid';
+
 import { sendMessage } from 'store/asyncActions/inviteChat';
 import { connect } from 'react-redux';
 
-const ChatForm = ({ formData, fieldsChat, roomId, uid }) => {
+const ChatForm = ({ formData, fieldsChat, roomId, uid, updateChat, setUpdateChat }) => {
 
   const onSubmitIn = () => {
 
     if (formData) {
 
-      const unique_id = uuid();
-      sendMessage(roomId, formData.message, unique_id, uid);
-      formData.message = '';
+
+      sendMessage(roomId, formData.message, uid).then(() => {
+        console.log('message send', formData.message);
+        setUpdateChat(!updateChat);
+        formData.message = '';
+      });
+
 
     }
     else {
@@ -41,7 +45,6 @@ const mapStateToProps = (state) => {
 
   return {
     fieldsChat: state.fieldsChat, // база полей
-    roomId: state.accountInfo.roomId,
     formData: formReducer,
   }
 }

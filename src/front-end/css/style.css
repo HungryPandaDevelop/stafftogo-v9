@@ -1955,6 +1955,33 @@ section {
   background-color: #ffffff;
 }
 
+.btn-header {
+  display: inline-block;
+  border: 1px solid #fba72a;
+  border-radius: 100%;
+  width: 30px;
+  height: 30px;
+  margin-right: 15px;
+  cursor: pointer;
+  background-size: 80%;
+  background-position: center;
+}
+.btn-header:hover {
+  background-color: #fba72a;
+}
+
+.btn-header-cards {
+  background-image: url("../images/icons/add-doc-white.svg");
+}
+
+.btn-header-chat {
+  background-image: url("../images/icons/chat-white.svg");
+}
+
+.btn-header-favorites {
+  background-image: url("../images/icons/star-white.svg");
+}
+
 .link {
   font-weight: 700;
   font-size: 16px;
@@ -6575,7 +6602,6 @@ footer,
 }
 
 .chat-messages-list {
-  padding: 15px;
   position: relative;
   overflow-y: auto;
 }
@@ -6593,12 +6619,15 @@ footer,
 }
 
 .chat-messages-item {
-  margin: 0 0 30px;
+  padding: 15px;
 }
 .chat-messages-item .chat-list-img {
   display: inline-block;
   vertical-align: top;
   margin-right: 10px;
+}
+.chat-messages-item.noread {
+  background-color: #39aec7;
 }
 
 .chat-messages-head {

@@ -1,38 +1,38 @@
-import _ from "lodash";
-
-
 import moment from 'moment';
 
-import { connect } from 'react-redux';
-import ActionFn from 'store/actions';
+
 import { getMyRoomMessages } from 'store/asyncActions/inviteChat';
 import { getSingleListing } from "store/asyncActions/getSingleListing";
+import { updateRead } from "store/asyncActions/inviteChat";
 
 import { useState, useEffect } from 'react';
 
-const Messages = ({ roomId, uid }) => {
-
+const Messages = ({ roomId, uid, updateChat, setUpdateChat }) => {
+  const [roomData, setRoomData] = useState({});
   const [messages, setMessages] = useState([]);
   const [startSee, setStartSee] = useState(0);
 
   useEffect(() => {
 
-    console.log('roomId', roomId)
+
+
     getSingleListing('message', roomId).then(res => {
 
-      setMessages(res);
+      setMessages(res.messages);
+      setRoomData(res);
       // setLoadingMessages(false);
-      getMyRoomMessages(roomId, setStartSee);
+      getMyRoomMessages(roomId, setStartSee); // запуск просмотра
+
+
     });
-  }, [roomId, startSee]);
+  }, [roomId, startSee, updateChat]);
 
 
   let result;
-  // messages && console.log('messages.messages', messages)
 
-  if (messages && !_.isEmpty(messages.messages)) {
+  if (messages.length > 0) {
 
-    result = Object.keys(messages.messages).map((key) => messages.messages[key]);
+    result = messages.map((item) => item);
 
     result.sort(function (a, b) {
       var dateA = new Date(a.timestamp.seconds), dateB = new Date(b.timestamp.seconds);
@@ -44,11 +44,26 @@ const Messages = ({ roomId, uid }) => {
   const getTime = (time) => {
     return moment.unix(time).format("MM.DD.YYYY HH:mm");
   }
+  const setIsShown = () => {
 
+    if (messages[messages.length - 1].uid !== uid) {
+      messages.map((item) => {
+        if (item.read === false) {
+          setUpdateChat(!updateChat)
+          updateRead(roomId, roomData);
+        }
+      })
+    }
+
+
+  }
   return (
     <div className='chat-messages-list'>
       {result ? result.map((item, index) => (
-        <div className={`chat-messages-item ${uid === item.uid && 'own-messages'}`} key={index} >
+        <div className={`chat-messages-item ${uid === item.uid && 'own-messages'} ${item.read === false ? 'noread' : ''}`}
+          key={index}
+          onMouseEnter={() => setIsShown()}
+        >
           {uid !== item.uid && (
             <div className="chat-list-img img-cover" >
             </div>
@@ -70,12 +85,5 @@ const Messages = ({ roomId, uid }) => {
   )
 }
 
-const mapStateToProps = (state) => {
 
-  return {
-    roomId: state.accountInfo.roomId,
-
-  }
-}
-
-export default connect(mapStateToProps, { ActionFn })(Messages);
+export default Messages;

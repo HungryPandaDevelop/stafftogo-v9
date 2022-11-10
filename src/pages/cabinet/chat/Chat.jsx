@@ -13,20 +13,20 @@ import ChatForm from 'pages/cabinet/chat/ChatForm';
 
 
 
-const Chat = ({ uid, roomId }) => {
+const Chat = ({ uid }) => {
 
 
   const params = useParams();
 
   const [currentInfoChat, setCurrentInfoChat] = useState(null);
-
+  const [updateChat, setUpdateChat] = useState(false);
 
   return (
 
     <TemplateAccount title='Чат' addWrapClass='cabinet-account-chat'>
       <div className="main-grid">
         <div className="col-3 chat-cell">
-          <RoomList uid={uid} roomId={roomId} setCurrentInfoChat={setCurrentInfoChat} />
+          <RoomList uid={uid} roomId={params.roomUr} setCurrentInfoChat={setCurrentInfoChat} />
         </div>
         <div className="col-9 chat-cell">
           <div className="chat-messages">
@@ -42,13 +42,10 @@ const Chat = ({ uid, roomId }) => {
               </div>
             )}
 
-            {!params.roomId && !roomId ? 'Выберете окно чата' : (
-              <>
-                <Messages uid={uid} />
-                <ChatForm uid={uid} />
-              </>
-
-            )}
+            {(params.roomUrl) ? (<>
+              <Messages uid={uid} roomId={params.roomUrl} updateChat={updateChat} setUpdateChat={setUpdateChat} />
+              <ChatForm uid={uid} roomId={params.roomUrl} updateChat={updateChat} setUpdateChat={setUpdateChat} />
+            </>) : 'Выберете окно чата'}
           </div>
         </div>
       </div>
@@ -59,10 +56,8 @@ const Chat = ({ uid, roomId }) => {
 
 
 const mapStateToProps = (state) => {
-  // console.log(state.accountInfo)
   return {
     uid: state.accountInfo.info.uid,
-    roomId: state.accountInfo.roomId,
   }
 }
 

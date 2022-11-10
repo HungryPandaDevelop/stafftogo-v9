@@ -4,6 +4,7 @@ import baseSub from 'front-end/images/icons/cabinet/base-sub.svg';
 import premiumSub from 'front-end/images/icons/cabinet/premium-sub.svg';
 import proSub from 'front-end/images/icons/cabinet/pro-sub.svg';
 
+
 // Robokassa instance
 
 const Subscription = () => {

@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react';
 import ActionFn from 'store/actions';
 
 import { createRoom } from 'store/asyncActions/inviteChat';
+import { sendMessage } from 'store/asyncActions/inviteChat';
+import { v4 as uuid } from 'uuid';
 
 import defaultCardsImg from 'front-end/images/icons/avatar-light-gray.svg'
 
@@ -27,7 +29,6 @@ const BtnInvite = ({
       setInvited(res.map(el => el.data.owmListingId));
       ActionFn('UPDATE_ROOM', false);
 
-      console.log(res)
     });
 
   }, [uid, roomUpdate]);
@@ -42,34 +43,35 @@ const BtnInvite = ({
     const imgOwn = accountInfo.imgsAccount ? accountInfo.imgsAccount : defaultCardsImg;
 
 
-    // !inviteStatus && 
-    createRoom(
-      listing.id,
-      uid,
-      listing.data.userRef,
-      listing.data.card_name,
-      imgListing,
-      listing.data.userInfo.accountName,
-      accountInfo.currentCard[1],
-      accountInfo.accountName,
-      imgOwn,
-      accountInfo.currentCard[0]
+    !inviteStatus &&
+      createRoom(
+        listing.id,
+        uid,
+        listing.data.userRef,
+        listing.data.card_name,
+        imgListing,
+        listing.data.userInfo.accountName,
+        accountInfo.currentCard[1],
+        accountInfo.accountName,
+        imgOwn,
+        accountInfo.currentCard[0]
 
-    ).then(() => {
-      // console.log(currentCard, listing.id, uid, listing.data.userRef);
-      ActionFn('UPDATE_ROOM', true);
-    });
+      ).then((res) => {
+        console.log('room cre', res)
+        ActionFn('UPDATE_ROOM', true);
+
+        const unique_id = uuid();
+        sendMessage(res, 'Новый отклик', uid);
+      });
 
   }
 
 
   return (
     <div
-      // className={`btn btn--orange-border`}
       className={`btn btn--orange-border response-btn ${inviteStatus && 'active'}`}
       onClick={onInvite}
     >
-      {/* 111 */}
       {inviteStatus ? 'Вы откликнулись' : 'Откликнуться'}
 
     </div>

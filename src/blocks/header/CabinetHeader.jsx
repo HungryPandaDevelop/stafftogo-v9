@@ -37,12 +37,9 @@ const CabinetHeader = ({ userInfo, showPopup }) => {
     <>
       <UserList />
       <div className="sigin-body">
-        <Link
-          to={`/cabinet/${userInfo.typeCabinet}-new`}
-          className="btn btn-add-desk btn-add-cards btn--orange-border ico-in ico-in--right">
-          <span>{userInfo.typeCabinet === 'resume' ? 'Создать резюме' : 'Создать вакансию'}</span>
-          <i></i>
-        </Link>
+        <Link to={`/cabinet/${userInfo.typeCabinet}-new`} className="btn-header-cards btn-header"></Link>
+        <Link to='/cabinet/chat' className="btn-header-chat btn-header"></Link>
+        <Link to='/cabinet/liked' className="btn-header-favorites btn-header"></Link>
         <div
           className={`cabinet-header-avatar-container ${cabinetPopupShow ? 'active' : ''}`}
           onClick={onCabinetPopupShow}
