@@ -4,7 +4,7 @@ import { useEffect } from "react"
 import { Link, useParams } from 'react-router-dom';
 
 
-const RoomItem = ({ room, uid, roomId, ActionFn, setCurrentInfoChat, onDelete }) => {
+const RoomItem = ({ room, uid, roomId, setCurrentInfoChat, onDelete, listing, messageLength }) => {
 
   const params = useParams();
 
@@ -12,63 +12,73 @@ const RoomItem = ({ room, uid, roomId, ActionFn, setCurrentInfoChat, onDelete })
 
 
     if (params.roomUrl === room.id) {
-
-      changeRoom(room)
+      changeRoom(room);
     }
+
+    // console.log(room.data.messages)
+    // const newMessages = room.data.messages.filter(item => item.read === false)
+    // console.log('render room item')
 
   }, [params.roomUrl]);
 
   const changeRoom = (setRoom) => {
 
-
     if (setRoom.data.uid === uid) {
-      setCurrentInfoChat([setRoom.data.ownInvitedName, setRoom.data.ownInvitedNameAccount, setRoom.data.ownInvitedImg]);
+      setCurrentInfoChat([setRoom.data.hisInvitingName, setRoom.data.hisInvitingNameAccount, setRoom.data.hisInvitingImg]);
 
 
     } else {
 
-      setCurrentInfoChat([setRoom.data.hisInvitingName, setRoom.data.hisInvitingNameAccount, setRoom.data.hisInvitingImg]);
+      setCurrentInfoChat([setRoom.data.ownInvitedName, setRoom.data.ownInvitedNameAccount, setRoom.data.ownInvitedImg]);
     }
   }
-
 
 
   return (
     <div
 
-      // onClick={() => {
-      //   changeRoom(room);
-      // }}
       className={`chat-list-item ${(roomId === room.id) && 'active'}`} >
-      <Link to={`/cabinet/chat/${room.id}`}>
-        {room.data.uid === uid ? (<div
-          className="chat-list-img img-cover"
-          style={{ backgroundImage: `url(${room.data.ownInvitedImg})` }}
-        >
-        </div>) : (<div
-          className="chat-list-img img-cover"
-          style={{ backgroundImage: `url(${room.data.hisInvitingImg})` }}
-        >
-        </div>)}
+      <div className="chat-list-img-wrap">
+        <Link to={`/cabinet/chat/${room.id}`}>
+          {room.data.uid === uid ? (<div
+            className="chat-list-img img-cover"
+            style={{ backgroundImage: `url(${room.data.hisInvitingImg})` }}
+          >
+          </div>) : (<div
+            className="chat-list-img img-cover"
+            style={{ backgroundImage: `url(${room.data.ownInvitedImg})` }}
+          >
+          </div>)}
 
-      </Link>
+        </Link>
+        <div className="new-message-warning">{messageLength}</div>
+      </div>
       <Link to={`/cabinet/chat/${room.id}`}>
         <div className="chat-list-about">
           <div className="chat-list-cardsname">
             {
+              room.data.uid === uid ?
+                room.data.hisInvitingName
+                :
+                room.data.ownInvitedName
+            }
+          </div>
+          <div className="chat-list-accountname">
+            {
+              room.data.uid === uid ?
+                room.data.hisInvitingNameAccount
+                :
+                room.data.ownInvitedNameAccount
+            }
+          </div>
+          <div className="chat-list-cardssubname">
+            на             {
               room.data.uid === uid ?
                 room.data.ownInvitedName
                 :
                 room.data.hisInvitingName
             }
           </div>
-          <div className="chat-list-accountname">
-            {
-              room.data.uid === uid ?
-                room.data.ownInvitedNameAccount
-                :
-                room.data.hisInvitingNameAccount
-            }</div>
         </div>
       </Link>
       <Link to="/cabinet/chat/" className="table-btn table-btn--delete" onClick={onDelete}></Link>

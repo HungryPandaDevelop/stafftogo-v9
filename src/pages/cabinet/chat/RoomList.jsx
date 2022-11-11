@@ -2,11 +2,13 @@
 import { useState, useEffect } from 'react';
 
 import { getListing } from 'store/asyncActions/getListing';
+
+import { getRoomsOnline } from "store/asyncActions/inviteChat";
 import { onDeleteCards } from 'store/asyncActions/getListing';
 import RoomItem from 'pages/cabinet/chat/RoomItem';
 
 
-const RoomList = ({ uid, setCurrentInfoChat }) => {
+const RoomList = ({ uid, setCurrentInfoChat, roomId }) => {
 
 
   const [rooms, setRooms] = useState();
@@ -14,11 +16,10 @@ const RoomList = ({ uid, setCurrentInfoChat }) => {
 
   useEffect(() => {
 
-    getListing('message', uid, 'rooms').then(res => {
-      setRooms(res);
-    });
+    getRoomsOnline(setRooms, uid);
 
   }, []);
+
 
 
 
@@ -28,15 +29,24 @@ const RoomList = ({ uid, setCurrentInfoChat }) => {
       setCurrentInfoChat(false)
     });
   }
+
+
   return (
     <div className='chat-list'>
-      {rooms && rooms.map(room => <RoomItem
-        key={room.id}
-        room={room}
-        listing={rooms}
-        setCurrentInfoChat={setCurrentInfoChat}
-        onDelete={() => deleteItem(rooms, room.id)}
-      />)}
+      {console.log('room list render')}
+      {rooms && rooms.map(room => {
+        const unreadMessages = room.data.messages.filter(item => item.read === false);
+        return (<RoomItem
+          key={room.id}
+          uid={uid}
+          room={room}
+          roomId={roomId}
+          listing={rooms}
+          messageLength={unreadMessages.length}
+          setCurrentInfoChat={setCurrentInfoChat}
+          onDelete={() => deleteItem(rooms, room.id)}
+        />)
+      })}
     </div>
   )
 }

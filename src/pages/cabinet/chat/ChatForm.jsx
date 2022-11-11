@@ -3,7 +3,7 @@ import RenderFormAccount from 'components/forms/RenderFormAccount';
 import { sendMessage } from 'store/asyncActions/inviteChat';
 import { connect } from 'react-redux';
 
-const ChatForm = ({ formData, fieldsChat, roomId, uid, updateChat, setUpdateChat }) => {
+const ChatForm = ({ formData, fieldsChat, roomId, uid }) => {
 
   const onSubmitIn = () => {
 
@@ -11,8 +11,8 @@ const ChatForm = ({ formData, fieldsChat, roomId, uid, updateChat, setUpdateChat
 
 
       sendMessage(roomId, formData.message, uid).then(() => {
-        console.log('message send', formData.message);
-        setUpdateChat(!updateChat);
+        // console.log('message send', formData.message);
+        // setUpdateChat(!updateChat);
         formData.message = '';
       });
 

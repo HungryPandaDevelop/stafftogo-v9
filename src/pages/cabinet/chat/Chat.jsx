@@ -19,14 +19,13 @@ const Chat = ({ uid }) => {
   const params = useParams();
 
   const [currentInfoChat, setCurrentInfoChat] = useState(null);
-  const [updateChat, setUpdateChat] = useState(false);
 
   return (
 
     <TemplateAccount title='Чат' addWrapClass='cabinet-account-chat'>
       <div className="main-grid">
         <div className="col-3 chat-cell">
-          <RoomList uid={uid} roomId={params.roomUr} setCurrentInfoChat={setCurrentInfoChat} />
+          <RoomList uid={uid} roomId={params.roomUrl} setCurrentInfoChat={setCurrentInfoChat} />
         </div>
         <div className="col-9 chat-cell">
           <div className="chat-messages">
@@ -43,8 +42,8 @@ const Chat = ({ uid }) => {
             )}
 
             {(params.roomUrl) ? (<>
-              <Messages uid={uid} roomId={params.roomUrl} updateChat={updateChat} setUpdateChat={setUpdateChat} />
-              <ChatForm uid={uid} roomId={params.roomUrl} updateChat={updateChat} setUpdateChat={setUpdateChat} />
+              <Messages uid={uid} roomId={params.roomUrl} />
+              <ChatForm uid={uid} roomId={params.roomUrl} />
             </>) : 'Выберете окно чата'}
           </div>
         </div>

@@ -1,38 +1,32 @@
 import moment from 'moment';
 
 
-import { getMyRoomMessages } from 'store/asyncActions/inviteChat';
-import { getSingleListing } from "store/asyncActions/getSingleListing";
+import { getMessagesOnline, stopOnline } from 'store/asyncActions/inviteChat';
+
 import { updateRead } from "store/asyncActions/inviteChat";
 
 import { useState, useEffect } from 'react';
 
-const Messages = ({ roomId, uid, updateChat, setUpdateChat }) => {
-  const [roomData, setRoomData] = useState({});
-  const [messages, setMessages] = useState([]);
-  const [startSee, setStartSee] = useState(0);
+const Messages = ({ roomId, uid }) => {
+
+  const [messages, setMessages] = useState({});
+
 
   useEffect(() => {
 
+    getMessagesOnline(roomId, setMessages);
 
-
-    getSingleListing('message', roomId).then(res => {
-
-      setMessages(res.messages);
-      setRoomData(res);
-      // setLoadingMessages(false);
-      getMyRoomMessages(roomId, setStartSee); // запуск просмотра
-
-
-    });
-  }, [roomId, startSee, updateChat]);
+    return () => {
+      stopOnline();
+    }
+  }, [roomId]);
 
 
   let result;
 
-  if (messages.length > 0) {
+  if (messages && messages.messages && messages.messages.length > 0) {
 
-    result = messages.map((item) => item);
+    result = messages.messages.map((item) => item);
 
     result.sort(function (a, b) {
       var dateA = new Date(a.timestamp.seconds), dateB = new Date(b.timestamp.seconds);
@@ -46,11 +40,11 @@ const Messages = ({ roomId, uid, updateChat, setUpdateChat }) => {
   }
   const setIsShown = () => {
 
-    if (messages[messages.length - 1].uid !== uid) {
-      messages.map((item) => {
+    if (messages.messages[messages.messages.length - 1].uid !== uid) {
+      messages.messages.map((item) => {
         if (item.read === false) {
-          setUpdateChat(!updateChat)
-          updateRead(roomId, roomData);
+
+          updateRead(roomId, messages);
         }
       })
     }

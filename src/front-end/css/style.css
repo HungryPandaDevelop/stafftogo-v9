@@ -6560,6 +6560,8 @@ footer,
   -webkit-transition: ease-out 0.25s;
   transition: ease-out 0.25s;
   text-decoration: none;
+  position: relative;
+  padding-right: 45px;
 }
 .chat-list-item:hover, .chat-list-item.active {
   background-color: rgba(3, 172, 159, 0.05);
@@ -6568,6 +6570,12 @@ footer,
 .chat-list-item:hover .chat-list-img, .chat-list-item.active .chat-list-img {
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
+}
+.chat-list-item a {
+  text-decoration: none;
+}
+.chat-list-item .chat-list-cardssubname {
+  font-size: 12px;
 }
 .chat-list-item h3 {
   color: inherit;
@@ -6578,6 +6586,11 @@ footer,
   height: 30px;
   position: absolute;
   right: 10px;
+}
+
+.chat-list-img-wrap {
+  position: relative;
+  height: 40px;
 }
 
 .chat-list-img {
@@ -6599,6 +6612,16 @@ footer,
 .chat-list-accountname {
   font-size: 14px;
   color: #777;
+}
+
+.new-message-warning {
+  width: 10px;
+  position: absolute;
+  height: 10px;
+  right: 0;
+  bottom: 0;
+  background-color: #ed1834;
+  border-radius: 100%;
 }
 
 .chat-messages-list {
@@ -6627,7 +6650,7 @@ footer,
   margin-right: 10px;
 }
 .chat-messages-item.noread {
-  background-color: #39aec7;
+  background-color: rgba(57, 174, 199, 0.1);
 }
 
 .chat-messages-head {
@@ -6688,7 +6711,8 @@ footer,
 }
 
 .chat-messages-date {
-  font-size: 14px;
+  font-size: 12px;
+  opacity: 0.75;
 }
 
 .chat-messages-form {

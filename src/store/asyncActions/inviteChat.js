@@ -153,8 +153,100 @@ const getMyRooms = async (uid) =>{
   return list;
 }
 
+const getTestItem = async (uid) =>{
+  // const docRef =  doc(db, 'message', 'DAcrA7yWfR2tYCkPRGDU');
+  const docRef =  collection(db, "message"); // Супер РЕШЕНИЕ для Коллекции
+  let rooms = [];
+  onSnapshot(query(docRef),(snapshot)=>{
+    snapshot.docChanges().forEach((change) => {
+      if (change.type === "added") {
+          // console.log("New: ", change.doc.data());\
+          rooms.push([change.doc.id, change.doc.data()])
+      }
+      if (change.type === "modified") {
+          // console.log("Modified: ", change.doc.data());
+      }
+      if (change.type === "removed") {
+        rooms = rooms.filter(item => item[0] !== change.doc.id)
+          
+      }
+    }) 
+  console.log('rooms', rooms)
+  });
 
-export {getMyRoomMessages, sendMessage, createRoom, getMyRooms, updateRead};
+
+  // const docRef =  doc(db, 'message', 'DAcrA7yWfR2tYCkPRGDU'); Супер РЕШЕНИЕ для документа
+
+  // onSnapshot(docRef,(doc)=>{
+
+  //   const source = doc.metadata.hasPendingWrites ? "Local" : "Server";
+  //   console.log('rooms', doc.data().messages)
+  
+  // });
+}
+
+
+const getRoomsOnline = async (setRooms, uid, ) => {
+  const docRef =  collection(db, "message")
+  const q = query(
+    docRef,
+    where('interlocutors', 'array-contains', uid),
+  );
+
+  let rooms = [];
+  onSnapshot(q,(snapshot)=>{
+      snapshot.docChanges().forEach((change) => {
+        if (change.type === "added") {
+
+            rooms.push({
+              id: change.doc.id,
+              data: change.doc.data()
+            });
+        }
+        if (change.type === "modified") {
+            console.log("Modified: ", rooms);
+
+            rooms = rooms.map((item) => {
+
+              if (item.id === change.doc.id){
+                return {id: change.doc.id, data: change.doc.data()}
+              }
+              else{
+                return item;
+              }
+
+            });
+
+         
+            //rooms[currentRoom] = change.doc.data();
+        }
+        if (change.type === "removed") {
+          rooms = rooms.filter(item => item.id !== change.doc.id)
+            
+        }
+      })
+    console.log('rooms change')
+    setRooms(rooms);
+  })
+}
+
+
+let unsubscribe;
+const getMessagesOnline = async (roomId, setMessages) => {
+  const docRef =  doc(db, 'message', roomId); //Супер РЕШЕНИЕ для документа
+
+  unsubscribe = onSnapshot(docRef,(doc)=>{
+    // const source = doc.metadata.hasPendingWrites ? "Local" : "Server";
+    setMessages(doc.data());
+  });
+
+}
+const stopOnline = ()=>{
+  unsubscribe();
+}
+
+
+export {getMyRoomMessages, sendMessage, createRoom, getMyRooms, updateRead, getMessagesOnline, stopOnline, getRoomsOnline, getTestItem};
 
 
 
