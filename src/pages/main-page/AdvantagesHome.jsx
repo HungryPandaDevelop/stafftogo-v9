@@ -40,7 +40,7 @@ const AdvantagesHome = ({ setSectionTop }) => {
           <div className="section-btn col-xs-12">
             <div className="long-arrow long-arrow--top"></div>
             <div className="long-arrow long-arrow--down"></div>
-            <Link to="/map" className="btn btn btn--white-border" href="#">GoMap </Link>
+            <Link to="/catalog/resume/map" className="btn btn btn--white-border" >GoMap </Link>
           </div>
           <div className="advantages-home-item col-6 col-xs-12">
             <img className="advantages-home-img advantages-home-img--left" src={img3} alt="" />

@@ -43,6 +43,16 @@ export const getListing = async (baseName, uid, type, listingId) => {
     q = query(
       listingsRef,
       where("uid", "==", uid),
+      //where('idLike', '==', 'Ks8AALPMJ0MkLl888A9jSBr2IaC3'),
+      // where('userRef', '==', 'YpguqFwp1YeEFrQlQeJHaRWVKar1'),
+      // orderBy('timestamp', 'desc'),
+      // limit(2)
+    );
+  }
+  else if(type==='inviteBtn'){
+    q = query(
+      listingsRef,
+      where("uid", "==", uid),
       where("listingId", "==", listingId),
       //where('idLike', '==', 'Ks8AALPMJ0MkLl888A9jSBr2IaC3'),
       // where('userRef', '==', 'YpguqFwp1YeEFrQlQeJHaRWVKar1'),

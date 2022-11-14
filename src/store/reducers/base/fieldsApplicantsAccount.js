@@ -8,7 +8,7 @@ export default function(){
       "phone",
       "age",
       "typeCabinet",
-      "statusInSite",
+      
       "gender",
       "country",
     ],
@@ -47,16 +47,16 @@ export default function(){
       placeholder: "Телефон",
       wrapClass: "col-5 col-offset-3  account-item"
     },
-    statusInSite: {
-      type:"switch",
-      name: "statusInSite", 
-      label: "Мой статус на сайте", 
-      options: [
-        {name:"Я ищу работу",value:"on"},
-        {name:"Я не ищу работу", value:"off"},
-      ],
-      wrapClass: "col-5  account-item"
-    },
+    // statusInSite: {
+    //   type:"switch",
+    //   name: "statusInSite", 
+    //   label: "Мой статус на сайте", 
+    //   options: [
+    //     {name:"Я ищу работу",value:"on"},
+    //     {name:"Я не ищу работу", value:"off"},
+    //   ],
+    //   wrapClass: "col-5  account-item"
+    // },
     accountName: { 
       type:"text" ,
       name: "accountName", 

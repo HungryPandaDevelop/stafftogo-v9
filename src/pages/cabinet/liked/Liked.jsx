@@ -3,6 +3,9 @@ import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import ActionFn from 'store/actions';
 
+import PreloaderList from 'pages/cabinet/parts/PreloaderList';
+import EmptyList from 'pages/cabinet/parts/EmptyList';
+
 import CardItemLike from 'pages/cabinet/liked/CardItemLike';
 import TemplateAccount from 'pages/cabinet/parts/TemplateAccount';
 
@@ -12,7 +15,7 @@ const Liked = ({ typeCabinet, accountInfo, ActionFn }) => {
 
   const [loading, setLoading] = useState(true);
 
-  const [listings, setListings] = useState(null);
+  const [listings, setListings] = useState([]);
 
 
 
@@ -36,33 +39,31 @@ const Liked = ({ typeCabinet, accountInfo, ActionFn }) => {
 
   const contentPage = () => {
     return (
-      <table>
-        <thead>
-          <tr className="cards-account-head">
-            <th>Название</th>
-            <th>Действия</th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            loading ? (<tr><td>Loading...</td></tr>) : (
-              listings.length !== 0 ? (
-                listings.map((like, index) => (
-                  <tr key={index} >
-                    <CardItemLike
-                      like={like}
-                      reverseTypeCabinet={reverseTypeCabinet}
-                      accountInfo={accountInfo}
-                      ActionFn={ActionFn}
+      <>
+        {loading ? <PreloaderList /> : listings.length > 0 ? (<table>
+          <thead>
+            <tr className="cards-account-head">
+              <th>Название</th>
+              <th>Действия</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              listings.map((like, index) => (
+                <tr key={index} >
+                  <CardItemLike
+                    like={like}
+                    reverseTypeCabinet={reverseTypeCabinet}
+                    accountInfo={accountInfo}
+                    ActionFn={ActionFn}
 
-                    />
-                  </tr>
-                ))
-              ) : <tr><td>Empty Like List</td></tr>
-            )
-          }
-        </tbody>
-      </table>
+                  />
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>) : (<EmptyList />)}
+      </>
     )
   }
 

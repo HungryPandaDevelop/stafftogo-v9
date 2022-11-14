@@ -204,8 +204,6 @@ const getRoomsOnline = async (setRooms, uid, ) => {
             });
         }
         if (change.type === "modified") {
-            console.log("Modified: ", rooms);
-
             rooms = rooms.map((item) => {
 
               if (item.id === change.doc.id){
@@ -216,16 +214,14 @@ const getRoomsOnline = async (setRooms, uid, ) => {
               }
 
             });
-
-         
-            //rooms[currentRoom] = change.doc.data();
+            
         }
         if (change.type === "removed") {
           rooms = rooms.filter(item => item.id !== change.doc.id)
             
         }
       })
-    console.log('rooms change')
+  
     setRooms(rooms);
   })
 }

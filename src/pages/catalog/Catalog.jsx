@@ -16,9 +16,12 @@ import filterMain from 'components/filterMain/filterMain';
 
 import Pagination from 'pages/catalog/Pagination';
 
+import PreloaderList from 'pages/cabinet/parts/PreloaderList';
+import EmptyList from 'pages/cabinet/parts/EmptyList';
+
 const Catalog = ({ listingSearch, uid, cabinetType, accountInfo, }) => {
 
-  const [listings, setListings] = useState(null);
+  const [listings, setListings] = useState([]);
   const [loading, setLoading] = useState(true);
 
 
@@ -33,8 +36,9 @@ const Catalog = ({ listingSearch, uid, cabinetType, accountInfo, }) => {
 
       accountInfo.hideMass && accountInfo.hideMass.forEach(el => {
         data = data.filter(item => item.id !== el)
-      })
-
+      });
+      // console.log(data)
+      data = data.filter(item => item.data.activeCards !== 'off')
       setListings(data);
       setLoading(false);
     });
@@ -57,7 +61,7 @@ const Catalog = ({ listingSearch, uid, cabinetType, accountInfo, }) => {
         <PageTitle title={renderTitle()} />
 
         <div className="main-full">
-          {loading ? 'Loading list' : listings.length > 0 ? (
+          {loading ? <PreloaderList /> : listings.length > 0 ? (
             <>
 
               <Pagination
@@ -69,7 +73,7 @@ const Catalog = ({ listingSearch, uid, cabinetType, accountInfo, }) => {
               />
             </>
           ) : (
-            <p>Нет элементов</p>
+            <EmptyList />
           )}
         </div>
       </div>

@@ -5,6 +5,10 @@ import CardItemResponse from 'pages/cabinet/responses/CardItemResponse';
 import { getListing } from 'store/asyncActions/getListing';
 import TemplateAccount from 'pages/cabinet/parts/TemplateAccount';
 
+import PreloaderList from 'pages/cabinet/parts/PreloaderList';
+import EmptyList from 'pages/cabinet/parts/EmptyList';
+
+
 import { onDeleteCards } from 'store/asyncActions/getListing';
 
 const Responses = ({ uid, typeCabinet }) => {
@@ -37,34 +41,30 @@ const Responses = ({ uid, typeCabinet }) => {
         title="Мои приглашения"
         addWrapClass='cards-account-container'
       >
-        <table>
-          <thead>
-            <tr className='cards-account-head'>
-              <th><b>Вакансии</b></th>
-              <th><b>Дата</b></th>
-              <th><b>Статус</b></th>
-              <th><b>Действия</b></th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              loading ?
-                (<tr><td>Loading list</td></tr>) :
-                listings.length > 0 ?
-                  listings.map(listing => (
-                    <CardItemResponse
-                      key={listing.id}
-                      listing={listing}
-                      typeCabinet={typeCabinet}
-                      onDelete={() => deleteItem(listings, listing.id)}
-                    />
-                  )
-                  ) :
-                  (<tr><td>Список приглашений пуст</td></tr>)
-            }
-          </tbody>
-        </table>
-
+        {loading ? <PreloaderList /> : listings.length > 0 ? (
+          <table>
+            <thead>
+              <tr className='cards-account-head'>
+                <th><b>Вакансии</b></th>
+                <th><b>Дата</b></th>
+                <th><b>Статус</b></th>
+                <th><b>Действия</b></th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                listings.map(listing => (
+                  <CardItemResponse
+                    key={listing.id}
+                    listing={listing}
+                    typeCabinet={typeCabinet}
+                    onDelete={() => deleteItem(listings, listing.id)}
+                  />
+                ))
+              }
+            </tbody>
+          </table>
+        ) : <EmptyList />}
       </TemplateAccount>
     </>
   )

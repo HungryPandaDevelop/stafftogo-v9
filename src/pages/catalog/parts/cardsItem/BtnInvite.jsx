@@ -24,7 +24,7 @@ const BtnInvite = ({
 
   useEffect(() => {
 
-    uid && getListing('message', uid, 'invite', listing.id).then(res => {
+    uid && getListing('message', uid, 'inviteBtn', listing.id).then(res => {
 
       setInvited(res.map(el => el.data.owmListingId));
       ActionFn('UPDATE_ROOM', false);

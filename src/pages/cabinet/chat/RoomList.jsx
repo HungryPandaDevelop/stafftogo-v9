@@ -1,8 +1,6 @@
 
 import { useState, useEffect } from 'react';
 
-import { getListing } from 'store/asyncActions/getListing';
-
 import { getRoomsOnline } from "store/asyncActions/inviteChat";
 import { onDeleteCards } from 'store/asyncActions/getListing';
 import RoomItem from 'pages/cabinet/chat/RoomItem';
@@ -33,9 +31,8 @@ const RoomList = ({ uid, setCurrentInfoChat, roomId }) => {
 
   return (
     <div className='chat-list'>
-      {console.log('room list render')}
       {rooms && rooms.map(room => {
-        const unreadMessages = room.data.messages.filter(item => item.read === false);
+        const unreadMessages = room.data.messages.filter(item => item.read === false).filter(item => item.uid !== uid);
         return (<RoomItem
           key={room.id}
           uid={uid}

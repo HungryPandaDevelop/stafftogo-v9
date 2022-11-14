@@ -13,11 +13,14 @@ import { saveInfo } from 'store/asyncActions/saveInfo';
 
 import { connect } from 'react-redux';
 
+import PreloaderList from 'pages/cabinet/parts/PreloaderList';
+import EmptyList from 'pages/cabinet/parts/EmptyList';
+
 const CardsList = ({ uid, cabinetType, accountInfo, ActionFn }) => {
 
   const [loading, setLoading] = useState(true);
 
-  const [listings, setListings] = useState(null);
+  const [listings, setListings] = useState([]);
 
   const navigate = useNavigate();
 
@@ -90,7 +93,7 @@ const CardsList = ({ uid, cabinetType, accountInfo, ActionFn }) => {
             </span>
           </Link>
         </div>
-        {loading ? 'loading' : listings.length > 0 ? (
+        {loading ? <PreloaderList /> : listings.length > 0 ? (
           <>
 
             <table>
@@ -124,7 +127,7 @@ const CardsList = ({ uid, cabinetType, accountInfo, ActionFn }) => {
             </table>
 
           </>
-        ) : 'Empty'}
+        ) : <EmptyList />}
       </TemplateAccount>
     </>
   )

@@ -1595,6 +1595,11 @@ section {
 }
 
 /*password-field end*/
+.preloader-container {
+  position: relative;
+  height: 120px;
+}
+
 .preloader {
   overflow: hidden;
   border-radius: 50%;
@@ -1965,6 +1970,7 @@ section {
   cursor: pointer;
   background-size: 80%;
   background-position: center;
+  position: relative;
 }
 .btn-header:hover {
   background-color: #fba72a;
@@ -4340,6 +4346,11 @@ footer .create {
   left: 0;
 }
 
+@media print {
+  .reviews-detail {
+    padding: 0 15px;
+  }
+}
 .gallery-section .owl-gallery {
   padding-bottom: 45px;
 }
@@ -6376,7 +6387,7 @@ footer,
 .cards-account-container .status-btn {
   display: inline-block;
   padding: 5px 10px;
-  border-radius: 4px;
+  border-radius: 15px;
   background-color: #C4C4C4;
   font-size: 14px;
   cursor: pointer;
@@ -6473,6 +6484,29 @@ footer,
 .table-btn--call:hover {
   background-color: #fba72a;
   background-image: url("../images/icons/cabinet/video-white.svg");
+}
+
+.empty-list-container {
+  text-align: center;
+  font-size: 18px;
+  color: #03ac9f;
+  padding: 30px 15px;
+}
+
+.empty-list-text {
+  display: inline-block;
+}
+
+.empty-list-ico {
+  display: inline-block;
+  vertical-align: middle;
+  width: 30px;
+  height: 30px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url("../images/icons/cabinet/empty-list-green.svg");
+  margin-right: 30px;
 }
 
 @media (max-width: 1280px) {
@@ -6609,6 +6643,14 @@ footer,
   font-weight: 700;
 }
 
+.chat-list-link {
+  width: calc(100% - 45px);
+  position: absolute;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+
 .chat-list-accountname {
   font-size: 14px;
   color: #777;
@@ -6727,6 +6769,29 @@ footer,
 }
 .chat-messages-form .btn-container {
   padding-left: 15px;
+}
+
+.choise-chat-container {
+  text-align: center;
+  color: #03ac9f;
+  font-size: 18px;
+  padding: 30px;
+}
+.choise-chat-container * {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.choise-chat-ico {
+  display: inline-block;
+  vertical-align: middle;
+  width: 30px;
+  height: 30px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url("../images/icons/chat-green.svg");
+  margin-right: 30px;
 }
 
 .subscribe-ico {

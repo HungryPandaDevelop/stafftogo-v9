@@ -20,6 +20,12 @@ const Chat = ({ uid }) => {
 
   const [currentInfoChat, setCurrentInfoChat] = useState(null);
 
+
+  const choiseChat = () => (<div className='choise-chat-container'>
+    <div className="choise-chat-ico"></div>
+    <div className="choise-chat-text">Выберете окно чата</div>
+  </div>)
+
   return (
 
     <TemplateAccount title='Чат' addWrapClass='cabinet-account-chat'>
@@ -44,7 +50,7 @@ const Chat = ({ uid }) => {
             {(params.roomUrl) ? (<>
               <Messages uid={uid} roomId={params.roomUrl} />
               <ChatForm uid={uid} roomId={params.roomUrl} />
-            </>) : 'Выберете окно чата'}
+            </>) : choiseChat()}
           </div>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import DeleteBtnAccount from 'pages/cabinet/parts/DeleteBtnAccount';
+import getBirth from 'pages/catalog/js/getBirth';
 
 const Applicants = ({ renderImgCards, userInfo, formatPhone }) => {
 
@@ -35,12 +36,12 @@ const Applicants = ({ renderImgCards, userInfo, formatPhone }) => {
           <div className="account-item col-6"> <b>Пол</b>
             <div> {genderTextRender()}</div>
           </div>
-          <div className="account-item col-6"> <b>Дата рождения</b>
-            <div> {userInfo.age ? userInfo.age : '-/-'}</div>
+          <div className="account-item col-6"> <b>Возраст</b>
+            <div> {userInfo.age ? getBirth(userInfo.age) : '-/-'}</div>
           </div>
-          <div className="account-item col-6"> <b>Видимость профиля</b>
+          {/* <div className="account-item col-6"> <b>Видимость профиля</b>
             <div> {statusSiteTextRender()}</div>
-          </div>
+          </div> */}
           <div className="col-12 btn-container">
             <Link to='/cabinet/account-edit/' className="btn btn-edit btn--orange ico-in ico-in--left">
               <i></i>
