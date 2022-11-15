@@ -6712,6 +6712,12 @@ footer,
   position: relative;
   top: 1px;
 }
+.chat-messages-head a {
+  text-decoration: underline;
+}
+.chat-messages-head a:hover {
+  color: #fba72a;
+}
 
 .chat-messages-body {
   max-width: 310px;

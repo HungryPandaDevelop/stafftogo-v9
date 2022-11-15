@@ -30,7 +30,9 @@ const createRoom = async (
   ownInvitedName,
   ownInvitedNameAccount,
   ownInvitedImg,
-  owmListingId
+  owmListingId,
+  ownType,
+  hisType,
   ) => {
 
   //if(querySnap.docs.length === 0){
@@ -50,6 +52,8 @@ const createRoom = async (
         owmListingId: owmListingId,
         status: 'considered',
         messages: [],
+        ownType,
+        hisType
       }
       
       const docRef = await addDoc(collection(db, 'message'), sendData);

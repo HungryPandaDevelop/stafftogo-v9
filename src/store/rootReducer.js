@@ -14,6 +14,7 @@ import fieldsResume from 'store/reducers/base/fieldsResume';
 import fieldsChat from 'store/reducers/base/fieldsChat';
 import fieldsReviews from 'store/reducers/base/fieldsReviews';
 import fieldsAdditionalFilter from 'store/reducers/base/fieldsAdditionalFilter';
+import fieldsPages from 'store/reducers/base/fieldsPages';
 import fieldsPriceFilter from 'store/reducers/base/fieldsPriceFilter';
 
 import specializationBase from "store/reducers/base/specializationBase";
@@ -46,6 +47,7 @@ const rootReducer = combineReducers({
   fieldsReviews: fieldsReviews,
   fieldsAdditionalFilter: fieldsAdditionalFilter,
   fieldsPriceFilter: fieldsPriceFilter,
+  fieldsPages: fieldsPages,
   accountInfo: infoAccountReducer,
   specializationBase: specializationBase,
   industryBase: industryBase,

@@ -22,24 +22,24 @@ const Footer = () => {
           <nav className="nav-1 col-2 col-md-4 col-xs-12">
             <h3>Услуги</h3>
             <ul>
-              <li> <a href="#"> Подбор персонала</a></li>
-              <li> <a href="#"> Поиск работы</a></li>
-              <li> <a href="#"> Помощь рекрутера</a></li>
+              <li> <a href="/catalog/resume"> Подбор персонала</a></li>
+              <li> <a href="/catalog/vacancies"> Поиск работы</a></li>
+              {/* <li> <a href="#"> Помощь рекрутера</a></li> */}
             </ul>
           </nav>
           <nav className="nav-3 col-2 col-md-4 col-xs-12">
             <h3>Возможности</h3>
             <ul>
-              <li> <a href="#"> Работодателям</a></li>
-              <li> <a href="#"> Соискателям</a></li>
-              <li> <a href="#"> Рекламодателям</a></li>
+              <li> <a href="/employers">Работодателям</a></li>
+              <li> <a href="/applicants">Соискателям</a></li>
+              <li> <a href="/advertisers">Рекламодателям</a></li>
             </ul>
           </nav>
           <nav className="nav-3 col-2 col-md-4 col-xs-12">
             <h3>Портал</h3>
             <ul>
-              <li> <a href="#"> О нас</a></li>
-              <li> <a href="#"> Контакты</a></li>
+              <li> <a href="/about"> О нас</a></li>
+              <li> <a href="/contacts"> Контакты</a></li>
             </ul>
           </nav>
           <div className="col-3 footer-contacts col-md-6 col-xs-12">

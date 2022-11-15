@@ -15,7 +15,6 @@ import { db } from 'firebase.config';
 
 export const getListing = async (baseName, uid, type, listingId) => {
 
-  // console.log('in', baseName, uid)
 
   const listingsRef = collection(db, baseName);
   

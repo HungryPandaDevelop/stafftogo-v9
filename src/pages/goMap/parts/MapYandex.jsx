@@ -16,7 +16,7 @@ import { connect } from 'react-redux';
 
 
 
-const MapYandex = ({ listingSearch, uid, cabinetType }) => {
+const MapYandex = ({ listingSearch, uid, cabinetType, accountInfo }) => {
 
   const params = useParams();
   // const myMap = useRef(null);
@@ -54,6 +54,12 @@ const MapYandex = ({ listingSearch, uid, cabinetType }) => {
       getListing(params.catagoryName).then(res => {
 
         let data = filterMain(listingSearch, res);
+
+        accountInfo.hideMass && accountInfo.hideMass.forEach(el => {
+          data = data.filter(item => item.id !== el)
+        });
+
+        data = data.filter(item => item.data.activeCards !== 'off')
 
         getMyPosition().then((pos) => {
           setMyPosition(pos);
@@ -151,6 +157,7 @@ const mapStateToProps = (state) => {
   return {
     uid: state.accountInfo.info.uid,
     listingSearch: state.listingSearchReducer,
+    accountInfo: state.accountInfo.info,
     cabinetType: state.accountInfo.info.typeCabinet,
   }
 }

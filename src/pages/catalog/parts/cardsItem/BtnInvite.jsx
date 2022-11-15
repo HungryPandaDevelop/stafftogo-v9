@@ -6,7 +6,6 @@ import ActionFn from 'store/actions';
 
 import { createRoom } from 'store/asyncActions/inviteChat';
 import { sendMessage } from 'store/asyncActions/inviteChat';
-import { v4 as uuid } from 'uuid';
 
 import defaultCardsImg from 'front-end/images/icons/avatar-light-gray.svg'
 
@@ -23,9 +22,9 @@ const BtnInvite = ({
   const [invited, setInvited] = useState([]);
 
   useEffect(() => {
-
+    console.log('listing.id', listing.id)
     uid && getListing('message', uid, 'inviteBtn', listing.id).then(res => {
-
+      console.log('elementId', res.map(el => el.data.owmListingId))
       setInvited(res.map(el => el.data.owmListingId));
       ActionFn('UPDATE_ROOM', false);
 
@@ -54,13 +53,14 @@ const BtnInvite = ({
         accountInfo.currentCard[1],
         accountInfo.accountName,
         imgOwn,
-        accountInfo.currentCard[0]
-
+        accountInfo.currentCard[0],
+        accountInfo.typeCabinet,
+        listing.data.userInfo.typeCabinet
       ).then((res) => {
-        console.log('room cre', res)
+        // console.log('room cre', listing.data.userInfo.typeCabinet)
         ActionFn('UPDATE_ROOM', true);
 
-        const unique_id = uuid();
+
         sendMessage(res, 'Новый отклик', uid);
       });
 

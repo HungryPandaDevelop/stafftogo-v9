@@ -18,9 +18,9 @@ const MenuPopup = ({ showNavMenu, closePopup, listingType }) => {
             <ul className='ln'>
               <li> <Link to="/" onClick={closePopup}>Главная</Link></li>
               <li> <Link to={`/catalog/${listingType}`} onClick={closePopup}>{listingType === 'resume' ? 'Резюме' : 'Вакансии'} </Link></li>
-              <li> <Link to="#" onClick={closePopup}>О нас</Link></li>
-              <li> <Link to="#" onClick={closePopup}>Контакты</Link></li>
-              <li> <Link to="/chatlist" onClick={closePopup}>Чат</Link></li>
+              <li> <Link to="/about/" onClick={closePopup}>О нас</Link></li>
+              <li> <Link to="/contacts" onClick={closePopup}>Контакты</Link></li>
+              <li> <Link to="/cabinet/chat" onClick={closePopup}>Чат</Link></li>
             </ul>
           </nav>
           <div className="popup-feedback">

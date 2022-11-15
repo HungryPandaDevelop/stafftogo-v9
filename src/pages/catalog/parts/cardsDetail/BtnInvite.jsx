@@ -23,16 +23,17 @@ const BtnInvite = ({
 
   useEffect(() => {
 
-    uid && getListing('message', uid, 'invite').then(res => {
+    uid && getListing('message', uid, 'inviteBtn', elementId).then(res => {
 
-      setInvited(res.map(el => el.data.listingId));
+      setInvited(res.map(el => el.data.owmListingId));
+      console.log('elementId', res.map(el => el.data.owmListingId))
       ActionFn('UPDATE_ROOM', false);
     });
 
   }, [uid, roomUpdate]);
 
 
-  let inviteStatus = invited && invited.includes(elementId);
+  let inviteStatus = invited && invited.includes(accountInfo.currentCard[0]);
 
   const onInvite = () => {
     const imgListing = listing.userInfo.imgsAccount ? listing.userInfo.imgsAccount : defaultCardsImg;

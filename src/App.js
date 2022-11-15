@@ -1,5 +1,10 @@
-import {useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import {Link} from 'react-router-dom';
+
 import {BrowserRouter, Routes, Route, useLocation, Navigate, useParams } from 'react-router-dom';
+
+import { getListing } from 'store/asyncActions/getListing';
+
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -11,6 +16,8 @@ import Footer from 'blocks/Footer';
 
 import MainPage from 'pages/MainPage';
 import Demo from 'pages/Demo';
+import TemplatePage from 'pages/TemplatePage';
+import AllPages from 'pages/AllPages';
 import NotFound from 'pages/NotFound';
 
 import Chat from 'pages/cabinet/chat/Chat';
@@ -66,6 +73,16 @@ import GoMap from 'pages/goMap/GoMap';
 const App = () => {
 
 const params = useParams();
+const [pages, setPages] = useState([]);
+const [loading, setLoading] = useState(true);
+useEffect(()=>{
+  getListing('pages',).then(res => {
+    console.log(res)
+    setPages(res);
+
+    setLoading(false);
+  });
+},[]);
 
 const ScrollToTop =(props) => {
   const { pathname } = useLocation();
@@ -81,10 +98,20 @@ const ScrollToTop =(props) => {
     <>
       <BrowserRouter>
         <ScrollToTop />
-        <Header typeListing={params.catagoryName}/>
-        <Routes> 
+        <Header typeListing={params.catagoryName} />
+        {loading ? 'load' : (        <Routes> 
           <Route path='/' exept element={<MainPage/>} ></Route>
           <Route path='/demo' element={<Demo/>} ></Route>
+          {pages.length > 0 && pages.map((item, index) => (        
+              <Route key={index} 
+              path={`/${item.data.link}`} 
+              element={<TemplatePage  
+              pages={item.data.id}
+              id={item.id}
+                />} ></Route>
+          ))}
+
+          <Route  path='/allpages' element={<AllPages  pages={pages}/>} ></Route>
 
 
           
@@ -145,7 +172,8 @@ const ScrollToTop =(props) => {
           <Route path="*" element={ <Navigate to="/404" replace />} />
 
 
-        </Routes>
+        </Routes>)}
+
         <Footer/>
       </BrowserRouter>
 

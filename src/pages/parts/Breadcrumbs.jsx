@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 const categoryById = {
   'resume': 'Резюме',
   'vacancies': 'Вакансии',
-
 }
 
 const userNamesById = { '3tdZG3iitthG5unarGCa': "John" };
@@ -19,22 +18,25 @@ const DynamicUserBreadcrumb = ({ match }) => {
 
 const CustomPropsBreadcrumb = ({ someProp }) => <span>{someProp}</span>;
 
-const routes = [
-  { path: "/catalog/", breadcrumb: null },
-  { path: "/catalog/:catagoryName/", breadcrumb: DynamicUserBreadcrumb },
-  { path: "/cabinet/", breadcrumb: "Кабинет" },
-  { path: "/cabinet/resume", breadcrumb: "Резюме" },
-  { path: "/cabinet/resume-new", breadcrumb: "Создать резюме" },
-  { path: "/cabinet/liked", breadcrumb: "Избранное" },
-  { path: "/cabinet/hidden", breadcrumb: "Спрятанное" },
-  { path: "/cabinet/invitations", breadcrumb: "Отклики" },
-  { path: "/cabinet/responses", breadcrumb: "Приглашения" },
-  { path: "/cabinet/chat", breadcrumb: "Чат" },
-  { path: "/cabinet/videochat", breadcrumb: "Видеочат" },
-  { path: "/cabinet/account-edit", breadcrumb: 'Редактировать акканут' },
-];
 
-const Breadcrumbs = () => {
+
+const Breadcrumbs = ({ link, linkText }) => {
+  const routes = [
+    { path: "/catalog/", breadcrumb: null },
+    { path: "/catalog/:catagoryName/", breadcrumb: DynamicUserBreadcrumb },
+    { path: "/cabinet/", breadcrumb: "Кабинет" },
+    { path: "/cabinet/resume", breadcrumb: "Резюме" },
+    { path: "/cabinet/resume-new", breadcrumb: "Создать резюме" },
+    { path: "/cabinet/liked", breadcrumb: "Избранное" },
+    { path: "/cabinet/hidden", breadcrumb: "Спрятанное" },
+    { path: "/cabinet/invitations", breadcrumb: "Отклики" },
+    { path: "/cabinet/responses", breadcrumb: "Приглашения" },
+    { path: "/cabinet/chat", breadcrumb: "Чат" },
+    { path: "/cabinet/videochat", breadcrumb: "Видеочат" },
+    { path: "/cabinet/account-edit", breadcrumb: 'Редактировать акканут' },
+    // { path: link, breadcrumb: linkText },
+  ];
+
   const breadcrumbs = useBreadcrumbs(routes);
 
   return (
