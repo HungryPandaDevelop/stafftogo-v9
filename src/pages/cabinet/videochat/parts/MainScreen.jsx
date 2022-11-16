@@ -7,29 +7,17 @@ import "./css/index.css";
 import Videos from './Videos';
 
 const MainScreen = ({ typeConnect, videoroomid, invitedId, uid }) => {
-  const [currentPage, setCurrentPage] = useState('home');
-  useEffect(() => {
-    if (typeConnect === 'join') {
-      setCurrentPage('join');
-    }
-  }, []);
-
 
   return (
     <div>
+      <Videos
+        mode={typeConnect}
+        callId={videoroomid}
 
-      {currentPage === "home" ? (
-        <button className="btn btn--orange" onClick={() => setCurrentPage("create")}>Позвонить</button>
-      ) : (
-        <Videos
-          mode={typeConnect}
-          callId={videoroomid}
-          setPage={setCurrentPage}
-          typeConnect={typeConnect}
-          invitedId={invitedId}
-          uid={uid}
-        />
-      )}
+        typeConnect={typeConnect}
+        invitedId={invitedId}
+        uid={uid}
+      />
     </div>
   )
 }

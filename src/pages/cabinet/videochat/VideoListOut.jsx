@@ -11,7 +11,7 @@ import { getListing } from 'store/asyncActions/getListing';
 import { db } from 'firebase.config';
 import { collection, doc, deleteDoc } from 'firebase/firestore';
 
-const Videochat = ({ typeCabinet, accountInfo, uid, ActionFn }) => {
+const VideoListOut = ({ typeCabinet, accountInfo, uid, ActionFn }) => {
 
   const reverseTypeCabinet = (typeCabinet === 'vacancies') ? 'resume' : 'vacancies';
 
@@ -19,19 +19,11 @@ const Videochat = ({ typeCabinet, accountInfo, uid, ActionFn }) => {
 
   const [listings, setListings] = useState(null);
 
-  useEffect(() => {
-    getListing('calls', uid, 'videolist-my').then(res => {
-      res.map(item => {
-        let roomRef = doc(collection(db, "calls"), item.id);
-        deleteDoc(roomRef);
-      })
-    });
 
-  }, []);
 
   useEffect(() => {
     let isMounted = true;
-    console.log('render')
+    // console.log('render')
     getListing(reverseTypeCabinet, accountInfo.likeMass, 'liked').then(res => {
       if (isMounted) {
         setListings(res);
@@ -98,4 +90,4 @@ const mapStateToProps = (state) => {
 
 
 
-export default connect(mapStateToProps, { ActionFn })(Videochat);
+export default connect(mapStateToProps, { ActionFn })(VideoListOut);

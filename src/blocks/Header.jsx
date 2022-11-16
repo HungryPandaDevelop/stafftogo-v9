@@ -7,6 +7,7 @@ import Search from 'blocks/header/Search';
 import AuthInfo from 'blocks/header/AuthInfo';
 
 import MenuPopup from 'components/popup/MenuPopup';
+import CallPopup from 'components/popup/CallPopup';
 
 import { useLocation } from 'react-router-dom';
 
@@ -54,6 +55,7 @@ const Header = () => {
         listingTypeReverse={listingTypeReverse}
         listingPage={listingPage}
       />
+      <CallPopup />
       <AuthInfo />
       <header >
         <div className="main-grid">

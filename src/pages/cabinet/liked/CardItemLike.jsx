@@ -25,7 +25,7 @@ const CardItemLike = ({
 
   }
 
-  console.log('like', like);
+  // console.log('like', like);
   return (
     <>
       <td>

@@ -1,8 +1,11 @@
 const setupSources = async (pc, localRef, remoteRef, setWebcamActive, mode, createCall, joinCall, setRoomId, callId, hangUp, roomId, userId, uid) => {
-  const localStream = await window.navigator.mediaDevices.getUserMedia({
+  // console.log('setup', pc)
+  
+  const localStream = await navigator.mediaDevices.getUserMedia({
     video: true,
     audio: true,
   });
+  console.log('pc', pc)
   const remoteStream = new MediaStream();
 
   localStream.getTracks().forEach((track) => {

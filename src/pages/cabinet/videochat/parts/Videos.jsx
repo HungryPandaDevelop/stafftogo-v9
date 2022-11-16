@@ -1,17 +1,20 @@
 import { useRef, useState } from "react";
 import { ReactComponent as HangupIcon } from "./icons/hangup.svg";
+import { Link } from 'react-router-dom';
 
 import createCall from "./function/create";
 import joinCall from "./function/join";
 import hangUp from "./function/hangUp";
 import setupSources from "./function/setupSources";
 
+import { useNavigate } from 'react-router-dom';
+
 
 // Initialize WebRTC
-const Videos = ({ mode, callId, setPage, invitedId, uid }) => {
+const Videos = ({ mode, callId, invitedId, uid }) => {
 
 
-
+  const navigate = useNavigate();
 
   const servers = {
     iceServers: [
@@ -71,14 +74,13 @@ const Videos = ({ mode, callId, setPage, invitedId, uid }) => {
               <button
                 className="btn  btn--green"
                 onClick={() => setupSources(pc, localRef, remoteRef, setWebcamActive, mode, createCall, joinCall, setRoomId, callId, hangUp, roomId, invitedId, uid)}>
-                Начать
+                Позвонить
               </button>
-              <button
-                onClick={() => setPage("home")}
+              <Link to='/cabinet/videochat'
                 className="btn btn--red-border"
               >
                 Отмена
-              </button>
+              </Link>
 
             </div>
           </div>

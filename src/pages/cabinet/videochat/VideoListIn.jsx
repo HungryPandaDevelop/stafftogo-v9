@@ -1,7 +1,7 @@
 
 import TemplateAccount from 'pages/cabinet/parts/TemplateAccount';
 import { useState, useEffect } from 'react';
-import { getListing } from 'store/asyncActions/getListing';
+
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -14,12 +14,6 @@ const VideoList = ({ uid }) => {
   const [rooms, setRooms] = useState();
 
   useEffect(() => {
-
-    // getListing('calls', uid, 'videolist').then(res => {
-    //   console.log('calls', res);
-    //   setRooms(res);
-
-    // });
 
 
     const q = query(collection(db, "calls"), where('offer.invitedId', '==', uid));

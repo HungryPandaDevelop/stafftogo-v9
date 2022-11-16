@@ -21,7 +21,7 @@ const VideoRoomOut = ({ uid }) => {
   }, []);
 
 
-  console.log('listing', listing)
+  // console.log('listing', listing)
   return (
     <TemplateAccount
       title='Видеочат'
@@ -30,7 +30,9 @@ const VideoRoomOut = ({ uid }) => {
 
       <div className="main-full">
         <h3>Видеочат с {!loading && listing.accountName}</h3>
-        {params.userId ? (<MainScreen typeConnect="create" invitedId={params.userId} uid={uid} />) : 'Выберете, кому хотите позвонить'}
+        {params.userId ?
+          (<MainScreen typeConnect="create" invitedId={params.userId} uid={uid} />) :
+          'Выберете, кому хотите позвонить'}
       </div>
     </TemplateAccount >
   )

@@ -1988,6 +1988,44 @@ section {
   background-image: url("../images/icons/star-white.svg");
 }
 
+.btn-call {
+  display: inline-block;
+  vertical-align: middle;
+  width: 30px;
+  height: 30px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 20px;
+  background-image: url("../images/icons/cabinet/call-white.svg");
+  background-color: #03ac9f;
+  border-radius: 100%;
+  cursor: pointer;
+  -webkit-transition: ease-out 0.5s;
+  transition: ease-out 0.5s;
+}
+.btn-call:hover {
+  background-color: #025952;
+}
+
+.btn-hangup {
+  display: inline-block;
+  vertical-align: middle;
+  width: 30px;
+  height: 30px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 20px;
+  background-image: url("../images/controls/close-white.svg");
+  background-color: #ed1834;
+  border-radius: 100%;
+  cursor: pointer;
+  -webkit-transition: ease-out 0.5s;
+  transition: ease-out 0.5s;
+}
+.btn-hangup:hover {
+  background-color: #850c1c;
+}
+
 .link {
   font-weight: 700;
   font-size: 16px;
@@ -3585,7 +3623,7 @@ footer .create {
   height: 100%;
   left: 0;
   top: 0;
-  background-color: #03ac9f;
+  background-color: #ffffff;
   opacity: 0.3;
 }
 .popup a:hover {
@@ -3603,7 +3641,7 @@ footer .create {
 .popup-container {
   position: relative;
   background-color: #ffffff;
-  max-width: 50%;
+  max-width: 100%;
   width: 100%;
   height: 100%;
   margin: 0 0 0 auto;
@@ -3735,6 +3773,58 @@ footer .create {
 
 .popup-container .checkbox {
   font-size: 14px;
+}
+
+.popup-video.show {
+  height: 0;
+  bottom: 0;
+  top: auto;
+  display: block;
+}
+.popup-video.show .popup-container {
+  position: absolute;
+  bottom: 0;
+  height: auto;
+  padding: 0px;
+  max-width: 500px;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  left: 50%;
+  border-radius: 15px 15px 0 0;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 9px 12px;
+          box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 9px 12px;
+}
+.popup-video.show .popup-container h2 {
+  font-size: 18px;
+  margin: 0;
+  display: inline-block;
+  width: 150px;
+  vertical-align: top;
+  padding: 8px 0;
+}
+.popup-video.show .call-item-container {
+  width: calc(100% - 160px);
+  display: inline-block;
+}
+.popup-video.show .call-item {
+  border-bottom: 1px solid #C4C4C4;
+  padding: 8px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.popup-video.show .call-item span {
+  margin: auto 0;
+}
+.popup-video.show .call-item .btn-hangup {
+  margin-left: 8px;
+}
+.popup-video.show .call-item * {
+  vertical-align: middle;
+  display: inline-block;
 }
 
 /*-----popup-end----*/
@@ -6713,7 +6803,7 @@ footer,
   top: 1px;
 }
 .chat-messages-head a {
-  text-decoration: underline;
+  border-bottom: 1px solid;
 }
 .chat-messages-head a:hover {
   color: #fba72a;
