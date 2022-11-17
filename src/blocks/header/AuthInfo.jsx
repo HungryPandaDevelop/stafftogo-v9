@@ -17,7 +17,7 @@ const AuthInfo = ({ ActionFn, uid, checkingStatus }) => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         getSingleListing('users', auth.currentUser.uid).then(res => {
-          console.log('res', res)
+          // console.log('res', res)
           ActionFn('SET_INFO_ACCOUNT', res);
           ActionFn('CHECK_STATUS_ACCOUNT', false);
           // if (res.typeCabinet === 'resume') {

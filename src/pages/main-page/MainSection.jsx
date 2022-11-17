@@ -5,7 +5,6 @@ import Filters from 'blocks/filters/Filters';
 const MainSection = ({ sectionTop }) => {
 
 
-
   return (
     <>
       <div className="stub"></div>

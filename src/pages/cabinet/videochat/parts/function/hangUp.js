@@ -1,35 +1,41 @@
 import { db } from 'firebase.config';
-import { collection, doc, setDoc, addDoc, getDoc, onSnapshot, updateDoc, getDocs, deleteDoc } from 'firebase/firestore';
+import {  doc, deleteDoc, collection, getDocs } from 'firebase/firestore';
 
-const hangUp = async (pc,roomId)=>{
+const hangUp = async (tempPC, roomId, allStreamRef, navigate, joinRoomId, typeConnect)=>{
+
+  // console.log('tempPC', tempPC, )
+  // console.log('roomId', roomId, )
+  // console.log('allStreamRef', allStreamRef,)
+  if(typeConnect === 'join'){
+    console.log('navigate', joinRoomId)
+  }else{
+    console.log('navigate', roomId)
+  }
+
+  let currentRoom;
+  if(typeConnect === 'join'){
+    currentRoom = joinRoomId ;
+  }else{
+    currentRoom = roomId ;
+  }
+
+  // let roomRef = doc(collection(db, "calls","answerCandidates"), currentRoom);
+  // deleteDoc(roomRef);
+  await deleteDoc(doc(db, "calls", currentRoom)).then(res=>{
+
+    tempPC.close();
+
+    allStreamRef[0].getTracks().forEach(mediaTrack => {
+      mediaTrack.stop();
+    });
+    allStreamRef[1].getTracks().forEach(mediaTrack => {
+      mediaTrack.stop();
+    });
+    navigate('/cabinet/', { replace: true });
+
+  });
 
 
-
-
-    if (roomId) {
-      // let roomRef = doc(collection(db, "calls"), roomId);
-      // await getDocs(collection(roomRef, "answerCandidates"))
-      //   .then((querySnapshot) => {
-      //     querySnapshot.forEach((doc) => {
-      //       deleteDoc(roomRef);
-      //     });
-      //   });
-      // await getDocs(collection(roomRef, "offerCandidates"))
-      //   .then((querySnapshot) => {
-      //     querySnapshot.forEach((doc) => {
-      //       deleteDoc(roomRef);
-      //     });
-      //   });
-      // await deleteDoc(roomRef);
-
-      await deleteDoc(doc(db, "calls", roomId)).then(res=>{
-        pc.close();
-        console.log('pc')
-        // window.location = '/cabinet/videochat/';
-      })
-    }
-
-    
 }
 
 export default hangUp;

@@ -43,8 +43,8 @@ const Employers = ({ renderImgCards, userInfo, formatPhone, fields }) => {
             <div>{userInfo.phones ? (
               <>
                 {userInfo.phones.map((item, index) => (
-                  <div>
-                    <a key={index} href={`mailto:+7${item.phones}`}>+7{formatPhone(item.phones)}</a>
+                  <div key={index}>
+                    <a href={`mailto:+7${item.phones}`}>+7{formatPhone(item.phones)}</a>
                   </div>
                 ))}
               </>

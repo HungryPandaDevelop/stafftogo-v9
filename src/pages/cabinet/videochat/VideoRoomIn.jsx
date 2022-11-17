@@ -1,6 +1,8 @@
 
 import TemplateAccount from 'pages/cabinet/parts/TemplateAccount';
-import MainScreen from 'pages/cabinet/videochat/parts/MainScreen';
+
+
+import Videos from 'pages/cabinet/videochat/parts/Videos';
 
 import { useParams } from 'react-router-dom';
 
@@ -9,14 +11,13 @@ const Videochat = () => {
 
   const params = useParams();
 
-
-
   return (
     <TemplateAccount title='Чат' >
 
       <div className="main-full">
-        <h2>Video ответ: {params.roomUrl}</h2>
-        <MainScreen videoroomid={params.roomUrl} typeConnect="join" />
+        <h3>Входящий звонок</h3>
+
+        <Videos joinRoomId={params.roomUrl} typeConnect='join' textBtn="Ответить" />
       </div>
     </TemplateAccount >
   )

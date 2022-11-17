@@ -10,6 +10,7 @@ const MenuPopup = ({ showNavMenu, closePopup, listingType }) => {
 
   return (
     <>
+     
       <div className={`popup element-show menu-hamburger ${showNavMenu && 'show'}`} >
         <div className="popup-overlay"></div>
         <div className="popup-container">

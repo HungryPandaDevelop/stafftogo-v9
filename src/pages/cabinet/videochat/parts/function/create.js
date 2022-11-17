@@ -1,20 +1,20 @@
 import { db } from 'firebase.config';
-import { collection, doc, setDoc, addDoc, getDoc, onSnapshot, updateDoc, getDocs, deleteDoc } from 'firebase/firestore';
+import { collection, doc, setDoc, addDoc, onSnapshot, } from 'firebase/firestore';
 
-const createCall = async (setRoomId, pc, userId, uid) => {
-  console.log('createCall');
+const createCall = async (pc, setCurrentRoomId, invitedId, uid) => {
+  console.log('createCall', uid);
   
   const callDoc = doc(collection(db, "calls"));
   const offerCandidates = collection(callDoc, "offerCandidates");
   const answerCandidates = collection(callDoc, "answerCandidates");
-  // const videoInvite = collection(callDoc, "calls");
 
-  setRoomId(callDoc.id);
 
-  pc.onicecandidate = (event) => {
-    event.candidate &&
-      addDoc(offerCandidates, event.candidate.toJSON());
-  };
+  setCurrentRoomId(callDoc.id);
+
+  // pc.onicecandidate = (event) => {
+  //   event.candidate &&
+  //     addDoc(offerCandidates, event.candidate.toJSON());
+  // };
 
   const offerDescription = await pc.createOffer();
   await pc.setLocalDescription(offerDescription);
@@ -23,7 +23,7 @@ const createCall = async (setRoomId, pc, userId, uid) => {
     sdp: offerDescription.sdp,
     type: offerDescription.type,
     roomId: callDoc.id,
-    invitedId: userId,
+    invitedId: invitedId,
     uid: uid
   };
 
