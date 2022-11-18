@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 // import { sendMessage } from 'store/asyncActions/getMessageAsync';
 
@@ -37,13 +37,15 @@ const Chat = ({ uid }) => {
           <div className="chat-messages">
             {currentInfoChat && (
               <div className="chat-messages-head">
-                <div
-                  className="chat-list-img img-cover"
-                  style={{ backgroundImage: `url(${currentInfoChat[2]})` }}
-                >
-                </div>
-                <div className="chat-list-cardsname">{currentInfoChat[0]}</div>
-                <div className="chat-list-accountname">{currentInfoChat[1]}</div>
+                <Link to={`/catalog/${currentInfoChat[3]}/${currentInfoChat[4]}`}>
+                  <div
+                    className="chat-list-img img-cover"
+                    style={{ backgroundImage: `url(${currentInfoChat[2]})` }}
+                  >
+                  </div>
+                  <div className="chat-list-cardsname">{currentInfoChat[0]}</div>
+                  <div className="chat-list-accountname">{currentInfoChat[1]}</div>
+                </Link>
               </div>
             )}
 

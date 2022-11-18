@@ -5314,9 +5314,8 @@ footer .create {
 }
 
 .cards-about-item {
-  border-left: 1px solid #C4C4C4;
   border-bottom: 1px solid #C4C4C4;
-  padding: 30px;
+  padding: 30px 0;
   color: #777;
 }
 .cards-about-item h3 {
@@ -6762,6 +6761,7 @@ footer,
 
 .chat-list-cardsname {
   font-weight: 700;
+  text-decoration: underline;
 }
 
 .chat-list-link {
@@ -6832,9 +6832,6 @@ footer,
 .chat-messages-head .chat-list-accountname {
   position: relative;
   top: 1px;
-}
-.chat-messages-head a {
-  border-bottom: 1px solid;
 }
 .chat-messages-head a:hover {
   color: #fba72a;
@@ -6909,6 +6906,61 @@ footer,
   vertical-align: middle;
 }
 
+.empty-chat-list {
+  padding: 15px;
+  color: #fba72a;
+  font-size: 18px;
+  text-align: center;
+}
+.empty-chat-list i {
+  display: inline-block;
+  vertical-align: "middle";
+  width: 30px;
+  height: 30px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 20px;
+  background-image: url("../images/icons/cabinet/empty-list-chat-orange.svg");
+  vertical-align: middle;
+  margin-right: 15px;
+}
+.empty-chat-list span {
+  vertical-align: middle;
+}
+
+.videos-chat {
+  position: relative;
+  font-size: 0;
+}
+
+.his-video-chat {
+  width: 100%;
+  max-height: 555px;
+  border-radius: 8px;
+  border: 1px solid #C4C4C4;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 30px;
+  background-image: url("../images/icons/cabinet/video-blue.svg");
+}
+
+.own-video-chat {
+  width: 300px;
+  position: absolute;
+  height: 225px;
+  right: 0;
+  bottom: 0;
+  border-radius: 8px;
+  border: 1px solid #C4C4C4;
+  -webkit-box-shadow: rgba(38, 57, 77, 0.6) 0px 10px 40px -10px;
+          box-shadow: rgba(38, 57, 77, 0.6) 0px 10px 40px -10px;
+  margin: 30px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 30px;
+  background-image: url("../images/icons/cabinet/video-orange.svg");
+}
+
 .choise-chat-ico {
   display: inline-block;
   vertical-align: middle;
@@ -6919,6 +6971,43 @@ footer,
   background-size: contain;
   background-image: url("../images/icons/chat-green.svg");
   margin-right: 30px;
+}
+
+.popup-in-call {
+  width: auto;
+  position: absolute;
+  height: auto;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-50%) translateY(-50%);
+  max-width: 420px;
+}
+.popup-in-call h3 {
+  font-size: 18px;
+  border: 0;
+  color: #202020;
+}
+
+.hangup-call {
+  width: 60px;
+  position: absolute;
+  height: 60px;
+  left: 0;
+  bottom: 0;
+  border-radius: 100%;
+  background-color: #ed1834;
+  margin: 30px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 30px;
+  background-image: url("../images/icons/cabinet/call-white.svg");
+  cursor: pointer;
+  border: 1px solid #ed1834;
+}
+.hangup-call:hover {
+  background-color: #ffffff;
+  background-image: url("../images/icons/cabinet/call-red.svg");
 }
 
 .subscribe-ico {

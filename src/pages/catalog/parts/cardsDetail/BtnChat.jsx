@@ -59,15 +59,16 @@ const BtnChat = ({
       accountInfo.currentCard[1],
       accountInfo.accountName,
       imgOwn,
-      accountInfo.currentCard[0]
-
+      accountInfo.currentCard[0],
+      accountInfo.typeCabinet,
+      listing.userInfo.typeCabinet
     ).then((res) => {
       // console.log(currentCard, listing.id, uid, listing.data.userRef);
       ActionFn('UPDATE_ROOM', true);
 
-      navigate('/cabinet/chat/' + res.id, { replace: true })
-
-    }) : navigate('/cabinet/chat/' + currentRoom, { replace: true });
+      navigate('/cabinet/chat/' + res, { replace: true })
+      //console.log('1', res)
+    }) : (navigate('/cabinet/chat/' + currentRoom, { replace: true }));
 
   }
 

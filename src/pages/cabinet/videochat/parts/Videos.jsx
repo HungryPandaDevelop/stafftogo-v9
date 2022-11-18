@@ -1,14 +1,11 @@
 import { useRef, useState } from "react";
-import { ReactComponent as HangupIcon } from "./icons/hangup.svg";
+
 import { Link, useParams, useNavigate } from 'react-router-dom';
 
 
 import hangUp from "./function/hangUp";
 import setupSources from "./function/setupSources";
 
-
-import "./css/Video.css";
-import "./css/index.css";
 
 // Initialize WebRTC
 const Videos = ({ typeConnect, joinRoomId, uid, textBtn }) => {
@@ -35,62 +32,58 @@ const Videos = ({ typeConnect, joinRoomId, uid, textBtn }) => {
 
 
   return (
-    <div className="videos">
+    <div className="videos-chat">
 
       <video
         ref={localRef}
         autoPlay
         playsInline
-        className="local"
+        className="his-video-chat"
         muted
       />
       <video
         ref={remoteRef}
         autoPlay
         playsInline
-        className="remote"
+        className="own-video-chat"
       />
 
-      <div className="buttonsContainer">
-        <button
+      {webcamActive && (
+        <div
           onClick={() => { hangUp(tempPC, currentRoomId, allStreamRef, navigate, joinRoomId, typeConnect) }}
-          className="hangup button"
+          className="hangup-call"
         >
-          <HangupIcon />
-        </button>
-      </div>
-
+        </div>
+      )}
       {!webcamActive && (
-        <div className="modalContainer">
-          <div className="modal">
-            <h3>
-              Включите камеру и микрофон, для начала разговора
-            </h3>
-            <div className="btn-container">
-              <button
-                className="btn  btn--green"
-                onClick={() => setupSources(
-                  setTempPc,
-                  localRef,
-                  remoteRef,
-                  setWebcamActive,
-                  typeConnect,
-                  setCurrentRoomId,
-                  joinRoomId,
-                  invitedId,
-                  navigate,
-                  setAllStreamRef,
-                  uid
-                )}>
-                {textBtn}
-              </button>
-              <Link to='/cabinet/videochat'
-                className="btn btn--red-border"
-              >
-                Отмена
-              </Link>
-
+        <div className="popup-in-call shadow-container">
+          <h3>
+            Включите камеру и микрофон, для начала разговора
+          </h3>
+          <div className="btn-container">
+            <div
+              className="btn  btn--green"
+              onClick={() => setupSources(
+                setTempPc,
+                localRef,
+                remoteRef,
+                setWebcamActive,
+                typeConnect,
+                setCurrentRoomId,
+                joinRoomId,
+                invitedId,
+                navigate,
+                setAllStreamRef,
+                uid
+              )}>
+              {textBtn}
             </div>
+            <Link to='/cabinet/videochat'
+              className="btn btn--red-border"
+            >
+              Отмена
+            </Link>
+
           </div>
         </div>
       )}

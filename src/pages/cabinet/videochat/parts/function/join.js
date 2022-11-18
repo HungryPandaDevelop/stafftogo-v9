@@ -37,14 +37,14 @@ const joinCall = async (pc, currentRoomId)=>{
 
   await updateDoc(callDoc, { answer });
 
-  // onSnapshot(offerCandidates, (snapshot) => {
-  //   snapshot.docChanges().forEach((change) => {
-  //     if (change.type === "added") {
-  //       let data = change.doc.data();
-  //       pc.addIceCandidate(new RTCIceCandidate(data));
-  //     }
-  //   });
-  // });
+  onSnapshot(offerCandidates, (snapshot) => {
+    snapshot.docChanges().forEach((change) => {
+      if (change.type === "added") {
+        let data = change.doc.data();
+        pc.addIceCandidate(new RTCIceCandidate(data));
+      }
+    });
+  });
 }
 
 export default joinCall;

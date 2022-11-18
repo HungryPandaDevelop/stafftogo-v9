@@ -65,7 +65,8 @@ const ListItem = ({
               style={{ backgroundImage: `url(${imgCards})` }}
             >
             </div>
-            <BtnCall listing={listing.data} />
+            {uid !== listing.data.userInfo.uid && <BtnCall listing={listing.data} />}
+
 
           </div>
         </div>

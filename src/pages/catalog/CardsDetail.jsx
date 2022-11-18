@@ -4,6 +4,7 @@ import * as htmlToImage from 'html-to-image';
 //1 норм решение но не работает с картинкой fb
 
 import { useReactToPrint } from 'react-to-print';
+import ReactToPrint from 'react-to-print';
 
 import { useState, useEffect, useRef } from 'react';
 import { connect } from 'react-redux';

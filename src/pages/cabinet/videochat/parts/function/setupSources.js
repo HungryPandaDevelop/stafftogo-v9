@@ -30,12 +30,13 @@ const setupSources = async (
     };
 
   const pc = new RTCPeerConnection(servers);
-
-  const localStream = await window.navigator.mediaDevices.getUserMedia({
+  console.log('1', pc)
+  
+  const localStream = await navigator.mediaDevices.getUserMedia({
     video: true,
     // audio: true,
   });
-
+  console.log('2', localStream)
   const remoteStream = new MediaStream();
 
   localStream.getTracks().forEach((track) => {

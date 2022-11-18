@@ -24,12 +24,22 @@ const RoomItem = ({ room, uid, roomId, setCurrentInfoChat, onDelete, messageLeng
   const changeRoom = (setRoom) => {
 
     if (setRoom.data.uid === uid) {
-      setCurrentInfoChat([setRoom.data.hisInvitingName, setRoom.data.hisInvitingNameAccount, setRoom.data.hisInvitingImg, setRoom.data.hisType, setRoom.data.listingId]);
+      setCurrentInfoChat([
+        setRoom.data.hisInvitingName,
+        setRoom.data.hisInvitingNameAccount,
+        setRoom.data.hisInvitingImg,
+        setRoom.data.hisType,
+        setRoom.data.listingId]);
 
 
     } else {
 
-      setCurrentInfoChat([setRoom.data.ownInvitedName, setRoom.data.ownInvitedNameAccount, setRoom.data.ownInvitedImg, setRoom.data.ownType, setRoom.data.owmListingId]);
+      setCurrentInfoChat([
+        setRoom.data.ownInvitedName,
+        setRoom.data.ownInvitedNameAccount,
+        setRoom.data.ownInvitedImg,
+        setRoom.data.ownType,
+        setRoom.data.owmListingId]);
     }
   }
 

@@ -48,9 +48,15 @@ const Messages = ({ roomId, uid }) => {
         }
       })
     }
-
-
   }
+
+  const EmptyList = () => {
+    return (<div className='empty-chat-list'>
+      <i></i><span> Список сообщений пуст</span>
+    </div>)
+  }
+
+
   return (
     <div className='chat-messages-list'>
       {result ? result.map((item, index) => (
@@ -74,7 +80,7 @@ const Messages = ({ roomId, uid }) => {
             </div>
           )}
         </div>
-      )) : 'Список сообщений пуст'}
+      )) : <EmptyList />}
     </div>
   )
 }

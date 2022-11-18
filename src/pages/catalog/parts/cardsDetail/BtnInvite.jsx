@@ -26,7 +26,7 @@ const BtnInvite = ({
     uid && getListing('message', uid, 'inviteBtn', elementId).then(res => {
 
       setInvited(res.map(el => el.data.owmListingId));
-      console.log('elementId', res.map(el => el.data.owmListingId))
+      //console.log('elementId', res.map(el => el.data.owmListingId))
       ActionFn('UPDATE_ROOM', false);
     });
 
@@ -50,7 +50,9 @@ const BtnInvite = ({
       accountInfo.currentCard[1],
       accountInfo.accountName,
       imgOwn,
-      accountInfo.currentCard[0]
+      accountInfo.currentCard[0],
+      accountInfo.typeCabinet,
+      listing.userInfo.typeCabinet
 
     ).then(() => {
       // console.log(currentCard, listing.id, uid, listing.data.userRef);

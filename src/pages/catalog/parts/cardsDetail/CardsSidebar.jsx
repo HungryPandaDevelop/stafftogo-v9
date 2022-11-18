@@ -80,7 +80,7 @@ const CardsSidebar = ({ listing, imgCards, toPdf, handlePrint, uid, cabinetType,
           <div className="sidebar-btn" onClick={handlePrint}> <span>Распечатать</span><img src={print} alt="" /></div>
         </div>
         <div className="btn-container">
-          <Link to={`/cabinet/videochat/${listing.userRef}`} className="btn btn--green-border">Видеочат</Link>
+          <Link to={`/cabinet/videochat/videoroom-out/${listing.userRef}`} className="btn btn--green-border">Видеочат</Link>
 
 
           <BtnChat

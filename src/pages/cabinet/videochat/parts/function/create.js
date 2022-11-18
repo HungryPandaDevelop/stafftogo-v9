@@ -11,10 +11,10 @@ const createCall = async (pc, setCurrentRoomId, invitedId, uid) => {
 
   setCurrentRoomId(callDoc.id);
 
-  // pc.onicecandidate = (event) => {
-  //   event.candidate &&
-  //     addDoc(offerCandidates, event.candidate.toJSON());
-  // };
+  pc.onicecandidate = (event) => {
+    event.candidate &&
+      addDoc(offerCandidates, event.candidate.toJSON());
+  };
 
   const offerDescription = await pc.createOffer();
   await pc.setLocalDescription(offerDescription);
