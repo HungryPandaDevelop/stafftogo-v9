@@ -143,7 +143,7 @@ const Reviews = ({
             </div>
 
           </div>
-          <div className="col-6">
+          <div className="col-6 rew-default-container">
             <h2>Оставить отзыв</h2>
             {listings && showHideForm(listings)}
 

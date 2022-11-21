@@ -56,11 +56,12 @@ export default function(){
           name: "priceType",  
           length: "col-6  account-item",
           label:"Тип оплаты",  
-          placeholder:"Руб./мес.",
+          placeholder:"Тип оплат",
           options: [
             {label:"Руб./Смена", value:"type1"}, 
             {label:"Руб./Час", value:"type2"}, 
-            {label:"За проект", value:"type3"}, 
+            {label:"Руб./Месяц", value:"type3"}, 
+            {label:"За проект", value:"type4"}, 
           ]
         },
         { 
@@ -219,7 +220,7 @@ export default function(){
       allFields: [
         { 
           type:"select", 
-          name: "namework", 
+          name: "namelang", 
           label: "Язык",
           placeholder: "Язык", 
           wrapClass: "col-6",
@@ -326,7 +327,7 @@ export default function(){
         },
         { 
           type:"select", 
-          name: "namework", 
+          name: "explang", 
           label: "Уровень владения",
           placeholder: "Уровень владения", 
           wrapClass: "col-6",
@@ -414,7 +415,7 @@ export default function(){
         { label: 'Готовность работать ночью', value: 'type_4' },
         { label: 'Срочный выезд', value: 'type_5' },
         { label: 'Разрешение на работу в России', value: 'type_6' },
-        { label: 'Гражданство РФ', value: 'type_6' },
+        { label: 'Гражданство РФ', value: 'type_7' },
       ] 
     },
     typeWork: {

@@ -1,5 +1,5 @@
 
-const TypeWork = ({ list }) => {
+const TypeWorkResume = ({ list }) => {
 
   const additionalListRender = (list) => {
 
@@ -38,4 +38,4 @@ const TypeWork = ({ list }) => {
   )
 }
 
-export default TypeWork
+export default TypeWorkResume;

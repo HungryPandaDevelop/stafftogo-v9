@@ -41,12 +41,15 @@ const VacanciesEdit = ({ accountInfo, cabinetType, fields, dataForm }) => {
 
   /* сохранение данных пользователя */
 
+  const renderDataText = () => {
+    return cabinetType === 'resume' ? 'Редактировать резюме' : 'Редактировать вакансию'
+  }
 
 
   return (
     <>
 
-      <TemplateAccount title="Редкатировать вакансию" >
+      <TemplateAccount title={renderDataText()} >
         <RenderFormAccount
           btnSaveText="Сохранить изменения"
           objFields={fields}

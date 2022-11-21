@@ -1321,6 +1321,10 @@ section {
   display: block;
 }
 
+.hiddened-file {
+  opacity: 0;
+}
+
 .notice-file {
   position: absolute;
   right: 0;
@@ -1823,8 +1827,8 @@ section {
   font-size: 0;
 }
 .btn-map-filters:hover {
-  background-color: #03ac9f;
-  border-color: #03ac9f;
+  background-color: #fba72a;
+  border-color: #fba72a;
 }
 
 .btn-find i {
@@ -5568,9 +5572,20 @@ footer,
   .cards-about {
     margin: 0;
   }
+  .cards-second-info {
+    padding: 0 15px;
+    gap: 15px;
+  }
   .cards-second-info .col-md-12 {
     -ms-grid-column-span: 6;
     grid-column-end: span 6;
+  }
+  .rew-default-container {
+    display: none;
+  }
+  .reviews-img {
+    width: 62px;
+    height: 62px;
   }
   .cards-verified-list {
     background: none;

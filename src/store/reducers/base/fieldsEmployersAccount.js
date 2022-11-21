@@ -18,7 +18,7 @@ export default function(){
       "videoCompany",
       "titleTwo", 
       "legalNameCompany",
-      "centralOffice",
+      "centralOfficeCompany",
       "how_get",
       "inn_company",
       "kpp",
@@ -115,7 +115,7 @@ export default function(){
       wrapClass: "col-12 account-item", 
     },
     legal_address: { 
-      type:"text", 
+      type:"coords", 
       name: "legal_address", 
       label: "Юридический адрес", 
       placeholder: "Юридический адрес",
@@ -244,36 +244,15 @@ export default function(){
           placeholder: "Наименование компании", 
           length: "col-6" 
         },
-
       ],
       wrapClass: "col-12 account-item"
     },
-    centralOffice: { 
-      type: "multy", 
-      mainname: "centralOffice", 
-      label:"Центральный офис компании",  
-      allFields: [
-        { 
-          type:"select", 
-          name: "city",  
-          length: "col-6", 
-          placeholder: "Город",
-          options: [
-            {label:"Москва", value:"type1"}, 
-            {label:"Санкт-Петербург", value:"type2"}, 
-            {label:"Казань", value:"type3"}, 
-            {label:"Сочи", value:"type4"}  , 
-            {label:"Севастополь", value:"type5"}
-          ]
-        },
-        { 
-          name: "address",  
-          type:"text", 
-          placeholder: "Адрес: улица, дом, корпус, строение", 
-          length: "col-6" 
-        },
-      ],
-      wrapClass: "col-12 account-item"
+    centralOfficeCompany: { 
+      type:"coords", 
+      name: "centralOfficeCompany", 
+      label: "Центральный офис компании", 
+      placeholder: "Центральный офис компании",
+      wrapClass: "col-12 account-item" 
     },
     imgsAccount: {
       type: "photo", 

@@ -75,7 +75,7 @@ const Employers = ({ renderImgCards, userInfo, formatPhone, fields }) => {
           <div className="account-item col-6"> <b>Юридическое наименование организации</b>
             <div> {userInfo.legalNameCompany ? (
               <>
-                <span>{userInfo.legalNameCompany.type} - {userInfo.legalNameCompany.name}</span>
+                <span>{userInfo.legalNameCompany.type}  {userInfo.legalNameCompany.name}</span>
               </>
             ) : '-/-'}</div>
           </div>

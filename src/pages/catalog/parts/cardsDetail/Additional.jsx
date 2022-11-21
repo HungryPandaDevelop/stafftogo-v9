@@ -26,7 +26,7 @@ const Additional = ({ list }) => {
 
     return filterList.map((item, index) => (
       <li key={index}>{item}</li>
-    ))
+    ));
   }
 
   if (list.length === 0) { return false }

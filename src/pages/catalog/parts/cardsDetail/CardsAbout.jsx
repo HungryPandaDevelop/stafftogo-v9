@@ -20,7 +20,32 @@ const CardsAbout = ({ listing }) => {
             ))}
           </div>
         )}
-        {listing.institution && listing.institution.lenght > 0 && (
+        {listing.typeSpecialist && (
+          <div className="cards-about-item">
+            <h3>Отбор команды</h3>
+            {listing.typeSpecialist === "multy_spec" ? 'Мне нужна команда' : 'Мне нужен один специалист'}
+          </div>
+        )}
+        {listing.education && (
+          <div className="cards-about-item">
+            <h3>Уровень образования</h3>
+            {listing.education}
+          </div>
+        )}
+        {listing.requirements && (
+          <div className="cards-about-item">
+            <h3>Требования</h3>
+            {listing.requirements}
+          </div>
+        )}
+        {listing.terms && (
+          <div className="cards-about-item">
+            <h3>Условия</h3>
+            {listing.terms}
+          </div>
+        )}
+
+        {listing.institution && (
           <div className="cards-about-item">
             <h3>Профессиональные образование</h3>
             {listing.institution.map((item, index) => (
@@ -30,6 +55,19 @@ const CardsAbout = ({ listing }) => {
                   {item.place && (item.place)} /
                   {item.faculty && (item.faculty)} /
                   {item.specialization && (item.specialization)}
+                </h5>
+              </div>
+            ))}
+          </div>
+        )}
+        {listing.lang && (
+          <div className="cards-about-item">
+            <h3>Владение языками</h3>
+            {listing.lang.map((item, index) => (
+              <div className="cards-about-line" key={index}>
+                {item.explang && (<h4>{item.explang}</h4>)}
+                <h5>
+                  {item.namelang && (item.namelang)}
                 </h5>
               </div>
             ))}
@@ -49,6 +87,13 @@ const CardsAbout = ({ listing }) => {
             {listing.responsibilities}
           </div>
         )}
+        {listing.car_exp && (
+          <div className="cards-about-item">
+            <h3>Опыт вождения</h3>
+            {listing.car_exp}
+          </div>
+        )}
+
 
 
 

@@ -4,6 +4,8 @@ export default function(){
       "activeCards",
       "titleOne",
       "card_name",
+      "requirements",
+      "terms",
       "salary",
       "extraWorkType",
       "coords",
@@ -13,10 +15,8 @@ export default function(){
       "titleThree",
       "education",
       "wetake",
-      "titleFour",
-      "rubric",
-      "region",
-      "settings"
+
+
     ],
     coords: { 
       type:"coords", 
@@ -32,6 +32,20 @@ export default function(){
       label:"Желаемая должность", 
       wrapClass: "col-12 account-item"
     },
+    requirements:{
+      type:"textarea", 
+      name: "requirements",  
+      placeholder: "Желаемые требования", 
+      label:"Желаемые требования", 
+      wrapClass: "col-6 account-item"
+    },
+    terms:{
+      type:"textarea", 
+      name: "terms",  
+      placeholder: "Желаемые условия", 
+      label:"Желаемые условия", 
+      wrapClass: "col-6 account-item"
+    },
     responsibilities: { 
       type:"textarea", 
       name: "responsibilities",  
@@ -40,7 +54,7 @@ export default function(){
       wrapClass: "col-12 account-item", 
     },
     typeSpecialist: { 
-      type:"checkbox", 
+      type:"radio", 
       name: "typeSpecialist", 
       options: [
         { label: 'Мне нужен один специалист', value: 'one_spec' },
@@ -65,11 +79,12 @@ export default function(){
           type:"select", 
           name: "priceType",  
           wrapClass: "col-6",
-          placeholder:"Руб./мес.",
+          placeholder:"Тип оплаты",
           options: [
             {label:"Руб./Смена", value:"type1"}, 
             {label:"Руб./Час", value:"type2"}, 
-            {label:"За проект", value:"type3"}, 
+            {label:"Руб./Месяц", value:"type3"}, 
+            {label:"За проект", value:"type4"}, 
           ]
         },
         { 
@@ -127,11 +142,12 @@ export default function(){
           name: "priceType",  
           length: "col-6  account-item",
           label:"Тип оплаты",  
-          placeholder:"Руб./мес.",
+          placeholder:"Тип оплат",
           options: [
             {label:"Руб./Смена", value:"type1"}, 
             {label:"Руб./Час", value:"type2"}, 
-            {label:"За проект", value:"type3"}, 
+            {label:"Руб./Месяц", value:"type3"}, 
+            {label:"За проект", value:"type4"}, 
           ]
         },
         { 

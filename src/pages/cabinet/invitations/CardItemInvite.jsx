@@ -8,6 +8,7 @@ const CardItemInvite = ({ listing, typeCabinet, onDelete }) => {
   const reverseTypeCabinet = (typeCabinet === 'vacancies') ? 'resume' : 'vacancies';
 
   const getTypeCabinetText = (cabinet) => { if (cabinet === 'vacancies') { return 'вакансию' } else { return 'резюме' }; };
+  const getTypeCabinetTextTwo = (cabinet) => { if (cabinet === 'vacancies') { return 'вакансии' } else { return 'резюме' }; };
 
   const statusArr = [['roger', 'Согласен'], ['turnoff', 'Отказать'], ['considered', 'Рассматривается']];
 
@@ -23,11 +24,11 @@ const CardItemInvite = ({ listing, typeCabinet, onDelete }) => {
   return (
     <tr>
       <td>
-        Я отозвался на
+        Я откликнулся на
         <div className="cards-account-topic">
           {getTypeCabinetText(reverseTypeCabinet)} <Link to={`/catalog/${reverseTypeCabinet}/${listing.data.listingId}`}> {listing.data.hisInvitingName}</Link>
         </div>
-        По резюме {listing.data.ownInvitedName}
+        По {getTypeCabinetTextTwo()} {listing.data.ownInvitedName}
       </td>
       <td>
         <SimpleDateTime
