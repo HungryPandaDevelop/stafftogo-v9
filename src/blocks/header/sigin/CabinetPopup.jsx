@@ -3,12 +3,18 @@ import { Link } from 'react-router-dom';
 import { getAuth } from 'firebase/auth';
 
 
-const CabinetPopup = ({ userInfo, onCabinetPopupShow }) => {
+const CabinetPopup = ({ userInfo, onCabinetPopupShow, myRoomsMessage }) => {
   const auth = getAuth();
 
   return (
     <div className="cabinet-popup">
-      <div className="cabinet-popup-roof"></div>
+      <div className="cabinet-popup-roof">
+        <Link to={`/cabinet/${userInfo.typeCabinet}-new`} className="btn-header-cards btn-header"></Link>
+        <Link to='/cabinet/chat' className="btn-header-chat btn-header">
+          {myRoomsMessage.length > 0 && <div className="new-message-warning"></div>}
+        </Link>
+        <Link to='/cabinet/liked' className="btn-header-favorites btn-header"></Link>
+      </div>
       <div className="cabinet-popup-info">
         <div className="cabinet-popup-name">{userInfo.accountName}</div>
         <div className="cabinet-popup-mail">{userInfo.email}</div>

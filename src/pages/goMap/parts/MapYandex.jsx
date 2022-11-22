@@ -20,7 +20,7 @@ const MapYandex = ({ listingSearch, uid, cabinetType, accountInfo }) => {
 
   const params = useParams();
   // const myMap = useRef(null);
-
+  const [loadMap, setLoadMap] = useState(false);
   const [myMap, setMyMap] = useState(null);
   const [myRoute, setMyRoute] = useState(null);
   const [routeboxState, setRouteboxState] = useState(false);
@@ -33,12 +33,29 @@ const MapYandex = ({ listingSearch, uid, cabinetType, accountInfo }) => {
   const [myPosition, setMyPosition] = useState(null);
   const [choiseMarkerPosition, setChoiseMarkerPosition] = useState(null);
 
-  const [myPositionText, setMyPositionText] = useState('');
+  // const [myPositionText, setMyPositionText] = useState('');
   const [markerPositionText, setMarkerPositionText] = useState('');
+
+
+  let tempPoint = '';
+
+  const onSetMyPosition = (pos) => {
+    // console.log('set position', myMap);
+    // myPoint && myMapRef.current.geoObjects.remove(myPoint);
+    setMyPosition(pos)
+
+    tempPoint && myMapRef.current.geoObjects.remove(tempPoint);
+    tempPoint = addPlacemark(myMap, myMapRef, pos, 'myMarker', 0);
+
+    myMapRef.current.geoObjects.add(tempPoint);
+
+  };
 
   const navigate = useNavigate();
 
   useEffect(() => {
+
+    console.log('y', localStorage.getItem('choisenCity'))
 
     listings && removePlacemark(myMapRef, listings);
 
@@ -48,8 +65,8 @@ const MapYandex = ({ listingSearch, uid, cabinetType, accountInfo }) => {
       });
     };
 
-    if (myMap) {
-      // console.log(params.catagoryName)
+    if (loadMap) {
+      // console.log(myMap, myMapRef)
       params.idPopup && setCurrentCardId(params.idPopup);
       getListing(params.catagoryName).then(res => {
 
@@ -61,15 +78,15 @@ const MapYandex = ({ listingSearch, uid, cabinetType, accountInfo }) => {
 
         data = data.filter(item => item.data.activeCards !== 'off')
 
-        getMyPosition().then((pos) => {
-          setMyPosition(pos);
-          getAddress(pos, setMyPositionText);
+        // getMyPosition().then((pos) => {
+        //   setMyPosition(pos);
+        //   getAddress(pos, setMyPositionText);
 
-          addPlacemark(myMap, myMapRef, pos, 'myMarker');
+        //   addPlacemark(myMap, myMapRef, pos, 'myMarker');
 
-        }).catch((err) => {
-          console.log('Your browser not suported goelocation', err);
-        });
+        // }).catch((err) => {
+        //   console.log('Your browser not suported goelocation', err);
+        // });
 
 
         const allPlacemark = data.map((item) => {
@@ -102,48 +119,54 @@ const MapYandex = ({ listingSearch, uid, cabinetType, accountInfo }) => {
 
     };
 
-  }, [myMap, params.catagoryName, listingSearch]);
+  }, [loadMap, params.catagoryName, listingSearch]);
 
 
 
   return (
     <>
-      <ClearYaMap myMapRef={myMapRef} setMyMap={setMyMap} />
-      <div className="main-grid">
-        <div className="col-3 col-md-5 col-xs-12">
-          <CardsPopup
-            currentCardId={currentCardId}
-            listingType={params.catagoryName}
-            myMap={myMap}
-            myMapRef={myMapRef}
-            myRoute={myRoute}
-            setMyRoute={setMyRoute}
-            setRouteboxState={setRouteboxState}
-            setCurrentCardId={setCurrentCardId}
-            myPosition={myPosition}
-            choiseMarkerPosition={choiseMarkerPosition}
-            routeboxState={routeboxState}
-            navigate={navigate}
-            uid={uid}
-            cabinetType={cabinetType}
-          />
+      <ClearYaMap myMapRef={myMapRef} setMyMap={setMyMap} setLoadMap={setLoadMap} />
+      {myMap &&
+        <div className="main-grid">
+          <div className="col-3 col-md-5 col-xs-12">
+            <CardsPopup
+              currentCardId={currentCardId}
+              listingType={params.catagoryName}
+              myMap={myMap}
+              myMapRef={myMapRef}
+              myRoute={myRoute}
+              setMyRoute={setMyRoute}
+              setRouteboxState={setRouteboxState}
+              setCurrentCardId={setCurrentCardId}
+              myPosition={myPosition}
+              choiseMarkerPosition={choiseMarkerPosition}
+              routeboxState={routeboxState}
+              navigate={navigate}
+              uid={uid}
+              cabinetType={cabinetType}
+              setMarkerPositionText={setMarkerPositionText}
+              setChoiseMarkerPosition={setChoiseMarkerPosition}
+            />
+          </div>
+          <div className="col-9 col-md-7 col-xs-12 gomap-route-cell">
+            <RoutePopup
+              currentCardId={currentCardId}
+              myMap={myMap}
+              myMapRef={myMapRef}
+              myRoute={myRoute}
+              setMyRoute={setMyRoute}
+              myPosition={myPosition}
+              choiseMarkerPosition={choiseMarkerPosition}
+              // myPositionText={myPositionText}
+              markerPositionText={markerPositionText}
+              routeboxState={routeboxState}
+              setRouteboxState={setRouteboxState}
+              onSetMyPosition={onSetMyPosition}
+            />
+          </div>
         </div>
-        <div className="col-9 col-md-7 col-xs-12 gomap-route-cell">
-          <RoutePopup
-            currentCardId={currentCardId}
-            myMap={myMap}
-            myMapRef={myMapRef}
-            myRoute={myRoute}
-            setMyRoute={setMyRoute}
-            myPosition={myPosition}
-            choiseMarkerPosition={choiseMarkerPosition}
-            myPositionText={myPositionText}
-            markerPositionText={markerPositionText}
-            routeboxState={routeboxState}
-            setRouteboxState={setRouteboxState}
-          />
-        </div>
-      </div>
+      }
+
 
 
 

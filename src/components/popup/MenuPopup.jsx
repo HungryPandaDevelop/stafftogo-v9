@@ -10,7 +10,7 @@ const MenuPopup = ({ showNavMenu, closePopup, listingType }) => {
 
   return (
     <>
-     
+
       <div className={`popup element-show menu-hamburger ${showNavMenu && 'show'}`} >
         <div className="popup-overlay"></div>
         <div className="popup-container">
@@ -21,7 +21,6 @@ const MenuPopup = ({ showNavMenu, closePopup, listingType }) => {
               <li> <Link to={`/catalog/${listingType}`} onClick={closePopup}>{listingType === 'resume' ? 'Резюме' : 'Вакансии'} </Link></li>
               <li> <Link to="/about/" onClick={closePopup}>О нас</Link></li>
               <li> <Link to="/contacts" onClick={closePopup}>Контакты</Link></li>
-              <li> <Link to="/cabinet/chat" onClick={closePopup}>Чат</Link></li>
             </ul>
           </nav>
           <div className="popup-feedback">

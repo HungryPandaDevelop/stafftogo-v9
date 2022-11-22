@@ -10,7 +10,7 @@ const Switch = ({ listingType, listingTypeReverse, listingPage }) => {
       >
         <span>Резюме</span>
         <div className="switch-btn switch-btn--white">
-          <Link to={`/catalog/${listingTypeReverse}${listingPage ? '/map' : ''}`}><i></i></Link>
+          <Link to={`/catalog/${listingTypeReverse}${listingPage ? '/map' : ''}`}></Link>
         </div>
         <span>Вакансии</span>
       </div>

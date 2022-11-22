@@ -1,4 +1,4 @@
-import { useState, } from "react"
+import { useState, useEffect, useRef } from "react"
 
 import addRoute from 'pages/goMap/js/addRoute';
 import removeRoute from 'pages/goMap/js/removeRoute';
@@ -15,7 +15,9 @@ const RoutePopup = (
     myPositionText,
     markerPositionText,
     routeboxState,
-    setRouteboxState
+    setRouteboxState,
+    onSetMyPosition,
+    setMyPosition
   }) => {
 
   // console.log('markerPositionText', markerPositionText)
@@ -25,7 +27,51 @@ const RoutePopup = (
   const [routeCheckboxType, setRouteCheckboxType] = useState(0)
 
 
+  const elRef = useRef();
+  const originRef = useRef();
+  const [custVal, setCustVal] = useState('');
+  const [firstLoad, setFirstLoad] = useState(0);
 
+
+  useEffect(() => {
+    routeboxState && (setTimeout(() => {
+      const { ymaps } = window;
+      console.log('window', ymaps);
+
+
+      const suggest = new ymaps.SuggestView('suggest')
+      // console.log(suggest)
+
+      suggest.events.add('select', (e) => {
+
+        const val = String(e.get('item').value.trim());
+
+        const myGeocoder = ymaps.geocode(val);
+
+        myGeocoder
+          .then(res => {
+            // console.log('myMap', myMap)
+            onSetMyPosition(res.geoObjects.get(0).geometry._coordinates)
+
+            // console.log('val', res.geoObjects.get(0).geometry._coordinates)
+            // setCustVal(val + "--" + res.geoObjects.get(0).geometry._coordinates[0] + "--" + res.geoObjects.get(0).geometry._coordinates[1]);
+            // elRef.current.focus();
+
+          })
+      });
+    }, 1000))
+
+
+  }, [routeboxState]);
+
+  // const checkEpmty = (e) => {
+
+  //   if (e.target.value.length === 0) {
+  //     console.log('set empty');
+  //     setCustVal('');
+  //     elRef.current.focus();
+  //   }
+  // }
 
   const showRoutebox = () => {
     console.log('set route', myRoute);
@@ -52,7 +98,15 @@ const RoutePopup = (
         <div className="gomap-route shadow-container">
           <div className="from input-route-item">
             <i className="from-ico"></i><span>Откуда: </span>
-            <input className="input-decorate" type="text" value={myPositionText} disabled />
+            {/* <input className="input-decorate" type="text" value={myPositionText} /> */}
+            <input
+              // ref={originRef}
+              id="suggest"
+              type="text"
+              className="input-decorate"
+              // onChange={checkEpmty}
+              autoсomplete="off"
+            />
           </div>
           <div className="to input-route-item">
             <i className="to-ico"></i><span>Куда: </span>
@@ -79,3 +133,6 @@ const RoutePopup = (
 }
 
 export default RoutePopup;
+
+
+

@@ -1,7 +1,15 @@
 import { YMaps, Map, ZoomControl } from 'react-yandex-maps';
+import { useState, useEffect } from 'react';
+const ClearYaMap = ({ myMap, myMapRef, setMyMap, setLoadMap }) => {
 
-const ClearYaMap = ({ myMap, myMapRef, setMyMap }) => {
+  const [centerCoords, setCenterCoords] = useState('');
+  useEffect(() => {
 
+
+    let arr = localStorage.getItem('choisenCoordsCity').split(',');
+    setCenterCoords(arr)
+    console.log(arr)
+  }, []);
   return (
     <>
       <YMaps
@@ -14,7 +22,7 @@ const ClearYaMap = ({ myMap, myMapRef, setMyMap }) => {
           height="100%"
           defaultState={
             {
-              center: [55.75, 37.57],
+              center: centerCoords,
               zoom: 9
             }
           }
@@ -22,6 +30,7 @@ const ClearYaMap = ({ myMap, myMapRef, setMyMap }) => {
           onLoad={(y) => {
             // myMap.current = y;
             setMyMap(y)
+            setLoadMap(true)
             // console.log('ready', y);
           }}
           instanceRef={myMapRef}

@@ -43,6 +43,11 @@ const CabinetSidebar = ({ userInfo }) => {
     ['Видеочат', 'videochat', 'videochat-nav']
   ]
 
+  const adminMass = [
+    ['Страницы', 'pages', ''],
+    ['Специализация', 'specialization', ''],
+  ]
+
   return (
     <div className='cabinet-nav'>
       <ul className="ln ">
@@ -56,6 +61,15 @@ const CabinetSidebar = ({ userInfo }) => {
             </li>
           )
           )}
+        {userInfo.admin === 'true' && adminMass.map((item, index) => (
+          <li key={index} >
+            <Link className={`${item[2]} ${pathMathRoute('/cabinet/' + item[1]) ? 'active' : ''}`} to={`/cabinet/${item[1]}`}>
+              <i></i>
+              <span>{item[0]}</span>
+            </Link>
+          </li>
+        )
+        )}
         <li onClick={onLogout}>
           <em className='cabinet-logout'>
             <i></i>
@@ -70,7 +84,7 @@ const CabinetSidebar = ({ userInfo }) => {
 }
 
 const mapStateToProps = (state) => {
-
+  console.log('userInfo', state.accountInfo.info.admin)
 
   return {
 

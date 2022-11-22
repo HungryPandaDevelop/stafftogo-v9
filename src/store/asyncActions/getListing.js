@@ -116,7 +116,7 @@ export const getListing = async (baseName, uid, type, listingId) => {
   else{
     q = query(
       listingsRef,
-      orderBy('timestamp', 'desc'),
+      // orderBy('timestamp', 'desc'),
       // limit(2)
     );
   }

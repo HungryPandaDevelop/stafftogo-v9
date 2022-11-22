@@ -22,14 +22,17 @@ const BtnInvite = ({
   const [invited, setInvited] = useState([]);
 
   useEffect(() => {
-    console.log('listing.id', listing.id)
-    uid && getListing('message', uid, 'inviteBtn', listing.id).then(res => {
-      console.log('elementId', res.map(el => el.data.owmListingId))
-      setInvited(res.map(el => el.data.owmListingId));
-      ActionFn('UPDATE_ROOM', false);
+    let isMounted = true;
 
+    uid && getListing('message', uid, 'inviteBtn', listing.id).then(res => {
+      if (isMounted) {
+        // console.log('elementId', res.map(el => el.data.owmListingId))
+        setInvited(res.map(el => el.data.owmListingId));
+        ActionFn('UPDATE_ROOM', false);
+      }
     });
 
+    return () => { isMounted = false };
   }, [uid, roomUpdate]);
 
 

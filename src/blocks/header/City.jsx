@@ -4,7 +4,8 @@ import { useState, useEffect, useRef } from 'react';
 
 const City = ({ russianCities }) => {
 
-  const [useChoiseName, setUseChoiseName] = useState('Москва')
+  const [сhoiseName, setСhoiseName] = useState('Москва');
+  const [сhoiseNameFiltering, setСhoiseNameFiltering] = useState('');
   const [russianCitiesList, setRussianCities] = useState(russianCities);
   const [cityPopupState, setCityPopupState] = useState(false);
 
@@ -13,31 +14,39 @@ const City = ({ russianCities }) => {
 
   useEffect(() => {
 
-    localStorage.getItem('choisenCity') && setUseChoiseName(localStorage.getItem('choisenCity'))
+    localStorage.getItem('choisenCity') && setСhoiseName(localStorage.getItem('choisenCity'))
+    // console.log(localStorage.getItem('choisenCoordsCity'))
     setRussianCities(russianCities);
 
-    const hideByBody = (e) => {
-      if (e.target.className !== 'city-header-input') {
+    const hideByBodyClick = (e) => {
+      if (e.target.className !== 'city-input' && e.target.className !== 'city-name') {
         setCityPopupState(false)
       }
+
+    }
+    const hideByBodyByKey = (e) => {
       if (e.key === 'Escape') { setCityPopupState(false); }
     }
-    document.addEventListener('keydown', hideByBody);
-    document.body.addEventListener('click', hideByBody);
+    document.addEventListener('keydown', hideByBodyByKey);
+    document.body.addEventListener('click', hideByBodyClick);
     return () => {
-      document.body.removeEventListener('click', hideByBody)
-      document.body.removeEventListener('keydown', hideByBody)
+      document.body.removeEventListener('click', hideByBodyByKey)
+      document.body.removeEventListener('keydown', hideByBodyClick)
     };
   }, []);
 
   const choiseCity = (e) => {
-    setUseChoiseName(e.currentTarget.getAttribute('namecity'));
+    setСhoiseName(e.currentTarget.getAttribute('namecity'));
+    setСhoiseNameFiltering('');
+    setRussianCities(russianCities);
     localStorage.setItem('choisenCity', e.currentTarget.getAttribute('namecity'));
+    localStorage.setItem('choisenCoordsCity', e.currentTarget.getAttribute('coords'));
+    // console.log(Number(e.currentTarget.getAttribute('ltd')))
     setCityPopupState(false);
   }
   const onSearchCity = (e) => {
 
-    setUseChoiseName(e.target.value);
+    setСhoiseNameFiltering(e.target.value);
 
     const dataSearch = russianCities.filter(item => (item.name.toLowerCase().indexOf(e.target.value.toLowerCase()) >= 0));
 
@@ -50,8 +59,7 @@ const City = ({ russianCities }) => {
     return (russianCitiesListParam.length > 0) ? russianCitiesListParam.map((item, index) => (
       <li
         key={index}
-        ltd={item.coords.lat}
-        lng={item.coords.lon}
+        coords={[item.coords.lat, item.coords.lon]}
         namecity={item.name}
         onClick={choiseCity}
 
@@ -69,21 +77,35 @@ const City = ({ russianCities }) => {
     <>
       <div className="vertical-align col-2 hidden-lg hidden-md hidden-sm hidden-xs">
 
-        <div className="city-header"><em></em>
-          <input
-            ref={inputRef}
-            type="text"
-            value={useChoiseName}
-            className="city-header-input"
-            onChange={onSearchCity}
-            // onBlur={() => setCityPopupState(false)}
-            onFocus={(event) => { setCityPopupState(true); event.target.select() }}
-          />
+        <div className="city-header">
+          <em></em>
+          <div
+            className="city-name"
+            onClick={() => { setCityPopupState(true) }}
+          >{сhoiseName}</div>
+
+
           {cityPopupState && (
             <div
               className="city-header-popup"
               ref={wrapperRef}
             >
+              <div className="filters-close-popup" onClick={() => { setCityPopupState(false) }}></div>
+              <div className="city-search-container">
+                <i></i>
+
+                <input
+                  ref={inputRef}
+                  type="text"
+                  value={сhoiseNameFiltering}
+                  className="city-input"
+                  onChange={onSearchCity}
+                  // onBlur={() => setCityPopupState(false)}
+                  placeholder="Введите название города"
+                  onFocus={(event) => { setCityPopupState(true); event.target.select() }}
+                />
+              </div>
+
               <ul className="ln">
                 {renderCityList(russianCitiesList)}
               </ul>

@@ -37,7 +37,9 @@ const CardsPopup = (
     routeboxState,
     navigate,
     uid,
-    cabinetType
+    cabinetType,
+    setMarkerPositionText,
+    setChoiseMarkerPosition
   }) => {
 
   const [cardInfo, setCardInfo] = useState(null);
@@ -53,10 +55,12 @@ const CardsPopup = (
         removeRoute(myMapRef, myRoute);
 
         const coords = res.coords.split('--');
+        setMarkerPositionText(coords[0])
         const ltd = Number(coords[1]);
         const lng = Number(coords[2]);
-
+        setChoiseMarkerPosition([ltd, lng]);
         myMapRef.current.setCenter([ltd, lng], 15)
+        setRouteboxState(true);
       });
     }
   }
@@ -71,12 +75,15 @@ const CardsPopup = (
   }
 
   const showRoutebox = () => {
+    // console.log('myPosition', myPosition)
+    if (myPosition) {
+      removeRoute(myMapRef, myRoute);
+      addRoute(myMap, myMapRef, setMyRoute, myPosition, choiseMarkerPosition, 'auto');
+      console.log('map', myPosition, choiseMarkerPosition)
+      // setRouteboxState(!routeboxState); // состояние плашки маршрту
+      // setRouteFirst(); // построить маршрут
+    }
 
-    removeRoute(myMapRef, myRoute);
-    addRoute(myMap, myMapRef, setMyRoute, myPosition, choiseMarkerPosition, 'auto');
-
-    setRouteboxState(!routeboxState); // состояние плашки маршрту
-    // setRouteFirst(); // построить маршрут
   }
 
 
@@ -162,7 +169,11 @@ const CardsPopup = (
             )}
           </div>
         </div>
-        <div className="btn btn--white btn-show-map ico-in--right" onClick={showRoutebox}><span>Маршрут</span><i></i></div>
+        <div
+          className="btn btn--white btn-show-map ico-in--right"
+          onClick={showRoutebox}>
+          <span>Маршрут</span><i></i>
+        </div>
       </div >
     )
   }

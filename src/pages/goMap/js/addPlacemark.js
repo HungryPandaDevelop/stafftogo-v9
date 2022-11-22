@@ -1,7 +1,7 @@
 import userMarker from 'front-end/images/icons/marker-black.svg'
 
 const addPlacemark = (myMap, myMapRef, coords, setOptions, itemId) => {
-  //  console.log(itemId);
+  // console.log(coords);
   let myMarkerOptions = {
     iconLayout: 'default#image',
     iconImageHref: userMarker,
@@ -11,7 +11,7 @@ const addPlacemark = (myMap, myMapRef, coords, setOptions, itemId) => {
     preset: "islands#yellowStretchyIcon",
   }
   let setMarkerStyle = setOptions === 'myMarker' ? myMarkerOptions : itemMarkerOptions;
-  // console.log(setMarkerStyle);
+  // console.log(myMap, myMapRef, coords, setOptions, itemId);
 
   
   const placemark = new myMap.Placemark(
@@ -25,9 +25,18 @@ const addPlacemark = (myMap, myMapRef, coords, setOptions, itemId) => {
         // Отключаем кнопку закрытия балуна.
         balloonCloseButton: false,
     });
+    // 
+ 
+    if( setOptions === 'myMarker'){
+      return placemark
+      //myMapRef.current.geoObjects.remove(placemark);
+      // console.log(myPoint.length)
 
-    myMapRef.current.geoObjects.add(placemark);
-    return placemark;
+    }else{
+      myMapRef.current.geoObjects.add(placemark);
+      return placemark;
+
+    }
   
 };
 

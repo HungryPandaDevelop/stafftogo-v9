@@ -2,13 +2,13 @@ export default function(){
 return   [
     {
     "coords": {
-    "lat": "52.65",
-    "lon": "90.08333"
-    },
-    "district": "Сибирский",
-    "name": "Абаза",
-    "population": 14816,
-    "subject": "Хакасия"
+            "lat": "52.65",
+            "lon": "90.08333"
+        },
+        "district": "Сибирский",
+        "name": "Абаза",
+        "population": 14816,
+        "subject": "Хакасия"
     },
     {
     "coords": {

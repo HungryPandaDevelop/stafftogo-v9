@@ -59,7 +59,7 @@ const TemplateCoords = (props) => {
         type="text"
         className="input-decorate"
         onChange={checkEpmty}
-        autoComplete="off"
+        autoсomplete="off"
       />
       <input
         type="text"

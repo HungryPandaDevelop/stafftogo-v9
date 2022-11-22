@@ -1,6 +1,5 @@
-const declinationMass = ['сфера', 'cферы', 'сфер'];
 
-const declination = (el) => {
+const declination = (el, declinationMass) => {
   if (el.length == 1) {
     return declinationMass[0]
   }

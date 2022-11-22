@@ -14,10 +14,10 @@ const BtnListControls = ({ idPopup, children, name, onShowPopup, idVisiblePopup,
     <div className="btn-item">
 
       <div to='/catalog/'
-        className={`btn btn-filters btn--white-border btn--list ${idPopup === idVisiblePopup && 'active'} ${count > 0 && 'filter-in'} `}
+        className={`btn btn-filters btn--white-border btn--list ${idPopup === idVisiblePopup && 'active'} `}
         onClick={() => { onShowPopup(idPopup); goToTop(); }}
       >
-        <span>{name}</span><i></i>
+        <span>{count > 0 ? 'Выбраны доп. филтры' : name}</span><i></i>
       </div>
       {children}
     </div>

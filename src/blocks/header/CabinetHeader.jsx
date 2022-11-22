@@ -51,12 +51,13 @@ const CabinetHeader = ({ userInfo, showPopup, uid }) => {
     <>
       <UserList />
       <div className="sigin-body">
-        <Link to={`/cabinet/${userInfo.typeCabinet}-new`} className="btn-header-cards btn-header"></Link>
-        <Link to='/cabinet/chat' className="btn-header-chat btn-header">
-
-          {myRoomsMessage.length > 0 && <div className="new-message-warning"></div>}
-        </Link>
-        <Link to='/cabinet/liked' className="btn-header-favorites btn-header"></Link>
+        <div className="btn-header-container hidden-md hidden-sm hidden-xs">
+          <Link to={`/cabinet/${userInfo.typeCabinet}-new`} className="btn-header-cards btn-header"></Link>
+          <Link to='/cabinet/chat' className="btn-header-chat btn-header">
+            {myRoomsMessage.length > 0 && <div className="new-message-warning"></div>}
+          </Link>
+          <Link to='/cabinet/liked' className="btn-header-favorites btn-header"></Link>
+        </div>
         <div
           className={`cabinet-header-avatar-container ${cabinetPopupShow ? 'active' : ''}`}
           onClick={onCabinetPopupShow}
@@ -68,7 +69,7 @@ const CabinetHeader = ({ userInfo, showPopup, uid }) => {
           </div>
         </div>
         <div className="hamburger-btn element-btn" onClick={showPopup}></div>
-        {cabinetPopupShow && <CabinetPopup userInfo={userInfo} onCabinetPopupShow={onCabinetPopupShow} />}
+        {cabinetPopupShow && <CabinetPopup myRoomsMessage={myRoomsMessage} userInfo={userInfo} onCabinetPopupShow={onCabinetPopupShow} />}
       </div>
     </>
   )

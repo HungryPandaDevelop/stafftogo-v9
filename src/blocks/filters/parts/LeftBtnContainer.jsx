@@ -9,9 +9,9 @@ import IndustryPopup from 'blocks/filtersPopup/IndustryPopup';
 import RewardPopup from 'blocks/filtersPopup/RewardPopup';
 import AdditionalPopup from 'blocks/filtersPopup/AdditionalPopup';
 
-import specializationBtnContent from '../js/specializationBtnContent';
-import industryBtnContent from '../js/industryBtnContent';
-import setPriceText from '../js/setPriceText';
+
+import btnContent from 'blocks/filters/js/btnContent';
+import setPriceText from 'blocks/filters/js/setPriceText';
 
 
 
@@ -50,7 +50,7 @@ const ChoiseContentBtn = ({ listingSearch, sectionTop }) => {
   return (
     <>
       <BtnTemplate
-        name={specializationBtnContent(listingSearch.specializationImg)}
+        name={btnContent(listingSearch.specializationImg, ['специализация', 'специализации', 'специализаций'], 'Специализация сотрудника')}
         idPopup="1"
         onShowPopup={onShowPopup}
         idVisiblePopup={idVisiblePopup}
@@ -59,7 +59,7 @@ const ChoiseContentBtn = ({ listingSearch, sectionTop }) => {
         {idVisiblePopup === '1' && <SpecializationPopup onShowPopup={onShowPopup} />}
       </BtnTemplate>
       <BtnTemplate
-        name={industryBtnContent(listingSearch.industry)}
+        name={btnContent(listingSearch.industry, ['сфера', 'cферы', 'сфер'], 'Сфера деятельности')}
         idPopup="2"
         onShowPopup={onShowPopup}
         idVisiblePopup={idVisiblePopup}
