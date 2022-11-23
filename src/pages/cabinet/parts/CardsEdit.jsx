@@ -11,10 +11,14 @@ import { getSingleListing } from 'store/asyncActions/getSingleListing';
 
 import { saveInfo } from 'store/asyncActions/saveInfo';
 
+import { getListingDefault } from 'store/asyncActions/getListing';
 
 const VacanciesEdit = ({ accountInfo, cabinetType, fields, dataForm }) => {
 
   const [getInfo, setGetInfo] = useState({});
+
+  const [listings, setListings] = useState(fields);
+  const [loading, setLoading] = useState(true);
 
   const params = useParams();
   const navigate = useNavigate();
@@ -23,6 +27,34 @@ const VacanciesEdit = ({ accountInfo, cabinetType, fields, dataForm }) => {
     getSingleListing(cabinetType, params.elementId).then(res => {
       console.log('setGetInfo', accountInfo);
       setGetInfo(res);
+    });
+
+    getListingDefault('specialization').then(res => {
+
+      let newListing = res.map(item => {
+        return {
+          label: item.name,
+          value: item.type
+        }
+      });
+
+      fields.typeSpecialization.options = newListing
+      setListings(fields)
+      // setLoading(false);
+    });
+
+    getListingDefault('activity').then(res => {
+
+      let newListing = res.map(item => {
+        return {
+          label: item.name,
+          value: item.type
+        }
+      });
+      console.log(res)
+      fields.industry.options = newListing
+      setListings(fields)
+      setLoading(false);
     });
   }, []);
 
@@ -48,12 +80,11 @@ const VacanciesEdit = ({ accountInfo, cabinetType, fields, dataForm }) => {
 
   return (
     <>
-
-      <TemplateAccount title={renderDataText()} >
+      {loading !== true && (<TemplateAccount title={renderDataText()} >
         <RenderFormAccount
           btnSaveText="Сохранить изменения"
-          objFields={fields}
-          orderFields={fields.order}
+          objFields={listings}
+          orderFields={listings.order}
           initialValues={getInfo ? getInfo : null}
           onSubmitIn={onSubmitIn}
           btnWrapClass='btn-container col-12'
@@ -63,7 +94,8 @@ const VacanciesEdit = ({ accountInfo, cabinetType, fields, dataForm }) => {
           cabinetBackLink={cabinetType}
           sending={true}
         />
-      </TemplateAccount>
+      </TemplateAccount>)}
+
     </>
   )
 }

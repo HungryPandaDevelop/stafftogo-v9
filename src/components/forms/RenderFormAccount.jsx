@@ -224,6 +224,7 @@ const TemplateForm = (props) => {
               typeAccept={obj.typeAccept}
               maxSize={obj.maxSize}
               textEmpty={obj.textEmpty}
+              nameFolder={obj.nameFolder}
             />
           );
         case 'fileVideo':

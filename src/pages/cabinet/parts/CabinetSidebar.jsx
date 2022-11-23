@@ -46,6 +46,7 @@ const CabinetSidebar = ({ userInfo }) => {
   const adminMass = [
     ['Страницы', 'pages', ''],
     ['Специализация', 'specialization', ''],
+    ['Сфера деятельнсти', 'activity', ''],
   ]
 
   return (
@@ -84,8 +85,6 @@ const CabinetSidebar = ({ userInfo }) => {
 }
 
 const mapStateToProps = (state) => {
-  console.log('userInfo', state.accountInfo.info.admin)
-
   return {
 
     userInfo: state.accountInfo.info,

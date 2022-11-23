@@ -1,26 +1,22 @@
-import ControlsDefault from 'pages/cabinet/parts/cards/Controls';
+import CardsControlsDefault from 'pages/cabinet/parts/cardsDefault/CardsControlsDefault';
 
-
-import { Link } from 'react-router-dom';
-
-const ListItem = ({
+const CardsItemDefault = ({
   listing,
   onDelete,
   onEdit,
   id,
-  cabinetType,
+  whatshow
 }) => {
 
 
   return (
     <>
+      {whatshow.map((item, index) => {
+        return (<td key={index}>{listing[item]}</td>)
+      })}
+
       <td>
-        <div className="cards-account-topic">
-          <Link to={`/catalog/${cabinetType}/${id}`}>{listing.card_name}</Link>
-        </div>
-      </td>
-      <td>
-        <ControlsDefault
+        <CardsControlsDefault
           id={id}
           name={listing.name}
           onEdit={onEdit}
@@ -32,4 +28,4 @@ const ListItem = ({
   )
 }
 
-export default ListItem;
+export default CardsItemDefault;

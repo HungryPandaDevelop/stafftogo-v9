@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+
 import { useNavigate } from 'react-router-dom';
 
 import { connect } from 'react-redux';
@@ -9,9 +11,47 @@ import TemplateAccount from 'pages/cabinet/parts/TemplateAccount';
 import RenderFormAccount from 'components/forms/RenderFormAccount';
 
 
+import { getListingDefault } from 'store/asyncActions/getListing';
+
 const VacanciesNew = ({ accountInfo, uid, cabinetType, fields, dataForm }) => {
 
   const navigate = useNavigate();
+
+  const [listings, setListings] = useState(fields);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+
+
+    getListingDefault('specialization').then(res => {
+
+      let newListing = res.map(item => {
+        return {
+          label: item.name,
+          value: item.type
+        }
+      });
+
+      fields.typeSpecialization.options = newListing
+      setListings(fields)
+      // setLoading(false);
+    });
+
+    getListingDefault('activity').then(res => {
+
+      let newListing = res.map(item => {
+        return {
+          label: item.name,
+          value: item.type
+        }
+      });
+      console.log(res)
+      fields.industry.options = newListing
+      setListings(fields)
+      setLoading(false);
+    });
+  }, []);
+
 
   const onSubmitIn = () => {
     const addUserInfo = { ...dataForm.values, userInfo: accountInfo };
@@ -36,11 +76,11 @@ const VacanciesNew = ({ accountInfo, uid, cabinetType, fields, dataForm }) => {
 
   return (
     <>
-      <TemplateAccount title={`Создание ${cabinetText()[0]}`} >
+      {loading !== true && (<TemplateAccount title={`Создание ${cabinetText()[0]}`} >
         <RenderFormAccount
           btnSaveText={`Добавить ${cabinetText()[1]}`}
-          objFields={fields}
-          orderFields={fields.order}
+          objFields={listings}
+          orderFields={listings.order}
           onSubmitIn={onSubmitIn}
           sending={true}
           btnWrapClass='btn-container col-12'
@@ -49,7 +89,7 @@ const VacanciesNew = ({ accountInfo, uid, cabinetType, fields, dataForm }) => {
           cabinetBack={true}
           cabinetBackLink={cabinetType}
         />
-      </TemplateAccount>
+      </TemplateAccount>)}
     </>
   )
 }

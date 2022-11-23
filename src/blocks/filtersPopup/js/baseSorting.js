@@ -1,5 +1,5 @@
 const baseSorting = (professionBase) => {
-  // console.log('professionBase')
+  // console.log('professionBase', professionBase)
   let massBaseSort = [[]]
 
   let Letter = professionBase[0].name[0]

@@ -1,11 +1,9 @@
-import React from 'react'
+import CardsEditDefault from 'pages/cabinet/parts/cardsDefault/CardsEditDefault';
 
-const SpecializationEdit = () => {
-  return (
-    <div>
-      SpecializationEdit
-    </div>
-  )
+
+const ResumeEdit = () => {
+  return <CardsEditDefault nameList='specialization' fieldsDefault='fieldsSpecialization' />
 }
 
-export default SpecializationEdit
+
+export default ResumeEdit;

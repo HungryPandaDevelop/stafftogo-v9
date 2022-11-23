@@ -3,20 +3,19 @@ import { useNavigate, Link } from 'react-router-dom';
 
 import { getListing, onDeleteCards } from 'store/asyncActions/getListing';
 
-import CardItem from 'pages/cabinet/parts/CardItem';
+import CardsItemDefault from 'pages/cabinet/parts/cardsDefault/CardsItemDefault';
 
 import ActionFn from 'store/actions';
 
 import TemplateAccount from 'pages/cabinet/parts/TemplateAccount';
 
-import { saveInfo } from 'store/asyncActions/saveInfo';
 
 import { connect } from 'react-redux';
 
 import PreloaderList from 'pages/cabinet/parts/PreloaderList';
 import EmptyList from 'pages/cabinet/parts/EmptyList';
 
-const CardsListDefault = ({ uid, cabinetType, accountInfo, ActionFn, nameList }) => {
+const CardsListDefault = ({ uid, cabinetType, nameList, whatshow }) => {
 
   const [loading, setLoading] = useState(true);
 
@@ -29,11 +28,11 @@ const CardsListDefault = ({ uid, cabinetType, accountInfo, ActionFn, nameList })
 
     getListing(nameList, uid).then(res => {
       if (isMounted) {
+        console.log(res)
+        res.sort((a, b) => a.data.name > b.data.name ? 1 : -1)
+        console.log(res)
         setListings(res);
         // console.log(res.length, accountInfo.currentCard)
-        if (res.length === 1 && !accountInfo.currentCard) {
-          onActivateItem([res[res.length - 1].id, res[res.length - 1].data.card_name]);
-        }
 
         setLoading(false);
       }
@@ -46,50 +45,34 @@ const CardsListDefault = ({ uid, cabinetType, accountInfo, ActionFn, nameList })
   }, []);
 
   const deleteItem = (listings, id) => {
-    onDeleteCards(listings, id, cabinetType).then(res => {
+    onDeleteCards(listings, id, nameList).then(res => {
       setListings(res);
-      if (res.length > 0) {
-        onActivateItem([res[res.length - 1].id, res[res.length - 1].data.card_name]);
-      } else {
-        onActivateItem(['', '']);
-      }
     });
     // onDeleteMessage(id);
   }
 
 
   const onEdit = (listingId) => {
-    navigate(`/cabinet/${cabinetType}-edit/${listingId}`)
+    navigate(`/cabinet/${nameList}-edit/${listingId}`)
   }
 
-  const onActivateItem = (el) => {
-    if (accountInfo.currentCard !== el) {
-      const addUserInfo = { ...accountInfo, currentCard: el };
-      console.log(addUserInfo)
-      saveInfo(addUserInfo, uid, 'users').then(() => {
-        ActionFn('SET_INFO_ACCOUNT', addUserInfo);
-      });
-    }
-  }
 
-  const renderDataText = () => {
-    return cabinetType === 'resume' ? 'Мои резюме' : 'Мои вакансия'
-  }
+
 
   return (
     <>
       <TemplateAccount
-        title={renderDataText()}
+        title='Все специализации'
         cabinetType={cabinetType}
         addWrapClass='cards-account-container'
         showAddBtn={true}
 
       >
         <div className="add-cards-container">
-          <Link className="btn btn--orange-border cabinet-add-cards ico-in ico-in--left" to={`/cabinet/${cabinetType}-new`}>
+          <Link className="btn btn--orange-border cabinet-add-cards ico-in ico-in--left" to={`/cabinet/${nameList}-new`}>
             <i></i>
             <span>
-              Создать {cabinetType === 'resume' ? 'резюме' : 'вакансию'}
+              Создать
             </span>
           </Link>
         </div>
@@ -97,27 +80,16 @@ const CardsListDefault = ({ uid, cabinetType, accountInfo, ActionFn, nameList })
           <>
 
             <table>
-              <thead>
-                <tr className="cards-account-head">
-                  <th>Название</th>
-                  <th>З/п</th>
-                  <th>Обновлено</th>
-                  <th>Статус</th>
-                  <th>Действия</th>
-                </tr>
-              </thead>
               <tbody>
                 {
                   listings.map((listing) => (
                     <tr key={listing.id}>
-                      <CardItem
+                      <CardsItemDefault
                         listing={listing.data}
                         id={listing.id}
-                        currentCard={accountInfo.currentCard}
                         onEdit={() => onEdit(listing.id)}
                         onDelete={() => deleteItem(listings, listing.id)}
-                        onActivate={() => onActivateItem([listing.id, listing.data.card_name])}
-                        cabinetType={cabinetType}
+                        whatshow={whatshow}
 
                       />
                     </tr>

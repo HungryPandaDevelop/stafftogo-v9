@@ -12,7 +12,21 @@ import {
 
 import { db } from 'firebase.config';
 
+export const getListingDefault = async (baseName) => {
+  const listingsRef = collection(db, baseName);
 
+  const q = query(listingsRef);
+
+  const querySnap = await getDocs(q);
+
+  const getData = []
+
+  querySnap.forEach((doc) => {
+    return getData.push(doc.data());
+  });
+
+  return getData;
+}
 export const getListing = async (baseName, uid, type, listingId) => {
 
 

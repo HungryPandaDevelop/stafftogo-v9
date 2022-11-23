@@ -1,3 +1,5 @@
+import { getStorage, ref, deleteObject } from "firebase/storage";
+
 
 import { useState, useEffect, useRef } from 'react';
 
@@ -5,8 +7,11 @@ import { Field } from 'redux-form';
 
 import storeImage from 'hooks/storeImage';
 
+import { getAuth } from 'firebase/auth';
+const auth = getAuth();
 const TemplateFile = (props) => {
 
+  const storage = getStorage();
   const elRef = useRef();
 
   const {
@@ -15,7 +20,8 @@ const TemplateFile = (props) => {
     labelSecond,
     maxSize,
     typeAccept,
-    textEmpty
+    textEmpty,
+    nameFolder
   } = props;
 
   const [nameFile, setNameFile] = useState('');
@@ -44,7 +50,7 @@ const TemplateFile = (props) => {
     }
 
     let fileUrls = await Promise.all( // загрузили получили урлы
-      [...files].map((file) => storeImage(file, setLoadingFile))
+      [...files].map((file) => storeImage(file, setLoadingFile, nameFolder))
     ).catch(() => {
       console.log('err')
       return
@@ -57,7 +63,19 @@ const TemplateFile = (props) => {
   const deleteFile = () => {
     setNameFile('');
     elRef.current.focus();
+
+
+    const desertRef = ref(storage, nameFile);
+
+    deleteObject(desertRef).then(() => {
+      console.log('file delete')
+    }).catch((error) => {
+      console.log('file delete err', error)
+    });
+
   }
+
+
 
   return (
     <>
@@ -68,16 +86,20 @@ const TemplateFile = (props) => {
         {loadingFile === true && <div className="preloader"></div>}
         {!nameFile && <div className="file-decorate"><span>{textEmpty}</span><i></i></div>}
         <input ref={elRef} type="text" {...input} value={nameFile} className="input-file-second" />
-        <input type="file" onChange={onChange} className="input-file" accept=".jpg, .jpeg, .png" />
+        <input type="file" onChange={onChange} className="input-file" accept=".jpg, .jpeg, .png, .svg" />
         {nameFile && (
-          <div className='file-uploaded'>
-            <div className="file-uploaded-container">
-              <img src={nameFile} alt={nameFile} />
+          <>
+            <div className='file-uploaded'>
+              <div className="file-uploaded-container">
+                <img src={nameFile} alt={nameFile} />
+              </div>
+              <div className='file-uploaded-delete' onClick={() => { deleteFile(nameFile) }}>delete</div>
             </div>
-            <div className='file-uploaded-delete' onClick={() => { deleteFile() }}>delete</div>
-          </div>
+
+          </>
         )}
       </div>
+
     </>
   )
 }

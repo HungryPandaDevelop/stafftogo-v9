@@ -63,6 +63,10 @@ import Specialization from 'pages/cabinet/specialization/Specialization';
 import SpecializationNew from 'pages/cabinet/specialization/SpecializationNew';
 import SpecializationEdit from 'pages/cabinet/specialization/SpecializationEdit';
 
+import Activity from 'pages/cabinet/activity/Activity';
+import ActivityNew from 'pages/cabinet/activity/ActivityNew';
+import ActivityEdit from 'pages/cabinet/activity/ActivityEdit';
+
 // Страницы Елементов Вакансии\ Резюме
 import Catalog from 'pages/catalog/Catalog';
 import CardsDetail from 'pages/catalog/CardsDetail';
@@ -151,9 +155,15 @@ const ScrollToTop =(props) => {
               <Route path='/cabinet/videochat/videoroom-out/:userId'  element={<VideoRoomOut/>} ></Route>
               <Route path='/cabinet/videochat/videoroom-in/:roomUrl'  element={<VideoRoomIn/>} ></Route>
 
+{/* Нужна универсальность */}
               <Route path='/cabinet/specialization' element={<Specialization/>}></Route>
-              <Route path='/cabinet/specialization/specialization-new' element={<SpecializationNew/>}></Route>
-              <Route path='/cabinet/specialization/specialization-edit/:elementId' element={<SpecializationEdit/>}></Route>
+              <Route path='/cabinet/specialization-new' element={<SpecializationNew/>}></Route>
+              <Route path='/cabinet/specialization-edit/:elementId' element={<SpecializationEdit/>}></Route>
+
+              <Route path='/cabinet/activity' element={<Activity/>}></Route>
+              <Route path='/cabinet/activity-new' element={<ActivityNew/>}></Route>
+              <Route path='/cabinet/activity-edit/:elementId' element={<ActivityEdit/>}></Route>
+{/* Нужна универсальность */}
 
               <Route path='/cabinet/subscription/'  element={<Subscription/>} ></Route>
 

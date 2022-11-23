@@ -22,7 +22,22 @@ export const addCards = async (dataForm, baseCards, uid)=>{
     toast.success('Карточка добавлена');
 
   } catch (error) {
-    toast.error('Невозможно обновить профиль')
+    toast.error('Невозможно добавить')
+    console.log(error)
+  }
+}
+export const addCardsDefault = async (dataForm, baseCards, )=>{
+
+  try {
+    
+    dataForm['timestamp'] = serverTimestamp();
+
+    await addDoc(collection(db, baseCards), dataForm);
+
+    toast.success('Элемент добавален');
+
+  } catch (error) {
+    toast.error('Невозможно добавить')
     console.log(error)
   }
 }

@@ -9,11 +9,16 @@ import { v4 as uuidv4 } from 'uuid';
 
 const auth = getAuth();
 
-const storeImage = async (image, setLoadingFile) => {
+const storeImage = async (image, setLoadingFile, nameFolder) => {
   return new Promise((resolve, reject) => {
     const storage = getStorage();
     const fileName = `${auth.currentUser.uid}-${image.name}-${uuidv4()}`;
-    const storageRef = ref(storage, 'images/' + fileName);
+    let storageRef;
+    if(nameFolder){
+      storageRef = ref(storage, nameFolder + '/' + fileName);
+    }else{
+      storageRef = ref(storage, 'images/' + fileName);
+    } 
     const uploadTask = uploadBytesResumable(storageRef, image);
 
     // import from firebase build/ storage/ web/ upload file/

@@ -1,11 +1,9 @@
-import React from 'react'
+import CardsNewDefault from 'pages/cabinet/parts/cardsDefault/CardsNewDefault';
 
 const SpecializationNew = () => {
-  return (
-    <div>
-      SpecializationNew
-    </div>
-  )
+  return <CardsNewDefault nameList='specialization' fieldsDefault='fieldsSpecialization' />
 }
 
-export default SpecializationNew
+
+
+export default SpecializationNew;
