@@ -1,18 +1,24 @@
 import { useRef } from 'react';
 
-import { Preview, print } from 'react-html2pdf';
+import ReactToPrint from 'react-to-print';
+
+import * as htmlToImage from 'html-to-image';
+import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
+
 
 const Demo = () => {
-
-
-
 
   const refImg = useRef(null);
 
 
   const printImg = async () => {
-
-    print('a', 'jsx-template')
+    const dataUrl = await htmlToImage.toPng(refImg.current);
+    console.log(refImg)
+    // download image
+    const link = document.createElement('a');
+    link.download = "html-to-img.png";
+    link.href = dataUrl;
+    link.click();
   }
   return (
     <div className='all' ref={refImg} style={{ background: 'white' }}>
@@ -28,9 +34,6 @@ const Demo = () => {
         <div className="btn" onClick={printImg}>pdf</div>
       </div>
 
-      <div id={'jsx-template'} >
-        <p>adsf</p>
-      </div>
     </div>
   )
 }

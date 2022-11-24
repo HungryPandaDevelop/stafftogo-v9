@@ -30,21 +30,28 @@ import defaultCardsImg from 'front-end/images/icons/avatar-light-gray.svg';
 const CardsDetail = ({ uid, cabinetType }) => {
   const refContent = useRef(null);
 
-  const toPdf = (namecards, nameaccount) => {
+  const toPdf = (namecards, accountName) => {
     // норм решение но не работает с картинкой fb
-    htmlToImage.toPng(refContent.current, { quality: 0.95 })
+    htmlToImage.toPng(refContent.current, { quality: 0.50 })
       .then(function (dataUrl) {
         var link = document.createElement('a');
         link.download = 'my-image-name.jpeg';
         const pdf = new jsPDF();
         const imgProps = pdf.getImageProperties(dataUrl);
         const pdfWidth = pdf.internal.pageSize.getWidth();
-        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+        const pdfHeight = (imgProps.height * pdfWidth) / (imgProps.width - 100);
         pdf.addImage(dataUrl, 'PNG', 0, 0, pdfWidth, pdfHeight);
-        pdf.save(`${namecards}-${nameaccount}.pdf`);
+        pdf.save(`${namecards}-${accountName}.pdf`);
       });
     // норм решение но не работает с картинкой fb
+    // const pdf = new jsPDF();
 
+    // pdf.html(refContent.current, {
+    //   async callback(doc) {
+    //     await doc.save(`${namecards}-${accountName}.pdf`);
+    //   },
+    //   html2canvas: { scale: 0.5 }
+    // });
   }
 
   const handlePrint = useReactToPrint({
@@ -79,8 +86,8 @@ const CardsDetail = ({ uid, cabinetType }) => {
       <Breadcrumbs />
       <div className="stub"></div>
       <div className="content" >
-        <div className="main-grid">
-          <div className="col-10 col-lg-9 col-sm-12" ref={refContent}>
+        <div className="main-grid" >
+          <div className="col-10 col-lg-9 col-sm-12" style={{ paddingLeft: '30px' }} ref={refContent}>
 
             <CardsMain listing={listing} elementId={params.elementId} imgCards={imgCards} listingType={params.catagoryName} />
 

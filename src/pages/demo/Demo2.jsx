@@ -1,6 +1,5 @@
 import { useRef } from 'react';
-
-import { Preview, print } from 'react-html2pdf';
+import jsPDF from 'jspdf';
 
 const Demo = () => {
 
@@ -12,7 +11,21 @@ const Demo = () => {
 
   const printImg = async () => {
 
-    print('a', 'jsx-template')
+    const doc = new jsPDF({
+      format: 'a4',
+      unit: 'px',
+
+    });
+
+    // Adding the fonts.
+    doc.setFont('Inter-Regular', 'normal');
+
+    doc.html(refImg.current, {
+      async callback(doc) {
+        await doc.save('document');
+      },
+    });
+
   }
   return (
     <div className='all' ref={refImg} style={{ background: 'white' }}>
@@ -28,9 +41,6 @@ const Demo = () => {
         <div className="btn" onClick={printImg}>pdf</div>
       </div>
 
-      <div id={'jsx-template'} >
-        <p>adsf</p>
-      </div>
     </div>
   )
 }
