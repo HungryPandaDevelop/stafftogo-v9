@@ -6,7 +6,7 @@ const ClearYaMap = ({ myMap, myMapRef, setMyMap, setLoadMap }) => {
   useEffect(() => {
 
 
-    let arr = localStorage.getItem('choisenCoordsCity') ? localStorage.getItem('choisenCoordsCity').split(',') : localStorage.getItem('choisenCoordsCity');
+    let arr = localStorage.getItem('choisenCoordsCity') ? localStorage.getItem('choisenCoordsCity').split(',') : [55.755864, 37.617698];
     setCenterCoords(arr)
 
   }, []);

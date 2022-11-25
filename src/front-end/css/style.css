@@ -5254,6 +5254,14 @@ footer .create {
   width: 100%;
 }
 
+.docpdf {
+  padding: 15px;
+}
+
+.docpdf-container {
+  margin: -15px;
+}
+
 .cards-description h4 {
   font-size: 18px;
 }

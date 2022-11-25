@@ -31,15 +31,18 @@ const CardsDetail = ({ uid, cabinetType }) => {
   const refContent = useRef(null);
 
   const toPdf = (namecards, accountName) => {
-    // норм решение но не работает с картинкой fb
+
     htmlToImage.toPng(refContent.current, { quality: 0.50 })
       .then(function (dataUrl) {
+
         var link = document.createElement('a');
         link.download = 'my-image-name.jpeg';
         const pdf = new jsPDF();
+        // console.log(dataUrl)
         const imgProps = pdf.getImageProperties(dataUrl);
+        console.log(imgProps)
         const pdfWidth = pdf.internal.pageSize.getWidth();
-        const pdfHeight = (imgProps.height * pdfWidth) / (imgProps.width - 100);
+        const pdfHeight = (imgProps.height * pdfWidth) / (imgProps.width);
         pdf.addImage(dataUrl, 'PNG', 0, 0, pdfWidth, pdfHeight);
         pdf.save(`${namecards}-${accountName}.pdf`);
       });
@@ -87,19 +90,21 @@ const CardsDetail = ({ uid, cabinetType }) => {
       <div className="stub"></div>
       <div className="content" >
         <div className="main-grid" >
-          <div className="col-10 col-lg-9 col-sm-12" style={{ paddingLeft: '30px' }} ref={refContent}>
+          <div className="col-10 col-lg-9 col-sm-12 docpdf-container" >
+            <div className="docpdf" ref={refContent}>
 
-            <CardsMain listing={listing} elementId={params.elementId} imgCards={imgCards} listingType={params.catagoryName} />
+              <CardsMain listing={listing} elementId={params.elementId} imgCards={imgCards} listingType={params.catagoryName} />
 
-            <CardsSecond listing={listing} />
+              <CardsSecond listing={listing} />
 
-            <CardsAbout listing={listing} />
+              <CardsAbout listing={listing} />
 
-            <Reviews
-              listingType={params.catagoryName}
-              elementId={params.elementId}
-              listing={listing}
-            />
+              <Reviews
+                listingType={params.catagoryName}
+                elementId={params.elementId}
+                listing={listing}
+              />
+            </div>
           </div>
           <div className="col-2 col-lg-3 hidden-sm hidden-xs">
             <CardsSidebar
